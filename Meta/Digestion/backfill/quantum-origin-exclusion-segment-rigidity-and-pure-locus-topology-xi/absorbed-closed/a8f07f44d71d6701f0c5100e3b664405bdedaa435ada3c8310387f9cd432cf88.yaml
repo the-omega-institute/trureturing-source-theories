@@ -1,0 +1,15 @@
+fingerprints:
+  raw_sha256: sha256:a8f07f44d71d6701f0c5100e3b664405bdedaa435ada3c8310387f9cd432cf88
+  normalized_sha256: sha256:a8f07f44d71d6701f0c5100e3b664405bdedaa435ada3c8310387f9cd432cf88
+cas_ref: sha256:a8f07f44d71d6701f0c5100e3b664405bdedaa435ada3c8310387f9cd432cf88
+coverage_gids:
+  - gid: D5/S3/Quantum/Foundation/BinaryCenterSections.original_center_sections
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: 87f9ece2be135709bb0f1a4cf0c6eb37213057fc
+      module_statement_id: sha256:3a8570f9dd00d8ab4e8343ed22c043283fcef9830ad4f233929d5e6d03d1802e
+      state_sha256: sha256:b2eb641db219b3511f17efd037b84005ed1044d066fd473c30e481e5a828750b
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),10:Foundation),20:BinaryCenterSections),24:original_center_sections)
+receipts:
+  unresolved_subitems: []

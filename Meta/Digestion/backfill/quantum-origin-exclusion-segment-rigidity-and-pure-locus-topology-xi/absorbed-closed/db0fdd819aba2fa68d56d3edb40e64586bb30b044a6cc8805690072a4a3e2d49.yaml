@@ -1,0 +1,23 @@
+fingerprints:
+  raw_sha256: sha256:db0fdd819aba2fa68d56d3edb40e64586bb30b044a6cc8805690072a4a3e2d49
+  normalized_sha256: sha256:db0fdd819aba2fa68d56d3edb40e64586bb30b044a6cc8805690072a4a3e2d49
+cas_ref: sha256:db0fdd819aba2fa68d56d3edb40e64586bb30b044a6cc8805690072a4a3e2d49
+coverage_gids:
+  - gid: D5/S3/Quantum/Foundation/BinaryCenterGeometry.repeated_block_finite_compatibility
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: d762e293de699aa65fdd412af4f6acd80488460d
+      module_statement_id: sha256:d1523251a6b28497e4159172f1c080a8eb3bad1494289bf4302384a6fe1fdcb4
+      state_sha256: sha256:1b32784ab4c8fd56680b9572b7acad91e31fe80132b233da024cb7411e8ba4f5
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),10:Foundation),20:BinaryCenterGeometry),35:repeated_block_finite_compatibility)
+  - gid: D5/S3/Quantum/Foundation/BinaryCenterGeometry.repeated_block_one_outside
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: d762e293de699aa65fdd412af4f6acd80488460d
+      module_statement_id: sha256:d1523251a6b28497e4159172f1c080a8eb3bad1494289bf4302384a6fe1fdcb4
+      state_sha256: sha256:1b32784ab4c8fd56680b9572b7acad91e31fe80132b233da024cb7411e8ba4f5
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),10:Foundation),20:BinaryCenterGeometry),26:repeated_block_one_outside)
+receipts:
+  unresolved_subitems: []
