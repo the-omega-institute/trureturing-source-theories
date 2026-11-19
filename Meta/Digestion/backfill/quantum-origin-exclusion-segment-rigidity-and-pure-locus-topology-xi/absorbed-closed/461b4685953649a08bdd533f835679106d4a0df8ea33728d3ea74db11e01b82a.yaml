@@ -1,0 +1,15 @@
+fingerprints:
+  raw_sha256: sha256:461b4685953649a08bdd533f835679106d4a0df8ea33728d3ea74db11e01b82a
+  normalized_sha256: sha256:461b4685953649a08bdd533f835679106d4a0df8ea33728d3ea74db11e01b82a
+cas_ref: sha256:461b4685953649a08bdd533f835679106d4a0df8ea33728d3ea74db11e01b82a
+coverage_gids:
+  - gid: D5/S3/Quantum/Foundation/BinaryCenterNoncollapse.fixed_sphere_noncollapse
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: ef9fc931595fee7e4ffd412df1b7d6cbd074a333
+      module_statement_id: sha256:88759b889426f5ca3c9c86b59e126b2f7742c1a4530d9235b640277b2f94cc8d
+      state_sha256: sha256:ec444324ad83c03a1281a8800bbc7bf8c29274405b65ac6250c7226b846237e4
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),10:Foundation),23:BinaryCenterNoncollapse),24:fixed_sphere_noncollapse)
+receipts:
+  unresolved_subitems: []
