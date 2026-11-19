@@ -1,0 +1,12 @@
+**Proposition 20.1 (Single-fibre inventory).** In a balanced reduced basis as in Proposition 19.2, fix the direction $[\alpha_0:\beta_0]$ of the lower pivot. Let $\ell$ be the minimum of the index-$p$ lattice
+$$
+\{(a,b)\in\mathbb Z^2:\alpha_0a+\beta_0b=0\bmod p\}.
+$$
+In a four-dimensional short Cartesian box of side $O(H)$ the number of frequencies stationary at a fixed lower point is
+$$
+O(H^4/p+H^3/\ell+H^2).
+$$
+Here $1\le H<p$ and the gradient at the lower point is nonzero. For $H\asymp L/\sqrt p$, the volume estimate $O(H^4/p)$ holds when $\ell\ge p/H$. The smaller $\ell$ directions are $O((p/H)^2)$ in each fixed lower slope.
+
+**Proof.** Each residue of the reading $\alpha_0 a+\beta_0 b$ occurs at most $O((1+H/\ell)(1+H\ell/p))$ times in the two-dimensional box. The rows of the translated lattice have spacing comparable to $p/\ell$ and on each row the shortest vector has length comparable to $\ell$. The shortest vector is primitive since its length is $O(\sqrt p)$. Apply this count to each of $(w_1,n_1)$ and $(w_2,n_2)$. If both gradient coordinates are nonzero, fixing the reading of the first pair determines the reading of the second. If one gradient coordinate is zero, the corresponding row reading must vanish. In either case the count is at most the total number $O(H^2)$ of possibilities for one pair times the maximum per residue. Use $\ell\ll\sqrt p$ to obtain the bound. Each primitive shortest vector of length less than $p/H$ determines its projective direction. Counting such vectors gives the asserted number of directions.
+
