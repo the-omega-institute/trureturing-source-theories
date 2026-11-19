@@ -1,0 +1,41 @@
+**Theorem 16.1 (The prime-square determinant contribution).** There is a positive enlargement of the exact-sum count in Theorem 15.1 for which the primitive frequency contribution with $e,f\ne 0\bmod p$ and $q\mid\det(e,f)$ is $O_\varepsilon(p^{323/100+\delta+\varepsilon})$. The lower-conductor and jointly $p$-divisible sectors still satisfy the first-moment target of Theorem 14.1. The remaining estimate concerns nonzero determinants with $p$-adic valuation one.
+
+**Proof.** Fix the literal sums $(S,T)=(ah,bh)$ and the unit parameters $a,b,h$ with $h>0$. In the lattice for each of the first two row pairs, a fixed point $z_i\bmod q$ of the cubic places $(x_i,y_i)$ in
+$$
+(a z_i,b z_i)+Q\mathbb Z^2+q(a,b)\mathbb Z.
+$$
+This translate consists of pairs congruent to $(a z_i,b z_i)$ modulo $q$ and satisfying $a y_i=b x_i\bmod Q$. The third pair is determined by the exact sums. This description holds for all unit $a,b$. The Fourier transforms of the two physical triple products on their exact-sum planes are $U_X(f;S)$ and $U_Y(e;T)$. The two-row lattice has covolume $q^2Q^2$, and its dual after scaling by $Q$ has the condition $af+be=0\bmod p$ in both coordinates. Its translation gives $e_q(d\cdot z)$ with $d=(af+be)/p$. Poisson summation therefore gives the identity of Theorem 15.1 for the positive count on these translates, including when $\gcd(a,b)>1$.
+
+Start from the original positive count with its coprime pivot, omit the critical part as in Theorem 15.1, and enlarge to all unit $a,b$ satisfying the same literal pivot lower bound. For every $(S,T)$ the enlarged count has at most $\tau(\gcd(|S|,|T|))\ll_\varepsilon p^\varepsilon$ copies of an eligible triple since $h$ divides both sums. The physical lower-word bound of Theorem 9.1 allows all full minima over the retained middle slopes and applies with the positive bandlimited majorants by the same row bounds and Fourier positivity. Thus the proper-conductor projection still costs $O_\varepsilon(p^\varepsilon N_1/p)$. The inventory and absolute estimate of Theorem 15.1 for jointly $p$-divisible $e,f$ apply to the enlarged set of pivots.
+
+Now take $q\mid\det(e,f)$ and let $v=e\bmod p$. Then $f=Fe\bmod q$ for a unit $F$. Fix the nonzero resonance $(a_0,b_0)\bmod p$ with $b_0/a_0=-F\bmod p$ and write $(a,b)=(a_0+pu,b_0+pw)$. Modulo $p$ the frequency $d$ equals $(k_0+Fu+w)v$ for a fixed $k_0$. Put $P(x,y)=xy(h-x-y)$ and $c=h/(ga_0b_0)\bmod p$. The smooth stationary points $z$ lie on $P=c$ and $D_vP=0$, where $D_v=v_2\partial_x-v_1\partial_y$. There are at most six such points. Write $v=\lambda_0\nabla P(z)$. At a fixed representative $z_0$ of $z$, the coefficient of the high lift when solving $P=h/(gab)\bmod q$ is a constant minus $c(u/a_0+w/b_0)$. The stationary contribution has magnitude $p$ and phase $e_q(d\cdot z_0)$ times the additive character of this correction multiplied by $\lambda_0(k_0+Fu+w)$. The first factor contributes a real linear phase in $(u,w)$. The mixed term of the second vanishes since $F/b_0+1/a_0=0$. Its quadratic coefficients are
+$$
+\beta=-\lambda_0 c F/a_0,\qquad \beta'=-\lambda_0 c/b_0.
+$$
+Their ratio is fixed and nonzero.
+
+Each fixed $\beta\ne0$ occurs for at most a bounded number of pairs $(a_0,z)$. In fact $c$ is a fixed nonzero multiple of $a_0^{-2}$. Choosing an index $i$ for which $v_i\ne0$, the equation for $\beta^2$ requires $P(z)^3$ to equal a fixed nonzero multiple of $(\partial_iP(z))^2$. This degree-nine curve shares no component with $D_vP=0$ that contains an eligible stationary point. The leading cubic $P_3=-xy(x+y)$ has three distinct linear factors. If $D_vP_3$ shares a root with $P_3$, the direction of $D_v$ is tangent to one of their lines. In the three tangent cases the factors of $D_vP$ are respectively $x$ and $h-x-2y$, $y$ and $h-2x-y$, or $y-x$ and $h-x-y$. The factor in the common direction lies in $P=0$. Thus every eligible component has a point at infinity with $P_3\ne0$. The degree-nine equation fails at that point. Bézout bounds the number of eligible points by 18, and each gives at most two choices of $a_0$.
+
+For a quadratic sum over any interval of length at most $U\le p$, the square of its absolute value is bounded uniformly in the real linear phase by
+$$
+U+O\left(\sum_{1\le j<U}\min\bigl(U,\|2\beta j/p\|^{-1}\bigr)\right).
+$$
+Expansion of the square gives this bound. Averaging it over $\beta\bmod p$ costs $O(pU\log p)$. Bounded multiplicity and Cauchy–Schwarz therefore bound the sum of the products of the two quadratic sums over $(a_0,z)$ by $O(pU\log p)$. Intervals longer than $p$ can be split into length-$p$ intervals, giving $O(p^2(1+U/p)^2\log p)$.
+
+Use dyadic boxes for $|S|$ and $|T|$, of respective scales $R2^i$ and $R2^j$, including the central boxes. Put $A\asymp R2^{\max(i,j)}/h$ and $W=R^4 2^{-2i-2j}$. A contributing box has $A\gg V$ and high-digit intervals of length $O(1+A/p)$. The squared weight tails in $W$ hold also after partial summation. In each large signed coordinate, integrate by parts twice in the Fourier representation of $U$ and use the bounded total variation of the second derivative measure of the rescaled compact Fourier product. The integral inserts a real linear phase and leaves the monotone factor $(S/R)^{-2}$ or $(T/R)^{-2}$. In the central box use the original Fourier representation. The pivot cutoff gives a bounded number of rectangles. Including the factor $p$ in the stationary contribution, the unrestricted bound per frequency pair, $h$ and dyadic box is $O_\varepsilon(p^\varepsilon W(pA+A^2/p))$.
+
+The excluded conditions $d=0\bmod p$ and $gabh^2=27\bmod q$ are affine congruences on the upper digits, or empty. Both coefficients are units when the corresponding condition occurs. Each excludes $O((1+A/p)(1+A/p^2))$ pairs, so the absolute cost of subtracting the extended stationary formula at these points is $O(W(pA+A^2/p))$, including the sum over $a_0$.
+
+For the slope cutoff, let $(r,s)$ be a shortest primitive vector in the mod-$p$ lattice of slope $b_0/a_0$ and let $M=\max(|r|,|s|)\ll\sqrt p$. Short vectors of length at most $H$ parallel to $(r,s)$ give one mod-$q$ slope. Nonparallel vectors have nonzero determinant with $(r,s)$ divisible by $p$ and of size $O(MH)$. Each determinant fiber has $O(1+H/M)$ points. So either only the parallel lift occurs, or $M\gg p/H$ and there are $O(1+H^2/p)$ omitted lifts. A fixed lift prescribes $su-rw\bmod p$. Its $O(1+MA/p^2)$ literal values each contain $O(1+A/(pM))$ points. In the single parallel case the preceding affine bound suffices. For the other short slopes the absolute cost is
+$$
+O\left(W p H^2(1+A/p^{3/2}+AH/p^2+A^2/p^3)\right).
+$$
+
+The inventory of pairs of nonzero determinant divisible by $q$ is $O(L^4/q)$. Write $e=t v_0$ with $v_0$ primitive and $t$ a unit. On a dyadic norm scale $M_0$ for $v_0$, there are $O(M_0^2)$ choices of $v_0$, $O(L/M_0)$ choices of $t$, and $O(M_0L/q)$ eligible nonzero determinant values for $\det(v_0,f)$. Each value has $O(1+L/M_0)$ choices of $f$. Summing the resulting $O(L^3M_0/q)$ proves the inventory. Literally collinear pairs contribute $O(L^2\log p)$ to the inventory, within the same bound.
+
+Multiplying the inventory by $R^4/(q^2Q^2)$ gives $O(1)$. After the squared tails, summation of $A^k$ over the dyadic boxes and $h$ costs $O_\varepsilon(p^\varepsilon R^k)$ for $k=1,2$. The constant term costs $O_\varepsilon(p^\varepsilon R/V)$ since $A\gg V$. The sum is bounded up to $p^\varepsilon$ by
+$$
+pR+R^2/p+pH^2\left(R/V+R/p^{3/2}+RH/p^2+R^2/p^3\right).
+$$
+This is $O(p^{323/100+\delta})$ and fits the target throughout $0<\delta<1/100$.
+
