@@ -1,0 +1,62 @@
+**Theorem 8.1 (Variance at a common middle slope).**
+
+For every set of retained unit slopes $s\bmod q$, the contribution of equal slopes to the centered variance satisfies
+$$
+ \frac1p\sum_s\sum_{\nu\ne0,d}|H_s(n)|^2
+   \ll p^{17/2}/K\asymp p^{67/8+\delta/2}.
+$$
+The same bound holds for the sum of absolute paired terms in the completed frequency expansion below. In particular a relation on slopes of maximum indegree and outdegree $D$ contributes $O(Dp^{17/2}/K)$ in absolute value in that expansion. All these estimates are uniform in the fixed unit $g$.
+
+*Proof.*
+
+Expand $y=sx\bmod q$ by additive orthogonality. Also Fourier-invert over $(\mathbb Z/q)^3$ the signed word multiplier, including the unit and pair-sum restrictions and $n\cdot x=0\bmod p$. If its coefficient at frequency $-J$ is $C_s(J,n)$, the result is
+$$
+ H_s(n)=q^{-6}\!\!\!
+ \sum_{\substack{N=n\bmod p\\ m+sN=0\bmod p}}
+ C_s((m+sN)/p,n)\prod_{i=1}^3 F_X(m_i/Q)F_Y(N_i/Q).
+$$
+Here $m,N$ are represented by centered integers modulo $Q$. In particular all six literal frequencies are $O(L)$. The factor $q^{-6}$ accounts for the two Fourier expansions. The short row weight including its factor $q^{-2}$ is $O(K^{-2})$. At fixed slope and normal a given row has $O(K^2)$ possible literal frequency pairs.
+
+Expand the signed word over lifts of a residue $\xi$ by $p v$ with $v\bmod p$. Its nonzero conductor is
+$$
+ \sum_{h\in\mathbb F_p^\times} e_p\big(h(W_s(\xi)/p+\nabla W_s(\xi)\cdot v)\big).
+$$
+Summing $v$ gives one term of magnitude $p^3$ whenever $J=h r$ modulo $p$, where $r=\nabla W_s(\xi)$ on an admissible residue. Equivalently its phase is $e_q(-J\cdot\tilde\xi)$ for any lift satisfying $W_s(\tilde\xi)=0\bmod q$. On the word one has $r_i=1-(\sum_j \xi_j)/\xi_i$. All $r_i$ are units and $r\cdot\xi=-2gs\prod_i \xi_i\ne0$, so $r$ and $n$ are independent. Each completed branch has weight $O(p^3K^{-6})$ in absolute value.
+
+Write $s=s_0+pt$ and $J_0=(m+s_0N)/p\bmod p$. At fixed $s_0,m,N$ the stationarity equation becomes $J_0+tn=h r$. If $J_0$ is parallel to $n$ there is no branch. Otherwise use $J_0\cdot\xi$ and a complementary linear coordinate on $n^\perp$. The planar word and its derivative in the complementary coordinate vanish at a stationary point. The restricted gradient is nonzero on the admissible locus. An irreducible common factor through such a point must have multiplicity one and divide its own derivative. For $p>3$ it is independent of the complementary coordinate, hence a line over the algebraic closure. The word surface contains no line through an admissible point. Substituting a line into $W_s$, the cubic and then the quadratic coefficients force two fixed coordinates. The linear coefficient makes their product $1/(gs_0)$ and the constant coefficient makes their sum zero. Bézout now gives at most six admissible residues. For each, independence of $r,n$ determines both $t,h$. The argument also bounds the number of branches when $s,J,n$ are fixed.
+
+For fixed $s_0,n$ the number of branches over all $t$ is $O(K^6)$. Also the absolute branch weight at fixed $s,n$ summed over its branches is $O(p^3)$, by the bound for a fixed frequency. Call a residue $s_0$ exceptional if $U+s_0V=0\bmod p$ for a nonzero pair of size $O(K)$, with constants large enough for the support enlargements below. The exceptional set has size $O(K^2)$. Away from it, $n_i,J_{0,i}$ determine a unique short row. On the exceptional set the multiplicity of this row is at most $O(K)$, since either high digit determines the other. At fixed $s,n$, two unit components of $J$ determine a bounded number of branches if the normal coordinate at the remaining pivot is nonzero. In fact write the two corresponding normalized physical coordinates as $u,v$ and the pivot coordinate as $a$. Set $D=gs_0a^2$ and $\eta=J_1(Du-1)=J_2(Dv-1)$, with labels chosen so $J_1,J_2$ are the fixed components. The word and stationarity give $\eta^2=J_1J_2(1+D)$ and $dD=\nu_1+\nu_2+(\nu_1/J_1+\nu_2/J_2)\eta$. Eliminating $\eta$ gives a nonzero quadratic in $D$ if $d\ne0$. If $d=0$, the only degeneracy for a nonzero normal is $\nu_1=-\nu_2$ and $J_1=J_2$. Thus choosing any nonzero normal coordinate for the pivot bounds the branch count at fixed $s,n$ by $O(K^4)$ times its short-row multiplicity. The contribution of all exceptional $s_0$ to the equal-slope square is consequently $O(p^8K)$. This uses $O(K^2)$ exceptional residues, $O(K^6)$ branches over all $t$ for each normal, and the bound $O(K^5)$ at fixed $s,n$. In addition the contribution of any $O(p^2)$ normals per $s_0$ is $O(p^8)$ by the uniform absolute weight $O(p^3)$ and the inventory of $O(K^6)$ per $s_0,n$. We may remove in this way the modes with $\nu_1\nu_2(\nu_1-\nu_2)(\nu_1+\nu_2)=0$.
+
+Fix a nonexceptional $s_0$, $\nu_1,\nu_2$, and the first two literal dual rows of each of two terms at the same slope. There are $O(K^8)$ such configurations per $s_0,\nu_1,\nu_2$. Write $J_i(t)=\ell_i+t\nu_i$ and $J'_i(t)=J_i(t)+c_i$ for $i=1,2$. If $c_1=c_2=0$, the first two literal rows agree. The fixed-two-component bound gives $O(1)$ second branches per first branch, since the last literal row is unique for each remaining component. There are $O(p^4K^6)$ first branches overall, so this case costs $O(p^9/K^6)$.
+
+Otherwise write $z=J_3$ and $z'=z+c_3$. The shift $c_3=U+s_0V$ has $O(K^2)$ possibilities from the two short third-row differences. Put $P=J_1J_2,\ S=J_1+J_2,\ N_0=\nu_1+\nu_2,\ M=\nu_1J_2+\nu_2J_1$. Since the normalized coordinates are proportional to $1/(h-J_i)$, the stationary curve in $(z,d)$ has the parametrization
+$$
+ z=\frac{h^2(S-2h)}{P-h^2},
+ \qquad
+ d=\frac{h(N_0h-M)}{P-h^2}.
+$$
+To derive it, sum the normalized coordinates and then impose $n\cdot\xi=0$. This gives respectively $2h^3-(S+z)h^2+Pz=0$ and $d=(h-z)(\nu_1/(h-J_1)+\nu_2/(h-J_2))$.
+
+For distinct unit $J_1,J_2$, the degrees of the two nonconstant rational functions are three and at most two, so the parametrization is birational onto its image. At the finite poles $h=\pm\sqrt P$ the sum of the two limiting slopes $d/z$ is $2(\nu_1-\nu_2)/(J_1-J_2)$. The third slope, at $h=\infty$, is zero. This multiset is invariant under a translation in $z$. The branch at infinity is also the unique branch over a pole of $z$ with $d\to-N_0$. At a finite pole where $d$ is regular, cancellation of the common factor gives limiting value $-N_0/2$. At infinity $d=-N_0+2M/z+O(z^{-2})$, with its coefficient $2M$ invariant under translation. Consequently equality of the two translated curves forces first $c_1=c_2=c$ and then $M'=M$, hence $N_0c=0$. This contradicts the condition that the first two shifts are not both zero.
+
+For each $c_3$, outside the bounded set of $t$ where $J_1,J_2$ or $J'_1,J'_2$ coincide or are zero, the intersection over a fixed $t$ has bounded size. The projected image in $(d,z_0)=(d,z+td)$ has dimension at most one and bounded degree. One can form its closure by introducing both branch parameters and the graph of $z_0$, excluding the pole denominators and the exceptional $t$ by an auxiliary inverse variable. Affine Bézout and the degree bound for a linear projection give the uniform degree bound. Each support point has bounded original multiplicity. It determines the first literal third row. The entire first literal triple has at most six choices of slope digit and branch, and each choice determines the second third row and leaves only bounded branch multiplicity. For each exceptional $t$ use just the first curve, with the same $(d,z_0)$ projection. When $J_1=J_2=J$ is a unit, cancel $h-J$ to obtain $z=2h^2/(h+J)$ and $d=-N_0h/(h+J)$. A zero component permits no branch. Thus the exception also lies on a bounded-degree curve. There are boundedly many second branches per $d$, so the exceptional $t$ can be paid once across all $c_3$.
+
+To count the short support on these projected curves, put centered triangular weights on $m_3,N_3\bmod Q$ of widths a sufficiently large fixed multiple of $L$. Use normalized interval autocorrelations, with value one at zero and bounded below on the actual supports. Their product has nonnegative Fourier coefficients. Restrict it to the subgroup $m_3+s_0N_3=0\bmod p$ and push forward under
+$$
+ (m_3,N_3)\longmapsto(-N_3\bmod p,(m_3+s_0N_3)/p\bmod p).
+$$
+Restriction averages the Fourier coefficients over character extensions. Pushforward evaluates them at pullback characters. The resulting weight on $\mathbb F_p^2$ therefore has nonnegative Fourier coefficients. Its value at zero is one by the exclusion of the short-ratio exceptional set. The sum of its normalized Fourier coefficients is one and its total mass is $O(pK^2)$.
+
+The support count on a geometrically irreducible nonlinear component of bounded degree is $O(K^2+\sqrt p)$. The zero frequency costs $O(K^2)$, and the Weil–Bombieri bound on the smooth normalization applies at every nonzero Fourier frequency. A nonzero linear phase is nonconstant on the component. Its pole orders are bounded independently of $p$, so for large $p$ the additive phase is non-Artin–Schreier. Geometric components not defined over $\mathbb F_p$ contribute boundedly many rational points by intersection with Frobenius conjugates. A vertical line costs $O(K^2)$. On any other affine line $z_0=A d+B$, the rows lie in a translated index-$p^2$ lattice $m_3+(s_0+pA)N_3=p B\bmod p^2$. Its shortest length is at least $T(s_0)$, the shortest length of $m_3+s_0N_3=0\bmod p$. The count is $O(K^2+L/T(s_0))$. There are $O(U^2)$ residues with $T(s_0)\le U$ for $U\ll\sqrt p$, since a short vector determines $s_0$, and Minkowski gives $T(s_0)\ll\sqrt p$. Dyadic summation gives $\sum_{s_0}1/T(s_0)\ll\sqrt p$.
+
+Summing over the $O(K^2)$ choices of $c_3$, the four fixed rows and the two normal components gives at most
+$$
+ O\big(p^2 K^{10}(p^{3/2}+pK^2+L\sqrt p)\big)
+   =O(p^{7/2}K^{11})
+$$
+ordered branch pairs in the nonexceptional sector. Each pair costs $O(p^5 K^{-12})$ after the variance normalization. The estimates for the removed sectors are smaller at the stated widths. This proves the bound for the sum of absolute coincident-slope pairs. The relation statement follows from $2ab\le a^2+b^2$ applied to the sum of absolute branch weights of each slope at each normal. Finite small primes can be included by enlarging the constant.
+
+[Weil–Bombieri] Enrico Bombieri, *On exponential sums in finite fields*, American Journal of Mathematics **88** (1966), 71–105. [DOI](https://doi.org/10.2307/2373048)
+
+Outstanding in the full incidence variance is the signed contribution of unrestricted unequal slopes. The present theorem is an ordinary proof. Its Fourier normalization and algebraic reduction were checked separately, with direct finite computations for $p=5,7$.
+
