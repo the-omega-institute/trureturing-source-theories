@@ -1,0 +1,9 @@
+**Corollary 18.2 (Restriction to literal pivot boxes).** If $\mathcal R$ is a rectangle of side at most $A$ with $p\le A<p^2$, restricted to the unit resonance and any common pivot cutoff, then
+$$
+\left|\sum_{(a,b)\in\mathcal R} e(\xi a+\eta b)\sum_i c_iK_i(a,b)\right|
+\ll \frac{AQ}{p}\left(\sum_{i,j} c_i\overline{c_j}\mathcal G(i,j)\right)^{1/2}.
+$$
+The coefficients $c_i$ are fixed throughout the pivot sum and $\xi,\eta$ are arbitrary real twists.
+
+**Proof.** Translation by $(p^2,mp^2)$ fixes every kernel. It preserves all masks and changes $d$ by $p(f+me)=q w$. The full orbit modulo $Q$ has $p$ points, and the rectangle meets an orbit in at most one point because of the interval for $a$. Thus its quadratic norm is at most $Q^2/p$ times the complete normalized Gram form. There are $O(A^2/p)$ resonant points in the rectangle by counting $b$ in its class for each $a$. Cauchy–Schwarz gives the claimed restriction, including the common cutoff and real twists.
+
