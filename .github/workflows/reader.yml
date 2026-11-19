@@ -1,0 +1,53 @@
+name: Manuscript reader
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ['reader/**', '.github/workflows/reader.yml']
+  push:
+    branches: [dev]
+    paths: ['reader/**', 'docs/develop/theory/**', 'docs/develop/archive/theory/**', '.github/workflows/reader.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: reader
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: reader/package-lock.json
+      - name: Read main repository paths
+        run: git clone --quiet --depth=1 --branch dev --filter=blob:none --no-checkout https://github.com/the-omega-institute/trureturing.git "$RUNNER_TEMP/main"
+      - name: Test and build reader
+        working-directory: reader
+        run: |
+          npm ci
+          npm test
+          npm run build -- "$RUNNER_TEMP/main"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: reader/dist
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/dev'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    concurrency:
+      group: manuscript-reader-pages
+      cancel-in-progress: false
+    steps:
+      - name: Publish reader
+        id: publish
+        uses: actions/deploy-pages@v4
