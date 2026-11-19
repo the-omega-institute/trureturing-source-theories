@@ -1,0 +1,5 @@
+docs/develop/theory/CONE_PROGRAM_FORMAL.md
+docs/develop/theory/GICT.md
+docs/develop/theory/OBSERVER-QUANTUM.md
+docs/develop/theory/PZG_BEDC.md
+docs/develop/theory/QUANTITATIVE_DIAGONALIZATION_OBSERVER_COMPLETION.md
