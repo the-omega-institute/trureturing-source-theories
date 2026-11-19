@@ -31,6 +31,8 @@ Run `make settle-context-check REQUESTS=rows.toml` to preview the same ordered `
 
 For an older JSON plan containing a `settle` array of objects with `atom_id`, use `make settle-context-check PLAN=plan.json`. This checks that each atom has a single resolvable occurrence. A repeated occurrence needs an explicit `occurrence_index` in the TOML request. Set `ALLOW_MISSING=1` with a JSON plan to skip absent atom blobs.
 
+For parallel work, use the [atom selection commands](scripts/README-selection.md) to filter eligible claims, exclude ongoing work, compare against D5 declarations, and rank number-theory candidates.
+
 ## Cover with a frozen declaration
 
 `make cover` resolves the main trureturing repository’s `dev` branch and reads the requested module’s frozen state at that commit. The selector must identify one declaration in the module. A batch resolves the branch once and shares each module’s state across its rows. The source editor checks that the declaration’s hypotheses and conclusion cover the claim.
