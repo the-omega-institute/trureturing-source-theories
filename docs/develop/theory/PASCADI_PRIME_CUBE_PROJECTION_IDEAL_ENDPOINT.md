@@ -4070,3 +4070,59 @@ At dyadic scales $A$ and $W$ as in Theorem 16.1, the Fourier integral representa
 The complete transform and the prescribed-determinant estimate arose from a targeted ChatGPT Pro calculation. The positive enlargement and the squared-tail argument here are those of Theorem 16.1. The unrestricted valuation-one sum still requires cancellation between the exact base phases.
 
 ## 追加锚（本行以下为增补区）
+
+## 18. Complete pivot correlations and their exceptional pairs
+
+**Theorem 18.1 (Complete correlations at determinant valuation one).** Fix $p>3$ and the units $g,h,m$ of Theorem 17.1. Use the same middle-slope multiplier and critical deletion for every column $K_i$, and put
+$$
+\mathcal G(i,j)=Q^{-2}\sum_{a,b\bmod Q} K_i(a,b)\overline{K_j(a,b)}.
+$$
+Use the lower data $(v,w)$ of Theorem 17.1 to label a column. Outside a bounded-degree algebraic subset of dimension at most six in the eight scalar coordinates of the two labels, $|\mathcal G(i,j)|\ll p^{-1}$. On that subset the bound is $O(1)$ except when the lower labels agree up to exchanging the first two coordinates, where the bound is $O(p)$. The constants are uniform in the unit parameters.
+
+In a Cartesian box of side at most $H<p$ in the two short resonant coordinates of each column, it follows that
+$$
+\sum_{i,j}|\mathcal G(i,j)|\ll H^8/p+H^6+pH^4.
+$$
+The sum may be restricted to any collection of columns in that box.
+
+**Proof.** Let $P(x,y)=xy(h-x-y)$ and write $F(z)=z\cdot\nabla P(z)-2P(z)=-xy(x+y)$, which is nonzero under the source unit conditions. In the parametrization of Theorem 17.1, write $\kappa=k/a_0$ and let $\lambda$ satisfy $w+\kappa v=\lambda\nabla P(z)$. The two upper phase coefficients are $B=v\cdot z$ and $A=\lambda F(z)-\kappa B$. Before critical deletion, orthogonality of the two upper digits makes the Gram entry $1/p$ times a sum of unit phases with weights of modulus at most one. A surviving term requires
+$$
+P(z)=P(z'),\qquad v\cdot z=v'\cdot z',\qquad
+\lambda F(z)=\lambda'F(z'),\qquad
+w'+\kappa v'=\lambda'\nabla P(z').
+$$
+Here each $(z,z',\kappa)$ gives at most two $a_0$ through $a_0^2=h/(gmP(z))$, and then fixes $k$. The normalization is $p^2p^3/Q^2=1/p$. Critical deletion changes the entry by $O(p^{-1})$. At most two lower $a_0$ are involved, and for each $k$ the deletion occupies one class of $u\bmod p$ and leaves at most $p^2$ upper lifts. The product of the two kernel bounds is at most $36p^2$.
+
+Consider the cover $\pi_v(z)=(v\cdot z,P(z))$ of the plane with coordinates $(B,T)$. It has degree three if $v_1v_2(v_1-v_2)\ne0$, and degree two otherwise. In the quadratic case the line on which its leading coefficient vanishes is excluded by a coordinate unit condition. Thus all fibers in the admitted domain are finite. In the cubic case the discriminant in the coordinate along the $B$-line is quadratic in $T$ with constant nonzero leading coefficient. Its roots are distinct at $B=0$ since the restricted cubic has the form $c x^2(h-dx)$ with $cd\ne0$. At $T=0$ the discriminant vanishes precisely at $B=0,hv_1,hv_2$. These are the readings of the triangle vertices, where two of the three factors of $P$ meet. Two cubic discriminants therefore have the same square class only when $v'=v$ or $v'$ is its coordinate swap. Indeed the squarefree monic polynomials in $T$ then agree, so their root sets at $T=0$ agree.
+
+The two quadratic branch equations are $T=(B/u)(h-B/u)^2/4$ for $v=(u,0)$ or $(0,u)$, and $T=(h-B/u)(B/u)^2/4$ for $v=(u,u)$. Their square classes also agree only for $v'=v$ or its coordinate swap. The two kinds have different orders of vanishing at $B=0$, and within each kind the nonzero root of the branch equation at $T=0$ determines $u$. Consequently the product $\pi_v(z)=\pi_{v'}(z')$ is generically irreducible except for this equality of covers. A cubic can factor over another cubic field only if the latter contains a root, which would identify the fields and their discriminant square classes. Coprime extension degrees handle a quadratic paired with a cubic. Distinct quadratic extensions are disjoint. Any components over a proper subset of the base have dimension at most one because both covers have finite fibers on the admitted domain.
+
+For fixed $(v,w,v')$, the frequency $w'$ on the coincidence locus is the rational function
+$$
+w'(z,z')=\lambda(z)\frac{F(z)}{F(z')}\nabla P(z')-\kappa(z)v',\qquad
+\lambda(z)=\frac{\det(w,v)}{\det(\nabla P(z),v)} .
+$$
+Suppose the target cover is cubic and the product is irreducible. This rational map is dominant. As $z\to0$, choose the sheet with $z'$ tending to the nonzero intersection of $v'\cdot z'=0$ with $x'+y'=h$. It is a simple root of $P$ on the line. Both $F(z')$ and $\det(\nabla P(z'),v')$ are nonzero there, so $z'$ is a formal power series in $z$. Set $z=t(1,u)$. The leading part of $\nabla P(z)$ is $ht(u,1)$. Therefore $\kappa$ specializes as $t\to0$ to a nonconstant fractional linear function of $u$, using $\det(w,v)\ne0$. The product $\lambda(z)F(z)$ has order two in $t$ and a generically nonzero leading coefficient. A linear reading of $w'$ taking $v'$ to one is $-\kappa+O(t^2)$. The reading $\det(w',v')$ is $t^2 C(u)+O(t^3)$ with $C(u)\ne0$. The two readings have nonzero Jacobian, proving dominance.
+
+A dominant map from this irreducible surface to the $w'$-plane has a zero-dimensional locus of values with positive-dimensional fiber. A curve of such values would have a two-dimensional preimage, contradicting dominance on the irreducible source. The number of exceptional $w'$ values is uniformly bounded for fixed $(v,w,v')$. This uses the constructibility of fiber dimension in the fixed polynomial family. Zero-dimensional constructible fibers of a bounded family have bounded cardinal, as follows from stratification into locally closed finite-type families and the uniform degree bounds of their defining equations. In counting all exceptional pairs with at least one cubic cover, orient it as $v'$. There are six free scalar coordinates for $(v,w,v')$ and finitely many $w'$ in the dominant case. Equal covers up to swap also give dimension at most six. When both covers are quadratic there is only one dimension each for $v,v'$ and two each for $w,w'$, again giving dimension at most six.
+
+It remains to identify the fibers of dimension two. For an irreducible product with quadratic target, the transverse reading $\det(w',v')$ contains the factor $D'/F(z')$, where $D'=\det(\nabla P(z'),v')$. The quadratic involution changes this factor. For diagonal direction it swaps $x',y'$, changing the sign of $D'$ and preserving $F(z')$. For an axis direction it sends $y'$ to $h-x'-y'$ after interchanging axes as needed. It changes the sign of $D'$, and the sum of the two $F$-values is generically nonzero, as is seen from $-x'(h(h-x')-2y'(h-x'-y'))$. So the transverse reading is nonconstant on the product and a two-dimensional fiber is impossible.
+
+For equal covers use the swap to arrange $v'=v$. The diagonal component fixes $w'=w$. For a quadratic diagonal direction the residual component is the coordinate swap and gives exactly the swapped label. For an axis direction the transverse reading on the residual component includes the nonconstant ratio of the two $F$-values. Its nonconstancy follows by letting $y$ tend to zero at a generic point with fixed $x$, while the reflected $F$-value stays nonzero. For equal cubic covers the discriminant is nonsquare and the Galois group is $S_3$. The residual component has degree two over the source. The function $D'/F(z')$ has distinct readings on the three conjugate sheets. It is outside the base field because at a generic simple branch value it vanishes on the ramified sheet and is nonzero or has a pole on the other sheet. The critical point avoids $F=0$ for generic $B$. The directional derivative does not vanish identically on any of the three lines $x=0$, $y=0$, $x+y=0$ when $v_1v_2(v_1-v_2)\ne0$. The two residual choices thus give distinct transverse outputs. Only the diagonal component yields a dimension-two fiber in the cubic case.
+
+The number of lower coincidences of dimension $d$ is $O(p^d)$ by bounded-degree point counting. The factor $1/p$ proves the three Gram bounds. The exceptional subset has bounded degree uniformly. One may form the incidence over $\mathbb Z[1/6]$ with inverse coordinates for the open conditions and use the finite constructible strata for fiber dimension, taking the closures of the strata of dimension at most six. The same bounds follow from elimination at fixed degree. Scaling $z$ and $z'$ by the unit $h$ identifies the incidence with $h=1$.
+
+To count boxed pairs, take a primitive short resonance $(r,s)$ with $s=mr\bmod p$ and integers $\rho,\sigma$ with $r\rho+s\sigma=p$. Write $f=\rho w_0+s n_0$, $e=\sigma w_0-r n_0$. The lower map $(w_0,n_0)\mapsto (v,w)$ is invertible, since its scalar determinant is $(r\rho+s\sigma)/p=1$. A bounded-degree set of dimension $d$ meets a Cartesian box of side $H$ in $O(H^d)$ points. This follows by slicing a nonconstant coordinate of each component and inducting on dimension. Thus the dimension-one fibers contribute at most $O(H^6)$ pairs, and the two symmetry diagonals account for $O(H^4)$. The complete Gram estimate follows.
+
+The exact Gram identity uses a targeted ChatGPT Pro calculation with the mod-$q$ base phases retained. The exception bound and symmetry classification are deductions from that identity. Cancellation on incomplete pivot boxes is the remaining first-moment estimate.
+
+**Corollary 18.2 (Restriction to literal pivot boxes).** If $\mathcal R$ is a rectangle of side at most $A$ with $p\le A<p^2$, restricted to the unit resonance and any common pivot cutoff, then
+$$
+\left|\sum_{(a,b)\in\mathcal R} e(\xi a+\eta b)\sum_i c_iK_i(a,b)\right|
+\ll \frac{AQ}{p}\left(\sum_{i,j} c_i\overline{c_j}\mathcal G(i,j)\right)^{1/2}.
+$$
+The coefficients $c_i$ are fixed throughout the pivot sum and $\xi,\eta$ are arbitrary real twists.
+
+**Proof.** Translation by $(p^2,mp^2)$ fixes every kernel. It preserves all masks and changes $d$ by $p(f+me)=q w$. The full orbit modulo $Q$ has $p$ points, and the rectangle meets an orbit in at most one point because of the interval for $a$. Thus its quadratic norm is at most $Q^2/p$ times the complete normalized Gram form. There are $O(A^2/p)$ resonant points in the rectangle by counting $b$ in its class for each $a$. Cauchy–Schwarz gives the claimed restriction, including the common cutoff and real twists.
+
+## 追加锚（本行以下为增补区）
