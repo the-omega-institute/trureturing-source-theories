@@ -1,0 +1,4 @@
+## 12. Quadratic averaging on physical planes
+
+Continue with the balanced scale $R\asymp p^{15/8+\delta/2}$, $0<\delta<1/100$, and the prescribed unit $g$ in Theorem 9.1. Write $Q=p^3$ and $L=Q/R$. On centered physical representatives, a rank-two pair $x,y$ determines a primitive integral normal $h$ up to sign. Put $H=\|h\|$ and denote the successive lengths of $h^\perp\cap\mathbb Z^3$ by $\ell_1\le\ell_2$, so that $\ell_1\ell_2\asymp H$.
+

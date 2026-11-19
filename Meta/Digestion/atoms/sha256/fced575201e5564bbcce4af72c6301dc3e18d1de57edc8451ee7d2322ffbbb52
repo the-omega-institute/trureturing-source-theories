@@ -1,0 +1,47 @@
+**Theorem 12.1 (Averaging the midpoint phase on a physical plane).** Suppose $H=O(R^2/Q)$ and the three coordinates of $h$ are pairwise distinct. The positive upper-word contribution on this plane is at most
+$$
+O\!\left(\frac{p^4\log(2p)}{L\ell_1}+p^2+\frac{R^4}{p^5H^2}\right).
+$$
+The estimate preserves the prescribed $g$, the word modulo $p^2$, and the full common slope modulo $Q$. It also holds for the larger count obtained by allowing every unit middle slope. The sum over normals of height at most $J\ll R^2/Q$ with distinct coordinates is
+$$
+O\!\left(p^{23/8+\delta/2}J^{5/2}\log(2p)+p^2J^3+p^{5/2+2\delta}J\right).
+$$
+In particular $J=p^{4/25}$ fits the first-moment target $O_\varepsilon(p^{119/36-(37/27)\delta+\varepsilon})$. The existing sum-parallel estimate supplies the normals with repeated coordinates at this height as well.
+
+**Proof.** For $f(t)=(\sin(\pi t)/(\pi t))^2$ with $f(0)=1$, the function $2f(t)+f(t-1/2)+f(t+1/2)$ is bounded below by a positive constant times $(1+t^2)^{-1}$. Its Fourier transform is $(2+2\cos(\pi\xi))(1-|\xi|)_+$, compactly supported and Lipschitz. Scaling this function by $R$ supplies a positive bandlimited majorant of each existing centered physical profile. Take products over the three coordinates of each row, restrict to the integral plane, and periodize in an ordered reduced basis $E,F$ modulo $Q$. The nonnegative physical count enlarges upon this majorization and omission of the middle-minimum mask.
+
+Let $S_i=L\ell_i$ and $U=(S_1S_2)^{-1}$. Each row's normalized Fourier coefficient has support $|m_i|\ll S_i$ and size $O(U)$. At fixed $m_2$ its variation over $m_1$ is $O(U)$. Indeed, restriction to the plane corresponds to integration of the ambient product Fourier transform along its normal line. After scaling by $L$ the integrated function has uniformly bounded support and Lipschitz constant. The first dual basis vector has length $O(1/\ell_1)$, so the scaled argument varies by $O(1/S_1)$ per unit of $m_1$ on an interval of length $O(S_1)$. Poisson summation in the reduced basis gives the normalization $1/(L^2\operatorname{covol}(h^\perp\cap\mathbb Z^3))\asymp U$. Here $S_2=o(p^2)$, $S_1/p\gg 1$, and $S_1/p=o(p)$.
+
+In the unit chart put $x=t(E+uF)$ and write
+$$
+r(u)=\frac{\sum_i(E_i+uF_i)}{g\prod_i(E_i+uF_i)},\qquad
+A(u)=m_1+\beta u,\qquad N(u)=n_1+\gamma u .
+$$
+The complementary chart swaps $E,F$ and retains only $u=0\bmod p$. Allowed residues have the coordinate, pair-sum, and total-sum unit conditions. The word fixes the middle slope to $r(u)/t^2$. Summing its $p$ high lifts forces $N(u)=0\bmod p$. The remaining phase is $tA(u)+r(u)N(u)/t$. Its two derivatives modulo $p$ force $A(u)=0$ and $t^2=-\gamma r(u)/\beta$ at every primitive critical residue. In this case both $\beta,\gamma$ are units, since if either vanishes the derivative in $u$ forces both to vanish and the two forms then vanish identically modulo $p$.
+
+For a common root $u_0\bmod p$, use a fixed integer representative and set $A(u_0)=pj$, $N(u_0)=pk$, and $c=r'(u_0)/(4r(u_0))$. Choose a coherent root $t_0$ of $-\gamma r(u_0)/\beta$ modulo $p^2$. The contribution of this root to the complete coefficient is $p^4$ times the $e_{p^2}$ phase
+$$
+t_0 j-\frac{\beta t_0}{\gamma}k+
+p c\beta t_0\left(\frac{k^2}{\gamma^2}-\frac{j^2}{\beta^2}\right).
+$$
+For the calculation, the exact roots of $A,N$ modulo $Q$ are $a=u_0-pj/\beta$ and $b=u_0-pk/\gamma$. At $z=(a+b)/2$ choose the root $\widetilde t$ of $-\gamma r(z)/\beta$ with the prescribed residue. The derivative in $t$ vanishes there and the mixed derivative is $2\beta\bmod p$. Shifting $\widetilde t$ by $p$ times a digit makes the derivative in $u$ vanish modulo $p^2$ while preserving the phase modulo $Q$, because the second derivative in $t$ is divisible by $p$. The Hessian sum in the two middle digits is then $p$ by summing the $t$ digit first. The two high digits contribute $p^2$ and the slope lifts contribute $p$. The phase at the center equals $\beta\widetilde t(b-a)$. Expanding the coherent square root at $u_0$ gives $\beta t_0(G(b)-G(a))\bmod Q$, where $G(u_0+d)=d+c d^2$. Dividing by $p$ yields the displayed phase.
+
+At fixed $\beta,\gamma$ the two weighted sums in $j,k$ separate. The intervals each have length at most $Z\asymp S_1/p$ with $Z<p$ and each restricted weight has sup norm and total variation $O(U)$. For $d\bmod p$ let $M_Z(d)$ be the supremum of the modulus of the sum of $e_p(dj^2)e(\theta j)$ over an integer interval of at most $Z$ terms and any real $\theta$. Expanding the square and summing the geometric progressions gives
+$$
+M_Z(d)^2\ll Z+\sum_{1\le v<Z}\min\{Z,\|2dv/p\|^{-1}\},
+$$
+using $Z$ as the summand at integral arguments. Each $2dv$ runs through all residues as $d$ varies. The mean of the truncated reciprocal distance is $O(\log(2p))$, so $\sum_{d\bmod p}M_Z(d)^2\ll pZ\log(2p)$. Partial summation bounds either weighted row sum by $O(U M_Z(d))$.
+
+Fix $u_0$ with $c\ne 0\bmod p$ and fix the literal $\beta$. As $\gamma\bmod p$ and the sign vary, the roots $t_0\bmod p$ run exactly once through the units. The first quadratic coefficient $-ct_0/\beta$ is injective in this root. The second $c\beta t_0/\gamma^2=c r(u_0)^2/(\beta t_0^3)$ has multiplicity at most three. Cauchy–Schwarz bounds the sum of the two Weyl maxima multiplied together over those residues by $O(pZ\log(2p))$. Each $\gamma$ residue has $O(S_2/p)$ lifts and there are $O(S_2)$ choices for $\beta$. The resulting sum for this $u_0$ is
+$$
+O\bigl(p^4 U^2 S_2^2 Z\log(2p)\bigr)
+=O\bigl(p^3\log(2p)/S_1\bigr).
+$$
+Summing over $u_0$ gives the first asserted term. There are $O(1)$ derivative-zero residues because the linear numerator and three coordinate factors are projectively coprime and $r$ is nonconstant of degree at most three. Coprimeness follows from the distinct normal coordinates, which remain distinct modulo $p$ since $H=o(p)$. At each derivative-zero residue and at the single complementary-chart residue, the two residue equations and the at-most-two-root coefficient give $O(p^2)$ after normalization.
+
+The zero frequency has complete coefficient $O(p^7)$, giving $O(R^4/(p^5H^2))$. For a proper nonzero conductor all four frequencies are divisible by $p$ and they are not all divisible by $p^2$, since $S_2=o(p^2)$. In the phase modulo $p^2$, if both reduced forms are units at a critical residue, the two derivatives give $t^2=Nr/A$ and $(ANr)'=0$. The rational function $ANr$ is nonconstant by the projective linear numerator of $r$ that is coprime to its denominator. Its degree is at most three. A common zero of the reduced forms gives at most two critical $t$ by their derivatives. A single identically zero form gives no critical point. Thus there are $O(1)$ critical residues and the coefficient is $O(p^5)$ with the high digits and slope lifts. The frequency weight for this sector is $O(p^{-4})$, so its total is $O(p)$. This proves the plane bound.
+
+For a shell of height $H$, the number of normals with $\ell_1\le V\ll\sqrt H$ is $O(H^2V^2)$. Such a plane contains a primitive shortest integer vector $e$ with $\|e\|\le V$. The lattice in $e^\perp$ has covolume $\|e\|$ and minima at least one, so it contains $O(H^2/\|e\|)$ vectors of length $O(H)$ in this range. Summing over $e$ and then dyadically in $\ell_1$ gives $\sum_{\|h\|\asymp H}\ell_1^{-1}\ll H^{5/2}$. Summing the plane bound proves the height estimate. At $J=p^{4/25}$ its first exponent is $131/40+\delta/2$, strictly below $119/36-(37/27)\delta$ on the stated range. This extends the physical-normal cutoff from $p^{1/12}$ to $p^{4/25}$.
+
+The fixed-height estimates are paper proofs, with independent review of the midpoint phase, the variation bound, and the exponent comparison. The long middle-slope aggregate across the largest physical normal heights remains open.
+
