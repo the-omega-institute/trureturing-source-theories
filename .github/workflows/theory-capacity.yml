@@ -1,0 +1,35 @@
+name: Theory document capacity
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  manuscripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /scripts/theory_capacity.py
+      - name: Check changed theory manuscripts
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          set -eu
+          if test "$EVENT_NAME" = pull_request; then
+            base=$(git rev-parse HEAD^1)
+          elif test "$BEFORE" = 0000000000000000000000000000000000000000; then
+            base=$(git hash-object -w -t tree --stdin </dev/null)
+          else
+            base=$BEFORE
+            if ! git cat-file -e "$base^{commit}"; then
+              git fetch --no-tags --filter=blob:none --depth=1 origin "$base"
+            fi
+          fi
+          python3 scripts/theory_capacity.py "$base" HEAD
