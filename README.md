@@ -23,6 +23,12 @@ make atom-context SOURCE=actual-minimum-cut-kernel ATOM_ID=05a3789a520a4d00402bc
 
 `show-atom` reads one atom. `decompose` accepts `ATOM_ID`, optional `SPLIT_AT` byte offsets and `DRY_RUN=1`. `settle`, `settle-batch` and `settle-clear` take `REQUEST`, `REQUESTS` and `ATOM_ID` respectively. Use `source-dispatch SOURCES=… DEFAULT=excluded` to opt out of automatic selection. `retire-sources SOURCES=… MODE=archive` previews retirement of a terminal source. Repeat with `WRITE=1` to apply it. Inspect the Git diff and commit the writer's output with the corresponding source change.
 
+## Check a settlement batch
+
+Run `make settle-context-check REQUESTS=rows.toml` to preview the same ordered `[[requests]]` input as `make settle-batch`. The preview evaluates each row against the preceding successful rows in memory. It reports every unusable row with its record number, verifies neighbor IDs and the selected occurrence, and exits nonzero when any row fails. Apply the batch with `make settle-batch REQUESTS=rows.toml`.
+
+For an older JSON plan containing a `settle` array of objects with `atom_id`, use `make settle-context-check PLAN=plan.json`. This checks that each atom has a single resolvable occurrence. A repeated occurrence needs an explicit `occurrence_index` in the TOML request. Set `ALLOW_MISSING=1` with a JSON plan to skip absent atom blobs.
+
 ## Cover with a frozen declaration
 
 `make cover` resolves the main trureturing repository’s `dev` branch and reads the requested module’s frozen state at that commit. The selector must identify one declaration in the module. A batch resolves the branch once and shares each module’s state across its rows. The source editor checks that the declaration’s hypotheses and conclusion cover the claim.

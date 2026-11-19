@@ -14,7 +14,7 @@ try
     var repository = new GitRepositoryGateway(root);
     var rest = args[1..];
     var verb = args[0];
-    var writable = verb is not ("search-atoms" or "show-atom" or "atom-context");
+    var writable = verb is not ("search-atoms" or "show-atom" or "atom-context" or "settle-context-check");
     var gitDir = Encoding.UTF8.GetString(GitRepositoryGateway.Git(root, ["rev-parse", "--absolute-git-dir"])).TrimEnd('\r', '\n');
     using var writer = writable
         ? new FileStream(Path.Combine(gitDir, "theory-digestion.writer"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None)
@@ -29,6 +29,8 @@ try
         "source-dispatch" => SourceDispatchCommand.Run(root, repository, rest),
         "decompose-atom" => DecomposeAtomCommand.Run(root, repository, rest),
         "settle-atom" => SettleAtomCommand.Run(root, repository, rest),
+        "settle-context-check" when rest.FirstOrDefault() == "--plan" => SettleAtomCommand.CheckLegacyPlan(root, repository, rest),
+        "settle-context-check" => SettleAtomCommand.RunBatch(root, repository, rest, preflight: true),
         "settle-batch" => SettleAtomCommand.RunBatch(root, repository, rest),
         "retire-sources" => RetireSourcesCommand.Run(root, repository, rest),
         "cover" or "cover-atom" or "cover-batch" => PinnedCoverCommand.Run(root, verb, rest),
