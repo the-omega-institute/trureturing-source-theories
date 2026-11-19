@@ -1,4 +1,4 @@
-name: Theory document capacity
+name: Theory checks
 on:
   pull_request:
   push:
@@ -10,13 +10,16 @@ permissions:
 jobs:
   manuscripts:
     runs-on: ubuntu-latest
+    outputs:
+      runtime: ${{ steps.changes.outputs.runtime }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
           sparse-checkout-cone-mode: false
           sparse-checkout: /scripts/theory_capacity.py
-      - name: Check changed theory manuscripts
+      - name: Check changed manuscripts and select runtime tests
+        id: changes
         env:
           EVENT_NAME: ${{ github.event_name }}
           BEFORE: ${{ github.event.before }}
@@ -33,3 +36,32 @@ jobs:
             fi
           fi
           python3 scripts/theory_capacity.py "$base" HEAD
+          if git diff --quiet "$base" HEAD -- src scripts tests Makefile .github/workflows/test.yml .github/workflows/theory-capacity.yml; then
+            echo 'runtime=false' >> "$GITHUB_OUTPUT"
+          else
+            status=$?
+            test "$status" = 1 || exit "$status"
+            echo 'runtime=true' >> "$GITHUB_OUTPUT"
+          fi
+
+  digestion:
+    needs: manuscripts
+    if: needs.manuscripts.outputs.runtime == 'true'
+    uses: ./.github/workflows/test.yml
+
+  theory-required:
+    if: always()
+    needs: [manuscripts, digestion]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify selected checks
+        env:
+          MANUSCRIPTS: ${{ needs.manuscripts.result }}
+          RUNTIME: ${{ needs.manuscripts.outputs.runtime }}
+          DIGESTION: ${{ needs.digestion.result }}
+        run: |
+          test "$MANUSCRIPTS" = success
+          case "$RUNTIME:$DIGESTION" in
+            true:success|false:skipped) exit 0 ;;
+            *) exit 1 ;;
+          esac

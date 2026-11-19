@@ -11,6 +11,8 @@ This repository owns theory manuscripts and the working record of their digestio
 | `Library/` | Source-byte snapshots for registered literature inputs, taken from the main repository |
 | `src/TheoryDigestion/` | Intake, queries and ledger writers |
 
+[Read theory manuscripts and literature notes together](https://the-omega-institute.github.io/trureturing-source-theories/). The reader follows references across both repositories.
+
 ## Working with a source
 
 Install Git and the .NET 10 SDK. Run the commands in this checkout. A prose contribution can consist of the manuscript alone. To start or update its ledger, use its path on first ingestion and its source ID for queries.
@@ -50,3 +52,5 @@ make cover ATOM_ID="$atom" GID="$gid" TRUTH_EXPORT="$export_file" \
 ## Source history
 
 The initial import preserves the original Git subtrees, paths, source bytes, atom IDs and existing receipts. Pre-import commit IDs refer to the original repository. For a historical context migration, set `THEORY_LEGACY_REPOSITORY` to an existing checkout containing the requested main-repository commit. The snapshot used for the initial import is [93279cc105e](https://github.com/the-omega-institute/trureturing/tree/93279cc105e94c6a96e05298c9986beb6bf37603). The [import commit](https://github.com/the-omega-institute/trureturing-source-theories/commit/2a39da5107abbfa3a72cc883486dbc15a15994a1) records the source revision.
+
+The `theory-required` check runs the capacity check on changed manuscripts and runs digestion tests when the runtime, scripts, tests or their workflow change.
