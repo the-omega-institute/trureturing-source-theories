@@ -1,0 +1,12 @@
+**Corollary 17.2 (Prescribed determinant quotients).** In the enlarged count of Theorem 16.1, the valuation-one contribution with $\det(e,f)/p$ in a fixed finite set $\mathcal D$ of integers is bounded by
+$$
+O_\varepsilon\bigl(|\mathcal D|\,p^{25/8+3\delta/2+\varepsilon}\bigr).
+$$
+In particular this part fits the first-moment target when $|\mathcal D|\le p^{17/72-(139/54)\delta}$.
+
+**Proof.** On a rectangle of respective side lengths $X,Y$, completion from Theorem 17.1 gives $O_\varepsilon(p^{-1+\varepsilon}(X+p^2)(Y+p^2))$. The bound is uniform in separate real linear twists. On each residue class modulo $p$, the sum of the absolute interval kernels modulo $Q$ is $O(X+p^2\log Q)$ in the first coordinate, and likewise in the second. There are $p$ pairs of residue classes in the Fourier support. Alternatively, the trivial coefficient bound and direct counting of the resonance give $O(A^2)$ for both lengths at most $A$ and $A\gg V\gg p$. For $A\le p^2$, the minimum of this bound and the completion bound $O_\varepsilon(p^{3+\varepsilon})$ is $O_\varepsilon(p^{3/2+\varepsilon}A)$. For $A>p^2$ the completion bound is $O_\varepsilon(p^{-1+\varepsilon}A^2)$.
+
+At dyadic scales $A$ and $W$ as in Theorem 16.1, the Fourier integral representation and partial summation there multiply the uniform twisted bound by $W$. Summing over $h$ and the dyadic boxes therefore costs $O_\varepsilon(p^\varepsilon R^4(p^{3/2}R+R^2/p))$ per frequency pair. For each prescribed nonzero integer determinant, write $e=t v_0$ with primitive $v_0$ of norm $M_0$. On a dyadic $M_0$ scale, at most $O(M_0^2)$ choices of $v_0$ and $O(L/M_0)$ choices of $t$ are possible. For each such pair the determinant equation has $O(1+L/M_0)$ choices of $f$. Hence the inventory is $O(L^2\log(2L))$ per determinant. Including the normalization $1/(q^2Q^2)$ gives the claimed bound.
+
+The complete transform and the prescribed-determinant estimate arose from a targeted ChatGPT Pro calculation. The positive enlargement and the squared-tail argument here are those of Theorem 16.1. The unrestricted valuation-one sum still requires cancellation between the exact base phases.
+

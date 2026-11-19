@@ -4032,3 +4032,41 @@ $$
 This is $O(p^{323/100+\delta})$ and fits the target throughout $0<\delta<1/100$.
 
 ## 追加锚（本行以下为增补区）
+
+## 17. Complete transforms at determinant valuation one
+
+**Theorem 17.1 (The complete pivot transform).** In the setting of Theorem 16.1, fix $e,f,h$ with $p$ exactly dividing $\det(e,f)$ and $e,f\ne0\bmod p$. Let $m\bmod p$ satisfy $f+me=0\bmod p$. As a function of $a,b\bmod Q$, let $K(a,b)$ be the curve coefficient $C_{gab,h}((af+be)/p)$ on the unit resonance, with the critical condition excluded and multiplied by any function of $b/a\bmod q$ of modulus at most one. Give $K$ the value zero off this domain. Its normalized Fourier transform vanishes unless $I+mJ=0\bmod p$ and satisfies
+$$
+|\widehat K(I,J)|\le 6p^{-2}+6p^{-3}.
+$$
+Both statements use the normalization $Q^{-2}\sum_{a,b\bmod Q}K(a,b)e_Q(-Ia-Jb)$.
+
+**Proof.** Write $w=(f+me)/p$ using an integer lift of $m$, put $v=e\bmod p$, and set $\Delta=\det(w,v)\ne0\bmod p$. Each pair of pivots in the unit resonance is uniquely parametrized by
+$$
+a=a_0+pu,\qquad b=m(a_0+pu)+pk+p^2t
+$$
+with $a_0\in\mathbb F_p^\times$, $k,t\bmod p$, and $u\bmod p^2$. The middle slope is constant for fixed $a_0,k$. Let $d_*=a_0w+ke$. At a stationary point $z$ on the lower cubic $P=z_1z_2(h-z_1-z_2)=h/(gm a_0^2)$, write $d_*=\lambda\nabla P(z)\bmod p$. Put $J_0(z)=\det(\nabla P(z),v)$. The relation $\lambda J_0(z)=a_0\Delta$ gives $J_0(z)\ne0$. Choose a lift $Z$ satisfying the cubic at the base pivots modulo $q$. Modulo $q$ the frequency and target change by $p(uw+te)$ and $-2puP(z)/a_0$, respectively. High-digit orthogonality therefore gives the exact stationary term
+$$
+p\,e_q(d_*\cdot Z)e_p(uA+tB),\qquad
+A=w\cdot z-\frac{2P(z)\Delta}{J_0(z)},\qquad B=v\cdot z.
+$$
+Singular lower points have no contribution because $d_*$ is primitive.
+
+At a fixed $B$, write $z=z_*+x(v_2,-v_1)$ and $F(x)=P(z)$. Then $F'=J_0(z)$ and
+$A=w\cdot z_*+\Delta(x-2F/F')$. Prescribing $A$ amounts to $(x-\eta)F'-2F=0$ for a fixed $\eta$. A cubic $F$ gives at most three roots. For quadratic $F$, an identically zero equation would force a double root of the two varying factors of $P$. The remaining factor is constant along the line. The two varying coordinates would then sum to zero on the line, which is excluded by the unit conditions. Linear and constant $F$ give at most one admitted point. Each admitted $z$ fixes at most two $a_0$ by the target equation, and at most one $k$ by stationarity. Thus the joint fibre has size at most six.
+
+The $t$-sum forces $B=J\bmod p$, and the $u$-sum forces $pA=I+mJ\bmod p^2$. Each surviving base point has normalized mass $p\cdot p^3/Q^2=p^{-2}$. For the critical deletion there are at most two lower $a_0$. For each $a_0,k$, the deleted part has one class $u\bmod p$, since the change of $gabh^2$ in that digit is a unit multiple of $pu$. The $t$-sum still forces $B=J$. The equation $F(x)=h/(gm a_0^2)$ has at most three allowed roots since $F'$ is nonzero at an allowed point. Each fixes $k$, and summation over the remaining $u$ digit forces $p\mid I+mJ$. Each of these at most six base points has mass at most $p\cdot p^2/Q^2=p^{-3}$.
+
+**Corollary 17.2 (Prescribed determinant quotients).** In the enlarged count of Theorem 16.1, the valuation-one contribution with $\det(e,f)/p$ in a fixed finite set $\mathcal D$ of integers is bounded by
+$$
+O_\varepsilon\bigl(|\mathcal D|\,p^{25/8+3\delta/2+\varepsilon}\bigr).
+$$
+In particular this part fits the first-moment target when $|\mathcal D|\le p^{17/72-(139/54)\delta}$.
+
+**Proof.** On a rectangle of respective side lengths $X,Y$, completion from Theorem 17.1 gives $O_\varepsilon(p^{-1+\varepsilon}(X+p^2)(Y+p^2))$. The bound is uniform in separate real linear twists. On each residue class modulo $p$, the sum of the absolute interval kernels modulo $Q$ is $O(X+p^2\log Q)$ in the first coordinate, and likewise in the second. There are $p$ pairs of residue classes in the Fourier support. Alternatively, the trivial coefficient bound and direct counting of the resonance give $O(A^2)$ for both lengths at most $A$ and $A\gg V\gg p$. For $A\le p^2$, the minimum of this bound and the completion bound $O_\varepsilon(p^{3+\varepsilon})$ is $O_\varepsilon(p^{3/2+\varepsilon}A)$. For $A>p^2$ the completion bound is $O_\varepsilon(p^{-1+\varepsilon}A^2)$.
+
+At dyadic scales $A$ and $W$ as in Theorem 16.1, the Fourier integral representation and partial summation there multiply the uniform twisted bound by $W$. Summing over $h$ and the dyadic boxes therefore costs $O_\varepsilon(p^\varepsilon R^4(p^{3/2}R+R^2/p))$ per frequency pair. For each prescribed nonzero integer determinant, write $e=t v_0$ with primitive $v_0$ of norm $M_0$. On a dyadic $M_0$ scale, at most $O(M_0^2)$ choices of $v_0$ and $O(L/M_0)$ choices of $t$ are possible. For each such pair the determinant equation has $O(1+L/M_0)$ choices of $f$. Hence the inventory is $O(L^2\log(2L))$ per determinant. Including the normalization $1/(q^2Q^2)$ gives the claimed bound.
+
+The complete transform and the prescribed-determinant estimate arose from a targeted ChatGPT Pro calculation. The positive enlargement and the squared-tail argument here are those of Theorem 16.1. The unrestricted valuation-one sum still requires cancellation between the exact base phases.
+
+## 追加锚（本行以下为增补区）
