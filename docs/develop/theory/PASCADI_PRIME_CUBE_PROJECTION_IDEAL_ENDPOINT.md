@@ -3675,3 +3675,49 @@ ordered branch pairs in the nonexceptional sector. Each pair costs $O(p^5 K^{-12
 Outstanding in the full incidence variance is the signed contribution of unrestricted unequal slopes. The present theorem is an ordinary proof. Its Fourier normalization and algebraic reduction were checked separately, with direct finite computations for $p=5,7$.
 
 ## 追加锚（本行以下为增补区）
+
+## 9. The origin first moment and short middle slopes
+
+Theorem 8.1 bounds the equal-slope variance. The estimates here treat the first moment at the origin and extend the range counted directly with the original full slope minimum. Fix $0<\delta<1/100$, take the balanced widths from §8, and write $R\asymp X\asymp Y$ and $B=R^2/p^3$. For a unit slope $\sigma$ modulo $p^j$, put $\Lambda_\sigma=\{(x,y)\in\mathbb Z^2:y\equiv \sigma x\bmod p^j\}$ and let $T_\sigma$ be its shortest length. In all counts $g$ is a fixed unit. The masks require the three first coordinates and their pair sums to be units.
+
+**Theorem 9.1 (The lower-word terms at the origin).** Let $f=\sum_s f_s$ for the signed weighted point-line coverage $f_s$ of §8, retaining the whole middle slopes $s\bmod p^2$ with $T_s\ge p^{2/3}$. For $j=1,2$, let $N_j$ be the positive count with the same six physical Fejér profiles and unit masks, in which each row lies in $\Lambda_\rho$ for a common full slope $\rho\bmod p^3$ lifting a retained $s$, and the word $W_s(x)=\sum_i x_i-gs\prod_i x_i$ holds modulo $p^j$. Put $f_{\rm avg}=p^{-3}\sum_z f(z)$. Then
+$$
+f(0)=pN_2-N_1,\qquad N_1\ll p^2B^3+p^4,\qquad |f_{\rm avg}|\ll p^3.
+$$
+Consequently $p^{-1}(f(0)-f_{\rm avg})=N_2+O(p^{13/4+3\delta})$. This error fits the sufficient first-moment scale $p^{119/36-(37/27)\delta}$.
+
+**Proof.** A line from a tuple $(x,y)$ passes through zero precisely when $y=\rho x\bmod p^3$ for a lift of its middle slope. The unit pivot makes the lift unique. The word weight is $p1_{W_s=0\bmod p^2}-1_{W_s=0\bmod p}$, giving the identity at zero.
+
+For the mod-$p$ word surface write $d=gs\bmod p$ and $z=(x+y)/(dxy-1)$. A zero denominator would force $x+y=0$, excluded by the masks. We first bound every nonzero additive Fourier coefficient by $O(p)$, uniformly in $d$. Take the phase $ax+by+cz$. Starting with $x\ne0$ and $dxy\ne1$, each of the omitted zero-coordinate, pair-sum, or $1+dx^2=0$ conditions removes $O(p)$ points. For the pair sums this follows by substituting the graph, since $x+z=y(1+dx^2)/(dxy-1)$, with the symmetric identity for $y+z$.
+
+With $t=dxy-1$ the phase is $ax+(b+c)/(dx)+bt/(dx)+c(1+dx^2)/(dxt)$. If exactly one of $b,c$ is zero the inner sum over $t\ne0$ is $-1$. If both vanish, $a\ne0$ and the outer complete additive sum over the retained $x$ is $O(1)$. Otherwise normalize the first term in $t$ to obtain the Kloosterman sum with parameter $bc/d+(bc/d^2)x^{-2}$. In $u=1/x$ its normalized trace is that of the rank-two Kloosterman sheaf pulled back by $u\mapsto bc/d+(bc/d^2)u^2$. After deleting the branch and singular values this is a finite étale pullback. Katz's geometric monodromy group $\mathrm{SL}_2$ is connected, so the finite-index restriction has the same Zariski closure. The Artin–Schreier twist by $a/u+(b+c)u/d$ preserves irreducibility. The resulting sheaf has no geometric coinvariants and bounded conductor, uniformly in the parameters, because the map and the twist have bounded degrees. The Riemann hypothesis for curves bounds the sum of normalized traces by $O(\sqrt p)$. Restoring the Kloosterman normalization proves the $O(p)$ bound.
+
+Push the weighted rows of $\Lambda_\rho$ to the first-coordinate residue modulo $p$. The normalized Fourier coefficients are nonnegative by Poisson summation on $\Lambda_\rho$, since the continuous product profile has nonnegative Fourier transform. Their sum is the weighted fibre at zero, which is $p\Lambda_s$ and has mass $O(M_s)$ for $M_s=1+R/(pT_s)$. Write $W_\rho\ll B+1+R/T_\rho$ for the total row mass. Both row bounds follow from planar lattice counting and dyadic summation of the product tails. The zero Fourier coefficient is $W_\rho/p$. The word has $O(p^2)$ points, so Fourier inversion bounds the count at slope $\rho$ by $O(W_\rho^3/p+pM_s^3)$.
+
+For any prime-power modulus the number of slopes of shortest length at most $U$ is $O(U^2)$ in the range of possible minima. To see this, a nonzero short vector below the modulus has first-coordinate $p$-valuation $v$, both coordinates are divisible by $p^v$, and it determines at most $p^v$ slopes. Sum the bounds $O(U^2/p^v)$ over $v$. On the retained range $T_\rho\ge T_s\ge p^{2/3}$, since $\Lambda_\rho\subset\Lambda_s$. Thus summing $W_\rho^3/p$ costs $O(p^2 B^3+R^3/p^{5/3})$. There are $p$ lifts of each $s$, so the sum of $pM_s^3$ costs $O(p^4+R^3/p^{5/3})$. The term $R^3/p^{5/3}$ is $O(p^4)$ in the stated range.
+
+For the average coverage each line contributes $p^{-2}$ times its weight. At fixed $s$, push the weighted rows of $\Lambda_s$ to the first coordinate modulo $p^2$. The normalized Fourier coefficients are again nonnegative. Their sum is $O(1)$, by the weighted fibre $p^2\mathbb Z^2$ at zero and $R=o(p^2)$. The signed word Fourier coefficient vanishes at every frequency divisible by $p$. For each admissible residue modulo $p$, the linearized upper word has $p^2$ of the $p^3$ lifts. At a primitive Fourier frequency, the same digit sum gives $p^3$ times one phase per stationary residue.
+
+There are at most six such residues. If $A=h\nabla W_s(x)\bmod p$ for a nonzero multiplier $h$, then $x_i=S h/(h-A_i)$ where $S=\sum_i x_i$ is a unit. Summing these ratios gives $2h^3-(\sum_i A_i)h^2+\prod_i A_i=0$. Each root fixes a projective direction, on which the word fixes the scale up to two choices. The signed coefficient is therefore $O(p^3)$ uniformly. The total Fourier mass is $O(1)$, so the signed weighted sum at each $s$ is $O(p^3)$. Averaging over points and summing at most $p^2$ slopes gives the claimed bound. Finally $pB^3\asymp p^{13/4+3\delta}$, and $119/36-(37/27)\delta-(13/4+3\delta)=1/18-(118/27)\delta>0$.
+
+**Theorem 9.2 (Direct count at moderately short middle slopes).** In the original balanced literal boxes and with the original full slope minimum $T_\rho\gg p^{3/2-\delta}$, the count of triples with $T_s\le p^{73/100}$ is
+$$
+O\left(R^3p^{5(73/100)-6}+R^5p^{73/100-7}\right)
+$$
+even with the word relaxed to modulus $p^2$. Both terms fit the sufficient first-moment scale throughout $0<\delta<1/100$.
+
+**Proof.** On a dyadic middle-minimum shell of size $T$, use a reduced basis $E,F$ of $\Lambda_s$ with $E$ shortest. The coordinates $a_i,b_i$ of a physical row $a_iE+b_iF$ satisfy $|a_i|\ll I=R/T$ and $|b_i|\ll J=RT/p^2$. Multiplication by $p$ embeds $\Lambda_s$ in each full lift lattice, so $T\gg p^{1/2-\delta}$. Set $K=I/p$; both $J$ and $K$ grow and are $o(p)$ throughout the shell range.
+
+The determinants of every two physical rows are divisible by $p^3$, so all reduced pairs belong to a single projective direction modulo $p$. If some $b_i$ vanishes modulo $p$, all vanish as literal integers. Then the unit first coordinates force $E\in\Lambda_\rho$, contradicting $T_\rho\gg p^{3/2-\delta}$. We can therefore write $a_i=\alpha b_i+pk_i$, where the $k_i$ lie in intervals of length $O(K)$. The first coordinates modulo $p$ are $ub_i$ where $u=E_1\alpha+F_1$ and $E_1$ is a unit. The lower word fixes $u^2=(\sum_i b_i)/(gs\prod_i b_i)$, allowing at most two values of $\alpha$ for each $b$. Such an $\alpha$ determines the full slope since $\alpha E+F$ is a unit first-coordinate row and $p\Lambda_s\subset\Lambda_\rho$.
+
+At fixed literal $b,\alpha$, keep one solution $k^0$ if the fibre is nonempty. Each other solution gives a distinct nonzero $v=k-k^0$ of size $O(K)$. Subtract the relaxed words and divide by $pE_1$. The resulting linear condition on $v$ has coefficients $- (b_j+b_k)/b_i\bmod p$. After multiplying by $b_1b_2b_3$, the condition is the vanishing of
+$$
+v_1b_2b_3(b_2+b_3)+v_2b_1b_3(b_1+b_3)+v_3b_1b_2(b_1+b_2).
+$$
+Its six monomials are distinct and $v\not\equiv0\bmod p$. The polynomial box bound gives $O(J^2)$ literal triples $b$ for each $v$, since the coordinate intervals inject modulo $p$. Counting the base solutions and all their displacements gives $O(J^3+K^3J^2)$ per $s$. There are $O(T^2)$ slopes on the shell, and hence $O(R^3T^5/p^6+R^5T/p^7)$ triples. Both powers of $T$ are positive, so the dyadic sum is bounded at the upper endpoint. The exponents there are $131/40+(3/2)\delta$ and $621/200+(5/2)\delta$, which are each smaller than $119/36-(37/27)\delta$.
+
+## 10. Sources and remaining count
+
+Theorems 9.1 and 9.2 are ordinary Codex proofs using the exact signed line representation and the reduced lattice from the earlier argument. The finite-field estimate in Theorem 9.1 uses [Katz, *Gauss Sums, Kloosterman Sums, and Monodromy Groups*, Theorem 11.1](https://web.math.princeton.edu/~nmk/Katz-GKM.pdf) and the trace-function bounds reviewed by [Fouvry, Kowalski and Michel](https://arxiv.org/abs/1211.6043). The Kloosterman reparametrization and the signed mod-$p^2$ coefficient were checked by direct computation at $p=5,7,11,13$. The positive count $N_2$ for the remaining long middle slopes is open at the sufficient first-moment scale.
+
+## 追加锚（本行以下为增补区）

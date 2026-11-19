@@ -1,0 +1,16 @@
+**Theorem 9.2 (Direct count at moderately short middle slopes).** In the original balanced literal boxes and with the original full slope minimum $T_\rho\gg p^{3/2-\delta}$, the count of triples with $T_s\le p^{73/100}$ is
+$$
+O\left(R^3p^{5(73/100)-6}+R^5p^{73/100-7}\right)
+$$
+even with the word relaxed to modulus $p^2$. Both terms fit the sufficient first-moment scale throughout $0<\delta<1/100$.
+
+**Proof.** On a dyadic middle-minimum shell of size $T$, use a reduced basis $E,F$ of $\Lambda_s$ with $E$ shortest. The coordinates $a_i,b_i$ of a physical row $a_iE+b_iF$ satisfy $|a_i|\ll I=R/T$ and $|b_i|\ll J=RT/p^2$. Multiplication by $p$ embeds $\Lambda_s$ in each full lift lattice, so $T\gg p^{1/2-\delta}$. Set $K=I/p$; both $J$ and $K$ grow and are $o(p)$ throughout the shell range.
+
+The determinants of every two physical rows are divisible by $p^3$, so all reduced pairs belong to a single projective direction modulo $p$. If some $b_i$ vanishes modulo $p$, all vanish as literal integers. Then the unit first coordinates force $E\in\Lambda_\rho$, contradicting $T_\rho\gg p^{3/2-\delta}$. We can therefore write $a_i=\alpha b_i+pk_i$, where the $k_i$ lie in intervals of length $O(K)$. The first coordinates modulo $p$ are $ub_i$ where $u=E_1\alpha+F_1$ and $E_1$ is a unit. The lower word fixes $u^2=(\sum_i b_i)/(gs\prod_i b_i)$, allowing at most two values of $\alpha$ for each $b$. Such an $\alpha$ determines the full slope since $\alpha E+F$ is a unit first-coordinate row and $p\Lambda_s\subset\Lambda_\rho$.
+
+At fixed literal $b,\alpha$, keep one solution $k^0$ if the fibre is nonempty. Each other solution gives a distinct nonzero $v=k-k^0$ of size $O(K)$. Subtract the relaxed words and divide by $pE_1$. The resulting linear condition on $v$ has coefficients $- (b_j+b_k)/b_i\bmod p$. After multiplying by $b_1b_2b_3$, the condition is the vanishing of
+$$
+v_1b_2b_3(b_2+b_3)+v_2b_1b_3(b_1+b_3)+v_3b_1b_2(b_1+b_2).
+$$
+Its six monomials are distinct and $v\not\equiv0\bmod p$. The polynomial box bound gives $O(J^2)$ literal triples $b$ for each $v$, since the coordinate intervals inject modulo $p$. Counting the base solutions and all their displacements gives $O(J^3+K^3J^2)$ per $s$. There are $O(T^2)$ slopes on the shell, and hence $O(R^3T^5/p^6+R^5T/p^7)$ triples. Both powers of $T$ are positive, so the dyadic sum is bounded at the upper endpoint. The exponents there are $131/40+(3/2)\delta$ and $621/200+(5/2)\delta$, which are each smaller than $119/36-(37/27)\delta$.
+
