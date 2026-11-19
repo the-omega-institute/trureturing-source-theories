@@ -1,0 +1,15 @@
+fingerprints:
+  raw_sha256: sha256:2afeee6c2e7eaff731e766838419779c90cedb21a7404e590066cb7f4712e0dd
+  normalized_sha256: sha256:2afeee6c2e7eaff731e766838419779c90cedb21a7404e590066cb7f4712e0dd
+cas_ref: sha256:2afeee6c2e7eaff731e766838419779c90cedb21a7404e590066cb7f4712e0dd
+coverage_gids:
+  - gid: D5/S3/Quantum/Foundation/BinaryCenterGraph.whole_ball_center_graph
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: 451ba1673340d822b13ca79bd3aee29a47b0ae4d
+      module_statement_id: sha256:908a284630e7c50e993008db3f20406c64972ea33bc7f51f1c937833b1811b01
+      state_sha256: sha256:519d86f34c9471c5a593abed645f7b1fa09d4e00acf1fa0738efb8001c553593
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),10:Foundation),20:BinaryCenterGeometry),23:whole_ball_center_graph)
+receipts:
+  unresolved_subitems: []
