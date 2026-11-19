@@ -173,44 +173,32 @@ internal static class BackfillInventoryWriter
         StringBuilder builder,
         ImmutableArray<DigestionCoverageEdge> edges)
     {
-        if (edges.Length == 0)
-        {
-            Line(builder, "        coverage_gids: []");
-            return;
-        }
-
-        Line(builder, "        coverage_gids:");
-        foreach (var edge in edges)
-        {
-            Line(builder, $"          - gid: {Scalar(edge.Gid)}");
-            Line(builder, "            target_statement_id: " + NullableScalar(edge.TargetStatementId));
-            if (edge.SourceCommit is { } commit)
-            {
-                Line(builder, "            source_commit: " + Scalar(commit));
-                Line(builder, "            truth_export_sha256: " + Scalar(edge.TruthExportSha256!));
-            }
-        }
+        WriteCoverage(builder, edges, "        ");
     }
 
-    private static void AtomCoverage(
-        StringBuilder builder,
-        ImmutableArray<DigestionCoverageEdge> edges)
-    {
-        if (edges.Length == 0)
-        {
-            Line(builder, "coverage_gids: []");
-            return;
-        }
+    private static void AtomCoverage(StringBuilder builder, ImmutableArray<DigestionCoverageEdge> edges) =>
+        WriteCoverage(builder, edges, "");
 
-        Line(builder, "coverage_gids:");
+    private static void WriteCoverage(StringBuilder builder, ImmutableArray<DigestionCoverageEdge> edges, string indent)
+    {
+        Line(builder, indent + (edges.IsEmpty ? "coverage_gids: []" : "coverage_gids:"));
         foreach (var edge in edges)
         {
-            Line(builder, $"  - gid: {Scalar(edge.Gid)}");
-            Line(builder, "    target_statement_id: " + NullableScalar(edge.TargetStatementId));
+            Line(builder, indent + "  - gid: " + Scalar(edge.Gid));
+            Line(builder, indent + "    target_statement_id: " + NullableScalar(edge.TargetStatementId));
             if (edge.SourceCommit is { } commit)
             {
-                Line(builder, "    source_commit: " + Scalar(commit));
-                Line(builder, "    truth_export_sha256: " + Scalar(edge.TruthExportSha256!));
+                Line(builder, indent + "    source_commit: " + Scalar(commit));
+                Line(builder, indent + "    truth_export_sha256: " + Scalar(edge.TruthExportSha256!));
+            }
+            if (edge.BranchEvidence is { } branch)
+            {
+                Line(builder, indent + "    frozen_branch:");
+                Line(builder, indent + "      name: " + Scalar(branch.Branch));
+                Line(builder, indent + "      commit: " + Scalar(branch.Commit));
+                Line(builder, indent + "      module_statement_id: " + Scalar(branch.ModuleStatementId));
+                Line(builder, indent + "      state_sha256: " + Scalar(branch.StateSha256));
+                Line(builder, indent + "      declaration_name_key: " + Scalar(branch.DeclarationNameKey));
             }
         }
     }

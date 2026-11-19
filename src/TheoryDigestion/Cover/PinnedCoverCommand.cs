@@ -17,7 +17,7 @@ internal static partial class PinnedCoverCommand
             {
                 if (i + 1 == args.Count || string.IsNullOrWhiteSpace(args[i + 1]))
                     throw new FormatException($"missing {args[i]} value");
-                if (args[i] is "--truth-export" or "--source-commit" or "--export-sha256")
+                if (args[i] is "--truth-export" or "--source-commit" or "--export-sha256" or "--branch")
                 {
                     if (!evidence.TryAdd(args[i], args[i + 1])) throw new FormatException($"duplicate {args[i]}");
                 }
@@ -27,21 +27,25 @@ internal static partial class PinnedCoverCommand
                     options.Add(args[i + 1]);
                 }
             }
-            if (evidence.Count != 3)
-                throw new FormatException("supply --truth-export FILE --source-commit COMMIT --export-sha256 sha256:HEX");
             var batch = verb == "cover-batch";
             var items = batch ? Parse(root, options).Items : ImmutableArray.Create(Single(options));
-            var export = new PinnedTruthExport(Path.GetFullPath(evidence["--truth-export"], root),
-                evidence["--source-commit"], evidence["--export-sha256"]);
+            Func<string, DigestionCoverageEdge> resolve;
+            if (evidence.Count == 0 || evidence.Count == 1 && evidence.ContainsKey("--branch"))
+                resolve = FrozenBranch.Open(root, evidence.GetValueOrDefault("--branch") ?? "dev").Resolve;
+            else if (evidence.Count == 3 && !evidence.ContainsKey("--branch"))
+                resolve = new PinnedTruthExport(Path.GetFullPath(evidence["--truth-export"], root),
+                    evidence["--source-commit"], evidence["--export-sha256"]).Resolve;
+            else
+                throw new FormatException("use --branch BRANCH or supply --truth-export, --source-commit and --export-sha256 together");
             var repository = new GitRepositoryGateway(root);
             if (!batch)
             {
-                var changed = Apply(root, repository, items[0], export);
+                var changed = Apply(root, repository, items[0], resolve);
                 return new(true, $"COVER atom_id={items[0].AtomId} ledger_changed={changed.ToString().ToLowerInvariant()}\n", "");
             }
             var selected = DigestionQuerySelection.ReadAtoms(repository, items.Select(item => item.AtomId).ToArray());
             var chains = DigestionQuerySelection.ReadChains(repository, selected, allowMissing: true);
-            return RunBatch(root, repository, Plan(items, chains.Document), export);
+            return RunBatch(root, repository, Plan(items, chains.Document), resolve);
         }
         catch (Exception e) when (e is not OutOfMemoryException)
         {
@@ -64,7 +68,7 @@ internal static partial class PinnedCoverCommand
         return new(atom, gids.ToImmutable(), []);
     }
 
-    private static CommandResult RunBatch(string root, IRepositoryGateway repository, BatchPlan plan, PinnedTruthExport export)
+    private static CommandResult RunBatch(string root, IRepositoryGateway repository, BatchPlan plan, Func<string, DigestionCoverageEdge> resolve)
     {
         var failed = new HashSet<string>(StringComparer.Ordinal);
         var output = new StringBuilder();
@@ -79,7 +83,7 @@ internal static partial class PinnedCoverCommand
             {
                 try
                 {
-                    var changed = Apply(root, repository, item, export);
+                    var changed = Apply(root, repository, item, resolve);
                     status = changed ? "applied" : "already_applied";
                     reason = changed ? "coverage committed" : "coverage bindings validated";
                 }
@@ -95,9 +99,9 @@ internal static partial class PinnedCoverCommand
         return new(failed.Count == 0, output.ToString(), "", failed.Count == 0 ? 0 : 1);
     }
 
-    private static bool Apply(string root, IRepositoryGateway repository, BatchItem item, PinnedTruthExport export)
+    private static bool Apply(string root, IRepositoryGateway repository, BatchItem item, Func<string, DigestionCoverageEdge> resolve)
     {
-        var edges = item.Gids.Select(export.Resolve).ToArray();
+        var edges = item.Gids.Select(resolve).ToArray();
         var selected = DigestionQuerySelection.ReadAtom(repository, item.AtomId);
         var matches = selected.Document.RequireDigestionEntries().Where(entry => entry.AtomId == item.AtomId).ToArray();
         if (matches.Length != 1) throw new FormatException($"expected one ledger entry for {item.AtomId}, found {matches.Length}");
@@ -108,15 +112,14 @@ internal static partial class PinnedCoverCommand
         var changed = false;
         foreach (var edge in edges)
         {
-            if (coverage.TryGetValue(edge.Gid, out var previous))
+            if (!coverage.TryGetValue(edge.Gid, out var previous))
+                coverage[edge.Gid] = edge;
+            else
             {
-                if (previous.TargetStatementId != edge.TargetStatementId)
-                    throw new FormatException($"coverage-target-mismatch: {edge.Gid}");
-                if (previous.SourceCommit == edge.SourceCommit && previous.TruthExportSha256 != edge.TruthExportSha256)
-                    throw new FormatException($"conflicting exports for pinned commit {edge.SourceCommit}: {edge.Gid}");
-                if (previous.SourceCommit is not null) continue;
+                var merged = MergeEvidence(previous, edge);
+                if (merged == previous) continue;
+                coverage[edge.Gid] = merged;
             }
-            coverage[edge.Gid] = edge;
             changed = true;
         }
         if (!changed) return false;
@@ -164,6 +167,25 @@ internal static partial class PinnedCoverCommand
                 throw new IOException($"coverage inputs changed before publication: {item.AtomId}");
         });
         return !updates.IsEmpty;
+    }
+
+    internal static DigestionCoverageEdge MergeEvidence(DigestionCoverageEdge previous, DigestionCoverageEdge current)
+    {
+        if (current.BranchEvidence is { } branch)
+        {
+            if (previous.BranchEvidence is { } old && old.Branch == branch.Branch)
+            {
+                if (old.StateSha256 == branch.StateSha256 && old.DeclarationNameKey == branch.DeclarationNameKey)
+                    return previous;
+                if (old.Commit == branch.Commit) throw new FormatException($"conflicting frozen state for {old.Commit}: {current.Gid}");
+            }
+            return previous with { BranchEvidence = branch };
+        }
+        if (previous.TargetStatementId is not null && previous.TargetStatementId != current.TargetStatementId)
+            throw new FormatException($"coverage-target-mismatch: {current.Gid}");
+        if (previous.SourceCommit == current.SourceCommit && previous.TruthExportSha256 != current.TruthExportSha256)
+            throw new FormatException($"conflicting exports for pinned commit {current.SourceCommit}: {current.Gid}");
+        return previous.SourceCommit is null ? current with { BranchEvidence = previous.BranchEvidence } : previous;
     }
 
     private static int TruthRank(DigestionTruthState truth) => truth switch

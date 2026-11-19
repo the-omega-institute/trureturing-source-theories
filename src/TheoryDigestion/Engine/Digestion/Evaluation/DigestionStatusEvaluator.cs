@@ -118,8 +118,7 @@ internal static partial class DigestionStatusEvaluator
             findings.Add($"entry {entry.AtomId} nonpropositional receipt is invalid or conflicts with live obligations");
         // Each recorded edge identifies the declaration checked by its original writer.
         // A partial or unresolved receipt cannot certify a terminal settlement.
-        var coverage = !entry.Coverage.IsEmpty && entry.Coverage.All(edge =>
-            DigestionFingerprint.IsCanonicalSha256(edge.TargetStatementId ?? string.Empty));
+        var coverage = !entry.Coverage.IsEmpty && entry.Coverage.All(edge => edge.HasEvidence);
         var targetStates = coverage
             ? entry.Coverage.Select(edge => (edge.Gid, entry.Receipts.TailAuthorization is null ? DigestionTruthState.Closed : DigestionTruthState.Tail)).ToList()
             : [];

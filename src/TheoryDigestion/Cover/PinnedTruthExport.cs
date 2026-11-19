@@ -35,11 +35,7 @@ internal sealed class PinnedTruthExport
         foreach (var declaration in node.Declarations)
         {
             var key = declaration.DeclarationNameKey;
-            var decoded = CanonicalLeanNameDecoder.DecodePrefix(key, 0, out var consumed);
-            if (consumed != key.Length) throw new FormatException($"invalid encoded declaration name in {node.RepoPath}");
-            if (decoded[(decoded.LastIndexOf('.') + 1)..] != formal.Declaration) continue;
-            if (!CanonicalLeanNameDecoder.IsRepositoryNameKey(key))
-                throw new FormatException($"invalid matching repository declaration name: {text}");
+            if (!CoverageSelector.Matches(key, formal.Declaration)) continue;
             if (statementId is not null) throw new FormatException($"declaration selector is ambiguous at {commit}: {text}");
             statementId = declaration.StatementId;
         }

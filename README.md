@@ -23,16 +23,23 @@ make atom-context SOURCE=actual-minimum-cut-kernel ATOM_ID=05a3789a520a4d00402bc
 
 `show-atom` reads one atom. `decompose` accepts `ATOM_ID`, optional `SPLIT_AT` byte offsets and `DRY_RUN=1`. `settle`, `settle-batch` and `settle-clear` take `REQUEST`, `REQUESTS` and `ATOM_ID` respectively. Use `source-dispatch SOURCES=… DEFAULT=excluded` to opt out of automatic selection. `retire-sources SOURCES=… MODE=archive` previews retirement of a terminal source. Repeat with `WRITE=1` to apply it. Inspect the Git diff and commit the writer's output with the corresponding source change.
 
-## Cover with a published declaration
+## Cover with a frozen declaration
 
-Use the main repository’s version 2 truth export. Obtain the export and its expected SHA-256 from a trusted main-repository publication. Its transport filename can still end in `v1.json`. Supply the full source commit and the expected digest. The writer resolves the declaration within that export and requires frozen membership. The source editor checks that the hypotheses and conclusion cover the intended claim.
+`make cover` resolves the main trureturing repository’s `dev` branch and reads the requested module’s frozen state at that commit. The selector must identify one declaration in the module. A batch resolves the branch once and shares each module’s state across its rows. The source editor checks that the declaration’s hypotheses and conclusion cover the claim.
+
+```sh
+make cover ATOM_ID="$atom" GID="$gid"
+make cover-batch ATOMS=rows.tsv
+```
+
+Set `TRUTH_BRANCH` to follow a different main-repository branch. Each branch receipt records the branch, the observed commit, the module statement ID, the SHA-256 of the frozen state and the declaration name key. The declaration-level statement ID is available from a verified truth export. Repeating a cover while the module’s frozen state is identical preserves the existing receipt across unrelated branch updates.
+
+For offline use or a release-specific declaration ID, supply all three export arguments. Use a trusted version 2 truth export and its published digest. The transport filename can end in `v1.json`.
 
 ```sh
 make cover ATOM_ID="$atom" GID="$gid" TRUTH_EXPORT="$export_file" \
   SOURCE_COMMIT="$main_commit" EXPORT_SHA256="$export_digest"
 ```
-
-`make cover-batch ATOMS=rows.tsv` accepts the same evidence variables. Coverage can be added after a proof has landed. A missing publication leaves the source claim available for a later attempt.
 
 ## Source history
 

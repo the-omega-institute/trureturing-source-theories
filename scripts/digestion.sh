@@ -52,7 +52,10 @@ case "$command_name" in
     else
       args+=(--atoms "${ATOMS:?ATOMS is required}")
     fi
-    args+=(--truth-export "${TRUTH_EXPORT:?TRUTH_EXPORT is required}" --source-commit "${SOURCE_COMMIT:?SOURCE_COMMIT is required}" --export-sha256 "${EXPORT_SHA256:?EXPORT_SHA256 is required}") ;;
+    if [[ -n "${TRUTH_EXPORT:-}${SOURCE_COMMIT:-}${EXPORT_SHA256:-}" ]]; then
+      args+=(--truth-export "${TRUTH_EXPORT:?TRUTH_EXPORT is required for export mode}" --source-commit "${SOURCE_COMMIT:?SOURCE_COMMIT is required for export mode}" --export-sha256 "${EXPORT_SHA256:?EXPORT_SHA256 is required for export mode}")
+    fi
+    if [[ -n "${TRUTH_BRANCH:-}" ]]; then args+=(--branch "$TRUTH_BRANCH"); fi ;;
   *) exit 64 ;;
 esac
 exec dotnet src/TheoryDigestion/bin/Release/net10.0/TheoryDigestion.dll "$command_name" "${args[@]}"

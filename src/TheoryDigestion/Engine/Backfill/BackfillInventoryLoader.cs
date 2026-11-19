@@ -153,7 +153,7 @@ internal sealed partial class BackfillInventoryDocument
             var pinned = edge.ContainsKey("source_commit") || edge.ContainsKey("truth_export_sha256");
             ExactKeys(edge, pinned
                 ? ["gid", "target_statement_id", "source_commit", "truth_export_sha256"]
-                : ["gid", "target_statement_id"], $"entry {atomId} coverage edge");
+                : ["gid", "target_statement_id"], ["frozen_branch"], $"entry {atomId} coverage edge");
             var gid = Scalar(edge, "gid", $"entry {atomId} coverage gid");
             if (coverage.Count > 0 && StringComparer.Ordinal.Compare(coverage[^1].Gid, gid) >= 0)
             {
@@ -162,6 +162,21 @@ internal sealed partial class BackfillInventoryDocument
             }
 
             var statementId = NullableScalar(edge, "target_statement_id", $"entry {atomId} coverage target_statement_id");
+            BranchCoverage? branch = null;
+            if (edge.ContainsKey("frozen_branch"))
+            {
+                var fields = Mapping(edge["frozen_branch"], "frozen_branch must be a mapping");
+                ExactKeys(fields, ["name", "commit", "module_statement_id", "state_sha256", "declaration_name_key"], "frozen_branch");
+                string Field(string name) => Scalar(fields, name, $"frozen_branch {name}");
+                branch = new(Field("name"), Field("commit"), Field("module_statement_id"), Field("state_sha256"), Field("declaration_name_key"));
+                TruthExportValidation.RequireGitObjectId(branch.Commit, "branch commit");
+                TruthExportValidation.RequireSha256Id(branch.ModuleStatementId, "module_statement_id");
+                TruthExportValidation.RequireSha256Id(branch.StateSha256, "state_sha256");
+                if (!CanonicalLeanNameDecoder.IsRepositoryNameKey(branch.DeclarationNameKey) ||
+                    !Gid.TryParse(gid, out var parsed) || parsed.ToTarget() is not Target.Formal { Declaration: not null } formal ||
+                    !CoverageSelector.Matches(branch.DeclarationNameKey, formal.Declaration))
+                    throw new FormatException("frozen_branch declaration does not match coverage GID");
+            }
             if (pinned)
             {
                 var commit = Scalar(edge, "source_commit", $"entry {atomId} coverage source_commit");
@@ -169,11 +184,11 @@ internal sealed partial class BackfillInventoryDocument
                 TruthExportValidation.RequireGitObjectId(commit, "source_commit");
                 TruthExportValidation.RequireSha256Id(exportDigest, "truth_export_sha256");
                 TruthExportValidation.RequireSha256Id(statementId ?? "", "target_statement_id");
-                coverage.Add(new(gid, statementId, commit, exportDigest));
+                coverage.Add(new(gid, statementId, commit, exportDigest, branch));
             }
             else
             {
-                coverage.Add(new(gid, statementId));
+                coverage.Add(new(gid, statementId, BranchEvidence: branch));
             }
         }
 

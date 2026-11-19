@@ -88,9 +88,7 @@ internal static partial class IngestCommand
             DigestionMigrationState.Absorbed,
             DigestionTruthState.Closed)
         && !entry.Coverage.IsEmpty
-        && entry.Coverage.All(static edge =>
-            edge.TargetStatementId is { } identity
-            && DigestionFingerprint.IsCanonicalSha256(identity))
+        && entry.Coverage.All(static edge => edge.HasEvidence)
         && entry.Receipts.IsEmpty;
 
     private static RawRepositorySnapshot ReadRecoveryCas(

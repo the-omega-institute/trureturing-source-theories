@@ -4,8 +4,15 @@ namespace StrataLint.Engine;
 
 internal sealed record BackfillTicketReference(string CaseId, string Gid);
 
-internal sealed record DigestionCoverageEdge(
-    string Gid, string? TargetStatementId, string? SourceCommit = null, string? TruthExportSha256 = null);
+internal sealed record BranchCoverage(string Branch, string Commit, string ModuleStatementId,
+    string StateSha256, string DeclarationNameKey);
+
+internal sealed record DigestionCoverageEdge(string Gid, string? TargetStatementId,
+    string? SourceCommit = null, string? TruthExportSha256 = null, BranchCoverage? BranchEvidence = null)
+{
+    internal bool HasEvidence => BranchEvidence is not null
+        || DigestionFingerprint.IsCanonicalSha256(TargetStatementId ?? string.Empty);
+}
 
 internal sealed record DigestionExternalReceipt(string Path, string Sha256);
 

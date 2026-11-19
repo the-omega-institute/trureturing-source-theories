@@ -8,7 +8,7 @@ on:
       - 'Makefile'
       - '.github/workflows/test.yml'
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - 'src/**'
       - 'scripts/**'
