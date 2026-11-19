@@ -4176,3 +4176,42 @@ Otherwise the upper rectangle has side $O(A/p^{3/2})$. Complete the physical int
 The two upper intervals have length $O(A/p^{3/2})<p$ for sufficiently large $p$. The sum over $(C,D)\bmod p$ of the squared two-dimensional geometric sum is $p^2$ times the area of that rectangle by orthogonality, including the real twists. Bounded fibre multiplicity and the outside factor $p^2$ give $O(p^4(A/p^{3/2})^2\log^4(2p))$. The finitely many smaller primes are covered by increasing the constant. This proves the result.
 
 ## 追加锚（本行以下为增补区）
+
+## 20. Stationary frequencies in the short window
+
+**Proposition 20.1 (Single-fibre inventory).** In a balanced reduced basis as in Proposition 19.2, fix the direction $[\alpha_0:\beta_0]$ of the lower pivot. Let $\ell$ be the minimum of the index-$p$ lattice
+$$
+\{(a,b)\in\mathbb Z^2:\alpha_0a+\beta_0b=0\bmod p\}.
+$$
+In a four-dimensional short Cartesian box of side $O(H)$ the number of frequencies stationary at a fixed lower point is
+$$
+O(H^4/p+H^3/\ell+H^2).
+$$
+Here $1\le H<p$ and the gradient at the lower point is nonzero. For $H\asymp L/\sqrt p$, the volume estimate $O(H^4/p)$ holds when $\ell\ge p/H$. The smaller $\ell$ directions are $O((p/H)^2)$ in each fixed lower slope.
+
+**Proof.** Each residue of the reading $\alpha_0 a+\beta_0 b$ occurs at most $O((1+H/\ell)(1+H\ell/p))$ times in the two-dimensional box. The rows of the translated lattice have spacing comparable to $p/\ell$ and on each row the shortest vector has length comparable to $\ell$. The shortest vector is primitive since its length is $O(\sqrt p)$. Apply this count to each of $(w_1,n_1)$ and $(w_2,n_2)$. If both gradient coordinates are nonzero, fixing the reading of the first pair determines the reading of the second. If one gradient coordinate is zero, the corresponding row reading must vanish. In either case the count is at most the total number $O(H^2)$ of possibilities for one pair times the maximum per residue. Use $\ell\ll\sqrt p$ to obtain the bound. Each primitive shortest vector of length less than $p/H$ determines its projective direction. Counting such vectors gives the asserted number of directions.
+
+**Theorem 20.2 (Double stationary concentration at large middle minima).** Let $p$ be sufficiently large with $5$ a square modulo $p$. For every fixed unit $g\bmod p^2$, there are two literal pivots and smooth lower cubic points within the original retained masks of the enlargement of Theorem 16.1, both with physical middle minimum comparable to $p$, for which $\gg H^2$ frequencies in the prescribed short window have determinant valuation one and satisfy both stationary conditions. Here $H\asymp L/\sqrt p$. The pivots and frequency pairs can lie in the central physical range.
+
+**Proof.** Choose a balanced lower resonance $m$. Such $m$ exist since the number whose shortest vector has length less than $c\sqrt p$ is $O(c^2p)$, for a sufficiently small absolute $c$, by counting the vectors that determine those slopes. Choose its basis $B$ with both singular values comparable to $\sqrt p$. The two stationary conditions at distinct lower reduced pivot directions with row matrix $M$ take the form
+$$
+v=M^{-1}\operatorname{diag}(\lambda,\lambda')M u,\qquad
+u=(w_1,n_1)^{\mathsf T},\quad v=(w_2,n_2)^{\mathsf T},
+$$
+where $\lambda=P_y/P_x$ and $\lambda'=P'_y/P'_x$. Parallel gradient directions would force proportional $u,v$ and are excluded by the determinant-unit condition.
+
+Use a bounded integral unimodular conjugate of $T=\left(\begin{smallmatrix}1&1\\1&2\end{smallmatrix}\right)$ for this endomorphism, with pivot directions the two left eigenlines. Each eigenline of $T$ has reduced minimum comparable to $\sqrt p$. Its direction satisfies the quadratic norm equation $x^2+xy-y^2=0\bmod p$. A nonzero integral vector of length $o(\sqrt p)$ would make that norm zero over the integers, which is impossible. The upper bound is Minkowski's theorem. Bounded conjugation preserves these scales. A shear shifts the two finite eigenline slopes by the shear parameter, so among three consecutive shifts at least one avoids the kernel of the linear reading $a=r\alpha+\sigma\beta$ on both directions. A line with that kernel at infinity is already avoided. Each corresponding physical middle lattice is the image under $B$ of the reduced lattice of its direction. Its minimum is comparable to $p$, well inside the retained range.
+
+Take $h=1$. The two values $\lambda$ satisfy $\lambda^2-3\lambda+1=0$. The equation $P_y=\lambda P_x$ gives the conic
+$$
+-x^2+2(\lambda-1)xy+\lambda y^2+x-\lambda y=0.
+$$
+Its projective determinant is $\lambda(1-\lambda)/4\ne0$. It has a rational parametrization from $(0,0)$. Its two infinity points are simple since the leading binary discriminant is $4(\lambda^2-\lambda+1)=8\lambda\ne0$. Neither point is in a direction of a linear factor of the leading cubic $-xy(x+y)$. Thus $P$ has a pole of order three at each infinity point on the conic and is geometrically nonsquare. The finite-field quadratic character bound applied in the rational parametrization gives points with either nonzero square class of $P$. The forbidden coordinates, pair sums, zero gradient and critical value $P=1/27$ exclude only boundedly many points.
+
+For each eigenline choose a point of the class making $1/(gmP)$ a square. The reduced direction can then be scaled so its actual lower reading $a_0$ satisfies $a_0^2=1/(gmP)$, with $b_0=ma_0$. The two gradients have their prescribed readings. Smoothness lifts the selected lower point to the exact mod-$p^2$ cubic, and the critical exclusion already holds modulo $p$. The physical pivots lie in the corresponding cosets of $pB\mathbb Z^2$. Their covering radius is $O(p^{3/2})$, so both cosets have representatives in an interior positive rectangle of side a sufficiently small fixed multiple of $R$ with the required literal lower cutoff.
+
+For the unconjugated matrix choose $u$ in a small square of side comparable to $H$ and take $v=T u$ literally. Conjugation preserves these counts after shrinking the square by a constant factor. Both rows fit in the physical short support. The rank condition fails for only $O(H)$ points since $\det(u,Tu)=x^2+xy-y^2$ has at most two $y$ roots for each $x\bmod p$. At every remaining point both stationary equations hold and the exact integer relation $\det(e,f)=p\det(w,n)$ gives valuation one.
+
+The bound $\gg H^2$ exceeds the two-congruence volume $H^4/p^2$ even with both middle minima of order $p$. The construction concerns stationary frequency counts. The local signed energy still depends on the lifted phases. The small integral graph was found in a native Codex read-only review. A targeted Pro calculation had previously exhibited concentration for a single lower fibre near the shorter middle cutoff.
+
+## 追加锚（本行以下为增补区）
