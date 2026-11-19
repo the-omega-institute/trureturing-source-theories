@@ -1,0 +1,4 @@
+## 11. Short-weight estimates for reciprocal norm levels
+
+Continue with the balanced widths and the positive count $N_2$ from Theorem 9.1. Allow arbitrary weights of modulus at most one on the retained middle slopes $s\bmod p^2$ with $T_s\ge p^{2/3}$. Write $Q=p^3$, $L\asymp Q/R$, and $K=L/p$. For a physical unit coordinate put $u_i=1/x_i$ and $v_i=1/y_i\bmod Q$. The common slope condition is $v=\lambda u$ with $\lambda=\rho^{-1}\bmod Q$, and the upper word is $\lambda Q_0(u)=g\bmod p^2$, where $Q_0(u)=u^TMu=u_1u_2+u_1u_3+u_2u_3$. The matrix $M$ has zero diagonal and off-diagonal entries $1/2$. Let $D(B)=B^TM^{-1}B$ for a reciprocal second-row Fourier frequency $B$.
+
