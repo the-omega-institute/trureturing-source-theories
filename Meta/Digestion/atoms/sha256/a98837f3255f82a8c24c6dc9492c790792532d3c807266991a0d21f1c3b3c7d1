@@ -1,0 +1,51 @@
+**Theorem 15.1 (Exact-sum decomposition).** Let $\widehat\Phi_X,\widehat\Phi_Y$ denote the nonnegative compact real Fourier profiles of the physical weights, with cutoff $O(1/R)$. Define
+$$
+U_X(f;S)=\int_{\mathbb R}e(S\omega)
+ \widehat\Phi_X(\omega+f_1/Q)\widehat\Phi_X(\omega+f_2/Q)
+ \widehat\Phi_X(\omega)\,d\omega
+$$
+and $U_Y(e;T)$ analogously. Here $e(t)=\exp(2\pi it)$ and $e_m(t)=e(t/m)$. For $D=gab$, let $C_{D,h}(d)$ be the sum of $e_q(d_1 z_1+d_2 z_2)$ over $z\bmod q$ with $\sum_i z_i=h,\ D\prod_i z_i=h$, and the coordinate and pair-sum units. The contribution at fixed $a,b,h$ in the enlarged count is
+$$
+\frac{1}{q^2Q^2}\!
+ \sum_{\substack{e,f\in\mathbb Z^2\\ af+be\in p\mathbb Z^2}}
+ C_{D,h}\!\left(\frac{af+be}{p}\right)U_X(f;ah)U_Y(e;bh).
+$$
+Both $e,f$ and their coordinate differences have size $O(L)$. The $p$-divisible curve frequencies, the jointly $p$-divisible frequency pairs on the primitive curve sector, and the primitive curve frequencies with $e,f$ literally collinear all fit the sufficient first-moment bound of Theorem 14.1.
+
+**Proof of the identity.** The integer carries $n_i=(ay_i-bx_i)/Q$ have sum zero. Set $r_i\equiv-Qb^{-1}n_i\bmod a$, so that $x_i=r_i+a z_i$, $y_i=(b r_i+Q n_i)/a+b z_i$, and $\sum_i z_i=h-\sum_i r_i/a$. The three profiles on these rows are translates of $\psi_n(t)=\Phi_X(at)\Phi_Y(bt+Qn/a)$. Enforce the exact sum by integration in a unit interval in the additive frequency $\theta$. Poisson summation of the three integer row coordinates gives a factor $q^{-3}$, with frequencies $m_i/q-\theta$. Completing the word after $x_i=a\zeta_i\bmod q$ gives its raw mod-$q$ transform at $m$. Additive reciprocity combines the representative phases into $e_a(-p b^{-1}\sum_i m_i n_i)$, while the exact sum contributes $e(-h\theta)$.
+
+Write $m_3=u$ and $m_i=u+d_i$ for $i=1,2$. The carry phase is independent of $u$. Summing $u\bmod q$ gives $q C_{D,h}(d)$. The change $s=q\theta-u$, together with the remaining translates of $\theta$, leaves the factor $q^{-3}$ and the integral
+$$
+A_n(d)=\int_{\mathbb R}e(-hs/q)\,
+ \widehat\psi_{n_1}((d_1-s)/q)\,
+ \widehat\psi_{n_2}((d_2-s)/q)\,
+ \widehat\psi_{n_3}(-s/q)\,ds.
+$$
+In this notation the fixed-carry sum is $q^{-3}\sum_d C_{D,h}(d)e_a(-pb^{-1}d\cdot(n_1,n_2))A_n(d)$. For the last Poisson step use
+$$
+\widehat\psi_n(\xi)=
+ \frac1Q\int_{\mathbb R}\widehat\Phi_Y(a\eta/Q)
+ \widehat\Phi_X(\xi/a-b\eta/Q)e(n\eta)\,d\eta.
+$$
+Completing $n_1,n_2$ with $n_3=-n_1-n_2$ sets $\eta_i=\eta_3+e_i/a$ with $p d_i=af_i+be_i$. The variables $\omega=-s/(qa)-b\eta_3/Q$, $\nu=a\eta_3/Q$ have inverse Jacobian $qQ$. Their two integrals are $U_X,U_Y$. This gives the exact normalization and compact support in the theorem.
+
+**Proof of the frequency bounds.** On fixing the sum, the lower curve is the irreducible cubic $P(z)=z_1z_2(h-z_1-z_2)=h/D$. A geometric line would have one of the directions of the leading form $z_1z_2(z_1+z_2)$. A line in each such direction gives a nonconstant polynomial or the nonzero constant $-h/D$ after substitution. At primitive $d$, high-digit orthogonality imposes $d\bmod p=\lambda\nabla P$ at a smooth point. The derivative parallelism is a nonzero quadratic, so there are at most six such points by Bézout. Each contributes $p$ times a unit phase. Singular lower points contribute zero in this conductor.
+
+The projection $p\mid d$ in both coordinates averages over $(z_1,z_2,z_3)\mapsto(z_1+pu,z_2+pv,z_3-p(u+v))$. It is $1/p$ times the lower-word indicator at smooth points, since exactly $p$ lifts solve the word. The only singular lower point is $z_i=h/3\bmod p$, and its lifts can occur only if $D h^2=27\bmod q$, already removed. This positive projection therefore costs at most $N_1/p$, within the target by Theorem 9.1's lower-word estimate. It uses no individual bound on the signed proper frequencies.
+
+For the remaining primitive $d$, the relation $af+be\equiv0\bmod p$ implies that $p\mid e$ if and only if $p\mid f$. These pairs have inventory $O((L/p)^4)$. The sup norm of either $U$ is $O(R^2)$, with a squared tail in the physical sum by two integrations by parts. Over the literal $a,b,h$ boxes the weighted inventory is $O(R^2)$ after those tails, using $\sum h^{-2}<\infty$. The curve bound $6p$ gives $O_\varepsilon(p^{11/4+\delta+\varepsilon})$.
+
+It remains here to treat $f=Fv,\ e=Ev$ with $v$ a primitive integer two-vector and $F,E$ units. Dyadic summation in $v$ gives $O(L^2\log(2p))$ such pairs. In a sum box $|S|\asymp R2^i,\ |T|\asymp R2^j$ (including the central boxes), let $A\asymp R2^{\max(i,j)}/h$ bound $|a|,|b|$. The product of the two $U$ weights has sup norm $O(R^4\,2^{-2i-2j})$, and variation along each affine line $O(R^4\,2^{-i-j})$. These follow by two integrations by parts in the rescaled compact Fourier products, and in the products times their integration variable to bound the derivative. The compact piecewise smooth profiles have uniformly bounded second derivatives as measures.
+
+Use Möbius inversion on the common divisor $D_1$ of $a,b$. For $D_1>D_0$ prime to $p$, the numbers of pairs in the residue class $aF+bE=0\bmod p$ sum to $O(A^2/(pD_0)+A\log(2p))$. With the primitive curve bound, this costs at most the sup weight times $O(A^2/D_0+pA\log(2p))$.
+
+For $D_1\le D_0$, fix $a_0,b_0\bmod p$ with $a_0F+b_0E=0$ and write $a=a_0+pu,\ b=b_0+pw$. The divisibility by $D_1$ puts $u,w$ in two progressions of step $D_1$. Use their integer indices $u',w'$. Take a primitive short vector $(r,s)$ with $rF+sE=0\bmod p$ and $M=\max(|r|,|s|)\ll\sqrt p$. Both entries are units. On fixing the literal line reading $\ell=su'-rw'$, its integer parameter $t$ advances by $(r,s)$. The interval length is $O(1+A/(pD_1M))$, and each $\ell\bmod p$ has $O(1+MA/(p^2D_1))$ literal lifts in the box. Along the line $b/a\bmod q$ is constant because $sa-rb$ is divisible by $p$. The primitive frequency $d\bmod p=k v\bmod p$ is also fixed, and $k$ varies bijectively with $\ell\bmod p$.
+
+For a fixed smooth stationary point of the lower curve, the multiplier $\lambda$ is proportional to $k$ with nonzero factor. The stationary point depends only on the direction $v$ and the lower curve, so at most six are available as $\ell\bmod p$ varies. Its phase in $t$, including the lift of the target product $h/(gab)$, has coefficient
+$$
+D_1\left(\frac{rf+se}{p}\cdot z_0-\frac{2r\lambda P(z_0)}{a_0}\right)\pmod p.
+$$
+The second term follows by differentiating the reciprocal product and using $r/a_0=s/b_0\bmod p$. The coefficient is injective as a function of $\ell\bmod p$ for each stationary point. Thus partial geometric sums at nonzero coefficients cost $O(p\log(2p))$ summed over the residues. For a zero coefficient, the line length times the squared-tail sup bound is $O(p R^4\,2^{-i-j})$, since $R<p^2$. The critical exclusion deletes at most one $t\bmod p$ on each line, since $g a b h^2$ shifts by a unit multiple of $p$. Charging the deleted points in absolute value adds only terms of size $O(pA/(D_1M)+A^2/(pD_1^2))$ times the sup weight, in addition to the original geometric budget. These fit the bounds above.
+
+Summing $a_0$ and the small divisors, with the factor $p$ of the curve kernel and the actual variation bound, gives $O_\varepsilon(p^\varepsilon R^4 2^{-i-j}(p^3D_0+pMA))$ and the harmless deletion terms. For $A\ge p^{3/2}$ take $D_0\asymp A/p^{3/2}$, so the bracket including the large divisors is $O(p^{3/2}A)$. For $A<p^{3/2}$ the elementary residue count and curve bound give $O(A^2+pA)$, already below this bracket. Summing $A\ll R2^{\max(i,j)}/h$ over $h$ and dyadic boxes loses powers of $\log p$ since the sums are cut at $O(Q)$. Thus the entire collinear contribution is $O_\varepsilon(p^\varepsilon L^2 R^5 p^{3/2}/(q^2Q^2))=O_\varepsilon(p^{25/8+(3/2)\delta+\varepsilon})$, within the target. This leaves the primitive curve frequencies with literal rank-two $e,f$ and both nonzero modulo $p$.
+
