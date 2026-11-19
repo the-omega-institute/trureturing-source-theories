@@ -1,0 +1,36 @@
+**Theorem 14.1 (The conic bound and the strengthened rank-three estimate).** Under the actual nonsplit rank-three hypotheses of Theorem 13.1, each affine conic component in an auxiliary intersection contributes $O_\varepsilon(p^\varepsilon)$ actual rows. The full actual partner count satisfies $K_g(W)\ll_\varepsilon p^\varepsilon e^{7/18}$ on the reduced lattice box of index $e$.
+
+**Proof.** A geometrically irreducible conic with five actual integer points has an affine plane and an equation of rational polynomial height. Three points determine its plane because a line meets the conic in at most two points. Choose two coordinate readings inducing an affine isomorphism on the plane. In those coordinates the five points determine the quadratic up to scalar, since two nonproportional quadratics through all five would have a common component by Bézout. Linear algebra recovers coefficients of polynomial height. The case of fewer points already fits the bound.
+
+If the conic has two distinct points at infinity, its leading quadratic in the two plane coordinates is nondegenerate. Complete the square and factor that quadratic over $\mathbb Q$ or its quadratic splitting field. This expresses the integral points, after clearing polynomial-height denominators, by factors of a fixed nonzero number. A zero product would make the conic reducible. In the split case use the divisor bound. In the nonsplit case count the principal ideals dividing the fixed product, and for each generator count its quadratic units in the polynomial-height region. The same divisor and unit bounds as in the preceding nonsplit analysis give $O_\varepsilon(p^\varepsilon)$ points.
+
+In the parabolic case the leading quadratic is proportional to the square of a rational linear reading. Choose an integer linear reading $u$ in that direction and an independent reading. Solving the quadratic equation for the second reading gives a polynomial parametrization of degree two in $u$, with rational coefficients of polynomial height. The coefficients of $u^2$ and $u$ in the affine row are independent. Write the sum and product of the two endpoints along this conic as
+$$
+ S=S_2u^2+S_1u+S_0,\qquad Q=Q_2u^2+Q_1u+Q_0 .
+$$
+Here the $S_i$ are binary linear forms and the $Q_i$ binary quadratics. The discriminant $D=S^2-4Q$ has rank at most one identically in $u$, by the cubic equation. If $D$ vanished identically then $S_2=0$ and $Q_2=S_1^2/4$, contrary to the nonsplit pure quadratic direction of the coefficient of $u^2$.
+
+Over $\mathbb Q[u]$ write $D=d(u)H(u)^2$, with $d$ squarefree and $H$ linear in the binary variables. To obtain this representation, divide the three entries $a,b,c$ of the symmetric matrix by their polynomial gcd. For each irreducible polynomial the minimum valuation is then zero and $ac=b^2$ forces even valuations on $a,c$. The constant factors and the relation $ac=b^2$ give the square representation up to a rational scalar. An identically zero diagonal entry gives a coordinate square directly. Restore the gcd and incorporate its square part in $H$. The factors have polynomial height by Gauss's lemma and the fixed-degree factor height bound. Away from the bounded set where $H$ or $d$ vanishes, an actual row requires $d(u)$ to be a square in $\mathbb Q$.
+
+If $S_2\ne 0$, then $\deg_u D=4$, with leading form $S_2^2$. The possibilities for $\deg d$ are $0,2,4$. For degree two the square condition, after clearing denominators, is an integral conic of the form $v^2=A u^2+B u+C$ with nonzero discriminant, so the preceding fixed-product argument applies. If $d$ is a constant square, choose the sign of the polynomial square root so its two top coefficients are $S_2,S_1$, as follows from the two top coefficients of $D$. Then one endpoint is constant along the conic. The original word and short lift give it at most one actual partner. A nonsquare constant allows only the bounded exceptional set.
+
+For degree four, $H=H_0$ is constant in $u$. Comparison at degrees four and three gives $S_2=c_2H_0$ and $S_1=c_1H_0$, with $c_2\ne 0$. At degrees two and one, with $d_i$ denoting coefficients of $d$, the product readings are
+$$
+ Q_2=\frac{c_1^2-d_2}{4}H_0^2+\frac{c_2}{2}H_0S_0,\qquad
+ Q_1=-\frac{d_1}{4}H_0^2+\frac{c_1}{2}H_0S_0.
+$$
+The row direction at $u$ minus $c_1/c_2$ times that at $u^2$ is nonzero, has zero sum, and has product proportional to $H_0^2$. This contradicts the nonsplit pure quadratic kernel.
+
+If $S_2=0$, then $Q_2$ is a nonzero multiple of that nonsplit kernel. Hence $\deg_u D=2$ with leading form $S_1^2-4Q_2\ne 0$. A squarefree $d$ of degree two is handled as before. For a constant square, the two rational polynomial endpoint forms would factor $Q_2$ as the product of their linear leading terms, a contradiction. The constant nonsquare case again allows only the bounded exceptional set. This proves the conic bound.
+
+Now apply the determinant covering of Theorem 13.1. Lines and conics each cost $O_\varepsilon(p^\varepsilon)$ actual rows. For a higher-degree irreducible space curve $C$ of degree $D_C$, choose a nonconstant coordinate $x$. The extension $\mathbb C(C)/\mathbb C(x)$ has degree at most $D_C$ and is separable, so the other two coordinate readings $y,z$ have at most $D_C(D_C-1)/2$ bad parameters $t$ for $y+tz$ to generate the extension. Each pair of embeddings rules out at most one $t$. Exclude the at most $D_C$ parameters for which the projection center $[0:-t:1:0]$ lies on the projective curve. A bounded integer choice then gives a birational projection preserving degree, as seen by pulling back a generic line, and fibers consist of points on a line. Bombieri–Pila on the resulting plane curve gives $O_\varepsilon(p^\varepsilon X^{1/3})$ points for $D_C\ge3$.
+
+The auxiliary covering therefore costs $O_\varepsilon(p^\varepsilon(\mathcal K^2+\mathcal K X^{1/3}))$. Use the cubic slices of Theorem 13.1 when $z_0\le 1/6$ or $x\ge2/3$, which give exponent at most $7/18$. Otherwise $\log X/\log Z<4$, and the two determinant exponents are at most $2\sqrt{xy z_0}$ and $x/3+\sqrt{xy z_0}$. The first is at most $2/(3\sqrt3)<7/18$. When $x\le3/5$, the second is at most $x/3+(2/5)(1-x)\le 17/45$. When $3/5<x<2/3$, it is at most $x/3+(41/100)(1-x)\le91/250$. This proves the strengthened estimate.
+
+The unchanged index bound $e\ll B^{8/3}/p^{3/2}$ yields a squared partner cap $O_\varepsilon(p^\varepsilon B^{56/27}/p^{7/6})$. It still dominates the three other retained caps on $0<\delta<1/100$ by the endpoint comparison. The sufficient $N_2$ estimate in this range becomes
+$$
+ N_2\ll_\varepsilon p^{25/6+\varepsilon} B^{-29/27}
+   \asymp p^{121/36-(29/27)\delta+\varepsilon}.
+$$
+The lower-conductor comparison error of Theorem 9.1 is within this scale. Theorem 12.1 now pays normal heights at most $p^{37/200}$ and the displacement estimate of Theorem 9.2 pays middle slopes through $p^{37/50}$. The natural diagonal size $p^{53/16+3\delta/4+\varepsilon}$ for the unprojected second-moment route is within the sufficient bound on the entire stated interval. Proving the estimate for the actual non-diagonal correlations remains necessary.
+
