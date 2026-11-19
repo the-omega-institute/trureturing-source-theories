@@ -1,0 +1,14 @@
+### Consequence for the first moment
+
+In the remaining nonsplit rank-three family at the balanced scale, the existing index bound $e\ll B^{8/3}/p^{3/2}$ gives
+$$
+K_g(W)^2\ll_\varepsilon p^\varepsilon\frac{B^{101/45}}{p^{101/80}},
+ \qquad B\asymp p^{3/4+\delta}.
+$$
+This majorizes the residual rank-four, rank-five, and split rank-three caps, respectively $B^{55/12}/p^{25/8}$, $B^8/p^6$, and $p^{6\delta}$, for $0<\delta<1/100$. The comparison follows at the endpoints of this interval because the exponents are linear in $\delta$. The unit-edge bound charges each retained middle's first moment with its local squared partner cap and has budget $p^3 B$. Thus it suffices to prove
+$$
+N_2\ll_\varepsilon p^{\varepsilon+341/80} B^{-56/45}
+  \asymp p^{799/240-(56/45)\delta+\varepsilon}.
+$$
+The replacement error in Theorem 9.1 is $O(p^{13/4+3\delta})$ and lies below this scale. With the plane estimate of Theorem 12.1 this also pays normal heights at most $p^{17/100}$. For $0<\delta<3/359$, the scale $p^{53/16+3\delta/4+\varepsilon}$ from the unprojected second moment at its natural diagonal size now fits the first-moment requirement. The off-diagonal bound at that scale remains open.
+

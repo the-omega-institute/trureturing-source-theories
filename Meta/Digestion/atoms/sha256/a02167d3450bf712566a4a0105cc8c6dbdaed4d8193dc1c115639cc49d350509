@@ -1,0 +1,12 @@
+## 13. The nonsplit cubic in a lopsided box
+
+The rank-three determinant constraint gives an affine cubic on the row space. Let $F$ denote its equation after clearing denominators in a rational coordinate basis. In the nonsplit case its top-degree form in the two sum readings $s,t$ and the kernel coordinate $z$ is, up to a nonzero scalar,
+$$
+F_3(s,t,z)=z f(t,-s)+G(s,t).
+$$
+Here $f$ is the nonsplit binary quadratic from the pure quadratic kernel and $G$ is a homogeneous binary cubic coprime to $f(t,-s)$ over $\mathbb C$. In fact the determinant of the endpoint discriminant is
+$$
+-4(s^2q_2+t^2q_0-stq_1)+16q_0q_2-4q_1^2
+$$
+when the product quadratic has coefficients $q_0,q_1,q_2$. Its cubic part is the displayed $F_3$: varying the kernel coordinate contributes $zf(t,-s)$, and varying the two sum coordinates contributes $G$. The nonzero resultant on the two roots of the kernel gives the coprimeness. We use the actual-row bound $O_\varepsilon(p^\varepsilon)$ on each rational affine line from the nonsplit rank-three analysis. The integer coordinates below are those of the reduced saturated row lattice.
+

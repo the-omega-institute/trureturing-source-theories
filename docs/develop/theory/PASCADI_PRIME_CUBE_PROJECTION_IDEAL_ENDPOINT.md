@@ -3827,3 +3827,62 @@ For a shell of height $H$, the number of normals with $\ell_1\le V\ll\sqrt H$ is
 The fixed-height estimates are paper proofs, with independent review of the midpoint phase, the variation bound, and the exponent comparison. The long middle-slope aggregate across the largest physical normal heights remains open.
 
 ## 追加锚（本行以下为增补区）
+
+## 13. The nonsplit cubic in a lopsided box
+
+The rank-three determinant constraint gives an affine cubic on the row space. Let $F$ denote its equation after clearing denominators in a rational coordinate basis. In the nonsplit case its top-degree form in the two sum readings $s,t$ and the kernel coordinate $z$ is, up to a nonzero scalar,
+$$
+F_3(s,t,z)=z f(t,-s)+G(s,t).
+$$
+Here $f$ is the nonsplit binary quadratic from the pure quadratic kernel and $G$ is a homogeneous binary cubic coprime to $f(t,-s)$ over $\mathbb C$. In fact the determinant of the endpoint discriminant is
+$$
+-4(s^2q_2+t^2q_0-stq_1)+16q_0q_2-4q_1^2
+$$
+when the product quadratic has coefficients $q_0,q_1,q_2$. Its cubic part is the displayed $F_3$: varying the kernel coordinate contributes $zf(t,-s)$, and varying the two sum coordinates contributes $G$. The nonzero resultant on the two roots of the kernel gives the coprimeness. We use the actual-row bound $O_\varepsilon(p^\varepsilon)$ on each rational affine line from the nonsplit rank-three analysis. The integer coordinates below are those of the reduced saturated row lattice.
+
+**Theorem 13.1 (A bound for the nonsplit rank-three row count).** Take a box in such a cubic with ordered integer coordinate widths $X\ge Y\ge Z\ge 2$ and put $E=XYZ$. Assume the widths and the row data have polynomial height in $p$. The number of actual rows in the box is $O_\varepsilon(p^\varepsilon E^{101/240})$, uniformly over these cubic data and over the valid reduced integral bases. For the actual nonsplit rank-three chart with reduced box volume comparable to its index $e$, this gives $K_g(W)\ll_\varepsilon p^\varepsilon e^{101/240}$.
+
+**Proof.** The linear dependence of $F_3$ on $z$ and the two coprime coefficients show that $F_3$ is absolutely irreducible. The same holds for $F$, since any factorization would factor the top-degree part. In the projective plane $F_3=0$ has a unique singular point $[0:0:1]$. Away from that point, the $z$-derivative can vanish only at a root of $f(t,-s)$, where $G(s,t)$ is nonzero. At the point the local quadratic is $f(t,-s)$, with two tangent directions over $\mathbb C$ and none over $\mathbb Q$.
+
+Let $T$ be the maximum monomial weight $X^iY^jZ^k$ in the reduced coordinates of $F$. If the rational projective direction of the widest coordinate is outside the node, then at least one of the cubic monomials $a^3,a^2b,a^2c$ occurs. These come from the value at $[1:0:0]$ and its two transverse derivatives. Thus $T\ge X^2Z\ge E$. If the widest direction is the node, the coefficient of $ab^2$ is a nonzero multiple of the value of $f$ on the nonzero rational projection of the second basis vector to the sum coordinates. Then $T\ge XY^2\ge E$.
+
+Write $x=\log X/\log E,\ y=\log Y/\log E,\ z_0=\log Z/\log E$. The cubic slices perpendicular to the third coordinate give
+$$
+K_g(W)\ll_\varepsilon p^\varepsilon
+\bigl(E^{x/3+z_0}+E^{1/3}\bigr).
+$$
+For completeness, the binary restriction of the leading cubic to a slice is nonzero. Any reducible slice has a line in one of its at most three directions at infinity. For any one direction make a change of the two slice variables over $\mathbb C$ so that the line has the form $v=k$. The coefficient polynomials in $k$ and the slice parameter have no common factor, by absolute irreducibility of $F$. A nonzero coefficient and a linear combination coprime to it give at most nine pairs $(k,\text{slice parameter})$ by Bézout. The ordinary slices therefore contribute $O_\varepsilon(p^\varepsilon X^{1/3}Z)$ by Bombieri–Pila. The bounded number of exceptional slices each contribute $O_\varepsilon(p^\varepsilon\min(X^{1/2},Y))$, using the component bounds or the row bound on lines of fixed second coordinate. The minimum is at most $E^{1/3}$.
+
+This pays the box if $z_0\le 1/4$, since then $x/3+z_0\le 5/12$, or if $x\ge 12/25$, since then $x/3+z_0\le 21/50$. Otherwise apply Browning and Verzobio, *Counting integer points on affine surfaces with a side condition*, Theorem 1.1 with modulus one and auxiliary polynomial $1+x_2$, using the $q=1$ weighted monomial order following the theorem. In the notation of that result $B=X$, $B'=Z$, and
+$$
+\mathcal K=\exp\sqrt{\frac{\log X\log Y\log Z}{\log T}}
+ \le E^{\sqrt{xy z_0}}.
+$$
+There are $O_\varepsilon(\mathcal K^2 E^\varepsilon)$ exceptional points. The remaining points lie on $O_\varepsilon(\mathcal K E^\varepsilon)$ auxiliary surfaces coprime to $F$ with uniformly bounded degree, since $\log X/\log Z<2$. This application takes the unrestricted variety $F=0$ for the covering and uses the actual row set on its curve components.
+
+Each intersection has a bounded number of bounded-degree curves. A line through distinct integer points is rational and contributes $O_\varepsilon(p^\varepsilon)$ actual rows. For a nonlinear component at least one coordinate-pair projection has nonlinear image. If a coordinate is constant, use the other two. If all coordinates vary and both images using the first coordinate are lines, the other coordinates are affine functions of the first and the component lies on a line. In a projection to a nonlinear image, fibers lie on coordinate lines and have bounded size by the degree bound. Consequently Bombieri–Pila gives $O_\varepsilon(p^\varepsilon X^{1/2})$ points. An image curve not invariant under conjugation has boundedly many real points by Bézout with its conjugate. The determinant bound thus costs $O_\varepsilon(p^\varepsilon(\mathcal K^2+\mathcal K X^{1/2}))$.
+
+The exponent $2\sqrt{xy z_0}$ is at most $2/(3\sqrt 3)$. Also $y z_0\le (1-x)^2/4$, and $\sqrt x\le 693/1000$ for $x\le12/25$. Hence
+$$
+x/2+\sqrt{xy z_0}
+\le x/2+(693/2000)(1-x)
+\le 6/25+(693/2000)(13/25)
+<101/240 .
+$$
+Combining both parts of the box proves the theorem. [Browning–Verzobio, Theorem 1.1](https://arxiv.org/html/2408.11453v2#S1.Thmtheorem1)
+
+### Consequence for the first moment
+
+In the remaining nonsplit rank-three family at the balanced scale, the existing index bound $e\ll B^{8/3}/p^{3/2}$ gives
+$$
+K_g(W)^2\ll_\varepsilon p^\varepsilon\frac{B^{101/45}}{p^{101/80}},
+ \qquad B\asymp p^{3/4+\delta}.
+$$
+This majorizes the residual rank-four, rank-five, and split rank-three caps, respectively $B^{55/12}/p^{25/8}$, $B^8/p^6$, and $p^{6\delta}$, for $0<\delta<1/100$. The comparison follows at the endpoints of this interval because the exponents are linear in $\delta$. The unit-edge bound charges each retained middle's first moment with its local squared partner cap and has budget $p^3 B$. Thus it suffices to prove
+$$
+N_2\ll_\varepsilon p^{\varepsilon+341/80} B^{-56/45}
+  \asymp p^{799/240-(56/45)\delta+\varepsilon}.
+$$
+The replacement error in Theorem 9.1 is $O(p^{13/4+3\delta})$ and lies below this scale. With the plane estimate of Theorem 12.1 this also pays normal heights at most $p^{17/100}$. For $0<\delta<3/359$, the scale $p^{53/16+3\delta/4+\varepsilon}$ from the unprojected second moment at its natural diagonal size now fits the first-moment requirement. The off-diagonal bound at that scale remains open.
+
+## 追加锚（本行以下为增补区）
