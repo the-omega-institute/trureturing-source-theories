@@ -1,0 +1,4 @@
+## 10. Sources and remaining count
+
+Theorems 9.1 and 9.2 are ordinary Codex proofs using the exact signed line representation and the reduced lattice from the earlier argument. The finite-field estimate in Theorem 9.1 uses [Katz, *Gauss Sums, Kloosterman Sums, and Monodromy Groups*, Theorem 11.1](https://web.math.princeton.edu/~nmk/Katz-GKM.pdf) and the trace-function bounds reviewed by [Fouvry, Kowalski and Michel](https://arxiv.org/abs/1211.6043). The Kloosterman reparametrization and the signed mod-$p^2$ coefficient were checked by direct computation at $p=5,7,11,13$. The positive count $N_2$ for the remaining long middle slopes is open at the sufficient first-moment scale.
+

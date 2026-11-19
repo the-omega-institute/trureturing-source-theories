@@ -1,0 +1,4 @@
+## 9. The origin first moment and short middle slopes
+
+Theorem 8.1 bounds the equal-slope variance. The estimates here treat the first moment at the origin and extend the range counted directly with the original full slope minimum. Fix $0<\delta<1/100$, take the balanced widths from §8, and write $R\asymp X\asymp Y$ and $B=R^2/p^3$. For a unit slope $\sigma$ modulo $p^j$, put $\Lambda_\sigma=\{(x,y)\in\mathbb Z^2:y\equiv \sigma x\bmod p^j\}$ and let $T_\sigma$ be its shortest length. In all counts $g$ is a fixed unit. The masks require the three first coordinates and their pair sums to be units.
+
