@@ -1,0 +1,4 @@
+## 16. Frequencies with determinant divisible by the prime square
+
+Take the balanced range of Theorem 14.1, with $R\asymp p^{15/8+\delta/2}$ and $0<\delta<1/100$. Use Theorem 15.1 with $Q=p^3$, $q=p^2$, $L=Q/R$, pivot cutoff $V\gg p^{3/2-\delta}$, and retain middle slopes with minimum greater than $H=p^{37/50}$. The contribution at shorter middle slopes was treated in Theorem 14.1.
+
