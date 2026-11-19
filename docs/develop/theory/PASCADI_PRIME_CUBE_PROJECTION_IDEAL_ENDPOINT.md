@@ -4126,3 +4126,53 @@ The coefficients $c_i$ are fixed throughout the pivot sum and $\xi,\eta$ are arb
 **Proof.** Translation by $(p^2,mp^2)$ fixes every kernel. It preserves all masks and changes $d$ by $p(f+me)=q w$. The full orbit modulo $Q$ has $p$ points, and the rectangle meets an orbit in at most one point because of the interval for $a$. Thus its quadratic norm is at most $Q^2/p$ times the complete normalized Gram form. There are $O(A^2/p)$ resonant points in the rectangle by counting $b$ in its class for each $a$. Cauchy–Schwarz gives the claimed restriction, including the common cutoff and real twists.
 
 ## 追加锚（本行以下为增补区）
+
+## 19. Complete frequency energy of the pivot kernels
+
+**Theorem 19.1 (Dual pivot orthogonality).** Fix $h,m,g$ and the short resonance $(r,s)$ of Theorem 18.1. Put
+$$
+\alpha=\frac{\rho a+\sigma b}{p},\qquad
+\beta=\frac{sa-rb}{p}
+$$
+on the unit pivot resonance, so $a=r\alpha+\sigma\beta$, $b=s\alpha-\rho\beta$, and $d=\alpha w_0+\beta n_0$. Let $Z_{a,b}$ be the admissible mod-$q$ points of $P_h(z)=h/(gab)$. Write $K_{w_0,n_0}(a,b)$ for the kernel with the common pivot multiplier $\chi(a,b)$, using the same formula on all $(w_0,n_0)\bmod q$. On any set $\mathcal R$ of pivots with distinct reductions $(a,b)\bmod q$, one has
+$$
+q^{-4}\sum_{w_0,n_0\bmod q}\left|\sum_{(a,b)\in\mathcal R} c_{a,b}K_{w_0,n_0}(a,b)\right|^2
+=\sum_{(a,b)\in\mathcal R}|c_{a,b}\chi(a,b)|^2\,|Z_{a,b}|.
+$$
+In particular the right side is $O(pA^2)$ for $|\chi|,|c_{a,b}|\le1$ in a literal resonant rectangle of side at most $A$ with $p\le A<q$.
+
+**Proof.** The Fourier support of a pivot consists of the readings $(\alpha z,\beta z)$ for $z\in Z_{a,b}$. Suppose two such readings coincide, with another pivot denoted by primes. The coordinates of $z,z'$ are units, and at least one of $\alpha,\beta$ is a unit since $a,b$ are units. It follows that $(\alpha',\beta')=t(\alpha,\beta)$ and $z'=t^{-1}z$ for a unit $t$. The physical pivot coordinates then satisfy $(a',b')=t(a,b)\bmod q$. The two cubic equations give $P_h(t^{-1}z)=t^{-2}P_h(z)$. Writing $z=(x,y)$ and multiplying out gives
+$$
+xy(t-1)(x+y)=0\bmod q.
+$$
+The factors $x,y,x+y$ are units. Hence $t=1$, and the pivot and point are both the same. Finite character orthogonality now gives the identity. There are $O(A^2/p)$ pivots in the box. The cubic has $O(p)$ lower points, each smooth point lifts in $p$ ways, and the bounded number of singular lower points contributes at most $O(p^2)$ lifts in total. This proves the boxed bound.
+
+The normalized second moment on a literal short frequency window is still required. The identity above averages over all mod-$q$ frequencies.
+
+**Proposition 19.2 (Energy on the lifts of one lower frequency).** Assume the two reduced pivot vectors $(r,s)$ and $(\sigma,-\rho)$ have norm $O(\sqrt p)$. Fix a lower frequency $(w_0,n_0)\bmod p$ of rank two. In a literal box of pivot sides at most $A<q$ and $A\ge p$, with the common cutoffs of Theorem 17.1, put
+$$
+V(w,n)=\sum_{a,b} e(\xi a+\eta b)K_{w,n}(a,b).
+$$
+For every real $\xi,\eta$ one has
+$$
+p^{-4}\sum_{u,v\in\mathbb F_p^2}
+\left|V(w_0+pu,n_0+pv)\right|^2
+\ll pA^2\log^4(2p).
+$$
+Representatives for $w_0,n_0$ are arbitrary.
+
+**Proof.** Fix a lower pivot $(\alpha_0,\beta_0)$ and an admitted lower stationary point $z$. The condition that $(\alpha_0 w_0+\beta_0 n_0)$ be parallel to $\nabla P_h(z)$ is independent of the upper frequency lifts. In its stationary term, adding $p(u,v)$ to the two frequency vectors multiplies the unit phase by $e_p(u\cdot\alpha_0 z+v\cdot\beta_0 z)$. Over the lower field the proof of Theorem 19.1 makes these four-coordinate readings injective in $(\alpha_0,\beta_0,z)$. Orthogonality in $u,v$ consequently makes the left side $p^2$ times the sum of the squares of the upper pivot sums, one for each lower stationary label.
+
+Write the reduced upper pivot digits as $(j,l)$, so $(\alpha,\beta)=(\alpha_0+pj,\beta_0+pl)$. The stationary phase is a real common linear twist times a unit constant and $e_p(Cj+Dl)$. The reading $(C,D)$ has at most six lower stationary labels. In fact, the two digit coordinates in Theorem 17.1 change by
+$$
+(j,l)\longmapsto \left(rj+\sigma l,\,\frac{s-mr}{p}j+\frac{-\rho-m\sigma}{p}l\right).
+$$
+This is an integral invertible change with determinant $-1$, and preserves the fibre bound proved there. The middle-slope mask is constant for the lower pivot label since the lower digits fix $b/a\bmod q$. The critical exclusion, when present, removes a class $rj+\sigma l\equiv t\bmod p$. Its indicator is an additive Fourier sum of total absolute coefficient one and its frequency shifts in the digit coordinates are independent of the lower label.
+
+For a translated physical rectangle of side $A$, all upper digit pairs lie in a common rectangle of side $O(1+A/p^{3/2})$, since the inverse reduced pivot basis has norm $O(1/\sqrt p)$. If $A<c p^{3/2}$ for a sufficiently small fixed $c$, each lower pivot class has at most one representative in the box. The stationary labels are then at most six per literal pivot and the claimed bound is immediate from $\#\mathcal R=O(A^2/p)$.
+
+Otherwise the upper rectangle has side $O(A/p^{3/2})$. Complete the physical interval indicators for $a,b$ by finite Fourier series on an auxiliary integer modulus $O(Q)$ larger than the ranges of the affine readings in this rectangle. The sum of the absolute Fourier coefficients of each interval is $O(\log(2p))$. A lower pivot label contributes a unit base phase while the added linear twists in $(j,l)$ are common to the labels. The literal pivot lower cutoff can be written as a bounded sum of rectangle cutoffs. The critical deletion can be expanded as above. The triangle inequality in the Euclidean norm over lower stationary labels now reduces the estimate to a common upper rectangle with arbitrary common real linear twists and a cost $O(\log^2(2p))$ in that norm.
+
+The two upper intervals have length $O(A/p^{3/2})<p$ for sufficiently large $p$. The sum over $(C,D)\bmod p$ of the squared two-dimensional geometric sum is $p^2$ times the area of that rectangle by orthogonality, including the real twists. Bounded fibre multiplicity and the outside factor $p^2$ give $O(p^4(A/p^{3/2})^2\log^4(2p))$. The finitely many smaller primes are covered by increasing the constant. This proves the result.
+
+## 追加锚（本行以下为增补区）
