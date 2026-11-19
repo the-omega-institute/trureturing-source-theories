@@ -11,6 +11,8 @@ This repository owns theory manuscripts and the working record of their digestio
 | `Library/` | Source-byte snapshots for registered literature inputs, taken from the main repository |
 | `src/TheoryDigestion/` | Intake, queries and ledger writers |
 
+[Read theory manuscripts and literature notes together](https://the-omega-institute.github.io/trureturing-source-theories/). The reader follows references across both repositories.
+
 ## Working with a source
 
 Install Git and the .NET 10 SDK. Run the commands in this checkout. A prose contribution can consist of the manuscript alone. To start or update its ledger, use its path on first ingestion and its source ID for queries.
@@ -22,6 +24,14 @@ make atom-context SOURCE=actual-minimum-cut-kernel ATOM_ID=05a3789a520a4d00402bc
 ```
 
 `show-atom` reads one atom. `decompose` accepts `ATOM_ID`, optional `SPLIT_AT` byte offsets and `DRY_RUN=1`. `settle`, `settle-batch` and `settle-clear` take `REQUEST`, `REQUESTS` and `ATOM_ID` respectively. Use `source-dispatch SOURCES=… DEFAULT=excluded` to opt out of automatic selection. `retire-sources SOURCES=… MODE=archive` previews retirement of a terminal source. Repeat with `WRITE=1` to apply it. Inspect the Git diff and commit the writer's output with the corresponding source change.
+
+## Check a settlement batch
+
+Run `make settle-context-check REQUESTS=rows.toml` to preview the same ordered `[[requests]]` input as `make settle-batch`. The preview evaluates each row against the preceding successful rows in memory. It reports every unusable row with its record number, verifies neighbor IDs and the selected occurrence, and exits nonzero when any row fails. Apply the batch with `make settle-batch REQUESTS=rows.toml`.
+
+For an older JSON plan containing a `settle` array of objects with `atom_id`, use `make settle-context-check PLAN=plan.json`. This checks that each atom has a single resolvable occurrence. A repeated occurrence needs an explicit `occurrence_index` in the TOML request. Set `ALLOW_MISSING=1` with a JSON plan to skip absent atom blobs.
+
+For parallel work, use the [atom selection commands](scripts/README-selection.md) to filter eligible claims, exclude ongoing work, compare against D5 declarations, and rank number-theory candidates.
 
 ## Cover with a frozen declaration
 
@@ -44,3 +54,5 @@ make cover ATOM_ID="$atom" GID="$gid" TRUTH_EXPORT="$export_file" \
 ## Source history
 
 The initial import preserves the original Git subtrees, paths, source bytes, atom IDs and existing receipts. Pre-import commit IDs refer to the original repository. For a historical context migration, set `THEORY_LEGACY_REPOSITORY` to an existing checkout containing the requested main-repository commit. The snapshot used for the initial import is [93279cc105e](https://github.com/the-omega-institute/trureturing/tree/93279cc105e94c6a96e05298c9986beb6bf37603). The [import commit](https://github.com/the-omega-institute/trureturing-source-theories/commit/2a39da5107abbfa3a72cc883486dbc15a15994a1) records the source revision.
+
+The `theory-required` check runs the capacity check on changed manuscripts and runs digestion tests when the runtime, scripts, tests or their workflow change.

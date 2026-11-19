@@ -10,7 +10,8 @@ internal static partial class SettleAtomCommand
     // Strict UTF-8/LF TOML: the sole root key is [[requests]]. Each table has
     // exactly the single-settle keys. Validate the envelope before any writes;
     // validate and commit records in input order, retaining the successful prefix.
-    internal static CommandResult RunBatch(string root, IRepositoryGateway repository, IReadOnlyList<string> arguments)
+    internal static CommandResult RunBatch(string root, IRepositoryGateway repository, IReadOnlyList<string> arguments,
+        bool preflight = false)
     {
         string? file = null;
         TomlTableArray requests;
@@ -40,6 +41,7 @@ internal static partial class SettleAtomCommand
         }
 
         var output = new StringBuilder();
+        var unusable = 0;
         Session? session = null;
         for (var index = 0; index < requests.Count; index++)
         {
@@ -60,8 +62,8 @@ internal static partial class SettleAtomCommand
                     [],
                     BackfillInventoryWriter.WriteAtom,
                     ReadRequest,
-                    static (directory, current, updates) =>
-                        IngestCommand.ApplyLedgerUpdatesAtomically(directory, current, updates),
+                    preflight ? static (_, _, _) => { } :
+                        static (directory, current, updates) => IngestCommand.ApplyLedgerUpdatesAtomically(directory, current, updates),
                     session,
                     request);
             }
@@ -75,6 +77,15 @@ internal static partial class SettleAtomCommand
                 result = new CommandResult(false, string.Empty,
                     $"SETTLE_INVALID INFRASTRUCTURE {error.Message}\n");
             }
+            if (preflight)
+            {
+                if (!result.Success)
+                {
+                    unusable++;
+                    output.Append($"SETTLE_UNUSABLE record={index + 1} atom_id={atomId} reason={result.Error.TrimEnd()}\n");
+                }
+                continue;
+            }
             output.Append(result.Output);
             if (!result.Success)
             {
@@ -82,6 +93,11 @@ internal static partial class SettleAtomCommand
                     $"SETTLE_BATCH_STOP record={index + 1} atom_id={atomId} settled={index} requested={requests.Count}\n" + result.Error,
                     result.ExitCode);
             }
+        }
+        if (preflight)
+        {
+            output.Append($"SETTLE_CONTEXT_CHECK checked={requests.Count} skipped_missing=0 unusable={unusable}\n");
+            return new(unusable == 0, output.ToString(), string.Empty);
         }
         output.Append($"SETTLE_BATCH settled={requests.Count} requested={requests.Count}\n");
         return new(true, output.ToString(), string.Empty);

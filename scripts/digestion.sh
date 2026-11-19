@@ -41,11 +41,28 @@ case "$command_name" in
     if [[ "${DRY_RUN:-0}" == 1 ]]; then args+=(--dry-run); fi ;;
   settle) command_name=settle-atom; args+=(--request "${REQUEST:?REQUEST is required}") ;;
   settle-clear) command_name=settle-atom; args+=(--clear "${ATOM_ID:?ATOM_ID is required}") ;;
+  settle-context-check)
+    if [[ -n "${PLAN:-}" ]]; then
+      [[ -z "${REQUESTS:-}" ]] || { echo 'choose REQUESTS or PLAN' >&2; exit 2; }
+      args+=(--plan "$PLAN")
+      case "${ALLOW_MISSING:-0}" in
+        1) args+=(--allow-missing) ;;
+        0) ;;
+        *) echo 'ALLOW_MISSING must be 0 or 1' >&2; exit 2 ;;
+      esac
+    else
+      [[ "${ALLOW_MISSING:-0}" == 0 ]] || { echo 'ALLOW_MISSING requires PLAN' >&2; exit 2; }
+      args+=(--requests "${REQUESTS:?REQUESTS or PLAN is required}")
+    fi ;;
   settle-batch) args+=(--requests "${REQUESTS:?REQUESTS is required}") ;;
   retire-sources)
     add_sources "${SOURCES:-${SOURCE:-}}"
     args+=(--mode "${MODE:-archive}")
-    if [[ "${WRITE:-0}" == 1 ]]; then args+=(--write); fi ;;
+    case "${WRITE:-0}" in
+      1) args+=(--write) ;;
+      0) ;;
+      *) echo 'WRITE must be 0 or 1' >&2; exit 2 ;;
+    esac ;;
   cover|cover-batch)
     if [[ "$command_name" == cover ]]; then
       args+=(--cover-atom "${ATOM_ID:?ATOM_ID is required}" --gid "${GID:?GID is required}")

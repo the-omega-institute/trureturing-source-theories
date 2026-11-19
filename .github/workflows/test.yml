@@ -1,20 +1,5 @@
 name: Digestion
-on:
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'scripts/**'
-      - 'tests/**'
-      - 'Makefile'
-      - '.github/workflows/test.yml'
-  push:
-    branches: [main, dev]
-    paths:
-      - 'src/**'
-      - 'scripts/**'
-      - 'tests/**'
-      - 'Makefile'
-      - '.github/workflows/test.yml'
+on: workflow_call
 
 permissions:
   contents: read
@@ -24,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            src
+            tests
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'

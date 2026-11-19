@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://raw.githubusercontent.com; img-src 'self' https: data:; base-uri 'none'; form-action 'none'">
+  <title>Manuscripts and literature · Trureturing</title>
+  <link rel="stylesheet" href="reader.css">
+  <script src="reader.js" type="module"></script>
+</head>
+<body>
+  <header><nav aria-label="Reader"><a href="./">Trureturing reader</a><a id="source" hidden>View on GitHub</a></nav></header>
+  <main>
+    <p id="status" role="status">Loading…</p>
+    <section id="catalogue" hidden>
+      <h1>Manuscripts and literature</h1>
+      <div class="filters">
+        <label>Collection <select id="collection"><option value="theory">Theory manuscripts</option><option value="archive">Archived manuscripts</option><option value="library">Literature notes</option></select></label>
+        <label>Search file paths <input id="search" type="search" autocomplete="off"></label>
+      </div>
+      <p id="count" aria-live="polite"></p>
+      <ul id="results"></ul>
+    </section>
+    <article id="document" hidden></article>
+    <noscript>The reader requires JavaScript. <a href="https://github.com/the-omega-institute/trureturing-source-theories/tree/dev/docs/develop/theory">Browse manuscripts on GitHub</a>.</noscript>
+  </main>
+</body>
+</html>
