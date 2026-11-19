@@ -1,0 +1,47 @@
+**Theorem 11.1 (Reciprocal norm projections of the short count).** In the finite Fourier expression for $N_2$ using the reciprocal physical weights, retain the terms with $D(B\bmod p)=d$. The resulting contribution is $O(p^{13/4+3\delta})$ for $d=0$ and $O(p^3)$ for $d\ne0$, uniformly in the prescribed unit $g$ and the actual middle-slope mask.
+
+**Proof.** The reciprocal residue multiplier $1_{D(B)=d}$ convolves the second row in reciprocal physical coordinates by $v\mapsto v+p^2 z$, $z\in\mathbb F_p^3$, with its finite Fourier coefficients. In original physical coordinates this is $y\mapsto y-p^2(z_i y_i^2)_i\bmod Q$. Inserting the original Fejér expansion of the $y$ weights thus transfers this multiplier to $D((N_i y_i^2)_i)=d\bmod p$ in the original short Fourier expression at frequency $N$. The global reversal of signs in the Fourier convention has no effect on $D$.
+
+For $n=N\bmod p\ne0$ and $s=s_0+pt\bmod p^2$, the stationary conditions from the three-row completion of §8 give $m+s_0N=0\bmod p$ and, for $J_0=(m+s_0N)/p\bmod p$,
+$$
+n\cdot\xi=0,\qquad J_0+tn=h\,r(\xi),\qquad
+r_i(\xi)=1-\frac{\sum_j \xi_j}{\xi_i}.
+$$
+Here $\xi$ is an admissible lower-word residue, so $r\cdot \xi\ne0$. This includes $h=0$ for the positive upper word. The three top word digits and the top slope digit give $p^4$, and the two middle digits of the word graph give $p^2$ per branch. For each $n,J_0,\xi$, the two multipliers are unique. The branch weight after the original Fejér normalization is therefore $O(K^{-6})$. The transferred condition is $D((n_i\xi_i^2)_i)=d/s_0^4$.
+
+Use on each short row a centered triangular majorant pushed to the readings $(n_i,J_{0,i})$, as in §8. Denote the row weight by $w$, its nonnegative normalized Fourier transform by $\mu$, and set $b_0=O(K^2/p)$. For the index-$p$ row-lattice minimum $T=T(s_0)$, the estimates needed below are
+$$
+\sum_{a,v}\mu(a,v)=O(1+K/T),\quad
+\mu(0,0)\le b_0,\quad \sum_a\mu(a,v_*)\ll b_0.
+$$
+The first bound counts the short $(m/p,N/p)$ in the index-$p$ lattice at the zero reading. The last follows from orthogonality over $a$, since there are $O(K^2)$ rows above $n=0$. The mass on a line through zero in the dual reading plane is $O(b_0+K/T)$, by the translated index-$p^2$ row count used in §8. Shortest-vector counting gives $\sum_{s_0}T^{-2}=O(\log p)$ and $\sum_{s_0}T^{-3}=O(1)$.
+
+For the zero level and fixed $\xi$, the nonzero $n$ lie in at most two projective lines $\ell\subset \xi^\perp$. The restriction is a nonzero binary quadratic form because a two-dimensional totally isotropic subspace cannot occur in a nondegenerate ternary form. For fixed $\ell$ at most eight admissible $\xi$ occur. Indeed, $D((n_i\xi_i^2)_i)$ is a nonzero quartic on $n^\perp$ whenever all $n_i$ are nonzero and some $n_i\ne n_j$. Evaluate at coordinates $n_j,-n_i,0$ to see this. If exactly two $n_i$ are nonzero, isotropy forces the corresponding pair sum of $\xi$ to vanish. One nonzero coordinate would force a zero coordinate of $\xi$, and three equal nonzero coordinates would force a zero total sum. The quartic leaves at most four projective directions, each with at most two scales from the lower word.
+
+For a nonzero dual vector $v$ perpendicular to $\operatorname{span}(\ell,r(\xi))$, there are at most twelve pairs $(\ell,\xi)$. Since $v$ cannot be proportional to $\xi$, it determines $\ell=\langle \xi\times v\rangle$. Write $u_i=1/\xi_i$, $w_i'=v_i u_i^2$. Then $(n_i\xi_i^2)_i$ is a nonzero multiple of $u\times w'$, and $u^TMw'=0$ follows from $v\cdot r=0$ by differentiating the reciprocal word. The Gram determinant identity, together with $Q_0(u)=g s_0\ne0$, turns isotropy into $Q_0(w')=0$. In projective $\xi$ coordinates this is the diagonal conic
+$$
+G_v=v_2v_3\xi_1^2+v_1v_3\xi_2^2+v_1v_2\xi_3^2=0.
+$$
+One or two nonzero coordinates of $v$ give no admissible point, by $v\cdot r=0$ or this conic. Otherwise the conic is geometrically irreducible and is coprime to the nonzero cubic $v\cdot r=0$ with denominators cleared. That cubic has no pure cubes, which forces any putative linear cofactor of $G_v$ to vanish. Bézout gives six projective points, hence at most twelve scales.
+
+The zero-level inventory is majorized by the product row weight on $\ell\times \operatorname{span}(\ell,r)$, summed over $(\ell,\xi)$. Fourier inversion gives a factor $p^3$. For nonzero dual $v$ the multiplicity is $O(1)$. At $v=0$ it is $O(p)$ for nonzero dual $a$, and $O(p^2)$ at the origin. For all but $O(K^2)$ residues $s_0$ the Fourier mass of a row is exactly one, since the short ratios with nonunique zero reading have $O(K^2)$ possibilities. On these residues the bound before normalization is $O(p^3+pK^6+p^2K^6)=O(p^3)$. The exceptional $s_0$ cost $O(p^3K^2)$ in the normalized sum, by the eight-branch bound for each $n$ and the $O(K^6)$ literal frequency triples at fixed $s_0,n$. Summing the other $s_0$ and restoring $K^{-6}$ gives $O(p^4/K^6)$. The $n=0\bmod p$ original modes have constant projector one, and cost $O(pB^3+p^3)$ by the original zero- and lower-conductor bounds.
+
+For $d\ne0$, summing $J_0$ in Fourier inversion gives $p^2$ and the remaining complete sum at dual $(a,v)$ is
+$$
+\sum_{\xi:\,v\cdot r(\xi)=0}
+\sum_{\substack{n\perp \xi,v\\ D((n_i\xi_i^2)_i)=d/s_0^4}}
+e_p(a\cdot n).
+$$
+For $v\ne0$ it is $O(p)$, since $n$ has at most two scales on $\langle \xi\times v\rangle$ and $v\cdot r=0$ is a nonzero projective cubic. It is $O(\sqrt p)$ when $v$ has no zero coordinate, pair sum or total sum, and $a$ is independent of $v$. We prove this on the cubic in projective coordinates $X$. Write $S=\sum X_i$, $P=\prod X_i$, $V=\sum v_i$, $L_v=\sum_i v_i X_jX_k$. The cubic is $S L_v=V P$. It is geometrically irreducible. A line component would meet the coordinate axes at vertices or at $(0:1:-1)$ and its permutations. No coordinate axis is a component. A line through exactly one vertex would pass through the opposite $(0:1:-1)$ point, and substituting that line gives a nonzero polynomial because the other two $v_i$ are units and the characteristic is odd. A line through no vertex must be $S=0$, which fails since $V\ne0$.
+
+In the unit chart $X_1=1$, the scale $\xi=\gamma X$ satisfies $\gamma^2=S/(g s_0 P)$. Writing $\ell_X=X\times v$ and $Z=a\cdot n$, the Gram identity gives
+$$
+Z^2=C\,\frac{(a\cdot \ell_X)^2 P}{S^3 G_v(X)},
+\qquad C=(d/s_0^4)\det(M)(g s_0)^2.
+$$
+Away from boundedly many removed points, the character sum is $e_p(Z)$ on the cover adjoining $\gamma$ and $Z$. At the three points on $S=0$, the functions $S,P$ have simple zeros, as their differentials are independent there in the plane and $L_v,V$ are units there. The form $a\cdot\ell_X$ cannot be proportional to $S$, because it is perpendicular to $v$ and $V\ne0$. Choose a boundary point in the chart where $a\cdot\ell_X\ne0$, which is possible since there are three boundary points and just one outside $X_1=1$. At that point $G_v\ne0$ and $Z^2$ has a pole of order two, while $\gamma^2$ is a unit. The two quadratic extensions are geometrically unramified at that point, and $Z$ has a simple pole on each component dominating the cubic. Thus the additive character is non-Artin–Schreier. The Weil bound on the bounded-degree cover gives $O(\sqrt p)$.
+
+For the generic dual vectors the $p^2$ factor and the row mass bound give $O(p^{7/2})$ before normalization, summed over $s_0$, since $\sum_{s_0}(1+K/T)^3=O(p)$. Exceptional nonzero $v$ lie in finitely many hyperplanes, of weight $O(b_0(1+K/T)^2)$ by the marginal bound. Their aggregate cost is $O(p^3K^2)$. For $v\ne0$ and $a$ proportional to $v$, all three rows lie on a single dual line. If $m_\ell$ is its nonzero mass and $b=\mu(0,0)$, its weight is at most $(m_\ell+b)^3-b^3$. Summing over lines bounds the weight by $O((1+K/T)(b_0+K/T)^2)$, whose sum over $s_0$ is $O(K^3+K^2\log p+p b_0^2)$. This costs $O(p^3K^6)$ before normalization. For $v=0$ the complete inner sum costs $O(p^3)$ by the $O(p)$ points on a nonzero binary quadratic level at each $\xi$. Its row Fourier mass is $O(b_0^3)$, giving $O(p^3K^6)$ over all $s_0$. Multiply these bounds by $K^{-6}$ to obtain $O(p^3)$. The projector is zero for the original $n=0\bmod p$ modes.
+
+The proofs are ordinary mathematics and were independently reviewed. The reciprocal norm projection preserves the fixed coefficient throughout. The sum of all the remaining nonzero norm levels at the sufficient first-moment scale remains open.
+
