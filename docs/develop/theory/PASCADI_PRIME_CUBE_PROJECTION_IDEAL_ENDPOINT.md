@@ -4249,3 +4249,47 @@ For fixed $d'\ne0$, the rational map $z'\mapsto M_{z'}^{\mathsf T}d'$ is noncons
 The theorem applies in particular to the concentrated graphs of Proposition 21.1, with one lift congruence and a fixed carry. Summation over the full family of endomorphisms and the actual weighted first moment remain open.
 
 ## 追加锚（本行以下为增补区）
+
+## 22. Pole separation for the signed graph estimates
+
+**Theorem 22.1 (Improved signed graph estimate).** In Theorem 21.2 the signed cross term is $O(p^5U^2\sqrt{J_0})$. The estimate accommodates phase matrices of rank one, and all pairs of distinct gradient directions can be covered by three linear frequency charts. At the central scale the factor relative to the pointwise bound on a graph with $J_0\asymp H^2$ is $p^{-3/8-\delta/2}$.
+
+**Proof.** Normalize a common left eigenbasis $e_\lambda,e_\mu$ so both vectors have $r_0$-reading one. This is possible for the two retained pivot families. Write digit differences as $d=D e_\lambda+E e_\mu$ and $d'=D'e_\lambda+E'e_\mu$. The upper phase maps restricted to the two lower polar curves are
+$$
+\begin{aligned}
+\Psi_\lambda(z)&=\left(D(x+\lambda y)-(D+E)2P/P_x,\ E(x+\mu y)\right),\\
+\Psi_\mu(z')&=\left(D'(x'+\lambda y'),\ E'(x'+\mu y')-(D'+E')2P'/P'_x\right).
+\end{aligned}
+$$
+These are the coordinates of $M_z^{\mathsf T}d$ and $M_{z'}^{\mathsf T}d'$ in the common basis. The two possible scalar pivot magnitudes give the same normalized phase map.
+
+Suppose $d,d'$ are nonzero and compare the image curves in $\mathbb P^1\times\mathbb P^1$, using the projective polar components as parameter curves. On the first polar curve the centroid has $P\ne0$ and $P_x=0$. If $D+E\ne0$, the first coordinate has a pole and the second coordinate is finite there. On the second polar curve a pole of the first coordinate can occur only at infinity. At such a point the leading terms satisfy
+$$
+3P_3'/P'_{x,2}=x'+\mu y'
+$$
+by Euler's formula, since the gradient of the leading cubic has ratio $\mu$ on that direction. The leading cubic is nonzero at every infinity direction of the admissible polar component. Thus the second coordinate of $\Psi_\mu$ has leading term $(E'-2D')(x'+\mu y')/3$ at infinity and has a pole there if $E'\ne2D'$. In that case the first-only pole of $\Psi_\lambda$ is absent from the image of $\Psi_\mu$.
+
+Interchanging the roles gives a second-only pole of $\Psi_\mu$ when $D'+E'\ne0$. It is absent from $\Psi_\lambda$ unless $D=2E$. Therefore equality of the image curves requires
+$$
+(D+E=0\text{ or }E'=2D'),\qquad
+(D'+E'=0\text{ or }D=2E).
+$$
+As $p>3$ and the differences are nonzero, the only possibilities are $D+E=D'+E'=0$ or $D=2E,\ E'=2D'$. Each imposes one linear relation on each of the two differences separately, giving $O(U^2)$ prescribed pairs of differences in the boxes.
+
+For any nonzero difference the map from its polar component is nonconstant. A nonzero sum of coefficients gives the centroid pole. A zero sum makes both coefficients nonzero and gives two independent linear readings since $\lambda$ and $\mu$ differ. Thus a nonexceptional pair of difference vectors gives only $O(1)$ pairs of points by bounded-degree intersection of different image curves. For an exceptional pair the bound is $O(p)$. If just one difference is zero, the nonconstant map for the other has $O(1)$ points in its zero fibre, and the unconstrained curve has $O(p)$ points. These bounds and the zero-zero term give
+$$
+\sum_{z,z'}K(z,z')\ll p^2+U^4+pU^2\ll p^2,
+$$
+using $U\ll\sqrt p$ in the literal pivot range. This argument also handles labels where $M_z$ is singular. Consequently $\sum_{z,z'}\sqrt{K(z,z')}\ll p^2$. The incomplete-kernel estimate of Theorem 21.2 gives $O(p^5U^2\sqrt{J_0})$.
+
+For finite directions $\lambda=0,1$, use the admitted polar line $y=(h-x)/2$ or $x=y$, respectively. The other component violates a coordinate unit condition. These lines contain the centroid and their infinity directions avoid the factors of the leading cubic. The pole argument therefore applies to these cases as well.
+
+For any pair of distinct original gradient directions choose $t\in\{0,1,2\}$ so that both readings $P_x+tP_y$ are nonzero, and replace $(u,v)$ by $(u+tv,v)$. Dually use $(x,y-tx)$, which preserves the literal frequency pairing exactly. The transformed polar components retain the centroid, the value of $F=z\cdot\nabla P-2P$ and nonvanishing of the leading cubic at their infinity directions. Their new gradient ratios are finite and distinct. The shear preserves the determinant condition and changes the short boxes only by absolute factors. The same estimate applies with the physical frequency weights on that graph. Assign a pair to the first admissible chart to avoid counting it in more than one.
+
+**Corollary 22.2 (Graphs with large inventory).** At fixed $h,m$ in a central pivot block $A\asymp R$, the sum of the signed cross-term bounds for the graphs with inventory at least $Y\ge p^{1-4\delta/7}$ lies in the diagonal energy scale $p^{29/4-\delta+\varepsilon}$.
+
+**Proof.** For $N(T)\ge Y$ the plane argument of Proposition 21.1 gives two independent short lattice vectors whose product of lengths is $O(H^2/Y)$. These vectors determine the graph modulo $p$. Their reduced input vectors must be independent modulo $p$, since otherwise every $2$-by-$2$ minor of the full vectors is divisible by $p$ and has size $O(H^2/Y)<p$, contradicting their independence. Counting integer vector pairs in dyadic length boxes gives $O_\varepsilon(p^\varepsilon H^8/Y^4)$ such graphs. Consequently the sum of $\sqrt{N(T)}$ over them is $O_\varepsilon(p^\varepsilon H^8/Y^{7/2})$. By Theorem 22.1 the aggregate is $O_\varepsilon(p^\varepsilon p^5U^2H^8/Y^{7/2})$. With $U\asymp R/p^{3/2}$ and $H\asymp L/\sqrt p$, this is the claimed diagonal scale. The same count holds in the three charts.
+
+The estimates leave the graphs of moderate inventory in the signed local second moment.
+
+## 追加锚（本行以下为增补区）
