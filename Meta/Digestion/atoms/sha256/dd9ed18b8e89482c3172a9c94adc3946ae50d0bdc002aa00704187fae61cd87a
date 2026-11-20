@@ -1,0 +1,19 @@
+**Theorem 25.1 (Transverse stationary differences).** For any specified three-dimensional difference $\gamma=J'-J$, the sum of $|a_\xi a_{\xi'}|$ over equal-row pairs with that difference is $O(D_0)$. The same bound holds for a specified two-dimensional difference $\eta=(J'_1-J_1,J'_2-J_2)$, including pairs with different lower slopes. Outside a set of $O(p^2K^3)$ three-dimensional differences, the first bound improves to $O(D_0p^{-1/2})$.
+
+**Proof.** Write $n'=n+pk e_3$, $|k|\ll K$, and $c=s'-s\bmod q$. Exact subtraction gives
+$$
+ m'-m+cn+pk s'_0 e_3\equiv p\gamma\pmod q,\qquad s'_0=s'\bmod p .
+$$
+For fixed $c,n,k,s_0,m$, where $s_0=s\bmod p$, this fixes $s'_0$ and determines the literal $m'$ because the box diameter is $o(q)$. Fixed $n,s_0$ allow $O(K^3)$ choices of $m$. Keep a bounded multiplicity for the stationary branches at each endpoint.
+
+Let $T_c$ be the minimum length of the index-$q$ lattice $w\equiv cv\bmod q$. A translated box of size $O(L)$ has $O(N_c)$ such pairs, with $N_c=1+K^2+L/T_c$. Indeed the shortest vector gives lines spaced comparably to $q/T_c$, and each line has at most $O(1+L/T_c)$ points. Also $T_c\ll p$. The number of $c$ with $T_c\le B<p$ is $O(B^2)$ because a shortest vector of that size has unit first coordinate. Consequently
+$$
+ \sum_c N_c^2\ll p^2K^4+L^2\log(2p),\qquad
+ \sum_{T_c\ge B} N_c^3\ll p^2K^6+L^3/B
+$$
+for $1\le B\le p$, by summing dyadic ranges. For $k=0$, each coordinate contributes $O(N_c)$ choices. The part with $T_c\ge B$ therefore costs at most $O(D_0(K^3/p+1/B))$, after the $pK^3$ choices of $s_0,m$. If $k\ne0$, the first two coordinates allow $O(N_c^2)$ choices and the third imposes $O(K)$ possible $s'_0$ for fixed $c,n_3,k$. In fact $pk s'_0$ ranges over the $p$ multiples of $p$ modulo $q$, and it has to fall in a translated interval of length $O(L)$. Summing the remaining $O(LK^5)$ choices and using the squared lattice count gives $O(D_0K^4/p)$. The bounds keep the literal representative on both sides of the congruence. In particular $B=1$ proves $O(D_0)$ for a fixed full difference.
+
+For the projected readout, fix $(b,\rho)$ and $(J_1,J_2)$ and write $u=(x,y,1)$. The ratio $\kappa=J_1/J_2$ gives the equation $y(y+1)=\kappa x(x+1)$, and the orthogonality condition gives $b_1x+b_2y+\rho=0$. The conic is smooth for the unit ratios $\kappa\ne1$, so there are at most two solutions. If $\kappa=1$ the unit total sum removes the line $x+y+1=0$ and leaves $y=x$. The only exceptional rows have $b_1+b_2=0\bmod p$ and $\rho=0$. They have $O(L^2/p)$ choices of literal $b$ and at most $O(pK^4)$ branches per row, giving total absolute square $O(D_0K^4/p)$. In the other rows each projected readout gives at most two possible $J_3$, since $u$ and $J_1$ determine $\lambda$. Cauchy–Schwarz now bounds the projected diagonal by $O(C(0))$, where $C(\gamma)$ denotes the full difference bound. Translation and Cauchy–Schwarz on the two-dimensional readouts give $O(D_0)$ for each $\eta$.
+
+To get the smaller full-difference bound, take $B=\lfloor\sqrt p\rfloor$. If $k=0$ and $T_c<B$, multiply the subtraction congruence by the first coordinate $v$ of a shortest vector $(v,w)$ of the lattice of $c$. Since $vc=w\bmod q$, one obtains $p v\gamma_i\equiv v(m_i'-m_i)+w n_i\bmod q$. The right side has size $O(BL)$ and is divisible by $p$, so $\max_i\|v\gamma_i\|_p\ll BK$, with $\|\cdot\|_p$ denoting distance to the nearest multiple of $p$. There are $O(B(1+BK)^3)=O(p^2K^3)$ possible $\gamma$. For every other difference the preceding bounds give $O(D_0p^{-1/2})$.
+

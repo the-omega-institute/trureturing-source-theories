@@ -1,0 +1,31 @@
+**Theorem 24.1 (Two rank-one maps).** In this range the total absolute value of the signed cross terms restricted to two rank-one upper-digit matrices is $O(pU^2H^{12}Y^{-7/2})$. At $A\asymp p^{15/8+\delta/2}$ and $H\asymp p^{5/8-\delta/2}$ this is $O(p^{113/16-13\delta/4})$.
+
+**Proof.** Write $\lambda,\mu$ for the first and second gradient ratios. In a finite chart the first upper-digit matrix has eigenvalues $F/P_x$ and $x+\mu y$, with $F=xP_x+yP_y-2P=-xy(x+y)$. Thus rank one forces $x=-\mu y$. The opposite eigenvalue can also be written as the pairing of the point with the other gradient vector, divided by that gradient's first reading. This pairing is preserved by the bounded dual shear of Theorem 22.1. An original infinite other direction would force $y=0$, and other directions $0,1$ would force $x=0,x+y=0$, respectively. If the other direction is $-1$, the first point has $x=y$ and the first direction is $1$. The second map is then invertible by the preceding test. Consequently both directions lie in the original finite chart outside $\{0,1,-1\}$ in the two-rank-one case.
+
+Substituting the rank-one condition gives
+$$
+(\lambda+\mu)h+(\mu^2+2\lambda\mu-\lambda-2\mu)y=0 .
+$$
+There is at most one admitted point per direction pair. The identity case $(1,-1)$ is excluded here. Each point gives at most two lower pivot magnitudes through the cubic target. The two images of the transposed phase matrices are the two distinct left eigenlines. Thus the collision energy of a pair is the product of the separate energies in its two kernel directions.
+
+The pair of kernel directions has bounded multiplicity within each normal family. For independent $a_N,b_N$, write coordinates in the basis of these vectors. The graph matrix in the corresponding row readings is
+$$
+\begin{pmatrix}\lambda+\mu&\lambda\mu\\-1&0\end{pmatrix}.
+$$
+Put $c_0=r_0^{\mathsf T}a_N$, $c_1=r_0^{\mathsf T}b_N$ and $R(t)=c_0+c_1t$. Both coefficients are units since the normal has size $O(H^2/p)$, and the primitive vector perpendicular to the balanced $r_0$ has length comparable to $\sqrt p$. The pivot masks imply $R(\lambda)R(\mu)\ne0$. For a digit direction with coordinate ratio $\kappa$ in this basis, the first kernel equation is
+$$
+G_\kappa(\lambda,\mu)=c_0\lambda(1-\mu)+2c_0\mu+c_1\lambda\mu(\mu+1)
+-\kappa[c_0(\mu+1)+c_1(2\lambda\mu+\mu^2-\mu)]=0 .
+$$
+This follows from $2P/(yP_x)=2\mu(\lambda-1)/(\mu+1)$ on the singular locus. The second kernel equation is $G_{\kappa'}(\mu,\lambda)=0$. The resultant of the coefficient and constant term of $G_\kappa$ as a linear polynomial in $\lambda$ is $4c_0c_1(c_0+c_1\kappa)^2(\kappa-1)^2$. Outside its two exceptional finite ratios the first polynomial is irreducible of bidegree $(1,2)$, and the second has $\mu$-degree at most one, so their intersection is bounded. The projective ratio $\kappa=\infty$ uses the bracket in $G_\kappa$, whose coefficient and constant term are also coprime. At $\kappa=-c_0/c_1$ the first equation has no admitted solution because it factors as $R(\lambda)R(\mu)(\mu+1)/c_1$. At $\kappa=1$ it becomes $-(c_0-c_1\mu)(\lambda-1)(\mu-1)=0$. Substitution of $\mu=c_0/c_1$ into the second equation gives a nonzero quadratic unless $c_0=c_1$, which is excluded by $\mu\ne1$. To see nonvanishing, the coefficients of $\lambda^2$ force $\kappa'=c_0/c_1$ for a finite second ratio, and the linear coefficient then equals $4c_0(1-c_0/c_1)$. The second projective ratio gives a quadratic with leading coefficient $c_1$.
+
+For proportional normals, let $\lambda$ be fixed. Choose a row basis consisting of its left eigenvector and a vector with $r_0$-reading zero. The graph is $\left(\begin{smallmatrix}\lambda&0\\ t&\mu\end{smallmatrix}\right)$, with moving left eigenvector $(s,1)$, where $t=(\mu-\lambda)s$ and $s\ne0$. The two scalar projection directions of the rank-one maps are proportional to
+$$
+\left(\frac{(\lambda+\mu)(1-\mu)}{1+\mu},t\right),
+\qquad
+\left(-\frac{2\lambda(\mu-1)}{1+\lambda},t\right).
+$$
+The quotient of their first-to-second coordinate ratios is $(\lambda+\mu)(\lambda+1)/(2\lambda(\mu+1))$, a nonconstant Möbius function of $\mu$. Thus the two directions determine $\mu$ and $t$.
+
+For a projective line $\ell$, the digit collision count in that kernel is at most $\mathcal E_\ell\ll U^2\#\{d\in[-CU,CU]^2:d\bmod p\in\ell\}$. Every nonzero digit difference belongs to one line, so $\sum_\ell\mathcal E_\ell\ll U^2(p+U^2)\ll pU^2$. The bounded multiplicities of the kernel pairs give $\sum_{T,\mathrm{labels}}\mathcal E\ll p^2U^4$ in each normal family. There are $O(1)$ such label pairs per graph. Cauchy–Schwarz in the exact short Parseval estimate gives $O(p^{9/2}U^2H^{3/2}k^{-1/2})$ per normal. Sum over $O(k^3)$ normals of height $k$ up to $O(H^3/(pY))$ to get the first bound. The exponent at the central scales follows by using $Y\gg H$.
+
