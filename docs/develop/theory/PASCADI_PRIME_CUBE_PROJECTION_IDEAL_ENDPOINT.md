@@ -4215,3 +4215,37 @@ For the unconjugated matrix choose $u$ in a small square of side comparable to $
 The bound $\gg H^2$ exceeds the two-congruence volume $H^4/p^2$ even with both middle minima of order $p$. The construction concerns stationary frequency counts. The local signed energy still depends on the lifted phases. The small integral graph was found in a native Codex read-only review. A targeted Pro calculation had previously exhibited concentration for a single lower fibre near the shorter middle cutoff.
 
 ## 追加锚（本行以下为增补区）
+
+## 21. Signed correlations on short frequency graphs
+
+**Proposition 21.1 (Inventory of graph frequencies).** Let $\mathcal U$ consist of pairs $(u,v)$ in a Cartesian box of sides $O(H)$ in $\mathbb F_p^2\times\mathbb F_p^2$ with $\det(u,v)\ne0$. Use injective integer intervals for its four coordinates, and write $J=|\mathcal U|$. For $T\in M_2(\mathbb F_p)$ let $N(T)$ count the pairs with $v=Tu$. For $\sqrt p\le H\le p^{3/4}$,
+$$
+\sum_T N(T)=p^2J,\qquad \sum_T (N(T)-J/p^2)^2\ll p^2H^4.
+$$
+If $N(T)$ exceeds a sufficiently large constant times $H^3/p$, all the short graph points satisfy a single graph congruence $v=L u\bmod p^2$, for some $L\bmod p^2$ reducing to $T$.
+
+**Proof.** Each pair gives $p^2$ matrix choices. In the second moment two pairs whose first vectors are independent determine at most one matrix. If the first vectors satisfy $u'=tu$, compatibility requires $v'=tv$ and gives $p^2$ matrices. For each of the four coordinates, the count of $(x,x')$ with $x'=tx\bmod p$ is $O(1+H^2/p+H/\ell_t)$ by the translated lattice count of Proposition 20.1, where $\ell_t$ is the minimum of the index-$p$ lattice for that relation. There are $O(B^2)$ slopes with $\ell_t\le B$. The dependent contribution to the second moment is therefore $O(p^2(H^8/p^3+H^4))=O(p^2H^4)$. Subtracting the exact mean gives the variance.
+
+The integer graph lattice of $T$ has index $p^2$. Short vectors of rank four therefore give $O(H^4/p^2)$ points by successive minima. If their span has rank three, any nonzero maximal minor of three independent vectors is divisible by $p$, since the graph modulo $p$ has dimension two. Thus the first three minima have product $\gg p$ and the point count is $O(H^3/p)$. Enlarge the box to a centered cube of comparable side for this argument if necessary. At larger inventory the short points span a rational plane. If their projected $u$-vectors all lie on one line modulo $p$, there are only $O(H)$ points since one input coordinate determines the other and then determines $v$. Thus two of their $u$-vectors are independent modulo $p$. With those two points arranged as column matrices $U_0,V_0$, the rational plane is $v=V_0U_0^{-1}u$. Since $\det U_0$ is a $p$-unit, reduction modulo $p^2$ gives the required $L$ for every short point.
+
+**Theorem 21.2 (Signed cross term on a split graph).** Assume a balanced reduced pivot basis. Fix a split matrix $T\bmod p$ with distinct eigenvalues $\lambda,\mu$, both outside $\{0,1\}$. Fix a lift $L\bmod q$ and use a short set of $J_0$ graph frequencies $v=L u-pc\bmod q$ for a fixed carry $c$, retaining only $\det(u,v)\ne0\bmod p$ and with $u$ in an injective short square modulo $p$. Restrict the first and second pivot families respectively to the two lower left eigenlines of $T$. In literal pivot rectangles with sides at most $A<q$, put $U=1+A/p^{3/2}$. The corresponding signed cross term in the frequency energy is
+$$
+O\bigl(p^5U^2\sqrt{J_0}\sqrt{1+U^4/p}+p^3U^4J_0\bigr).
+$$
+This allows the actual pivot cutoffs, arbitrary pivot coefficients of modulus at most one, and a frequency weight of modulus at most one on the graph. At $A\asymp R$ and $J_0\asymp H^2$, the bound has a factor $p^{-1/8+\delta/2}$ relative to $p^4U^4H^2$.
+
+**Proof.** On the first family let $b_0$ denote the column of lower reduced pivot coordinates, so $b_0^{\mathsf T}T=\lambda b_0^{\mathsf T}$. Put $r_0=(r,\sigma)^{\mathsf T}$ and $a_0=r_0^{\mathsf T}b_0$. Then $a_0$ is a unit. The lower stationary points lie on the polar conic $P_y=\lambda P_x$. Here $P_x\ne0$ and the stationary multiplier is $b_0^{\mathsf T}u/P_x$. For a fixed point of the conic, the word equation gives at most two lower pivot magnitudes from $gm a_0^2P=h$. There are $O(p)$ lower stationary labels in each family.
+
+Write $z=(x,y)$ and let $j$ be the pair of upper pivot digits. They range in a translated box of side $O(U)$, using the inverse balanced basis. The upper phase increment is $e_p(u\cdot M_z^{\mathsf T}j)$ with
+$$
+M_z=xI+yT-\frac{2P(z)}{a_0P_x(z)}r_0 b_0^{\mathsf T}.
+$$
+Indeed the frequency changes by $p(j_1w+j_2n)$ and the cubic target changes by $-2pP(r_0^{\mathsf T}j)/a_0$. The carry changes only the constant phase at a fixed lower label. The remaining base phase is linear in $u$ modulo $q$ and uses the exact cubic lift. The row $b_0^{\mathsf T}$ is a left eigenvector of $M_z$ with eigenvalue $F(z)/P_x(z)$, using $F=z\cdot\nabla P-2P$. On its kernel $M_z$ acts by $x+\mu y$. Hence $\det M_z=(F/P_x)(x+\mu y)$. The first factor is a unit. The zero line of the other factor passes through the origin and meets the smooth polar conic in at most one further point. There are only $O(1)$ singular-matrix labels. Pairs involving them cost $O(p^3U^4J_0)$, including the factor $p^2$ from the two stationary contributions.
+
+For a pair of regular labels, let $r(\gamma)$ count upper digit pairs with $M_z^{\mathsf T}j-M_{z'}^{\mathsf T}j'=\gamma\bmod p$. The weighted frequency sum is bounded by $p^2\sum_\gamma r(\gamma)|\Gamma(\gamma)|$, where $\Gamma$ contains the exact base twist and the frequency weights. Orthogonality in $\gamma$ gives $\sum_\gamma|\Gamma(\gamma)|^2\le p^2J_0$ because the $u$ residues are injective. Also $\sum_\gamma r(\gamma)^2\ll U^4 K(z,z')$, where $K$ counts pairs of digit differences $(d,d')$ in the doubled boxes satisfying $M_z^{\mathsf T}d=M_{z'}^{\mathsf T}d'$. This follows by subtracting two representations and counting upper digit origins.
+
+For fixed $d'\ne0$, the rational map $z'\mapsto M_{z'}^{\mathsf T}d'$ is nonconstant on its polar conic. In the left eigenvector basis of $T$, the component on the opposite eigenline is a multiple of $x'+(\text{opposite eigenvalue})y'$. When this component of $d'$ is nonzero it gives nonconstancy. If $d'$ is in the pivot eigenline, the output is a nonzero multiple of $F(z')/P_x(z')$ in that line. This rational function tends to zero at the origin, where along the smooth conic $F$ vanishes to order at least three and $P_x$ to order one. It is nonzero at admitted points. All rational levels have bounded cardinal. The two possible pivot magnitudes leave the normalized matrix correction unchanged. Thus for fixed regular $z$, $\sum_{z'}K(z,z')\ll p+U^4$. The zero digit difference contributes $O(p)$, and for every nonzero prescribed difference pair there are $O(1)$ target labels. Cauchy–Schwarz over lower label pairs gives $\sum_{z,z'}\sqrt{K(z,z')}\ll p^2\sqrt{1+U^4/p}$. Combining with the incomplete kernel norm proves the claimed signed bound.
+
+The theorem applies in particular to the concentrated graphs of Proposition 21.1, with one lift congruence and a fixed carry. Summation over the full family of endomorphisms and the actual weighted first moment remain open.
+
+## 追加锚（本行以下为增补区）
