@@ -1,0 +1,6 @@
+**Corollary 22.2 (Graphs with large inventory).** At fixed $h,m$ in a central pivot block $A\asymp R$, the sum of the signed cross-term bounds for the graphs with inventory at least $Y\ge p^{1-4\delta/7}$ lies in the diagonal energy scale $p^{29/4-\delta+\varepsilon}$.
+
+**Proof.** For $N(T)\ge Y$ the plane argument of Proposition 21.1 gives two independent short lattice vectors whose product of lengths is $O(H^2/Y)$. These vectors determine the graph modulo $p$. Their reduced input vectors must be independent modulo $p$, since otherwise every $2$-by-$2$ minor of the full vectors is divisible by $p$ and has size $O(H^2/Y)<p$, contradicting their independence. Counting integer vector pairs in dyadic length boxes gives $O_\varepsilon(p^\varepsilon H^8/Y^4)$ such graphs. Consequently the sum of $\sqrt{N(T)}$ over them is $O_\varepsilon(p^\varepsilon H^8/Y^{7/2})$. By Theorem 22.1 the aggregate is $O_\varepsilon(p^\varepsilon p^5U^2H^8/Y^{7/2})$. With $U\asymp R/p^{3/2}$ and $H\asymp L/\sqrt p$, this is the claimed diagonal scale. The same count holds in the three charts.
+
+The estimates leave the graphs of moderate inventory in the signed local second moment.
+
