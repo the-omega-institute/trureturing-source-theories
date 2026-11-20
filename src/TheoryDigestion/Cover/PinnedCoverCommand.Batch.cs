@@ -12,9 +12,9 @@ internal static partial class PinnedCoverCommand
         IReadOnlyDictionary<string, string[]> Children, ImmutableArray<string> Order);
     private sealed class BatchInputException(string message) : Exception(message);
 
-    private static BatchArguments Parse(string root, IReadOnlyList<string> arguments)
+    private static BatchArguments Parse(string root, IReadOnlyList<string> arguments, string verb)
     {
-        const string usage = "USAGE: cover-batch --atoms FILE";
+        var usage = $"USAGE: {verb} --atoms FILE";
         string? file = null;
         for (var index = 0; index < arguments.Count; index += 2)
         {
@@ -50,9 +50,29 @@ internal static partial class PinnedCoverCommand
             if (!item.Gids.Contains(fields[1], StringComparer.Ordinal)) item.Gids.Add(fields[1]);
             item.Lines.Add(index + 1);
         }
-        if (items.Count == 0) throw new BatchInputException("cover-batch input is empty");
+        if (items.Count == 0) throw new BatchInputException($"{verb} input is empty");
         return new(items.Select(pair => new BatchItem(pair.Key,
             [.. pair.Value.Gids], [.. pair.Value.Lines])).ToImmutableArray());
+    }
+
+    private static CommandResult CheckGids(ImmutableArray<BatchItem> items, Func<string, DigestionCoverageEdge> resolve)
+    {
+        var output = new StringBuilder();
+        var success = true;
+        foreach (var gid in items.SelectMany(item => item.Gids).Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal))
+        {
+            try
+            {
+                resolve(gid);
+                output.AppendLine($"OK {gid}");
+            }
+            catch (FormatException error)
+            {
+                success = false;
+                output.AppendLine($"BAD {gid} {error.Message}");
+            }
+        }
+        return new(success, output.ToString(), "");
     }
 
     private static BatchPlan Plan(ImmutableArray<BatchItem> items, BackfillInventoryDocument document)

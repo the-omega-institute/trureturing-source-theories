@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 PROJECT := src/TheoryDigestion/TheoryDigestion.csproj
-COMMANDS := ingest search-atoms show-atom atom-context migrate-atom-context source-dispatch decompose settle settle-context-check settle-batch settle-clear retire-sources cover cover-batch
+COMMANDS := ingest search-atoms show-atom atom-context migrate-atom-context source-dispatch decompose settle settle-context-check settle-batch settle-clear retire-sources cover cover-batch cover-gid-check
 .PHONY: help build test $(COMMANDS)
 
 help:

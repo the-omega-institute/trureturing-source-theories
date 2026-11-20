@@ -63,7 +63,7 @@ case "$command_name" in
       0) ;;
       *) echo 'WRITE must be 0 or 1' >&2; exit 2 ;;
     esac ;;
-  cover|cover-batch)
+  cover|cover-batch|cover-gid-check)
     if [[ "$command_name" == cover ]]; then
       args+=(--cover-atom "${ATOM_ID:?ATOM_ID is required}" --gid "${GID:?GID is required}")
     else

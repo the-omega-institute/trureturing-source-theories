@@ -1,7 +1,7 @@
 # <卷名:一行,不带编号,与文件名同义>
 
 > **本卷的机器契约(逐条可查,落地后不改)。** 消化器 `generic-v1`;地址(locator)由
-> `tools/StrataLint.Engine/Digestion/Atomizers/GenericAtomizer.cs` **仅从本文件的字节**算出,
+> `src/TheoryDigestion/Engine/Digestion/Atomizers/GenericAtomizer.cs` **仅从本文件的字节**算出,
 > 不查任何词表。本卷**只增不减**:卷首恒定区与既有各章一经合入即**一字不改**,
 > 全部修订、勘误、增补一律写在文末**追加锚**之后的新章里。旧章保留为历史记录;
 > 勘误的形式是新章点名旧编号并给出改判,不是回去改旧字节。

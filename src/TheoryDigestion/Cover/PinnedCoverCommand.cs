@@ -27,8 +27,8 @@ internal static partial class PinnedCoverCommand
                     options.Add(args[i + 1]);
                 }
             }
-            var batch = verb == "cover-batch";
-            var items = batch ? Parse(root, options).Items : ImmutableArray.Create(Single(options));
+            var batch = verb is "cover-batch" or "cover-gid-check";
+            var items = batch ? Parse(root, options, verb).Items : ImmutableArray.Create(Single(options));
             Func<string, DigestionCoverageEdge> resolve;
             if (evidence.Count == 0 || evidence.Count == 1 && evidence.ContainsKey("--branch"))
                 resolve = FrozenBranch.Open(root, evidence.GetValueOrDefault("--branch") ?? "dev").Resolve;
@@ -37,6 +37,8 @@ internal static partial class PinnedCoverCommand
                     evidence["--source-commit"], evidence["--export-sha256"]).Resolve;
             else
                 throw new FormatException("use --branch BRANCH or supply --truth-export, --source-commit and --export-sha256 together");
+            if (verb == "cover-gid-check")
+                return CheckGids(items, resolve);
             var repository = new GitRepositoryGateway(root);
             if (!batch)
             {
