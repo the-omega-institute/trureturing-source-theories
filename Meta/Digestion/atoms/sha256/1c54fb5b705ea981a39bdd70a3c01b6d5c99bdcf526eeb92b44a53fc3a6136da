@@ -1,0 +1,9 @@
+## 25. Reading the transverse moment across lower slopes
+
+Let $R\asymp p^{15/8+\delta/2}$, $L=p^3/R$, $K=L/p$ and $q=p^2$. In the retained transverse sector take actual $m,n\in\mathbb Z^3$ in the centered boxes of size $O(L)$, both primitive and proportional modulo $p$. A branch has one of the boundedly many admitted stationary points $u=(u_1,u_2,1)$ and a middle slope $s\bmod q$. In the selected chart $(n_1,n_2)\not\equiv0\bmod p$. The branch obeys $n\cdot u=0\bmod p$ and has the stationary readout
+$$
+ J=\frac{m+sn}{p}\pmod p=\lambda r(u),\qquad
+ r_i(u)=1-\frac{u_1+u_2+1}{u_i},
+$$
+with unit $\lambda$, coordinates, coordinate pair sums, and total sum. Retain the original masks and weight, including the physical slope condition. Normalize the Fejér coefficients by $L^6$ and include the exact modulus-$q$ phase in the coefficient $a_\xi$ of a branch $\xi$. Then $|a_\xi|\ll1$. The transverse moment sums the squared signed inner sums over common rows $(b,\rho)$, where $b=(n_1,n_2)$ is literal and $\rho=n_3\bmod p$. Put $D_0=L^6/p^2$.
+
