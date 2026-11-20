@@ -1,0 +1,4 @@
+**Corollary 23.2 (The remaining sufficient moment).** Put $B=p^{3/4+\delta}$ with $0\le\delta\le 1/100$ as in the balanced count. The unit-edge reduction suffices with moment exponent $163/48-(8/9)\delta$. In particular a bound at the natural short-window exponent $27/8+\delta/2$ would fit.
+
+**Proof.** Use $e\ll B^{8/3}/p^{3/2}$ in Theorem 23.1. The exponent of the squared cap is $17/48+(17/9)\delta$. It exceeds the other caps $5/16+(55/12)\delta$, $8\delta$ and $6\delta$ at both ends of this interval. Subtracting it from the exponent of $p^3B$ in the unit-edge bound gives the claimed sufficient moment. The margin over $27/8+\delta/2$ is $1/48-(25/18)\delta$. The origin error exponent $13/4+3\delta$ also fits. The estimate in the actual short frequency window remains open.
+

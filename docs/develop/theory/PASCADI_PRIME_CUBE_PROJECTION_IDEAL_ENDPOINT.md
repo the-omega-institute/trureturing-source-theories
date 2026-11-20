@@ -4293,3 +4293,43 @@ For any pair of distinct original gradient directions choose $t\in\{0,1,2\}$ so 
 The estimates leave the graphs of moderate inventory in the signed local second moment.
 
 ## 追加锚（本行以下为增补区）
+
+## 23. The square discriminant in the global determinant method
+
+**Theorem 23.1 (A partner count using the discriminant cover).** Under the actual nonsplit rank-three hypotheses of Theorems 13.1 and 14.1, let $E=XYZ$ be the volume of the reduced integral box with $X\ge Y\ge Z\ge2$. Then the number of actual rows in the box is $O_\varepsilon(p^\varepsilon E^{17/48})$. In particular, $K_g(W)\ll_\varepsilon p^\varepsilon e^{17/48}$ on the box of volume comparable to its index $e$.
+
+**Proof.** Use the two-dimensional sum $S$ and write the symmetric matrix for the product as $Q=zQ_0+Q_1(S)$, where $Q_1$ is affine linear and $Q_0$ generates the nonsplit product kernel. Put $D=SS^{\mathsf T}-4Q$. The actual row determines an endpoint difference $d$ over $\mathbb Q$ satisfying $D=dd^{\mathsf T}$. Let $\widetilde V$ be the surface defined by this equality, with its map to the affine determinant cubic $V$ given by forgetting $d$.
+
+In the quadratic splitting field of $Q_0$, choose the two conjugate isotropic readings. In these readings $Q_0$ is antidiagonal with nonzero off-diagonal entry. The two diagonal entries of $D$ are conjugate polynomials $f_i=S_i^2-L_i(S)$ with $L_i$ affine linear. The off-diagonal entry $D_{12}$ is a linear coordinate in the kernel direction $z$ with nonzero coefficient. Thus $V$ is given by $D_{12}^2=f_1 f_2$. Absolute irreducibility of $V$ implies that $f_1f_2$ is nonsquare over $\overline{\mathbb Q}(S)$. If one $f_i$ were square, conjugation would make the other square as well. The two square classes are therefore independent. In these coordinates $\widetilde V$ is given by $d_1^2=f_1$, $d_2^2=f_2$ and $D_{12}=d_1d_2$, which shows its geometric integrality.
+
+The data and coordinate changes have polynomial height in $p$. For a polynomial $S_1^2-aS_1-bS_2-c$ of this form, a nonzero $b$ or a nonzero $a^2+4c$ witnesses that it is nonsquare. Exclude the primes dividing the norms of such witnesses for both polynomials, their denominators, the splitting discriminant, $2$, and the denominators and nonzero determinants of the coordinate changes. Their product has logarithm $O(\log p)$. For the remaining primes $\ell$, the two polynomials are nonsquare and remain coprime, since their leading forms are the relatively prime $S_1^2$ and $S_2^2$. Thus both $V$ and the cover defined in the original rational coordinates have geometrically integral reductions.
+
+By Lang–Weil, the reduction of $\widetilde V$ has at most $\ell^2+O(\ell^{3/2})$ points. The involution $d\mapsto-d$ has no fixed points away from $d=0$, and the latter locus lies over the finite intersection $f_1=f_2=0$. Every actual row reduces into the image. Indeed its rational difference coordinates in the original model are $\ell$-integral since their squares are $\ell$-integral. The allowed residue classes on $V$ therefore number at most $\ell^2/2+O(\ell^{3/2})$. The singular classes of the geometrically integral cubic number $O(\ell)$ and have multiplicity at most three, so the same upper bound holds for the sum of multiplicities of the allowed classes.
+
+Use the maximum-weight leading monomial of the cubic and the weighted standard monomials in the box as in Browning–Verzobio, §2. Put $K=\exp\sqrt{\log X\log Y\log Z/\log T}$ with $T$ the maximum monomial weight. For a positive $\eta$, select the weighted cutoff so the number $s$ of standard monomials satisfies $\sqrt s=K^{1/\sqrt2}p^{\eta+o(1)}$. The weighted monomial count and archimedean bound, equations (18), (19) and (26) of that paper with congruence modulus one, give
+$$
+\log|\Delta|\le \frac{2\sqrt2}{3}s^{3/2}(\log K+o(\log p))
+$$
+for a nonzero evaluation determinant $\Delta$ on these monomials and $s$ actual rows. More explicitly, for weighted logarithmic cutoff $L$, the monomial count has leading term $s=(\log T)L^2/(2\log X\log Y\log Z)$ and the sum of monomial log weights has leading term $2sL/3$. One may take $L$ proportional to $p^\eta K^{1/\sqrt2}\sqrt{\log X\log Y\log Z/\log T}$. The lattice-sum errors and the term $\log(s!)$ give the stated $o(\log p)$ in the bracket, since all log widths are $O(\log p)$ and bounded below by $\log 2$. [Browning–Verzobio, §2](https://arxiv.org/abs/2408.11453)
+
+At a residue class of multiplicity $m$ containing $s_P$ rows, Salberger's local determinant bound gives divisibility with exponent at least $(2\sqrt2/3)s_P^{3/2}/\sqrt m-O(s_P)$. Apply Laplace expansion over classes and Hölder's inequality using their total multiplicity. This gives
+$$
+v_\ell(\Delta)\ \ge\ \frac{4}{3}\frac{s^{3/2}}{\ell}
+ -O(s+s^{3/2}\ell^{-3/2}).
+$$
+Sum over good primes $\ell\le\sqrt s$. Their excluded logarithmic harmonic weight is $O(\log\log p)$ by the polynomial-height bound. Mertens' formula and summation of the two errors imply
+$$
+\log|\Delta|\ge \frac{4}{3}s^{3/2}
+ \bigl(\log\sqrt{s}-O(1+\log\log p)\bigr).
+$$
+These bounds are incompatible for fixed $\eta>0$ and large $p$. The evaluation matrix therefore has a nonzero polynomial relation supported in the standard monomials, also if there are fewer than $s$ rows. Its degree $D_{\rm aux}$ is $O_\varepsilon(p^\varepsilon K^{1/\sqrt2})$ by making $\eta$ sufficiently small and absorbing $\log X/\log Z$. The standard monomial condition makes the polynomial coprime to the cubic. [Salberger, Lemma 1.4 and Lemma 1.10](https://doi.org/10.1112/plms.12508)
+
+By Bézout the curve components of the intersection have total degree at most $3D_{\rm aux}$. Lines and conics cost $O_\varepsilon(p^\varepsilon)$ actual rows per component by Theorems 13.1 and 14.1. For a component of degree $d\ge3$, use the integral curve bound $O(d^2 X^{1/d}(\log X)^\kappa)$. For degrees bounded in terms of $\varepsilon$ use $d^2\ll_\varepsilon d$. Above a sufficiently large constant threshold, $X^{1/d}\le p^\varepsilon$ since $X$ has polynomial height. The total is $O_\varepsilon(p^\varepsilon(D_{\rm aux} X^{1/3}+D_{\rm aux}^2))$, with the $\varepsilon$ losses distributed among the estimates. [Binyamini–Cluckers–Novikov, Theorem 2 (27)](https://arxiv.org/abs/2302.04209)
+
+With $x=\log X/\log E$, $y=\log Y/\log E$, $z=\log Z/\log E$ and $\sigma=\sqrt{xyz}$, the bound $T\ge E$ from Theorem 13.1 gives exponents $\sigma/\sqrt2+x/3$ and $\sqrt2\,\sigma$ in $E$. The former is at most $x/3+(1-x)/(2\sqrt2)\le 1/(2\sqrt2)$ by $yz\le(1-x)^2/4$. The latter is at most $\sqrt2/(3\sqrt3)$. Both are below $17/48$.
+
+**Corollary 23.2 (The remaining sufficient moment).** Put $B=p^{3/4+\delta}$ with $0\le\delta\le 1/100$ as in the balanced count. The unit-edge reduction suffices with moment exponent $163/48-(8/9)\delta$. In particular a bound at the natural short-window exponent $27/8+\delta/2$ would fit.
+
+**Proof.** Use $e\ll B^{8/3}/p^{3/2}$ in Theorem 23.1. The exponent of the squared cap is $17/48+(17/9)\delta$. It exceeds the other caps $5/16+(55/12)\delta$, $8\delta$ and $6\delta$ at both ends of this interval. Subtracting it from the exponent of $p^3B$ in the unit-edge bound gives the claimed sufficient moment. The margin over $27/8+\delta/2$ is $1/48-(25/18)\delta$. The origin error exponent $13/4+3\delta$ also fits. The estimate in the actual short frequency window remains open.
+
+## 追加锚（本行以下为增补区）
