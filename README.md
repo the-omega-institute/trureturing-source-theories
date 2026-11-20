@@ -42,6 +42,8 @@ make cover ATOM_ID="$atom" GID="$gid"
 make cover-batch ATOMS=rows.tsv
 ```
 
+Run `make cover-gid-check ATOMS=rows.tsv` to check the declaration selectors before applying a batch. It uses the same TSV and branch or export settings as `cover-batch`, reports each distinct GID once, and exits nonzero if a selector fails. This read-only check also works in a sparse checkout without the atom ledger.
+
 Set `TRUTH_BRANCH` to follow a different main-repository branch. Each branch receipt records the branch, the observed commit, the module statement ID, the SHA-256 of the frozen state and the declaration name key. The declaration-level statement ID is available from a verified truth export. Repeating a cover while the module’s frozen state is identical preserves the existing receipt across unrelated branch updates.
 
 For offline use or a release-specific declaration ID, supply all three export arguments. Use a trusted version 2 truth export and its published digest. The transport filename can end in `v1.json`.

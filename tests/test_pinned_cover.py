@@ -111,6 +111,24 @@ class PinnedCoverTests(unittest.TestCase):
                 self.assertEqual(self.entries[0].read_bytes(), old)
         self.assertTrue(self.cli(*args, *self.evidence(), ok=True).stdout)
 
+    def test_gid_check_resolves_each_distinct_selector_without_accessing_the_ledger(self):
+        table = self.root / "batch.tsv"
+        missing = "D5/S1/Words/Identity.unknown"
+        other = "D5/S1/Words/Missing.example"
+        table.write_text("".join(f"{self.atom}\t{gid}\n" for gid in [GID, missing, GID, other]))
+        (self.root / "Meta").rename(self.root / "saved-ledger")
+        (self.root / ".git/theory-digestion.writer").unlink()
+        evidence = self.evidence()
+        args = ["cover-gid-check", "--atoms", table.name, *evidence]
+        output = self.cli(*args, ok=False).stdout.splitlines()
+        self.assertEqual(output.count(f"OK {GID}"), 1)
+        self.assertTrue(any(line.startswith(f"BAD {missing} ") for line in output))
+        self.assertTrue(any(line.startswith(f"BAD {other} ") for line in output))
+        table.write_text(f"{self.atom}\t{GID}\n")
+        self.assertEqual(self.cli(*args).stdout.strip(), f"OK {GID}")
+        self.assertFalse((self.root / "Meta").exists())
+        self.assertFalse((self.root / ".git/theory-digestion.writer").exists())
+
     def test_batch_groups_duplicates_and_retains_original_pin(self):
         path = self.root / "batch.tsv"
         path.write_text((self.atom + "\t" + GID + "\n") * 2)
