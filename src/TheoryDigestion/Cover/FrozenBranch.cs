@@ -43,12 +43,12 @@ internal sealed class FrozenBranch(string branch, string commit, Func<string, by
             var bytes = readShard(path);
             using var doc = JsonDocument.Parse(bytes);
             var record = doc.RootElement;
-            RequireFields(record, "statement_id", "declarations");
+            RequireFields(record, ["statement_id", "declarations"]);
             var moduleId = record.GetProperty("statement_id").GetString() ?? throw new FormatException("missing module statement_id");
             TruthExportValidation.RequireSha256Id(moduleId, "module statement_id");
             var names = record.GetProperty("declarations").EnumerateArray().Select(d =>
             {
-                RequireFields(d, "declaration_name_key", "kind");
+                RequireFields(d, ["declaration_name_key", "kind"], "libraries", "axioms");
                 TruthExportValidation.RequireKind(d.GetProperty("kind").GetString() ?? "");
                 return d.GetProperty("declaration_name_key").GetString() ?? throw new FormatException("missing declaration name");
             }).ToArray();
@@ -61,11 +61,25 @@ internal sealed class FrozenBranch(string branch, string commit, Func<string, by
         return new(text, null, BranchEvidence: new(branch, commit, module.StatementId, module.Digest, matches[0]));
     }
 
-    private static void RequireFields(JsonElement record, params string[] fields)
+    private static void RequireFields(JsonElement record, string[] required, params string[] optionalStringArrays)
     {
-        if (record.ValueKind != JsonValueKind.Object ||
-            !record.EnumerateObject().Select(field => field.Name).Order(StringComparer.Ordinal)
-                .SequenceEqual(fields.Order(StringComparer.Ordinal)))
-            throw new FormatException("invalid fields in main repository frozen state");
+        const string invalidFields = "invalid fields in main repository frozen state";
+        if (record.ValueKind != JsonValueKind.Object)
+            throw new FormatException(invalidFields);
+
+        var missing = required.ToHashSet(StringComparer.Ordinal);
+        var availableAnnotations = optionalStringArrays.ToHashSet(StringComparer.Ordinal);
+        foreach (var field in record.EnumerateObject())
+        {
+            if (missing.Remove(field.Name))
+                continue;
+            if (!availableAnnotations.Remove(field.Name))
+                throw new FormatException(invalidFields);
+            if (field.Value.ValueKind != JsonValueKind.Array ||
+                field.Value.EnumerateArray().Any(item => item.ValueKind != JsonValueKind.String))
+                throw new FormatException($"invalid {field.Name} in main repository frozen state: expected a string array");
+        }
+        if (missing.Count != 0)
+            throw new FormatException(invalidFields);
     }
 }
