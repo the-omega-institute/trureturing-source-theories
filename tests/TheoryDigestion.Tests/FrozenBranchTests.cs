@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using StrataLint.Cli;
@@ -12,10 +13,13 @@ public sealed class FrozenBranchTests
     private const string Name = "ns(n0,7:example)";
     private static string Commit(char c) => new(c, 40);
     private static string Id(char c) => "sha256:" + new string(c, 64);
-    private static byte[] State(params string[] names) => JsonSerializer.SerializeToUtf8Bytes(new
+    private static byte[] State(params string[] names) =>
+        StateWithDeclarations(names.Select(n => new { declaration_name_key = n, kind = "theorem" }).ToArray());
+
+    private static byte[] StateWithDeclarations(params object[] declarations) => JsonSerializer.SerializeToUtf8Bytes(new
     {
         statement_id = Id('1'),
-        declarations = names.Select(n => new { declaration_name_key = n, kind = "theorem" }),
+        declarations,
     });
 
     [Fact]
@@ -36,6 +40,50 @@ public sealed class FrozenBranchTests
         Assert.Equal(Id('1'), first.BranchEvidence.ModuleStatementId);
         Assert.Equal(first.BranchEvidence.StateSha256, branch.Resolve(Other).BranchEvidence!.StateSha256);
         Assert.Equal(new[] { "D5/S1/Words/Identity.lean" }, reads);
+    }
+
+    [Fact]
+    public void LegacyAndIndependentlyAnnotatedDeclarationsShareTheRawStateDigest()
+    {
+        var state = StateWithDeclarations(
+            new { declaration_name_key = Name, kind = "theorem" },
+            new { declaration_name_key = "ns(n0,5:other)", kind = "theorem", libraries = new[] { "Mathlib" } },
+            new { declaration_name_key = "ns(n0,4:zero)", kind = "theorem", axioms = Array.Empty<string>() },
+            new { declaration_name_key = "ns(n0,4:both)", kind = "theorem", libraries = Array.Empty<string>(), axioms = new[] { "Classical.choice" } });
+        var branch = new FrozenBranch("dev", Commit('a'), _ => state);
+        var digest = "sha256:" + Convert.ToHexStringLower(SHA256.HashData(state));
+        foreach (var (gid, name) in new[]
+        {
+            (Gid, Name),
+            (Other, "ns(n0,5:other)"),
+            ("D5/S1/Words/Identity.zero", "ns(n0,4:zero)"),
+            ("D5/S1/Words/Identity.both", "ns(n0,4:both)"),
+        })
+        {
+            var evidence = branch.Resolve(gid).BranchEvidence!;
+            Assert.Equal(name, evidence.DeclarationNameKey);
+            Assert.Equal(digest, evidence.StateSha256);
+        }
+    }
+
+    [Theory]
+    [InlineData(""" "unknown":[] """)]
+    [InlineData(""" "Libraries":[] """)]
+    [InlineData(""" "libraries":[],"libraries":["Mathlib"] """)]
+    [InlineData(""" "axioms":["Classical.choice"],"axioms":[] """)]
+    [InlineData(""" "libraries":"Mathlib" """)]
+    [InlineData(""" "libraries":["Mathlib",42] """)]
+    [InlineData(""" "axioms":null """)]
+    [InlineData(""" "axioms":{} """)]
+    [InlineData(""" "axioms":[null] """)]
+    public void InvalidAnnotationFieldsRejectTheWholeModule(string fields)
+    {
+        using var declaration = JsonDocument.Parse($$"""
+            {"declaration_name_key":"ns(n0,5:other)","kind":"theorem",{{fields}}}
+            """);
+        var state = StateWithDeclarations(new { declaration_name_key = Name, kind = "theorem" }, declaration.RootElement);
+        var branch = new FrozenBranch("dev", Commit('a'), _ => state);
+        Assert.Throws<FormatException>(() => branch.Resolve(Gid));
     }
 
     [Fact]
