@@ -1,0 +1,187 @@
+**定理 16.1（Sharp fixed-mass leading constant）。** The minimum
+
+$$
+\mu=\min_{\substack{S\in\mathcal S\\ U_1=C,\ U_2=V}}\|\Phi(U_3)\|_{\rm op}
+$$
+
+is attained and satisfies $1/1562500<\mu<0.030574$. For every fixed triple of distinct points $a_1,a_2,a_3\in I=[1/2,1]$, put $\ell_i=1/(a_i^3\prod_{j\ne i}(a_i-a_j))$. Then
+
+$$
+\lim_{T\downarrow0} T^{-5}\inf_{S\in\mathcal S}\max_{1\le i\le3}
+  \|W_S(a_iT)-W_*(a_iT)\|_{\rm op}
+=\frac{\mu}{\sum_i|\ell_i|}.
+$$
+
+Every sequence with $T\downarrow0$ and bounded $T^{-5}$ residuals at the triple has a subsequence of scaled residual functions converging uniformly on $I$. The possible profiles are exactly
+
+$$
+a^3A+a^4D+a^5\Phi(U)+s e_i e_i^\top,\qquad A,D\in\operatorname{Sym}_2.
+$$
+
+The bounded-rate profiles have $s=0$ and $U=U_3$ from the moment fiber defining $\mu$. The single-fast-rate profiles have $s\ge0$ and $U$ equal to the third effective moment of a physical four-vertex generator of total mass $M$. Its port masses are $1/b$ at port $i$ and $1$ at the other port. The effective insertion is $\sqrt b\,e_i$ at the mass-$1/b$ port and the standard coordinate vector at the other port. The first and second effective moments are $C,V$, and
+
+$$
+I_2-CV^{-1}C-M^{-1}\mathbf 1\mathbf 1^\top
+=\begin{pmatrix}d&o\\o&d\end{pmatrix},\qquad b=1-d+o^2/d.
+$$
+
+Each profile, including those at zero conductances and at $s=0$ in the fast branch, is recovered uniformly by a physical family defined for all sufficiently small $T>0$.
+
+Let
+
+$$
+k=\max_{a\in I}\frac{a^3(a-1/2)(1-a)}{1+a^3(15-14a)}.
+$$
+
+The unique optimal ordered triple is $(1/2,a_{\rm mid},1)$, where $a_{\rm mid}$ is the unique maximizer in this formula. In the adaptive experiment of §15.6 let $R_n^{\rm sum}$ and $R_n^{\rm max}$ be the infima over policies and tests of the sum and maximum of the two separate worst-case errors, respectively. For each $0<\varepsilon<k\mu/2$ there is $T_0>0$ such that for all $0<T<T_0$ and all $n\ge3$,
+
+$$
+\begin{aligned}
+0\le\delta\le(k\mu/2-\varepsilon)T^5
+   &\ \Longrightarrow\ (R_n^{\rm sum},R_n^{\rm max})=(0,0),\\
+\delta\ge(k\mu/2+\varepsilon)T^5
+   &\ \Longrightarrow\ (R_n^{\rm sum},R_n^{\rm max})=(1,1/2).
+\end{aligned}
+$$
+
+The alternative in the second implication can be fixed before the private seed and works for every query path in $I$, including adaptive stopping.
+
+**Proof.** Order the three nodes and suppose the scaled residuals are bounded there. For a mode of rate $\lambda$ put $x=T\lambda$, $A_\lambda=vv^\top$ with $v$ its port projection, and $w_\lambda=\operatorname{tr}A_\lambda$. Use an orthonormal eigenbasis, counting modes with multiplicity. With $G(a)=W_S(aT)/T^3$ and $Q(a)=G(a)/a^3$, §15.2 gives
+
+$$
+H(a)=\sum_\lambda\lambda A_\lambda\int_0^1 u e^{-axu}\,du,\qquad
+G'(a)=a^2H(a)^2,\qquad Q(a)=\int_0^1 u^2 H(au)^2\,du .
+$$
+
+The observations give $(\operatorname{tr} Q)[a_1,a_2,a_3]=O(T^2)$ by the target expansion. Bounded $G(a_1)$ and the uniformly positive definite first increment $G[a_1,a_2]$ give $\kappa I_2\preceq H(1)\preceq B I_2$ as in §15.2. The trace of every product of two positive semidefinite matrices is nonnegative. The trace product rule and the mean-value formula for the second difference give $\operatorname{tr}H''(1)=O(T^2)$. On $x\le1$ the integral for $H''(1)$ gives $\sum_{x\le1}\lambda^3w_\lambda=O(1)$. On $x>1$, restricting its inner integration variable to $[0,1/x]$ gives $\sum_{x>1}\lambda w_\lambda/x^2=O(T^2)$. The $x>1$ part of $H$ is thus $O(T^2)$ uniformly on $I$. There is also the per-mode bound
+
+$$
+\frac{w_\lambda^2}{T^3\lambda}=O(T^2)\qquad(x>1).
+$$
+
+Indeed at the mean-value point $\xi\in I$, $(\operatorname{tr} Q)''(\xi)$ is the integral of $u^4(\operatorname{tr} H^2)''(\xi u)$. Keep the single mode's nonnegative self-product and restrict to $u\le1/x$. Differentiating the double integral over the two inner variables in $[0,1]$ bounds the second derivative of the squared scalar multiplier below by a positive constant times $\lambda^2x^2$ on this range. Integrating in $u$ gives the estimate since $\operatorname{tr}(A_\lambda^2)=w_\lambda^2$.
+
+Write $U_j^{\rm slow}$ for the moments restricted to $T\lambda\le1$. On $I$, $H=U_1^{\rm slow}/2-aT U_2^{\rm slow}/3+O(T^2)$ by the third slow moment bound. The first two slow moments are bounded since $\sum_\lambda w_\lambda=2$. Integrating $G'$ between observation nodes gives increment data with $O(T^2)$ remainder for the $a^3$ and $a^4$ coefficients $(U_1^{\rm slow})^2/12$ and $-T\mathcal L_{U_1^{\rm slow}}(U_2^{\rm slow})/24$. A combination of $a^3,a^4$ taking the same value at three distinct positive points has two distinct positive derivative zeros, forcing both coefficients to vanish. Thus the two increments recover these coefficients up to $O(T^2)$. The positive square root and the inverse Sylvester map are locally bounded in derivative at the target since $C\succ0$. Consequently
+
+$$
+U_1^{\rm slow}=C+O(T^2),\qquad U_2^{\rm slow}=V+O(T).
+$$
+
+Pass to a subsequence of fixed vertex count with convergent eigenvectors and ground vectors, and let every rate converge or diverge to infinity. A diverging rate contributes $o(1)$ to the first two slow moments by the third-moment bound whenever it lies in the slow sum. Let $P$ be the limit projection onto finite rates, $L$ the limiting finite-rate generator extended by zero on the orthogonal complement, $B_0=PE$, and $z$ the limiting ground vector. Since positive-rate modes are orthogonal to the ground, $Pz=z$. The recovered moments give $B_0^\top LB_0=C$, $B_0^\top L^2B_0=V$, $Lz=0$, $B_0^\top z=\mathbf 1$, and $\|z\|^2=M$. The rank of the Gram of $[B_0,LB_0,z]$ is three plus the rank of
+
+$$
+B_0^\top B_0-CV^{-1}C-M^{-1}\mathbf 1\mathbf 1^\top .
+$$
+
+If all escaping modes have vanishing limiting port weight then $B_0^\top B_0=I_2$ and this Gram has rank five by $d>|o|>0$, verified below. Hence an escape must have nonzero limiting port weight. For physical generators, $e^{-tS}$ is entrywise nonnegative by shifting $-S$ by a scalar to an entrywise nonnegative matrix before exponentiating. Taking times tending to zero that suppress all divergent rates shows $P$ is entrywise nonnegative. Each nonzero support block of a symmetric nonnegative projection has rank one by Perron–Frobenius on its irreducible blocks. Since $C\succ0$, the projected ports are nonzero and in different blocks. Thus $B_0^\top B_0$ is diagonal and the Schur complement has nonzero off-diagonal $o$. Rank is at least four, so escape requires five original vertices and exactly one divergent mode.
+
+In the escape case $P=I-uu^\top$ for a unit vector $u$. The off-diagonal signs of $P$ imply that $u$ has at most two nonzero entries, of opposite signs if there are two. Support on one port alone would give a zero projected port and support on both ports would give collinear projections. Its visible support must therefore consist of one port and one hidden vertex. Take the port order with $B_0^\top B_0=\operatorname{diag}(b,1)$. The rank-one Schur complement gives $b=1-d+o^2/d$. In the basis of nonnegative unit block vectors of $P$, the compressed finite-rate operator $\bar S$ is physical with the stated effective insertion. For its off-diagonal signs, take the limit of $e^{-tS}$ at fixed $t>0$ and compress it by those nonnegative block vectors. The resulting $e^{-t\bar S}$ is entrywise nonnegative, so differentiating at zero gives the signs. The compressed ground has port entries $1/\sqrt b,1$. A zero coordinate of the nonnegative ground would force zero couplings to all positive ground coordinates by the ground equation and the off-diagonal signs. At that coordinate the columns of $[B_0,LB_0,z]$ would all vanish, contradicting rank four. The same argument with rank five in the bounded-rate case gives a physical five-vertex limit.
+
+The single escaping weight $A_f$ has limiting trace $1-b>0$, so $T\lambda_f>1$ eventually by the third slow moment bound. The per-mode estimate then implies $\lambda_f\gtrsim T^{-5}$. Its self-product in $G$ is $A_f^2/(2T^3\lambda_f)$ up to $O(T^6)$ uniformly on $I$. In detail, with $j(x)=1-(1+x)e^{-x}$ the contribution is $A_f^2/(T^3\lambda_f)$ times $\int_0^{aT\lambda_f}j(x)^2\,dx/x^2$. Integration by parts with $j'(x)=xe^{-x}$ gives $1/2$ for the integral to infinity. The omitted tail is bounded by $1/(aT\lambda_f)$. The integrated mixed terms in $G$ are $O(T^3)$ since $a^2\|H_f(a)\|\le w_f/(T^2\lambda_f)$ and the finite-rate part of $H$ is bounded down to zero. Thus after division by $T^2$ the fast self-product has a subsequential limit $s e_i e_i^\top$ with $s\ge0$. The finite-rate part of $G$ has coefficients of $a^3,Ta^4,T^2a^5$ given by
+
+$$
+\frac{U_1^2}{12},\qquad -\frac{\mathcal L_{U_1}(U_2)}{24},
+\qquad \frac{\mathcal L_{U_1}(U_3)}{80}+\frac{U_2^2}{45},
+$$
+
+using just the finite-rate moments in this display. The remainder is $O(T^3)$ uniformly on $I$. The first two scaled coefficient differences are bounded by the slow-moment estimates, since the sole divergent rate eventually has $T\lambda_f>1$. Subsequence limits of those differences give $A,D$. The third coefficient difference tends to $\Phi(U)$.
+
+For recovery of an arbitrary profile prescribe
+
+$$
+C_T=(C^2+12T^2 A)^{1/2},\qquad
+V_T=\mathcal L_{C_T}^{-1}\big(\mathcal L_C(V)-24TD\big).
+$$
+
+They give exactly the desired first two coefficient differences. In a bounded physical realization let $X=-S_{\rm hidden,port}\ge0$ and let $g$ be the hidden ground vector. The perturbed Gram of $Z=[X,g]$ is positive definite for small $T$ and has blocks $V_T-C_T^2$, $C_T\mathbf 1$, $M-2$. Start at the base $Z$, rotate the hidden rows, and multiply on the right by the old Gram inverse square root times the new Gram square root. For the rotation choose a row $r$ with both entries of $X$ positive, which exists since the two columns have positive inner product. Use $\exp(\sqrt T K)$ where $K_{jr}=1$, $K_{rj}=-1$ for $j\ne r$ and all other entries vanish. Each zero in $X$ gains a positive term of order $\sqrt T$, which survives the $O(T)$ Gram perturbation. The ground stays positive. Use port conductance $-(C_T)_{12}>0$, keep the hidden edge conductances including zeros, and set the hidden diagonal by $D_{\rm hid}g=X\mathbf1$. This gives a physical generator tending to the base.
+
+At an effective fast realization, with port one merged, choose $b_T$ by the same rank-one Schur complement. For $K_T^0=I_2-C_T V_T^{-1}C_T-M^{-1}\mathbf1\mathbf1^\top$ take $b_T=1-(K_T^0)_{11}+(K_T^0)_{12}^2/(K_T^0)_{22}$ and set $G_T^0=\operatorname{diag}(b_T,1)$. The hidden coupling columns scaled by the effective insertion have Gram $F_T=V_T-C_T(G_T^0)^{-1}C_T$ and their inner products with the hidden ground are $l_T=C_T(G_T^0)^{-1}\mathbf 1$. Eliminating the port block $G_T^0$ in the rank-four Gram of the effective frame gives
+
+$$
+M-\mathbf1^\top(G_T^0)^{-1}\mathbf1=l_T^\top F_T^{-1}l_T.
+$$
+
+Indeed the remaining Gram after eliminating $G_T^0$ has rank two and upper-left block $F_T$ of rank two. At the base, $F_{11}\in(1.59,1.60)$, $F_{22}\in(1.90,1.91)$, $F_{12}\in(1.20,1.21)$ and $\det F\in(1.58,1.59)$ by the rational data below. Use the same rotation and Gram perturbation on the two hidden coupling columns to obtain an invertible positive factor $X_T$ of $F_T$. Then $g_T=X_TF_T^{-1}l_T$ approaches the positive base ground. The effective port block is $(G_T^0)^{-1/2}C_T(G_T^0)^{-1/2}$ and the unscaled couplings are $X_T(G_T^0)^{-1/2}$. Keep the hidden conductances and set the hidden diagonal by $D_{\rm hid}g_T=X_T(G_T^0)^{-1}\mathbf1$.
+
+An effective base for this construction exists. Write $l=(l_1,l_2)^\top$ at $T=0$. Take the rows of $X$ to be $(\sqrt{F_{11}-F_{12}^2/F_{22}},0)$ and $(F_{12}/\sqrt{F_{22}},\sqrt{F_{22}})$. The solution of $X^\top g=l$ has positive second coordinate because $l_2>0$, and positive first coordinate since $l_1-F_{12}l_2/F_{22}>0$ by $1.21<l_1<1.22$ and $0.90<l_2<0.91$. The rank identity gives the required mass, and the hidden conductance can be zero.
+
+Split the mass-$1/b_T$ port into a unit port and a hidden vertex of mass $1/b_T-1$. The isometric insertion $J$ of the effective coordinates has column $(\sqrt{b_T},\sqrt{1-b_T})^\top$ on that pair. Let $u=(\sqrt{1-b_T},-\sqrt{b_T})^\top$ on the pair, zero elsewhere. If $\bar S_T$ is the effective generator just constructed, take
+
+$$
+S_T=J\bar S_TJ^\top+\lambda_f uu^\top,\qquad
+\lambda_f=\frac{(1-b_T)^2}{2(s+T)T^5}.
+$$
+
+The inter-block signs follow from $\bar S_T$ and the intra-pair sign from the large positive rate. The ground is $J\bar z_T$ with the same total mass and unit original ports. The fast mode has port weight $(1-b_T)e_i e_i^\top$ and produces the scaled plateau $(s+T)e_i e_i^\top$. The finite-rate expansion and the fast estimates give recovery on all of $I$ for every sufficiently small $T$ depending on the profile. Taking $s>0$ at the explicit base exhibits a genuine fast contribution of order $T^5$.
+
+For evaluation at the triple, $\ell(Y)=\sum_i\ell_iY_i$ annihilates the $a^3,a^4$ terms and takes value one on $a^5$. Given $\ell(Y)=Y_0$, the least maximum of the three operator norms is $\|Y_0\|_{\rm op}/\sum_i|\ell_i|$. The triangle inequality gives the lower bound and $Y_i=\operatorname{sgn}(\ell_i)Y_0/\sum_j|\ell_j|$ attains it. The kernel of $\ell$ consists exactly of the available $a^3,a^4$ data. Thus the two branches reduce to minimizing $\|\Phi(U)\|_{\rm op}$ and $\|\Phi(U)+\rho e_i e_i^\top\|_{\rm op}$, respectively, with $\rho=s[a_1,a_2,a_3](a^{-3})\ge0$ by convexity.
+
+For the fast comparison at port one, put $h=(d,-o)^\top$, $\gamma=V^{-1}Ch$, and $v=U_*\gamma-Vh$. The Schur complement kills $h$, so $B_0h-LB_0\gamma-z(\mathbf1^\top h/M)=0$. Applying $B_0^\top L^2$ gives $U\gamma=Vh$. With $w=\mathcal L_C^{-1}(e_1e_1^\top)\gamma$, $n=(-w_2,w_1)^\top$, and $N=\mathcal L_C^{-1}((n\gamma^\top+\gamma n^\top)/2)$, self-adjointness under the trace inner product gives
+
+$$
+\langle N,\Phi(U)+\rho e_1e_1^\top\rangle=-n^\top v/80.
+$$
+
+Here $N_{11}=n^\top w=0$. For exact rational verification put $q=1001/250000$, $p=125000/123999$, and $\mathcal P(\alpha,\beta)=\frac12\begin{pmatrix}\alpha+\beta&\alpha-\beta\\ \alpha-\beta&\alpha+\beta\end{pmatrix}$. Set $c=(p,p+2)$, $f=(3+2q,1)$ and $j=(4(3+2q)-(1+2q)^2,3)$. Block multiplication from §13.1 gives $C,V,U_*$ by applying $\mathcal P$ to the componentwise pairs $c$, $c^2+f$, $c^3+2cf+j$, respectively. To compute $\mathcal L_C^{-1}(Y)$ divide the entries in the orthonormal sum and difference basis by $c_i+c_j$ and transform back. Substitution gives $0.0924<d<0.0925$, $-0.0072<o<-0.0071$, $0.908<b<0.909$, the stated bounds on $F=V-C\operatorname{diag}(1/b,1)C$, and
+
+$$
+26<10^6N_{12}<27,\qquad 12<10^6N_{22}<13,\qquad
+185<10^6|n^\top v|<187 .
+$$
+
+Since $N_{11}=0$, its trace norm satisfies $10^6\|N\|_*<\sqrt{4(27)^2+13^2}<56$. Operator-norm duality gives a fast lower bound $185/(80\cdot56)>0.04$, valid even for real $\rho$. Port exchange preserves the target moments and gives the same bound for port two.
+
+For the bounded witness take $t=1/8$, $x=\sqrt{2+q-t^2}$, $y=(1+q)/x$, $w_0=\sqrt{2+q-y^2}$ and
+
+$$
+X=\begin{pmatrix}x&y\\0&w_0\\t&0\end{pmatrix},
+\qquad g(r)=\big(r,(p-yr)/w_0,(p-xr)/t\big)^\top .
+$$
+
+Choose $r$ with $\|g(r)\|^2=M-2$ in $(0.6594121,0.6594123)$. Throughout the bracket $g(r)>0$, and the endpoint mass residuals lie in $(1.24624222,1.24624224)10^{-6}$ and $(-1.41666380,-1.41666377)10^{-6}$. Then $X^\top X=V-C^2$ and $X^\top g=C\mathbf1$. Use port edge one and hidden conductances $k_{13}=1/6$, $k_{23}=7/100$, $k_{12}=0$. With hidden coordinate vectors $e_j$ the hidden block is
+
+$$
+D_{\rm hid}=\operatorname{diag}\big((X\mathbf1)_j/g_j\big)
+ +\sum_{i<j}k_{ij}(e_i/g_i-e_j/g_j)(e_i/g_i-e_j/g_j)^\top.
+$$
+
+For interval verification compute $\Phi$ by applying $\mathcal L_C/80$ to $X^\top D_{\rm hid}X-\mathcal P(j_1,j_2)$. Evaluate $X^\top D_{\rm hid}X$ as the sum of each row outer product weighted by its row sum divided by its ground entry, plus the conductance-weighted outer products of the differences of ground-scaled rows. Use rational endpoints for $r$ and interval sums, products and quotients, with square roots enclosed on the $10^{-20}$ grid. For a nonnegative rational endpoint $m/n$ use $\lfloor\sqrt{\lfloor10^{40}m/n\rfloor}\rfloor/10^{20}$ as the lower bound and add $10^{-20}$ for the upper bound. This gives enclosures $(0.0128430883,0.0128432689)$, $(-0.0124237707,-0.0124236332)$ and $(-0.0177301420,-0.0177300068)$ for $\Phi_{11},\Phi_{22},\Phi_{12}$, respectively. The maximum absolute row sum is less than $0.030574$.
+
+For the quantitative lower certificate let $Z=[X,g]$ for any realization in the bounded moment fiber. Its Gram $G_h=Z^\top Z=Z_*^\top Z_*$ is fixed by the first two moments, mass and conservation. It is positive definite, so the hidden dimension is exactly three. The isometry $J_h=Z_*Z^{-1}$ maps into the target hidden space. With $D_0=J_h^\top D_*J_h$, block multiplication and the ground equation give
+
+$$
+Z^\top(D_{\rm hid}-D_0)Z=\begin{pmatrix}U_3-U_*&0\\0&0\end{pmatrix}.
+$$
+
+Use $\lambda_{\min}(G_h)\ge4\det G_h/(\operatorname{tr}G_h)^2>4/25$ and $C\succeq I_2$ in the inverse formula $\mathcal L_C^{-1}(Y)=\int_0^\infty e^{-tC}Y e^{-tC}\,dt$. These give $\|D_{\rm hid}-D_0\|_{\rm op}\le250\|\Phi(U_3)\|_{\rm op}$. If $\|\Phi(U_3)\|_{\rm op}\le1/1562500$, the difference is at most $\eta=1/6250$. Since $D_*\preceq4I$, $(4+\eta)I-D_{\rm hid}$ is positive semidefinite and entrywise nonnegative by the physical signs. Let $F$ have columns $X$ and $((4+\eta)I-D_{\rm hid})X$, ordered by the first and second columns of $X$, then the second and first columns of the product. Define $F_0$ using $(4I-D_0)X$ in the same order. The target hidden action sends the columns of $X_*$ into the span of $Z_*$, so $F_0^\top F_0=Q_*$, the Gram of the same ordered columns computed with $X_*$ and $(4I-D_*)X_*$. The bounds $\|X\|_{\rm op}<2$, $\|F_0\|_{\rm op}<3$ give $\|F-F_0\|_{\rm op}\le4\eta$ and $\|F^\top F-Q_*\|_{\rm op}\le24\eta+16\eta^2<1/250$. [Pinned target hidden action](https://github.com/the-omega-institute/trureturing/blob/ec54f23d4a0af403b5df15cf2afa8fd0dbf50d1b/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean#L735)
+
+The rational data for this lower certificate are
+
+$$
+X_*=\frac1{1000}\begin{pmatrix}1001&1\\1001&1001\\1&1001\\1&1\end{pmatrix},
+\quad Y_*=\frac1{1000}\begin{pmatrix}1&1001\\1&1\\1001&1\\1001&1001\end{pmatrix},
+\quad g_*=\begin{pmatrix}20875/41333\\124249/247998\\20875/41333\\126251/247998\end{pmatrix}.
+$$
+
+Compute $G_h=[X_*,g_*]^\top[X_*,g_*]$ and $Q_*$ using $Y_*Y_*^\top X_*$ for the product columns. Direct rational multiplication gives $25\det G_h>(\operatorname{tr}G_h)^2$, maximum absolute row sum of $X_*^\top X_*$ less than $4$, and $\operatorname{tr} Q_*<9$. With indices modulo four it gives $4-Q_{*,ii}>1/250$, $Q_{*,i,i+1}-1>1/250$, and $1/36-Q_{*,i,i+2}>1/250$. Hence the perturbed Gram has diagonals at most $4$, cycle entries at least $1$ and opposite entries less than $1/36$. A nonnegative factor on three rows violates the four-cycle width inequality. Every cycle edge has a row where its adjacent entries have product at least $1/3$, hence both entries are at least $1/6$ by the diagonal bound. Among four edges two must use the same row, producing an opposite pair of product at least $1/36$, a contradiction. [Pinned rational target](https://github.com/the-omega-institute/trureturing/blob/ec54f23d4a0af403b5df15cf2afa8fd0dbf50d1b/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean#L42) · [Pinned four-cycle width inequality](https://github.com/the-omega-institute/trureturing/blob/ec54f23d4a0af403b5df15cf2afa8fd0dbf50d1b/D5/S3/Combinatorics/SpectralGraph/FourPortHeatRealization.lean#L46)
+
+The bounded witness makes the fiber nonempty. Along a minimizing sequence $U_3$ is bounded by invertibility of $\mathcal L_C$. The fixed Gram bounds $Z$ and $Z^{-1}$. The upper-left block of $Z^\top D_{\rm hid}Z$ is bounded by $U_3$, and its other blocks are $X^\top X\mathbf1$, its transpose, and $\mathbf1^\top C\mathbf1$ by conservation. This bounds $D_{\rm hid}$. The rank-five ground argument gives a physical subsequential limit, so the attained minimum inherits the strict lower certificate. Recovery gives the upper limit for the triple with that minimum. Along any sequence realizing the lower limit, choose alternatives within $o(T^5)$ of the infimum. Their scaled residuals at the triple are bounded, so the outer-limit argument applies. The strict fast comparison and the least-maximum norm formula give the claimed lower limit.
+
+For time design take
+
+$$
+P_k(a)=a^3\big((a-1/2)(a-1)+k(15-14a)\big).
+$$
+
+The maximizing formula for $k$ gives $P_k(a)\ge-k$ on $I$, and $P_k(1/2)=P_k(1)=k$. With $y=1-a$, the denominator of the ratio after canceling $a^3$ is at least $2+14y$, and $68(1/2-y)y<2+14y$ since $20y-68y^2\le25/17$. Hence $k<1/68$. Now
+
+$$
+P_k(a)-k=(a-1/2)(1-a)\big(-a^3+2k(7a^2+3a+1)\big).
+$$
+
+The bracket is strictly negative since $2(7a^2+3a+1)/a^3\le68$ on $I$. The derivative of the ratio defining $k$ has the sign of $28a^6-60a^5+31a^4-10a^2+12a-3$. At $a=(t+1/2)/(1+t)$, multiplying that polynomial by $32(1+t)^6$ gives ascending coefficients $(32,256,702,816,288,-128,-64)$. Descartes' rule and opposite endpoint signs give a unique interior maximizer, where $P_k(a_{\rm mid})=-k$. Since the coefficient of $a^5$ in $P_k$ is one, any triple satisfies $1=\ell(P_k)\le k\sum_i|\ell_i|$. Equality requires the three alternation points, and they attain it because the signs of $\ell_i$ in increasing order are $+,-,+$.
+
+Below the threshold use the optimal triple and accept the target exactly when each reading lies in its target noise ball. The distance limit ensures every alternative has a query with distance greater than $2\delta$, giving both errors zero. Above the threshold take an attaining bounded realization for $\mu$ and recover the profile $P_k(a)\Phi(U_3)$ using the free $a^3,a^4$ coefficients. Uniform recovery gives a single physical alternative $S_T$ with distance at most $2\delta$ on all of $I$. Under either hypothesis return the common midpoint at every queried horizon. The responses satisfy the per-query bound and are measurable. Coupling the query and decision seeds gives identical histories, stopping and decisions by induction. The two errors for this pair sum to one, so the separate worst-case errors have sum at least one and maximum at least $1/2$ for every test. A constant decision attains sum one and an independent fair coin attains maximum $1/2$. The same $T_0$ works for all $n\ge3$ because the upper test uses three queries and the midpoint rule works on the entire interval.
+
+The prefactor, physical recovery, quantitative certificates and adaptive threshold have ordinary mathematical proof status. The derivation and independent replay are recorded in the research files two-port-fixed-mass-leading-constant.txt and two-port-fixed-mass-leading-constant-audit.txt. The quantitative bounded-fiber estimate is recorded under the fixed-mass three-horizon frontier in the accompanying research ledger. The exact value of $\mu$, risk at critical equality, and the sharp constants for one or two randomized or adaptive queries remain open.
+
