@@ -1,0 +1,15 @@
+fingerprints:
+  raw_sha256: sha256:bcd6d555951dc6316660fedc60d0215c08d17b3ffcf1f92825863e9e962fffd8
+  normalized_sha256: sha256:bcd6d555951dc6316660fedc60d0215c08d17b3ffcf1f92825863e9e962fffd8
+cas_ref: sha256:bcd6d555951dc6316660fedc60d0215c08d17b3ffcf1f92825863e9e962fffd8
+coverage_gids:
+  - gid: D5/S3/Quantum/Jacobi/NeumannHeatGramianJet.first_reveal
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: 8f1ca9f2d4ed67c2e1bf3d49f9c0d252c179d200
+      module_statement_id: sha256:4a741a625b51b53b3ef9dd165c0658481470a3de835e5fdd600c93f8fae1863d
+      state_sha256: sha256:85fb21929e591b8cf807f15ad3113dddb8605ccddc6c2a19213424c1d144276b
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),6:Jacobi),21:NeumannHeatGramianJet),12:first_reveal)
+receipts:
+  unresolved_subitems: []

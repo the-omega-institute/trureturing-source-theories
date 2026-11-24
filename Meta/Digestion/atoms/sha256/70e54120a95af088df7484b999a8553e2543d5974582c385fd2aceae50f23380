@@ -1,0 +1,48 @@
+## 2. Ordered Gramian and exact inversion
+
+Let $A\ge0$ be self-adjoint on a real or complex Hilbert state space and let $B$ be a bounded map from the Hilbert port space $U$ into the state space. The load is $Bp$ and the observation is $B^*$. Write $\mu(D)=B^*E_A(D)B$ for the positive operator-valued spectral measure and $K(t)=B^*e^{-tA}B$ for the collocated kernel. The initial state is zero, the constraint is $\int_0^T p=0$ in $U$, and the effort is $\int_0^T\|p\|^2$. The vector constraint imposes zero integral at each port.
+
+After reversing time, the terminal map on the closed subspace of zero-mean inputs is $L_Tq=\int_0^T K(r)q(r)\,dr$. Put $M_T=T^{-1}\int_0^T K(r)\,dr$. Orthogonal projection onto the constraint subspace subtracts the mean, so $(L_T^*v)(r)=(K(r)-M_T)v$. Thus the Gramian and squared support function of the unit-effort outputs are
+
+$$
+W(T)=L_TL_T^*=\int_0^T (K(r)-M_T)^2\,dr,\qquad
+\sup_{\|q\|_2\le1}\operatorname{Re}\langle v,L_Tq\rangle=\sqrt{\langle v,W(T)v\rangle}.
+$$
+
+Squaring and polarizing the support function recovers $W$ from the extended minimum effort. In finite port dimension $\operatorname{ran}W=\operatorname{ran}L_T$ by taking orthogonal complements of $\ker L_T^*$. On that range the minimum effort is $\langle y,W^\dagger y\rangle$, attained by $L_T^*W^\dagger y$. This control reaches $y$ and is orthogonal to $\ker L_T$, which proves minimality. The effort is infinite off the range. The support-function argument works in arbitrary port dimension and allows nonclosed range.
+
+The integrals exist in operator norm as improper integrals at zero. The heat kernel is bounded by $\|B\|^2$ there and norm-continuous at positive times by the uniform bound on $\lambda e^{-t\lambda}$. With $P=\int_0^T K(r)\,dr=TM_T$, expansion retains the ordered cross terms $-PM_T-M_TP$. Hence
+
+$$
+\begin{aligned}
+W(T)&=\int_0^T K(r)^2\,dr-TM_T^2,&
+M_T'&=(K(T)-M_T)/T,\\
+W'(T)&=K(T)^2-M_T^2-T(M_T'M_T+M_TM_T')\\
+&=K(T)^2-K(T)M_T-M_TK(T)+M_T^2=(M_T-K(T))^2 .
+\end{aligned}
+$$
+
+Since $F(T)=M_T-K(T)=\int\phi(T\lambda)\,\mu(d\lambda)$ with
+
+$$
+\phi(x)=\int_0^1 e^{-ux}\,du-e^{-x}=x\int_0^1 u e^{-ux}\,du,
+$$
+
+$F(T)$ is positive and is the unique positive square root of $W'(T)$. The function $\phi$ vanishes at zero and is strictly positive at every positive rate. Taking quadratic forms shows $\ker F(T)=\ker\mu((0,\infty))$. If $W(T)v=0$, the squared norm of $(K(r)-M_T)v$ integrates to zero and vanishes at $r=T$ by continuity. Conversely, on $\ker\mu((0,\infty))$ the response is constant in time. Thus $\ker W=\ker W'=\ker F$ at every positive horizon.
+
+Integrate $M_T'=-F(T)/T$ and use $K=M_T-F$. For $0<t\le H$ this gives
+
+$$
+K(t)-K(H)=\int_t^H F(s)\,\frac{ds}{s}-F(t)+F(H).
+$$
+
+The spectral theorem gives $K(H)\to\mu(\{0\})$ strongly as $H\to\infty$, and the averages converge to the same limit. The limit is in norm for finite port dimension. Sending $H$ to infinity recovers the positive-rate Laplace curve with an improper integral in the same topology. The zero atom cancels identically and can be supplied by a calibrated $B^*B$, by subtracting the recovered positive-rate mass. For a connected lumped path of known total length $L$, it is $\mathbf 1\mathbf 1^*/L$ at distinct vertex ports. On any connected capacity graph with two distinct observed vertices, the off-diagonal of $K(0)$ is zero, so the common stationary entry is the negative of the corresponding off-diagonal positive-rate mass. For one port the ambiguity occurs physically. Capacities and conductance $(1/2,1/2,1/4)$ and $(1/3,1/6,1/9)$ on a single edge give $1+e^{-t}$ and $2+e^{-t}$ at the first vertex, hence identical effort curves.
+
+For exact data on an open horizon interval, complexify real spaces when needed. The curve $W$ extends holomorphically to $\operatorname{Re}z>0$ by
+
+$$
+W(z)=z\left(\int_0^1 K(uz)^2\,du-\left(\int_0^1 K(uz)\,du\right)^2\right).
+$$
+
+Here $K(z)=B^*e^{-zA}B$ is holomorphic and bounded on the half-plane by spectral calculus. Truncating the $u$ integrals at $u=\varepsilon$ gives holomorphic terms converging locally uniformly as $\varepsilon\downarrow0$. The identity theorem therefore gives equality at all positive horizons from equality on the interval. For uniqueness of the positive-rate measure, push the difference of two candidates under $\lambda\mapsto e^{-\lambda}$ to $[0,1]$. Its scalar matrix elements integrate all positive powers to zero by the reconstructed transform at integer times, and integrate the constant to zero by the time-zero limit. Polynomial density determines each finite measure, hence the operator measure. Conversely, equal positive-rate measures leave only a constant difference in $K$, which vanishes upon centering. Finite networks have entire kernels and entire $W$. Exact continuation supplies uniqueness in this argument. The window estimate in §4 concerns a relative kernel on the observed time scale.
+

@@ -1,0 +1,15 @@
+### 7.1 A faithful product realization and a discontinuity
+
+Every finite law $\mu=\sum P_j\delta_{\lambda_j}$ with $P_j,\lambda_j>0$, $\sum P_j=1$ and $\sum P_j\lambda_j=1$ is the visible relative-modular law of faithful product states. Set $Q_j=P_j\lambda_j$, fix a faithful retained qubit state $\tau$, and take $\rho=\tau\otimes\operatorname{diag}P$ and $\sigma=\tau\otimes\operatorname{diag}Q$. The physical vector is $\sqrt\rho$ in Hilbert–Schmidt space and the generator is $\Delta(X)=\sigma X\rho^{-1}$. Only diagonal matrix units carry weight for this vector, and summing the retained weights yields exactly the given visible support and masses. Both reduced states are $\tau$ under the environmental partial trace $\Phi$. Its Petz map for $\sigma$ sends $X$ to $X\otimes\operatorname{diag}Q$. The relative entropy loss $\mathcal L$ and the unhalved trace-norm recovery error $\mathcal B$ are therefore
+
+$$
+K(t)=\int e^{-t\lambda}\,d\mu,\quad
+\mathcal L=D(\rho\Vert\sigma)-D(\Phi\rho\Vert\Phi\sigma)
+=\int-\log\lambda\,d\mu,\quad
+\mathcal B=\int|1-\lambda|\,d\mu .
+$$
+
+Choose distinct strictly positive binary probabilities $p,q$. Set $P=((1-\varepsilon)p,\varepsilon)$ and $Q_s=((1-s)q,s)$. Compare $s_i=\varepsilon e^{-c_i/\varepsilon}$ with $0<c_1<c_2$. The source state, retained state and partial trace are common to the two arms. With $D_0=D(p\Vert q)>0$, the entropy limits are $D_0+c_i$ because the flag contributes exactly $c_i$. The recovery error tends to $b=\|p-q\|_1>0$, so both $\mathcal B^2/\mathcal L$ and $\mathcal B/\sqrt{\mathcal L}$ have distinct limits in the two arms. The weighted sum of rate changes is $2|s_1-s_2|$, which bounds the kernel gap on $[0,H]$ after multiplication by $H$. Orthogonal centering gives a Gramian gap at most $2H$ times that kernel gap. The audit proves matching lower bounds of order $|s_1-s_2|$ for fixed nondegenerate interior windows, including anchored heat and the efforts for a fixed nonzero target. Thus the counterexample uses faithful states and a genuine partial trace, with three distinct visible rates for sufficiently small $\varepsilon$. The rates remain bounded above and the obstruction comes from the flag approaching rate zero.
+
+The same family has an exact copy experiment. Measuring the diagonal flag count gives $\operatorname{Bin}(N,s_i)$, and conditional preparation reconstructs the product state from the count with an arm-independent channel. When $Ns_1\to w<\infty$ and $s_2/s_1\to0$, the equal-prior optimal error tends to $e^{-w}/2$. For $Ns_1\to\infty$ the error tends to zero. This determines the binary transition at reciprocal data gap, including for collective tests.
+

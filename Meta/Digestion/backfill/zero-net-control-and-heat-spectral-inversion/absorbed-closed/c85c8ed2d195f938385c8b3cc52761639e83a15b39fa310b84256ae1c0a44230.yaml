@@ -1,0 +1,15 @@
+fingerprints:
+  raw_sha256: sha256:c85c8ed2d195f938385c8b3cc52761639e83a15b39fa310b84256ae1c0a44230
+  normalized_sha256: sha256:c85c8ed2d195f938385c8b3cc52761639e83a15b39fa310b84256ae1c0a44230
+cas_ref: sha256:c85c8ed2d195f938385c8b3cc52761639e83a15b39fa310b84256ae1c0a44230
+coverage_gids:
+  - gid: D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.finite_jet_injective_iff
+    target_statement_id: null
+    frozen_branch:
+      name: dev
+      commit: 8f1ca9f2d4ed67c2e1bf3d49f9c0d252c179d200
+      module_statement_id: sha256:15b7ca358550aa2a6d0053d263b956fc5fde00e617e8db1b945f2ae859f41183
+      state_sha256: sha256:442224f3ca30d5b95faca8b577da5539b5a2425923579bede7d24df27901a44f
+      declaration_name_key: ns(ns(ns(ns(ns(ns(n0,2:D5),2:S3),7:Quantum),6:Jacobi),25:NeumannHeatGramianInverse),24:finite_jet_injective_iff)
+receipts:
+  unresolved_subitems: []

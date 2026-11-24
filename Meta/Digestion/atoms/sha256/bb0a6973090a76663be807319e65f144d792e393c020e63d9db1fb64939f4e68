@@ -1,0 +1,14 @@
+### 6.2 Equal full port heat on a path and a triangle
+
+Take the path with lengths $(1/2,1/2)$, masses $M=\operatorname{diag}(1/4,1/2,1/4)$ and both conductances $2$. Its stiffness and a change of coordinates are
+
+$$
+S=\begin{pmatrix}2&-2&0\\-2&4&-2\\0&-2&2\end{pmatrix},
+\qquad
+U=\begin{pmatrix}1&0&0\\0&1/3&2/3\\0&4/3&-1/3\end{pmatrix}.
+$$
+
+Direct multiplication gives $U^*MU=M$, $U\mathbf1=\mathbf1$ and $U^*e_0=e_0$. The stiffness $S'=U^*SU$ has zero row sums and positive conductances $2/3,4/3,14/9$ on $01,02,12$. With the same masses and the same physical load at vertex $0$, the normalized generators are orthogonally conjugate by $M^{1/2}UM^{-1/2}$, which fixes $M^{-1/2}e_0$. Hence the full marked heat kernels agree, including the zero atom, and every zero-net effort agrees. Both port vectors are cyclic by the path argument and conjugacy. The graphs have two and three edges, respectively. Thus even full visibility and calibrated temperature data leave topology ambiguous in the class of positive-capacity networks.
+
+For physical vertex ports with known masses, the recovered positive-rate measure determines the rows of conductive flux by $\Phi_{ij}(t)=-m_iK'_{ij}(t)$. At shift $z>0$, the full calibrated temperature response is $E^*(S+zM)^{-1}E$, where $E$ selects the ports. It is the Stieltjes transform of the full visible law. Its inverse is the dynamic Schur admittance obtained by eliminating the interior vertices. These observables inherit the stated identification scope of the port data.
+

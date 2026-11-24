@@ -1,0 +1,10 @@
+**Theorem 9.3 (Formal full-jet injectivity criterion, finite_jet_injective_iff).** Fix natural numbers $n,d$, a real $L>0$ and independently arbitrary $c,e\in\mathbb R$. The implication below holds for every $p,q\in\mathrm{Path}(n)$ if and only if $D(n)\le d$.
+
+$$
+\mathcal L(p)=L,\quad \mathcal L(q)=L,\quad
+\bigl(w_j(p,c)=w_j(q,e)\text{ for every natural }j\le d\bigr)
+\quad\Longrightarrow\quad p=q.
+$$
+
+[Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L184-L204)
+
