@@ -262,3 +262,95 @@ In mass-scaled coordinates each arm has $J_h=h^{-1}w_hw_h^\top+B_h$, where $w_h=
 The short-window rate and the collapse argument were independently checked in ordinary mathematics in the research audit *Independent audit of sharp zero-net effort jets and short-time mesh stability*, §§3–4.
 
 ## 追加锚（本行以下为增补区）
+
+## 12. A Lean-frozen order gap at four calibrated ports
+
+**Theorem 12.1 (Exact linear and physical orders).** Take four labeled ports and four hidden vertices, all of unit mass. Give each pair on the same side conductance $\epsilon=1/1000$ and use the port-to-hidden conductance matrix
+
+$$
+A=\begin{pmatrix}1&0&0&1\\1&1&0&0\\0&1&1&0\\0&0&1&1\end{pmatrix}+\epsilon\mathbf 1\mathbf 1^\top .
+$$
+
+Let $S_*$ be the resulting conductance Laplacian and $E$ the port insertion. The full calibrated kernel $K_*(t)=E^\top e^{-tS_*}E$ has minimum linear order seven among finite real matrix realizations $C e^{-tR}B$ and minimum physical order eight among finite conductance networks with the same labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances. These orders include the stationary mode. For any such physical candidate with mass-normalized generator $S$, write $U_j=E^\top S^jE$ and $Q(S)=U_2-U_1^2$. The condition $|Q(S)_{ij}-Q(S_*)_{ij}|\le1/250$ for every port pair certifies only the physical lower bound of eight vertices.
+
+The port space plus the hidden hyperplane orthogonal to $(1,-1,1,-1)^\top$ is invariant under $S_*$. Restriction gives seven linear states. The four columns of $E$ and the first three columns of $S_*E$ are independent, as seen from the first three hidden rows of the latter columns. Their Gram is a rank-seven principal section of the moment Hankel matrix, which factors through the state space of any exact realization. Equality of heat curves fixes the moments by differentiation at zero.
+
+Block multiplication gives $Q(S)=(-S_{PH})(-S_{PH})^\top$ for the port-to-hidden block $S_{PH}$. At the target the entries of $Q$ are $2+q$ on the diagonal, $1+q$ on cycle edges and $q$ on opposite pairs, where $q=4\epsilon+4\epsilon^2=1001/250000$. Throughout the defect band the diagonals are at most $4$, the cycle entries at least $1$ and the opposite entries strictly below $1/36$. A nonnegative factor with at most three columns has entries at most $2$. Each cycle edge then has a column with both endpoints at least $1/6$. Two edges must use the same column, contributing at least $1/36$ to an opposite entry. Thus there are at least four hidden vertices. The complete target attains eight.
+
+The quantitative factor argument extends the classical triangle-free cycle support argument credited to Naomi Shaked-Monderer. The Lean declarations `cycle_gram_width` and `cycle_heat_order_gap` are frozen at the merge of PR #33916. [Shaked-Monderer, *Bounding the CP-rank by graph parameters*](https://doi.org/10.13001/1081-3810.3009) · [Merged PR](https://github.com/the-omega-institute/trureturing/pull/33916) · [Lean](https://github.com/the-omega-institute/trureturing/blob/4248548adc929a1ce1175238def85699e87af85c/D5/S3/Combinatorics/SpectralGraph/FourPortHeatRealization.lean) · [Blueprint](https://github.com/the-omega-institute/trureturing/blob/4248548adc929a1ce1175238def85699e87af85c/Blueprint/D5/S3/Combinatorics/SpectralGraph/FourPortHeatRealization.md) · [Frozen state](https://github.com/the-omega-institute/trureturing/blob/4248548adc929a1ce1175238def85699e87af85c/Golden/Frozen/state/D5/S3/Combinatorics/SpectralGraph/FourPortHeatRealization.lean.json)
+
+## 13. Ordinary two-port order and short-horizon tests
+
+### 13.1 A single rational target
+
+Use $\epsilon$ and $q$ from §12, now with two labeled unit-mass ports and four hidden coordinates. Add $\epsilon\mathbf 1$ to each of $(1,1,0,0)^\top$, $(0,1,1,0)^\top$, $(0,0,1,1)^\top$ and $(1,0,0,1)^\top$ to obtain $x,y,u,v$, respectively. Set
+
+$$
+\begin{gathered}
+X=[x,y],\quad P=uu^\top+vv^\top,\quad D=4I-P,\quad r=x+y,\quad s=u+v,\\
+g=D^{-1}r=\frac r4+\frac{1+2q}{4(1-2q)}s,\qquad
+C=\begin{pmatrix}1+x^\top g&-1\\-1&1+y^\top g\end{pmatrix},\qquad
+S=\begin{pmatrix}C&-X^\top\\-X&D\end{pmatrix}.
+\end{gathered}
+$$
+
+With $z=(1,1,g^\top)^\top>0$ and $Z=\operatorname{diag}(z)$, the masses are the diagonal entries of $Z^2$ and the conductance Laplacian is $ZSZ$. Indeed $Sz=0$ and every off-diagonal entry of $S$ is strictly negative. This specifies a complete rational six-vertex network.
+
+Its full kernel has minimum linear order five and minimum physical order six, with the same calibration and physical conventions as §12. The vectors $x,y,s$ span the hidden hyperplane perpendicular to $(1,-1,1,-1)^\top$. It is $D$-invariant and $Pr=(1+2q)s$. Thus $[E,SE,S^2E]$ spans the five-dimensional visible space, giving both a restriction and a rank-five Hankel bound. Any physical candidate of order at most five matching all the heat moments must have exactly five vertices. Identifying the Krylov columns by their Gram matrices gives a port-preserving isometry that intertwines the generators by shifting the powers of $S$. It transfers $\lambda_{\max}(D|_{\mathrm{span}(x,y,s)})=4$ to the candidate's hidden block $D'$. Then $P'=4I-D'$ is entrywise nonnegative, by positive semidefiniteness on the diagonal and the physical signs off the diagonal. The Gram of $x',y',P'y',P'x'$ equals that of $x,y,Py,Px$. Its diagonal is at most $(1+2q)^2(2+q)<4$, its cycle entries are at least $1$ and its opposite entries are $2q(1+q)<1/36$. The four-column obstruction of §12 excludes a factor on three hidden coordinates. By §2, exact $W$ on a positive open interval recovers the full $K$ within the calibrated physical class since $K(0)=I_2$. The same physical minimum applies to those effort data.
+
+### 13.2 First separating moments
+
+All alternatives below have at most five vertices, positive masses, the same labeled unit-mass ports and nonnegative conductances. In the free-total-mass class, matching the target through $U_4$ is impossible. Those moments fix the Gram of $[E,SE,S^2E]$ and give a port-preserving isometry intertwining $S$ on the span of $[E,SE]$. After identifying the hidden spaces with the target's visible hidden space, $X$ is fixed and the only possible change in $D$ is $D'=D+\alpha nn^\top$, where $n$ is a unit normal to $x,y$ there. The port edge is fixed by $C$ and full visibility excludes a component disjoint from both ports. Thus $D'$ is positive definite by Dirichlet energy. With $g'=D'^{-1}r$, conservation gives $X^\top g'=X^\top g=C\mathbf 1$, hence
+
+$$
+0=r^\top(g'-g)=-\alpha(n^\top g)(n^\top g').
+$$
+
+Here $n^\top g\ne0$ by the formula for $g$. If $n^\top g'=0$, then $Dg'=r$ and $g'=g$, a contradiction. Thus $\alpha=0$ and the exact obstruction applies.
+
+For a five-vertex match through $U_3$, use $x'=(1,b,0)^\top$, $y'=(0,b,1)^\top$, $b=\sqrt{1+q}$. Give $D'$ eigenvalues $3,\beta,f$ on $(1,0,-1)^\top$, $(1,0,1)^\top$ and $(0,1,0)^\top$, respectively. Put $A_r=r^\top Dr$, $R_r=r^\top D^{-1}r$ and choose
+
+$$
+f=\frac{A_r-2\beta}{4b^2},\qquad
+\frac2\beta+\frac{4b^2}{f}=R_r,\qquad 1<\beta<3.
+$$
+
+The left side crosses $R_r$ on $[1,3]$, with $f>3$ there. This follows from $21.95<A_r<22.1$ and $2<R_r<2.03$. The construction keeps $C$, $X^\top X$ and $X^\top D X$. The sum coupling has the prescribed squared norm and direct and inverse quadratic forms, and the difference coupling has eigenvalue $3$. These forms give the first three moments by block multiplication. The positive hidden ground vector is $(1/\beta,2b/f,1/\beta)^\top$.
+
+With total mass fixed to $2+g^\top g$, matching through $U_3$ is already impossible. The moments $U_1,U_2$ and the mass fix the Gram of $[X,g]$, which has rank three. The third moment fixes $X^\top D X$, and $Dg=X\mathbf 1$ fixes the other blocks of $[X,g]^\top D[X,g]$. The resulting isometry intertwines the hidden blocks on their visible spaces, implying the excluded exact match. To match through $U_2$, reuse the two columns $x',y'$ above and put $a=1/(1-2q)$ and $h=g^\top g=31376127001/30751504002$. Here $C\mathbf 1=a\mathbf 1$. Choose $w\in(1/4,1/2)$ with $2(a-bw)^2+w^2=h$, which exists by opposite signs of the difference at the endpoints. Then $g'=(a-bw,w,a-bw)^\top>0$ gives the required Gram of $[X',g']$. Rotate the plane of $(1,0,1)^\top$ and $(0,1,0)^\top$ slightly to increase the first direction's coordinate in both columns while retaining positive coordinates of $g'$. Both coupling columns become strictly positive. Using masses $g_i'^2$, port-to-hidden conductances $g_i'X'_{ij}$, port edge $1$ and any fixed strictly positive hidden conductances gives a complete same-mass match.
+
+### 13.3 Sharp noise scales and observation counts
+
+Observe the full matrix $W(t)$ of §2 at horizons $0<t\le T$, with additive error of norm at most $\delta$ per observation in a fixed matrix norm. Set $k=6$ for free total mass and $k=5$ for the target's known total mass. For any fixed finite operator-norm cap on the alternatives' normalized generators and any fixed $k-2$ distinct fractions in $(0,1]$, there exist $c,T_0>0$ such that the maximum observation distance from the target is at least $cT^k$ for every alternative and $0<T\le T_0$. Noise below half that separation permits uniform discrimination. When the class admits the matching alternative from §13.2, the pair has distance $O(T^k)$ uniformly on $[0,T]$. Its pointwise midpoint gives identical transcripts under either hypothesis for any finite adaptive design at $\delta\ge C T^k$, forcing maximal error at least $1/2$ even with randomization. This gives the sharp noise exponents.
+
+Writing $W_j=[t^j]W(t)$, the identity $W'=(\overline K-K)^2$ uses the coefficient $(-1)^{j+1}jU_j/((j+1)j!)$ of $t^j$ in $\overline K-K$. Hence $W_3=U_1^2/12$. For successive higher coefficients through $W_k$, the newly appearing moment enters by a nonzero multiple of its anticommutator with $U_1$. At the target $U_1$ is positive definite, so the Sylvester map is invertible. The coefficient vector $(W_3,\ldots,W_k)$ stays a positive distance from the capped alternative class. Otherwise a convergent subsequence of candidate matrices would match the prohibited moments. In the free-mass limit, rank five of the Hankel matrix forces full visibility. The positive ground vectors with port entries one cannot diverge, since normalizing a diverging subsequence would yield a nonzero nonnegative kernel vector vanishing at the ports. By the off-diagonal signs, its positive support would be a separate invisible block. The limiting ground vector is strictly positive by the same support argument. At fixed mass the ground vectors are bounded from the outset, and a zero hidden ground coordinate in the limit forces the corresponding row of $[X,g]$ to vanish, contradicting rank three. The weighted Vandermonde matrix on the chosen fractions now carries the coefficient gap to the data, with least singular value bounded below by a constant times $T^k$ and uniform remainder $O(T^{k+1})$.
+
+For free mass a cap of at least $7$ admits a complete local matching family. In the orthonormal sum and middle hidden directions insert off-diagonal $-\sqrt{2}\eta$ in the $\beta,f$ block and set $f=(A_r-2\beta+8b\eta)/(4b^2)$. This retains the direct form $A_r$. Varying $\beta$ smoothly retains the inverse form $R_r$, since at $\eta=0$ its derivative in $\beta$ is $-2/\beta^2+2/f^2<0$. A small $\eta>0$ makes all hidden conductances positive. The rotation of §13.2, applied also to the hidden block by conjugation, makes both port couplings positive. The initial matching generator has norm below $7$, leaving slack for both changes.
+
+To vary the moments near this complete match, prescribe nearby $(C,G,J)$ with $G=X^\top X$ and $J=X^\top D X$ and choose $X$ smoothly from its Gram. In the orthonormal frame of $XG^{-1/2}$ and its normal, the leading block of $D$ is $V=G^{-1/2}JG^{-1/2}$. Keep the last diagonal $d>0$ fixed and set $\nu=G^{-1/2}C\mathbf 1$, $\omega=V\nu-G^{1/2}\mathbf 1$. Conservation requires the cross block $\xi$ to satisfy $\xi\xi^\top\nu/d=\omega$. Its smooth solution is $\xi=\pm\sqrt d\,\omega/\sqrt{\nu^\top\omega}$ with the base sign. At the base $\nu^\top\omega>0$ because the ground vector has nonzero normal coordinate, which holds before perturbation since $\beta<f$ and persists for small changes. The strict signs persist, and the moment formulas and invertible Sylvester maps give free variation of $(W_3,W_4,W_5)$. At fixed mass, the positive definite Gram of $[X',g']$ admits positive factors for nearby blocks $X'^\top X'$ and $C\mathbf 1$ with its last entry fixed to $h$. Using those factors and the same hidden conductances gives free variation of $(W_3,W_4)$ under any cap strictly above the complete matching base's norm.
+
+For all sufficiently small $T$, any $k-3$ distinct horizons in $(0,T]$ can be matched exactly within the corresponding local family. The Newton divided differences of $W(t)/t^3$ at those nodes give the free coefficient vector plus an $O(T)$ error in value and first parameter derivative, uniformly even for clustered nodes. This follows by the mean-value formula for divided differences. Solving against the target divided differences by contraction gives the match. For any deterministic adaptive design with at most $k-3$ queries, use the nodes on its exact target transcript. The matching network reproduces that transcript. Under the stated cap slack, the minimum deterministic exact count is therefore four for free mass and three at fixed mass.
+
+One randomized query uses $t=aT$ with $a$ uniform on $[1/2,1]$ and accepts within $\delta$ of the target at that time. The type I error is zero. Uniformly for alternatives within the cap and fixed before the draw, with noise allowed to depend on the realized horizon, the type II error is at most
+
+$$
+\min\{1,C(\delta/T^k+T)^{1/(k-3)}\}.
+$$
+
+Indeed, dividing the true difference by $a^3T^k$ gives a polynomial in $a$ of degree at most $k-3$ plus $O(T)$. Some scalar entry polynomial has a coefficient uniformly bounded away from zero by the coefficient gap. Acceptance puts that entry in a sublevel set of size $O((\delta/T^k+T)^{1/(k-3)})$. Lagrange interpolation at $k-2$ points spaced proportionally to the measure of the set gives this bound. Thus for every fixed positive error tolerance one query allows noise proportional to $T^k$ for sufficiently small $T$. With exact data and any fixed finite alternative, the zero set of a nonzero analytic entry of the difference has measure zero, so this one-query test has zero error without a common cap.
+
+### 13.4 Uniform visible spectral tails
+
+The uniform upper guarantees also hold for a class of these alternatives with uniform integrability of the fourth visible moment for free mass or the third for fixed mass. For an orthonormal eigenbasis with rates $\lambda_j$ and port projections $v_j$, the precise condition for $m=4$ or $3$, respectively, is
+
+$$
+\lim_{L\to\infty}\ \sup_S\ \sum_{\lambda_j>L}\lambda_j^m\|v_j\|^2=0 .
+$$
+
+The trace weights sum to two. The Taylor remainder of $e^{-u}$ through degree $m$ is bounded by $C_m u^m\min(u,1)$ for $u\ge0$. Splitting the spectral sum at $L$ gives a uniform $o(t^m)$ heat remainder. Centering cancels $U_0$ and the centered kernel is $O(t)$ on a window of length $t$, so squaring in product order and integrating gives a uniform $o(T^{m+2})$ Gramian remainder. To retain the coefficient gap, a coefficient-matching sequence with an escaping eigenvalue would lose a rank-one term from its limiting rank-five Gram. At free mass the term comes from $(v_j,\lambda_j v_j,\lambda_j^2 v_j)$ and vanishes by the fourth visible tail. At fixed mass use the Gram of $[E,SE,z]$ and the term from $(v_j,\lambda_j v_j,\langle e_j,z\rangle)$, where $e_j$ is the eigenvector. Its ground coordinate is zero at every positive rate, and the visible coordinates vanish as the rate escapes. In both cases at most four terms remain, a contradiction. A bounded subsequence is excluded by the preceding compactness argument.
+
+Consequently the fixed designs still separate by at least $cT^k$ with $k=m+2$, and the random-horizon bound has a uniform $o(1)$ in place of $T$. The sharp lower noise bound requires the class to contain the matching alternative, and the deterministic count obstruction requires it to contain the corresponding local family.
+
+The two-port arguments above have independent mathematical review and exact rational replay of the underlying network. Lean formalization is pending and research priority remains unverified.
+
+## 追加锚（本行以下为增补区）
