@@ -1,0 +1,30 @@
+**定理 15.3（多时域随机观测的尖锐极小极大风险）。** Keep the rational six-vertex target $S_*$ of §13.1 and the actual full zero-net-current Gramian of §2. The alternative class $\mathcal S_m$ consists of the physical networks of Theorem 14.1 with at most five vertices, the same two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Set $m=3$ with free total mass and $m=2$ with total mass fixed at the target value $M=92879135005/30751504002$. The rates and conductances may be unbounded.
+
+In an experiment with at most $n$ queries, a measurable policy $\pi$ chooses each normalized horizon $a_i\in I=[1/2,1]$ using private randomness and the past queries and readings. It observes the full symmetric matrix $Y_i=W_S(a_iT)+e_i$ at time $a_iT$. The symmetric errors are measurable, may depend on the hypothesis, current horizon and past transcript, and satisfy $\|e_i\|_{\rm op}\le\delta$ at every query. The same network is used for all queries. The alternative may depend on $T,\delta$ and the policy and test, and is chosen before the private seed is drawn. With $\phi$ a measurable, possibly randomized decision, define
+
+$$
+\mathfrak R_{n,m}(T,\delta)=\inf_{\pi,\phi}
+\left(
+\sup_{e_*}\Pr_{S_*,e_*}^{\pi,\phi}(\mathrm{reject})
++\sup_{S\in\mathcal S_m,e_S}\Pr_{S,e_S}^{\pi,\phi}(\mathrm{accept})
+\right).
+$$
+
+For $1\le n\le m$ let
+
+$$
+E_{m,n}
+=\min_{\substack{k_1,\ldots,k_n\in\mathbb Z_{\ge1}\\ \sum_j k_j=m}}
+\sum_{j=1}^n \frac1{k_j}.
+$$
+
+There exist $c,C,T_0>0$, depending only on the target and mass class, such that for every $0<T<T_0$, every $\delta>0$ and $1\le n\le m$,
+
+$$
+c\,\min\{1,(\delta/T^{m+3})^{E_{m,n}}\}
+\ \le\ \mathfrak R_{n,m}(T,\delta)\
+\le\ C\,\min\{1,(\delta/T^{m+3})^{E_{m,n}}\}.
+$$
+
+The free-mass exponents at $n=1,2,3$ are $1/3,3/2,3$ on the scale $T^6$. The fixed-mass exponents at $n=1,2$ are $1/2,2$ on the scale $T^5$. Independent uniform draws in separated subintervals attain the upper orders with zero type I error. For $n\ge m+1$, $m+1$ fixed distinct horizons give zero risk whenever $0<T<T_0$ and $0\le\delta<c_0 T^{m+3}$ for a constant $c_0>0$.
+

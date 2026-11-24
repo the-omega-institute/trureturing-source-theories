@@ -1,0 +1,79 @@
+### 15.2 Uniform extraction of the slow moments
+
+Suppose the first estimate fails along a sequence $T\downarrow0$, with every prefix divided difference of $R$ equal to $o(T^m)$. Use the notation of §14.2, with the spectral rates $\lambda_j\ge0$, port weights $A_j=v_jv_j^\top$ summing to $I_2$, and $G(a)=W_S(aT)/T^3$. Then
+
+$$
+\begin{aligned}
+H(a)&=\sum_j\lambda_j A_j\int_0^1 u e^{-aT\lambda_j u}\,du,\\
+G'(a)&=a^2H(a)^2,\qquad Q_S(a)=\int_0^1 u^2 H(au)^2\,du .
+\end{aligned}
+$$
+
+The divided-difference product rule applied to $G-G_*=Ra^3$ gives
+
+$$
+(G-G_*)[a_0,\ldots,a_j]
+=\sum_{i=0}^j R[a_0,\ldots,a_i]\,[a_i,\ldots,a_j]a^3.
+$$
+
+The polynomial differences are uniformly bounded, so every prefix difference of $G-G_*$ is $o(T^m)$, including at repeated nodes. Thus $G(a_0)$ is bounded and the first difference of $G$ has a uniformly positive definite lower bound, since the target derivative converges uniformly on $I$ to $a^2U_{1,*}^2/4$.
+
+For $s\in I$ one has $H(1)\preceq H(s)\preceq s^{-2}H(1)$. By monotonicity on $(0,1]$ and positivity of the trace of products of positive semidefinite matrices,
+
+$$
+\operatorname{tr}G(a_0)\ge \frac{a_0^3}{3}\operatorname{tr}H(1)^2.
+$$
+
+This bounds $H(1)$ above. It then gives $H(s)^2\preceq\|H(s)\|_{\rm op}H(s)\preceq C_0 H(1)$ on $I$. Taking the average of $G'$ between $a_0,a_1$, or evaluating the derivative at a repeated node, yields a uniform lower bound on $H(1)$ as well. In particular $\kappa I_2\preceq H(1)\preceq B I_2$ along the sequence for some $\kappa,B>0$.
+
+Write $f=\operatorname{tr}H^2$ and $q=\operatorname{tr}Q_S$. All $(-1)^rH^{(r)}$ are positive semidefinite. Every term of $(-1)^rf^{(r)}$ in the trace product rule is nonnegative, and $q$ is completely monotone by its integral expression. The highest scalar Hermite difference of $q$ differs from the corresponding target difference by $o(T^m)$. The scalar Hermite mean-value theorem and the fixed target expansion give $(-1)^m q^{(m)}(\xi)=O(T^m)$ for some $\xi\in I$. The two endpoint terms of the trace product rule imply
+
+$$
+\begin{aligned}
+(-1)^m q^{(m)}(\xi)
+&=\int_0^1 u^{m+2}(-1)^m f^{(m)}(\xi u)\,du\\
+&\ge \frac{2\kappa}{m+3}\operatorname{tr}\big((-1)^m H^{(m)}(1)\big).
+\end{aligned}
+$$
+
+Here $H(\xi u)\succeq H(1)$ and $(-1)^m H^{(m)}(\xi u)\succeq(-1)^m H^{(m)}(1)$ by the spectral formula.
+
+Split the spectral sum at $x=T\lambda=1$, with slow rates satisfying $x\le1$. The multiplier of $A$ for a single mode in $(-1)^rH^{(r)}(a)$ is
+
+$$
+\lambda x^r\int_0^1 u^{r+1}e^{-axu}\,du .
+$$
+
+At $a=1,r=m$ this is at least $e^{-1}T^m\lambda^{m+1}/(m+2)$ on slow rates and at least $e^{-1}\lambda/((m+2)x^2)$ on fast rates, the latter by restriction to $u\le1/x$. For $x>1$ and $a\in I$ the multiplier for any fixed $r$ is at most $(r+1)!a^{-r-2}\lambda/x^2$. Consequently
+
+$$
+\operatorname{tr}U_{m+1}^{\rm slow}=O(1),
+\qquad H_{\rm fast}=O_{C^m(I)}(T^m).
+$$
+
+All lower slow moments are bounded using $\sum_j A_j=I_2$ and $\lambda^j\le 1+\lambda^{m+1}$ for $j\le m+1$. The scalar Taylor remainder of the exponential after differentiation through order $m$ gives a bound by a constant times $T^m\operatorname{tr}U_{m+1}^{\rm slow}$. Thus
+
+$$
+H(a)=\sum_{\ell=0}^{m-1}\frac{(-aT)^\ell}{\ell!(\ell+2)}
+U_{\ell+1}^{\rm slow}+O_{C^m(I)}(T^m).
+$$
+
+The ordered square truncated through degree $m-1$ in $aT$ has the same remainder bound. Integration of $G'=a^2 H^2$ from $1/2$ gives
+
+$$
+G(a)=K+\sum_{\ell=0}^{m-1} a^{\ell+3} T^\ell b_\ell
+       +O_{C^m(I)}(T^m),
+$$
+
+where $K$ is an additive constant and $b_\ell$ is the coefficient obtained by squaring the slow expansion and integrating the corresponding monomial. In particular $b_0=(U_1^{\rm slow})^2/12$, and every subsequent $b_\ell$ is the sum of a nonzero multiple of $U_1^{\rm slow}U_{\ell+1}^{\rm slow}+U_{\ell+1}^{\rm slow}U_1^{\rm slow}$ and a polynomial in lower slow moments. The integration constant may include contributions from the fast initial layer.
+
+The first through $m$-th prefix differences annihilate the constant and determine the coefficients of $a^3,\ldots,a^{m+2}$ by an invertible linear map, uniformly over the ordered node multisets in $I$. To see this, let $p$ be a linear combination of these powers in the kernel of that map. Then $p-p(a_0)$ has zeros at all the nodes counting multiplicity by Hermite interpolation. Repeated Rolle's theorem gives at least $m$ positive zeros counting multiplicity of $p'(a)=a^2r(a)$, where $\deg r\le m-1$. Hence $p'=0$ and $p=0$. The matrix of the map is continuous over the compact space of node multisets, so its inverse is uniformly bounded. At complete coalescence at $a$, its entries are $\binom{k}{j}a^{k-j}$ for $1\le j\le m$, $3\le k\le m+2$.
+
+Applying this inverse to $G-G_*$ and the bounded Hermite differences of the remainders gives $T^\ell(b_\ell-b_{\ell,*})=O(T^m)$ for $0\le\ell<m$. Dividing by the indicated powers of $T$, recovering the leading positive semidefinite square root and then solving successive Sylvester equations at the positive definite limit $C=U_{1,*}$ gives
+
+$$
+U_j^{\rm slow}\longrightarrow U_{j,*}\qquad(1\le j\le m).
+$$
+
+These estimates require only the uniform control on the positive observation interval and hold for arbitrary coalescence.
+

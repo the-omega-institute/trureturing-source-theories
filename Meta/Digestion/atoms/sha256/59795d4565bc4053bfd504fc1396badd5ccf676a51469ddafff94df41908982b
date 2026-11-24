@@ -1,0 +1,39 @@
+### 15.4 Sharp sublevel probabilities and physical contact
+
+**Theorem 15.2.** Let $a$ be uniform on $I$ and define
+
+$$
+P_T(\varepsilon)=\sup_S\Pr\big(\|W_S(aT)-W_*(aT)\|_{\rm op}\le\varepsilon\big),
+$$
+
+where the alternative is fixed before the draw. For all sufficiently small $T>0$ and every $\varepsilon\ge0$, uniformly in these two regimes,
+
+$$
+P_T(\varepsilon)\asymp
+\begin{cases}
+\min\{1,(\varepsilon/T^6)^{1/3}\},&\text{free total mass},\\
+\min\{1,(\varepsilon/T^5)^{1/2}\},&\text{total mass }M .
+\end{cases}
+$$
+
+The constants depend only on the target and mass regime. Complete physical five-vertex alternatives attain the lower orders by contact of order exactly $m$ at any prescribed center $a_0\in I$.
+
+For a sublevel set of positive Lebesgue length $l$ in $I$, choose $m+1$ points from it with minimum spacing at least $l/(4m)$. This is possible by successively removing intervals of radius $l/(4m)$, since $m$ such intervals remove at most $l/2$. Theorem 15.1 yields $\varepsilon\ge c T^{m+3}l^m$. The uniform probability equals $2l$, giving the claimed upper bound and zero probability at $\varepsilon=0$.
+
+For the lower bound use the strictly interior five-vertex charts of §13.3. In free mass the complete matching base allows nearby $(C,X^\top X,X^\top DX)$ and therefore $(U_1,U_2,U_3)$ by the construction there with positive masses and strict signs. The inverse-form root is simple since its derivative $-2/\beta^2+2/f^2$ is negative, and the hidden ground vector has a nonzero normal component to the two coupling columns. At fixed mass the positive definite Gram of $[X,g]$ allows nearby $C,X^\top X$ at fixed $g^\top g=M-2$, giving $(U_1,U_2)$ with strictly positive conductances. In each case the triangular moment-to-coefficient map with $W_3=C^2/12$ and the invertible Sylvester maps provides smooth physical coefficient coordinates $p=(W_3,\ldots,W_{m+2})$ in a neighborhood of the target tuple $p_0$.
+
+Let $F_p(t)=W_p(t)/t^3$ with analytic extension at zero. At $b=0$ the map
+
+$$
+p\longmapsto\left(\frac{F_p^{(j)}(b)}{j!}\right)_{j=0}^{m-1}
+$$
+
+is the identity in those coordinates. The parameterized implicit function theorem gives one smooth physical choice $p(b)$ for $b$ in a neighborhood of zero, with $p(0)=p_0$, such that these jets agree exactly with the target jets at $b$. Shrinking the parameter neighborhood gives a compact chart with a uniform bound on the $m$-th time derivative of $F_p-F_*$. Taking $b=a_0T$ and using Taylor's theorem gives, simultaneously for all $a,a_0\in I$ and sufficiently small $T$,
+
+$$
+\|W_{p(a_0T)}(aT)-W_*(aT)\|_{\rm op}
+\le C T^{m+3}|a-a_0|^m.
+$$
+
+These are actual complete five-vertex networks, with the required total mass in the calibrated class. Theorem 15.1 at $a_0=\cdots=a_m$ makes the first unmatched normalized derivative of order $m$ nonzero. The Gramian difference itself has contact of exactly that order by multiplication by $a^3T^3$. Taking $a_0=3/4$ gives a sublevel interval of length bounded below by a constant times $\min\{1,(\varepsilon/T^{m+3})^{1/m}\}$, proving attainment of the lower scale even at arbitrarily small positive $\varepsilon$ for fixed sufficiently small $T$. More generally the confluent separation shows that the common zeros of the full matrix difference in $I$, counted with common multiplicity, number at most $m$.
+

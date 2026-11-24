@@ -1,0 +1,20 @@
+**Uniform physical Hermite interpolation.** Fix $b_1,\ldots,b_n\in I$ and positive integers $k_j$ summing to $m$. Use the smooth physical coefficient charts of §15.4, with $p=(W_3,\ldots,W_{m+2})$ in a closed ball about the target coefficient tuple $p_0$ contained in the chart. They give complete five-vertex networks with positive hidden masses and conductances. The fixed-mass chart keeps the hidden squared ground-vector norm at $M-2$. Put $F_p(t)=W_p(t)/t^3$ with its analytic extension at zero, and use $F_*$ for the target. Sort the multiset of physical nodes $Tb_j$ with multiplicities $k_j$ as $s_1,\ldots,s_m$, adding multiplicities when centers coincide. The Newton data of a matrix function $F$ are
+
+$$
+\mathcal N(F)=(F[s_1],F[s_1,s_2],\ldots,F[s_1,\ldots,s_m]).
+$$
+
+For $0\le r<m$, the order-$r$ divided difference differs from $F_p^{(r)}(0)/r!$ by $O(T)$ uniformly on the ball. This follows entrywise from the Hermite mean-value formula and the uniform bounds for time derivatives on the compact chart. Applying the same estimate to the first parameter derivatives gives the $C^1$ bound $\mathcal N(F_p)=p+O_{C^1}(T)$. Likewise $\mathcal N(F_*)=p_0+O(T)$. For small $T$ the map $p\mapsto\mathcal N(F_*)-(\mathcal N(F_p)-p)$ maps the ball into itself and has Lipschitz constant at most $1/2$, uniformly over the node multiset. Its fixed point gives a physical $S$ with exactly matching Hermite jets at all the centers.
+
+For this interpolant there are uniform constants $c_2,C_2>0$ such that at every $a\in I$,
+
+$$
+c_2 T^{m+3}\prod_{j=1}^n|a-b_j|^{k_j}
+\ \le\ \|W_S(aT)-W_*(aT)\|_{\rm op}\
+\le\ C_2 T^{m+3}\prod_{j=1}^n|a-b_j|^{k_j}.
+$$
+
+For the upper estimate, take a unit vector $u$, put $g(s)=u^\top(F_p-F_*)(s)u$ and let $\omega(s)=\prod_j(s-Tb_j)^{k_j}$. At $t=aT$ off the centers, $g(s)-g(t)\omega(s)/\omega(t)$ has $m+1$ zeros counting multiplicity. Repeated Rolle gives $|g(t)|\le\sup_{[0,T]}|g^{(m)}|\,|\omega(t)|/m!$. The derivative bound is uniform over the ball and the unit vectors. Take the supremum of $|g(t)|$ over $u$ and multiply by $t^3$. At a center both sides vanish.
+
+For the reverse estimate at $a$ off the centers, append $a$ to the normalized center multiset and sort the $m+1$ nodes. The degree-at-most-$m$ Hermite interpolating polynomial of the matrix residual $R$ on these nodes has the form $D\prod_j(s-b_j)^{k_j}$ for a constant symmetric matrix $D$, because the center jets vanish. Its prefix divided differences coincide with those of $R$. The monic scalar product has uniformly bounded divided differences of orders $0,\ldots,m$ on $I$ by the bounds on its derivatives and the Hermite mean-value formula. Thus Theorem 15.1 implies $\|D\|_{\rm op}\ge c_3T^m$. Evaluating at $a$ and multiplying by $a^3T^3$, with $a^3\ge1/8$, proves the reverse estimate. Both constants are uniform through coalescence.
+

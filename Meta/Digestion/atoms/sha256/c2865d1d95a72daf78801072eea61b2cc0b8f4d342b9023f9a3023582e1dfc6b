@@ -1,0 +1,42 @@
+### 15.5 Exact minimax risk for arbitrary common laws
+
+**Theorem 15.3.** In the same one-horizon experiment let $\mu$ be any probability law on $I$, common to the two hypotheses and allowed to depend on $T$ and $\delta\ge0$. Observe both $a\sim\mu$ and the full symmetric matrix $Y=W_S(aT)+e(a)$, with measurable symmetric error $e$ satisfying $\|e(a)\|_{\rm op}\le\delta$ at every horizon. The target is the null hypothesis. Each hypothesis may use its own measurable error function, and the alternative and error functions may depend on $\mu,T,\delta$. The alternative is fixed before the draw, while its error function may respond to the realized horizon. For a possibly randomized test $\phi(a,Y)\in[0,1]$ giving the conditional probability of rejecting the target, define the sum of the two worst-case errors by
+
+$$
+\mathcal R_\mu(\phi)=
+\sup_{e_*}\mathbb E_\mu\phi(a,W_*(aT)+e_*(a))
++\sup_{S,e_S}\mathbb E_\mu\big[1-\phi(a,W_S(aT)+e_S(a))\big].
+$$
+
+For each such common law and every $T>0,\delta\ge0$ the exact minimax identity is
+
+$$
+\inf_\phi\mathcal R_\mu(\phi)
+=\sup_S\mu\{a\in I:\|W_S(aT)-W_*(aT)\|_{\rm op}\le2\delta\}.
+$$
+
+In particular for all sufficiently small $T>0$ and all $\delta\ge0$,
+
+$$
+\inf_\mu\inf_\phi\mathcal R_\mu(\phi)\asymp
+\begin{cases}
+\min\{1,(\delta/T^6)^{1/3}\},&\text{free total mass},\\
+\min\{1,(\delta/T^5)^{1/2}\},&\text{total mass }M .
+\end{cases}
+$$
+
+Uniform sampling with the target-feasibility threshold test attains the optimal order, with type I error zero. The same orders hold within a factor of two for risk defined as the maximum of the two worst-case errors.
+
+To prove the identity, fix an alternative $S$ and let $D_S$ be the closed overlap set where the matrix distance is at most $2\delta$. On $D_S$ choose the midpoint of the two exact matrices as the common observation, and on its complement return the respective exact matrices. These two measurable error functions satisfy the pointwise bounds. At each common observation the conditional rejection probability under the target plus the conditional acceptance probability under the alternative is one, even when the test uses private randomization. Integration under the common law gives risk at least $\mu(D_S)$ on taking the separate worst cases. Taking the supremum over $S$ gives the lower bound, whether or not that supremum has a maximizer. Conversely accept the target exactly when $\|Y-W_*(aT)\|_{\rm op}\le\delta$. Its type I error is zero and type II error is possible only on $D_S$ by the triangle inequality. The midpoint choice attains $\mu(D_S)$ for each $S$, proving equality and giving an actual minimizing test for each law.
+
+For any law and $\delta>0$ take the uniform physical contact bound of §15.4 and set
+
+$$
+h=\min\left\{\frac14,
+ \left(\frac{2\delta}{CT^{m+3}}\right)^{1/m}\right\}.
+$$
+
+Partition $I$ into $N=\lceil 1/(4h)\rceil$ disjoint Borel intervals of length at most $2h$, assigning each boundary point once. Some interval has mass at least $1/N\ge2h$. Choose its midpoint $a_0$ and the corresponding physical contact network before drawing $a$. On the entire chosen interval its distance from the target is at most $2\delta$. The exact identity gives risk at least $2h$. This includes atomic and mixed laws and all laws depending on $T,\delta$. Theorem 15.2 at $\varepsilon=2\delta$ gives the matching upper order for the uniform law, including zero noise. For maximum risk, each test's maximum of the two worst-case errors lies between half their sum and their sum.
+
+The confluent separation, exact physical contact, sublevel estimates and common-law minimax statements have independent ordinary mathematical review, including exact rational checks of the target's Hankel and calibrated Gram ranks and the determinant of §14.3. The merged Lean declaration `D5.S3.Combinatorics.SpectralGraph.TwoPortHeatRealization.exact_order_gap` establishes the exact order gap and obstruction to matching through $U_4$ used in the free-mass bounded limit. The fixed-mass argument above invokes the ordinary exact obstruction of §13.2. The confluent analytic and statistical results have ordinary mathematical proof status. Optimal multiplicative constants and limiting rescaled residual shapes remain open here. Research priority remains unverified. [Merged PR #33943](https://github.com/the-omega-institute/trureturing/pull/33943) · [Lean at merge cafdf6e69893f0728a0890878db457a8abe70d84](https://github.com/the-omega-institute/trureturing/blob/cafdf6e69893f0728a0890878db457a8abe70d84/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean)
+

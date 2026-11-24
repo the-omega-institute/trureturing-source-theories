@@ -1,0 +1,23 @@
+### 15.1 Uniform separation at coalescing horizons
+
+**Theorem 15.1.** Keep the rational six-vertex target of §13.1, its mass $M=92879135005/30751504002$ and the physical alternatives of Theorem 14.1, with at most five vertices, two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Use the actual full zero-net-current Gramian of §2. Put $m=3$ for free total mass and $m=2$ when the total mass equals $M$. For $a\in I=[1/2,1]$ and $T>0$ define
+
+$$
+Q_S(a)=\frac{W_S(aT)}{a^3T^3},\qquad R(a)=Q_S(a)-Q_*(a).
+$$
+
+There exist $c,T_0>0$ such that simultaneously for every alternative, every $0<T<T_0$ and every ordered multiset $a_0\le\cdots\le a_m$ in $I$,
+
+$$
+\max_{0\le j\le m}\|R[a_0,\ldots,a_j]\|_{\rm op}\ge cT^m.
+$$
+
+The brackets denote divided differences, extended continuously to repeated nodes by Hermite interpolation. In particular, for distinct nodes of minimum consecutive spacing $d>0$,
+
+$$
+\max_{0\le i\le m}\|W_S(a_iT)-W_*(a_iT)\|_{\rm op}
+\ge c' T^{m+3}d^m .
+$$
+
+Both estimates are uniform over the unrestricted physical class, with the competitor allowed to depend on $T$ and the node multiset.
+
