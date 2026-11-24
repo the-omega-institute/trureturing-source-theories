@@ -1,0 +1,5 @@
+source_id = "zero-net-control-and-heat-spectral-inversion"
+path = "docs/develop/theory/ZERO_NET_CONTROL_AND_HEAT_SPECTRAL_INVERSION.md"
+atomizer = "generic-v1"
+genre_registry_check = "no-registry"
+unregistered_genres = []

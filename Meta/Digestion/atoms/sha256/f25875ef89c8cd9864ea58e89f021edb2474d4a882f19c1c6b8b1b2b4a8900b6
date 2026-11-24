@@ -1,0 +1,9 @@
+### 3.1 Statement
+
+**Theorem 3.1.** Let $p,q$ be two paths of $n$ strictly positive edge lengths indexed by $0,\ldots,n-1$ from the marked endpoint. Suppose $0<k<n$, the lengths agree at every index $i<k$, and the lengths at index $k$ differ. For a path $p$, give each endpoint half the incident length as mass and each interior vertex half the sum of its incident lengths. With $M_p$ the diagonal mass matrix and $S_p$ the path stiffness with conductance reciprocal to edge length, put $J_p=M_p^{-1/2}S_pM_p^{-1/2}$ and $\mu_r(p)=(J_p^r)_{00}/m_0(p)$. In $\mathbb R[[X]]$ let $H_{p,c}=c+\sum_{r\ge0}(-1)^r\mu_r(p)X^r/r!$, where $c\in\mathbb R$, and let $\mathcal A$ divide the coefficient of degree $r$ by $r+1$. Put $\mathcal W(H)=X(\mathcal A(H^2)-(\mathcal A H)^2)$. For arbitrary independent real offsets $c,e$, the difference $D=\mathcal W(H_{p,c})-\mathcal W(H_{q,e})$ obeys
+
+$$
+[X^d]D=0\quad(d<2k+2),\qquad
+[X^{2k+2}]D=-\frac{\mu_1(p)(2k)\big(\mu_{2k}(p)-\mu_{2k}(q)\big)}{(2k+2)!}\ne0 .
+$$
+

@@ -1,0 +1,6 @@
+## 1. Scope and provenance
+
+At a collocated port, the energy of a zero-net terminal control records a time-centered Gramian. Its derivative recovers the average-minus-endpoint heat response by a positive operator square root. Exact data determine the visible positive-rate spectral measure. On positive-time windows the relative heat response has a dimension-free, sharp square-root modulus in uniform Gramian noise. Equal global heat traces can conceal distinct boundary responses, and even identical boundary responses can conceal different network topologies. In normalized finite relative-modular models, entropy is discontinuous without control of the small-rate logarithmic tail.
+
+This volume uses the repository’s `generic-v1` claim format and append anchor. It draws on the ordinary proofs and independent audits dated 24 November 2026, summarized below. This volume was composed by Codex from those materials using the source-theories writing template. The input proofs and their independent reviews were produced in separate workspace tasks. The manuscript preparation replayed the rational certificate and compares the formal claim with the reviewed Lean source. The formal-stage citation in §3 names the single declaration corresponding to the claim lead. The analytic, geometric and entropy arguments are ordinary mathematics.
+

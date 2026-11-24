@@ -1,0 +1,17 @@
+### 3.2 Proof of the formal statement
+
+Compress both normalized stiffness matrices to vertices $0,\ldots,k-1$, retaining their original diagonal entries. These compressions agree. The last retained diagonal uses the shared edge $k-1$, and each retained bond uses masses at retained vertices. A contribution to $(J^r)_{00}$ is a closed walk with steps of size at most one. A walk reaching $k$ takes at least $2k$ steps, and at length $2k$ there is exactly one, with $k$ steps out and $k$ back. All lower moments agree and the additional term at $2k$ is the product of the squares of the first $k$ bonds divided by the common $m_0$. If $\ell_i$ denotes the common length at index $i<k$, then the moment difference is
+
+$$
+\mu_{2k}(p)-\mu_{2k}(q)
+=\frac{1}{m_0}
+ \frac{\prod_{i=0}^{k-2}(J_p)_{i,i+1}^2}{\ell_{k-1}^2 m_{k-1}}
+ \left(\frac1{m_k(p)}-\frac1{m_k(q)}\right).
+$$
+
+The empty product is one. Because $k<n$, $m_k$ is the interior mass averaging edge $k-1$ with the differing edge. The reciprocals differ and the prefactor is positive. The shared linear moment is $\mu_1=1/(\ell_0m_0^2)>0$.
+
+The formal identity $(X\mathcal A G)'=G$ gives $X(\mathcal A H)'=H-\mathcal A H$. The product rule yields $\mathcal W(H)'=(\mathcal A H-H)^2$. A constant shift leaves $\mathcal A H-H$ unchanged and both Gramians have zero constant term. For $F_p=\mathcal A H_{p,c}-H_{p,c}$ and $F_q=\mathcal A H_{q,e}-H_{q,e}$, the derivative difference is $(F_p-F_q)(F_p+F_q)$. Its factors start in degrees at least $r=2k$ and $1$. Their coefficients at those degrees are $-r(\mu_r(p)-\mu_r(q))/((r+1)r!)$ and $\mu_1(p)$, respectively. Their product is the coefficient in degree $r+1$ of the derivative difference. Formal integration divides it by $r+2$ and fixes the constant at zero, proving the displayed formula and nonvanishing.
+
+The formal-stage counterpart is `D5.S3.Quantum.Jacobi.NeumannHeatGramianJet.first_reveal`. Its endpoint truncation is `EndpointMomentTruncation.first_omitted_moment`. The reviewed scoped Lean report for implementation commit `01a5b8d17a09d3bc853d9353de90f39aca626a1f` records a successful build and report, with axiom closure `Classical.choice`, `Quot.sound` and `propext` for the declaration. The PR head `412bdf4b690c7d162a3f308698ba9b2a06641682` carries the frozen-state artifact and has the same Lean source. The power series statement concerns the nonempty common prefix and arbitrary offsets. Section 5 gives the ordinary analytic interpretation. [Lean source at PR head](https://github.com/the-omega-institute/trureturing/blob/412bdf4b690c7d162a3f308698ba9b2a06641682/D5/S3/Quantum/Jacobi/NeumannHeatGramianJet.lean#L304) · [PR #33867](https://github.com/the-omega-institute/trureturing/pull/33867)
+

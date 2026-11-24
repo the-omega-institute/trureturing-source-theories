@@ -1,0 +1,19 @@
+### 6.1 Equal traces with strict boundary gaps
+
+For a lumped path let $C$ take right-minus-left differences, let $D=\operatorname{diag}(\ell)^{-1/2}CM^{-1/2}$ and write $J=D^*D$, $G=DD^*$. The positive spectra coincide by the maps $D$ and $D^*/\lambda$ on the $\lambda$-eigenspaces, and $J$ has one extra zero. The following length-one witness has equal traces in both degrees and different ordered meshes even up to reversal.
+
+Use four edges and fix $x_1=9/25$, $x_2=279/2000$ with one-based indexing. Write $z=(x_3,y_1,y_2,y_3)$ and complete both vectors to length one. If $a_i=(1/m_{i-1}+1/m_i)/\ell_i$ and $b_i=1/(m_i^2\ell_i\ell_{i+1})$, the characteristic polynomial of $G$ is obtained from $P_0=1$, $P_1=X-a_1$ and $P_i=(X-a_i)P_{i-1}-b_{i-1}P_{i-2}$. Let $f(z)$ be the four nonleading coefficients for $x$ minus those for $y$. The exact pair uses the unique zero of $f$ in the cube of radius $10^{-16}$ centered at the rational vector
+
+$$
+(0.411867180195067938755774546658,\
+ 0.407494358375467667844326708658,\
+ 0.033821168056731557146949179112,\
+ 0.351118664900040899673411760887).
+$$
+
+Writing $c$ for the center and $R=f'(c)^{-1}$, rational interval arithmetic verifies $\|Rf(c)\|_\infty<10^{-28}$ and $\sup\|I-Rf'(z)\|_\infty<10^{-6}$ on the cube. Thus $z\mapsto z-Rf(z)$ contracts the cube into itself. The fixed point gives exact spectral equality. All lengths exceed $3/100$ there, and $y_1>2/5$ exceeds both $x_1$ and $x_4$, with $x_4<1/10$. The separate small-path calculation recovers all paths with at most three edges at fixed total length up to reversal using the positive spectral invariants. Four is therefore the least edge count for this nonreflection collision.
+
+A unit impulse at the physical left vertex gives $h(0+)=2/\ell_1$ and $-h'(0+)=4/\ell_1^3$. The unforced vertex equation gives the rightward first-edge flux $\Phi=m_0(-h')$. An $M$-normalized eigenvector $u$ at $\lambda>0$ has edge partner $du/\sqrt\lambda$, where $d=\operatorname{diag}(\ell)^{-1}C$, with first entry $-m_0\sqrt\lambda\,u(0)$. Summing its squares gives the raw degree-one diagonal kernel $h^1_{11}(t)=m_0^2(-h'(t))$. For the certified pair, the spectral bound $\lambda<5000$ follows from $S\preceq4M/(3/100)^2$ for stiffness $S$. Together with $1/m_0<6$ it gives $|h^{(j)}(t)|\le6\cdot5000^j$. The initial gaps for $x$ minus $y$ in $h,-h',\Phi,h^1$ are bounded below by $5/9,33875/1458,475/162,5/18$, respectively. Their derivative bounds are $60000,300000000,75000000,18750000$. Each gap stays strictly positive on $0<t\le10^{-8}$. On this range, $h_x(s)-h_x(t)>h_y(s)-h_y(t)>0$ for $0\le s<t$. Integrating the squares of those differences over the time square and dividing by $2T$ gives $W_x(T)>W_y(T)$ and strictly smaller effort for $x$ at every such horizon and nonzero target.
+
+There is also a growing reflected family at a fixed physical left port. Fix $b\in(0,1)$ and use edge lengths $(bh,h,\ldots,h)$ and the reverse, with $h=L/(n-1+b)$. At $t=\tau h^2$ the marked vertex heat gap is $h^{-1}(c_b(\tau)+O(n^{-N}))$ for every fixed $N$, uniformly on compact scaled-time intervals. Here $c_b$ is the difference of the half-line kernels with and without the first-cell defect. In scaled Jacobi coordinates the operators have uniformly bounded norm and every fixed endpoint power agrees with its half-line analogue once the far boundary is outside the walk range. The exponential tail gives the stated error, including after any fixed number of scaled-time derivatives. Since $c_b(0)=2(b^{-1}-1)>0$, a fixed positive interval has a gap of order $h^{-1}$. The two traces remain equal by reflection. The signed endpoint heat gap has one crossing, while the short-left-cell path has strictly smaller squared zero-net effort at every positive horizon. The all-horizon comparison uses the positive primitive of the signed heat gap and the single sign change to order the centered roots $F$. This family quantifies the trace failure at the mesh time scale.
+
