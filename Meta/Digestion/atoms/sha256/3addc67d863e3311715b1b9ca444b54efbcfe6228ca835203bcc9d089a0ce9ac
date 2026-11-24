@@ -1,0 +1,80 @@
+### 15.3 Exclusion of escaping rates and bounded limits
+
+At free mass $m=3$. The limiting shifted Hankel matrix
+
+$$
+\begin{pmatrix}U_{1,*}&U_{2,*}\\U_{2,*}&U_{3,*}\end{pmatrix}
+$$
+
+is positive definite of rank four as in §14.2. An escaping rate either gives no row in the slow Hankel factor or contributes a row of squared norm $(\lambda+\lambda^3)\|v\|^2=O(1/\lambda)$ by the fourth slow moment bound. At least one rate is zero by the physical ground equation, so the escape would leave at most three nonvanishing positive-rate rows. This contradicts the limiting rank four.
+
+For fixed mass $m=2$, suppose some rates escape. Pass to a subsequence with fixed dimension, convergent eigenbasis and every rate either convergent and finite or tending to infinity. Write $P$ for the projector onto the limiting finite-rate modes, $L$ for their generator, $B=PE$ and $z$ for the limit of the ground vectors of squared norm $M$. The bounded third slow moment makes the first two moment contributions of slow escaping modes vanish. Thus $B^\top LB=C$ and $B^\top L^2B=U_{2,*}$. Also $Pz=z$, $Lz=0$, $B^\top z=\mathbf 1$ and $z^\top z=M$. If every escaping visible weight tends to zero, then $B^\top B=I_2$. The Gram of $[B,LB,z]$ equals the rank-five target Gram of $[E,S_*E,z_*]$, contradicting $\operatorname{rank}P\le4$.
+
+Otherwise an escaping atom has visible weight $w=\|v\|^2$ bounded away from zero along a subsequence. It must be fast by the third slow moment bound. The contribution of this atom's self term to $(-1)^m q^{(m)}(\xi)$ is bounded below by
+
+$$
+c_m\lambda^2 w^2 x^m\int_0^{1/x}u^{m+2}\,du
+=c'_m\frac{w^2}{T^3\lambda},
+\qquad x=T\lambda>1 .
+$$
+
+Indeed on the integration interval the exponential factors in the self term and its derivatives have positive uniform lower bounds, and all other signed trace pair terms are nonnegative. As $m=2$, the bound $q^{(2)}(\xi)=O(T^2)$ forces $\lambda\ge c_0T^{-5}$.
+
+Choose heat times tending to zero with their products with all escaping rates tending to infinity. The physical heat semigroups are entrywise nonnegative by the off-diagonal signs, and at these times they converge to $P$. Each nonzero support block of this symmetric nonnegative projection has rank one by Perron–Frobenius. Since $C\succ0$, the projected ports are independent and belong to distinct blocks, giving $B^\top B=\operatorname{diag}(b_1,b_2)$. The Schur complement of the lower block $\operatorname{diag}(U_{2,*},M)$ in the Gram of $[B,LB,z]$ is
+
+$$
+A=\operatorname{diag}(b_1,b_2)-CU_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top .
+$$
+
+By §14.3 its off-diagonal lies strictly between $-72/10000$ and $-70/10000$. The Gram has rank at least four, so $\operatorname{rank}P=4$ in dimension five with exactly one escaping mode. Write $P=I-uu^\top$ for its limiting unit eigenvector $u$. Entrywise nonnegativity implies $u_i u_j\le0$ for $i\ne j$, hence at most two nonzero coordinates. Visible escape, $B^\top B$ diagonal and both projected ports nonzero force the support to consist of one port and one hidden coordinate. By target symmetry choose the first port. Then $b_2=1$, the Schur complement has rank one, and with
+
+$$
+h=(A_{22},-A_{12})^\top,\qquad \gamma=U_{2,*}^{-1}Ch,
+$$
+
+the Gram kernel identity gives $Bh=LB\gamma+z(\mathbf1^\top h/M)$. Applying $B^\top L^2$ gives $U_3^{\rm finite}\gamma=U_{2,*}h$ with $U_3^{\rm finite}=B^\top L^3B$.
+
+For this unique fast mode let $A_f$ denote its port weight at each member of the sequence and $H_f$ its term in $H$. For all $a>0$, $a^2\|H_f(a)\|_{\rm op}\le \|A_f\|_{\rm op}/(T^2\lambda)=O(T^3)$. The finite-rate terms are uniformly bounded down to zero and the mixed terms integrated in $G$ are therefore $O(T^3)$, with the same bound through two derivatives on $I$ by differentiation of the bulk integrand. The integral of the fast self term over $[0,\infty)$ is
+
+$$
+K_T=\frac{A_f^2}{T^3\lambda}
+\int_0^\infty b^2\left(\int_0^1 u e^{-bu}\,du\right)^2 db
+=\frac{A_f^2}{2T^3\lambda}.
+$$
+
+The last integral is $1/2$ by integration by parts using $1-(1+b)e^{-b}$. The tail from $a$ to infinity is $O_{C^2(I)}(T^6)$ by the fast derivative bounds and integration of the bound $O(1/(b^2T^4\lambda^2))$ for the self integrand at normalized horizon $b\ge a$. Along a subsequence $T^{-2}K_T\to s e_1e_1^\top$ for $s\ge0$. This term contributes $K_T a^{-3}$ to $Q_S$, with the mixed terms and tail still $O_{C^2(I)}(T^3)$ in total.
+
+For the actual bounded-rate moments at each member of the sequence, denoted $U_j^{\rm fin}$, the finite-rate contribution to $Q_S$ is
+
+$$
+\frac{(U_1^{\rm fin})^2}{12}
+-aT\frac{U_1^{\rm fin}U_2^{\rm fin}+U_2^{\rm fin}U_1^{\rm fin}}{24}
++a^2T^2\left(
+\frac{U_1^{\rm fin}U_3^{\rm fin}+U_3^{\rm fin}U_1^{\rm fin}}{80}
++\frac{(U_2^{\rm fin})^2}{45}\right)
++O_{C^2(I)}(T^3).
+$$
+
+Taking the second prefix difference of $R$ eliminates the constant and linear finite-rate terms. The value on $a^2$ is one and
+
+$$
+6\le [a_0,a_1,a_2]a^{-3}\le192
+$$
+
+by the scalar Hermite mean-value formula. Pass to a subsequence of node multisets and divide by $T^2$. The plateau and the $o(T^2)$ residual imply
+
+$$
+U_3^{\rm finite}=U_{3,*}-\tau\mathcal L_C^{-1}(e_1e_1^\top),
+\qquad \mathcal L_C(Y)=CY+YC,\quad \tau\ge0 .
+$$
+
+Combined with the Gram kernel identity, this requires proportionality of the vectors $U_{3,*}\gamma-U_{2,*}h$ and $\mathcal L_C^{-1}(e_1e_1^\top)\gamma$. In the rescaled symmetric and antisymmetric coordinates of §14.3 these are precisely the rational vectors $v,w$ evaluated there, with $h=(r_-,r_+)^\top$ and $\gamma_i=c_i h_i/m_i$ in those coordinates. Their determinant lies strictly between $-38/100000$ and $-36/100000$. The contradiction excludes the visible fast escape, including a vanishing limiting plateau and complete coalescence.
+
+It remains in each class to exclude bounded generators. Uniform expansion of $Q_S$ through degree $m$ in $aT$ has an $O_{C^m(I)}(T^{m+1})$ remainder. The prefix divided differences of the powers $1,a,\ldots,a^m$ form a triangular matrix with diagonal one and continuous entries on the compact multiset space. Its uniform inverse gives $T^\ell(W_{\ell+3,S}-W_{\ell+3,*})=o(T^m)+O(T^{m+1})$ for $0\le\ell\le m$. By the positive square root and Sylvester equations this forces $U_1,\ldots,U_{m+1}$ to converge to the target moments.
+
+In the free-mass case take a convergent matrix subsequence. The limiting Hankel rank five forces dimension five and full visibility from the ports. The ground vectors of the physical candidates have both port entries one. If their norms diverged, normalization would produce a nonzero nonnegative vector in the limiting kernel with zero port coordinates. The sign-compatible kernel equation implies that its positive support has no conductance edges to its complement, contradicting full visibility. The ground vectors are thus bounded. Their limit has port coordinates one and is strictly positive by the same support argument. The limiting generator with this ground vector is physical. The fourth-moment rigidity argument of §13.2 identifies the hidden block up to $\alpha nn^\top$ perpendicular to the two coupling columns, and the ground equations force $\alpha=0$. The four nonnegative vectors $x,y,(4I-D)y,(4I-D)x$ have a Gram of ordinary rank three and completely positive rank four, with opposite entry $251252001/31250000000<1/36$. The cycle obstruction of §12 requires four hidden coordinates, which excludes the five-state limit.
+
+In the fixed-mass case the ground vectors are already bounded by the mass. The limiting Gram of $[E,SE,z]$ has rank five, since it is fixed by $U_1,U_2,M$. If a coordinate of $z$ vanished, the sign-compatible kernel equation would make $E,SE,z$ all vanish there, contrary to rank five in dimension five. Hence the limiting ground vector is strictly positive. Matching $U_1,U_2,U_3$ and the mass identifies the rank-three hidden frame $[X,g]$ and its conserved compressed form $[X,g]^\top D[X,g]$ as in §13.2. The resulting port-preserving hidden isometry gives the excluded exact realization.
+
+This proves the first inequality of Theorem 15.1 by contradiction. For distinct nodes the ordinary divided-difference formula bounds all prefix differences by $C_m\max_i\|W_S(a_iT)-W_*(a_iT)\|_{\rm op}/(T^3d^m)$ since $a_i\ge1/2$ and $d\le1$. The second inequality follows.
+

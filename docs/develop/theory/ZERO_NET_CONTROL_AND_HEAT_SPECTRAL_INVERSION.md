@@ -475,3 +475,340 @@ A single random horizon $t=aT$, with $a$ uniform on $[1/2,1]$, also suffices for
 The unrestricted separation and statistical conclusions, including the fixed-mass three-horizon argument, have independent ordinary mathematical review. The rational determinant has been verified by exact arithmetic. Research priority remains unverified.
 
 ## 追加锚（本行以下为增补区）
+
+## 15. Confluent two-port separation and optimal one-horizon random design
+
+### 15.1 Uniform separation at coalescing horizons
+
+**Theorem 15.1.** Keep the rational six-vertex target of §13.1, its mass $M=92879135005/30751504002$ and the physical alternatives of Theorem 14.1, with at most five vertices, two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Use the actual full zero-net-current Gramian of §2. Put $m=3$ for free total mass and $m=2$ when the total mass equals $M$. For $a\in I=[1/2,1]$ and $T>0$ define
+
+$$
+Q_S(a)=\frac{W_S(aT)}{a^3T^3},\qquad R(a)=Q_S(a)-Q_*(a).
+$$
+
+There exist $c,T_0>0$ such that simultaneously for every alternative, every $0<T<T_0$ and every ordered multiset $a_0\le\cdots\le a_m$ in $I$,
+
+$$
+\max_{0\le j\le m}\|R[a_0,\ldots,a_j]\|_{\rm op}\ge cT^m.
+$$
+
+The brackets denote divided differences, extended continuously to repeated nodes by Hermite interpolation. In particular, for distinct nodes of minimum consecutive spacing $d>0$,
+
+$$
+\max_{0\le i\le m}\|W_S(a_iT)-W_*(a_iT)\|_{\rm op}
+\ge c' T^{m+3}d^m .
+$$
+
+Both estimates are uniform over the unrestricted physical class, with the competitor allowed to depend on $T$ and the node multiset.
+
+### 15.2 Uniform extraction of the slow moments
+
+Suppose the first estimate fails along a sequence $T\downarrow0$, with every prefix divided difference of $R$ equal to $o(T^m)$. Use the notation of §14.2, with the spectral rates $\lambda_j\ge0$, port weights $A_j=v_jv_j^\top$ summing to $I_2$, and $G(a)=W_S(aT)/T^3$. Then
+
+$$
+\begin{aligned}
+H(a)&=\sum_j\lambda_j A_j\int_0^1 u e^{-aT\lambda_j u}\,du,\\
+G'(a)&=a^2H(a)^2,\qquad Q_S(a)=\int_0^1 u^2 H(au)^2\,du .
+\end{aligned}
+$$
+
+The divided-difference product rule applied to $G-G_*=Ra^3$ gives
+
+$$
+(G-G_*)[a_0,\ldots,a_j]
+=\sum_{i=0}^j R[a_0,\ldots,a_i]\,[a_i,\ldots,a_j]a^3.
+$$
+
+The polynomial differences are uniformly bounded, so every prefix difference of $G-G_*$ is $o(T^m)$, including at repeated nodes. Thus $G(a_0)$ is bounded and the first difference of $G$ has a uniformly positive definite lower bound, since the target derivative converges uniformly on $I$ to $a^2U_{1,*}^2/4$.
+
+For $s\in I$ one has $H(1)\preceq H(s)\preceq s^{-2}H(1)$. By monotonicity on $(0,1]$ and positivity of the trace of products of positive semidefinite matrices,
+
+$$
+\operatorname{tr}G(a_0)\ge \frac{a_0^3}{3}\operatorname{tr}H(1)^2.
+$$
+
+This bounds $H(1)$ above. It then gives $H(s)^2\preceq\|H(s)\|_{\rm op}H(s)\preceq C_0 H(1)$ on $I$. Taking the average of $G'$ between $a_0,a_1$, or evaluating the derivative at a repeated node, yields a uniform lower bound on $H(1)$ as well. In particular $\kappa I_2\preceq H(1)\preceq B I_2$ along the sequence for some $\kappa,B>0$.
+
+Write $f=\operatorname{tr}H^2$ and $q=\operatorname{tr}Q_S$. All $(-1)^rH^{(r)}$ are positive semidefinite. Every term of $(-1)^rf^{(r)}$ in the trace product rule is nonnegative, and $q$ is completely monotone by its integral expression. The highest scalar Hermite difference of $q$ differs from the corresponding target difference by $o(T^m)$. The scalar Hermite mean-value theorem and the fixed target expansion give $(-1)^m q^{(m)}(\xi)=O(T^m)$ for some $\xi\in I$. The two endpoint terms of the trace product rule imply
+
+$$
+\begin{aligned}
+(-1)^m q^{(m)}(\xi)
+&=\int_0^1 u^{m+2}(-1)^m f^{(m)}(\xi u)\,du\\
+&\ge \frac{2\kappa}{m+3}\operatorname{tr}\big((-1)^m H^{(m)}(1)\big).
+\end{aligned}
+$$
+
+Here $H(\xi u)\succeq H(1)$ and $(-1)^m H^{(m)}(\xi u)\succeq(-1)^m H^{(m)}(1)$ by the spectral formula.
+
+Split the spectral sum at $x=T\lambda=1$, with slow rates satisfying $x\le1$. The multiplier of $A$ for a single mode in $(-1)^rH^{(r)}(a)$ is
+
+$$
+\lambda x^r\int_0^1 u^{r+1}e^{-axu}\,du .
+$$
+
+At $a=1,r=m$ this is at least $e^{-1}T^m\lambda^{m+1}/(m+2)$ on slow rates and at least $e^{-1}\lambda/((m+2)x^2)$ on fast rates, the latter by restriction to $u\le1/x$. For $x>1$ and $a\in I$ the multiplier for any fixed $r$ is at most $(r+1)!a^{-r-2}\lambda/x^2$. Consequently
+
+$$
+\operatorname{tr}U_{m+1}^{\rm slow}=O(1),
+\qquad H_{\rm fast}=O_{C^m(I)}(T^m).
+$$
+
+All lower slow moments are bounded using $\sum_j A_j=I_2$ and $\lambda^j\le 1+\lambda^{m+1}$ for $j\le m+1$. The scalar Taylor remainder of the exponential after differentiation through order $m$ gives a bound by a constant times $T^m\operatorname{tr}U_{m+1}^{\rm slow}$. Thus
+
+$$
+H(a)=\sum_{\ell=0}^{m-1}\frac{(-aT)^\ell}{\ell!(\ell+2)}
+U_{\ell+1}^{\rm slow}+O_{C^m(I)}(T^m).
+$$
+
+The ordered square truncated through degree $m-1$ in $aT$ has the same remainder bound. Integration of $G'=a^2 H^2$ from $1/2$ gives
+
+$$
+G(a)=K+\sum_{\ell=0}^{m-1} a^{\ell+3} T^\ell b_\ell
+       +O_{C^m(I)}(T^m),
+$$
+
+where $K$ is an additive constant and $b_\ell$ is the coefficient obtained by squaring the slow expansion and integrating the corresponding monomial. In particular $b_0=(U_1^{\rm slow})^2/12$, and every subsequent $b_\ell$ is the sum of a nonzero multiple of $U_1^{\rm slow}U_{\ell+1}^{\rm slow}+U_{\ell+1}^{\rm slow}U_1^{\rm slow}$ and a polynomial in lower slow moments. The integration constant may include contributions from the fast initial layer.
+
+The first through $m$-th prefix differences annihilate the constant and determine the coefficients of $a^3,\ldots,a^{m+2}$ by an invertible linear map, uniformly over the ordered node multisets in $I$. To see this, let $p$ be a linear combination of these powers in the kernel of that map. Then $p-p(a_0)$ has zeros at all the nodes counting multiplicity by Hermite interpolation. Repeated Rolle's theorem gives at least $m$ positive zeros counting multiplicity of $p'(a)=a^2r(a)$, where $\deg r\le m-1$. Hence $p'=0$ and $p=0$. The matrix of the map is continuous over the compact space of node multisets, so its inverse is uniformly bounded. At complete coalescence at $a$, its entries are $\binom{k}{j}a^{k-j}$ for $1\le j\le m$, $3\le k\le m+2$.
+
+Applying this inverse to $G-G_*$ and the bounded Hermite differences of the remainders gives $T^\ell(b_\ell-b_{\ell,*})=O(T^m)$ for $0\le\ell<m$. Dividing by the indicated powers of $T$, recovering the leading positive semidefinite square root and then solving successive Sylvester equations at the positive definite limit $C=U_{1,*}$ gives
+
+$$
+U_j^{\rm slow}\longrightarrow U_{j,*}\qquad(1\le j\le m).
+$$
+
+These estimates require only the uniform control on the positive observation interval and hold for arbitrary coalescence.
+
+### 15.3 Exclusion of escaping rates and bounded limits
+
+At free mass $m=3$. The limiting shifted Hankel matrix
+
+$$
+\begin{pmatrix}U_{1,*}&U_{2,*}\\U_{2,*}&U_{3,*}\end{pmatrix}
+$$
+
+is positive definite of rank four as in §14.2. An escaping rate either gives no row in the slow Hankel factor or contributes a row of squared norm $(\lambda+\lambda^3)\|v\|^2=O(1/\lambda)$ by the fourth slow moment bound. At least one rate is zero by the physical ground equation, so the escape would leave at most three nonvanishing positive-rate rows. This contradicts the limiting rank four.
+
+For fixed mass $m=2$, suppose some rates escape. Pass to a subsequence with fixed dimension, convergent eigenbasis and every rate either convergent and finite or tending to infinity. Write $P$ for the projector onto the limiting finite-rate modes, $L$ for their generator, $B=PE$ and $z$ for the limit of the ground vectors of squared norm $M$. The bounded third slow moment makes the first two moment contributions of slow escaping modes vanish. Thus $B^\top LB=C$ and $B^\top L^2B=U_{2,*}$. Also $Pz=z$, $Lz=0$, $B^\top z=\mathbf 1$ and $z^\top z=M$. If every escaping visible weight tends to zero, then $B^\top B=I_2$. The Gram of $[B,LB,z]$ equals the rank-five target Gram of $[E,S_*E,z_*]$, contradicting $\operatorname{rank}P\le4$.
+
+Otherwise an escaping atom has visible weight $w=\|v\|^2$ bounded away from zero along a subsequence. It must be fast by the third slow moment bound. The contribution of this atom's self term to $(-1)^m q^{(m)}(\xi)$ is bounded below by
+
+$$
+c_m\lambda^2 w^2 x^m\int_0^{1/x}u^{m+2}\,du
+=c'_m\frac{w^2}{T^3\lambda},
+\qquad x=T\lambda>1 .
+$$
+
+Indeed on the integration interval the exponential factors in the self term and its derivatives have positive uniform lower bounds, and all other signed trace pair terms are nonnegative. As $m=2$, the bound $q^{(2)}(\xi)=O(T^2)$ forces $\lambda\ge c_0T^{-5}$.
+
+Choose heat times tending to zero with their products with all escaping rates tending to infinity. The physical heat semigroups are entrywise nonnegative by the off-diagonal signs, and at these times they converge to $P$. Each nonzero support block of this symmetric nonnegative projection has rank one by Perron–Frobenius. Since $C\succ0$, the projected ports are independent and belong to distinct blocks, giving $B^\top B=\operatorname{diag}(b_1,b_2)$. The Schur complement of the lower block $\operatorname{diag}(U_{2,*},M)$ in the Gram of $[B,LB,z]$ is
+
+$$
+A=\operatorname{diag}(b_1,b_2)-CU_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top .
+$$
+
+By §14.3 its off-diagonal lies strictly between $-72/10000$ and $-70/10000$. The Gram has rank at least four, so $\operatorname{rank}P=4$ in dimension five with exactly one escaping mode. Write $P=I-uu^\top$ for its limiting unit eigenvector $u$. Entrywise nonnegativity implies $u_i u_j\le0$ for $i\ne j$, hence at most two nonzero coordinates. Visible escape, $B^\top B$ diagonal and both projected ports nonzero force the support to consist of one port and one hidden coordinate. By target symmetry choose the first port. Then $b_2=1$, the Schur complement has rank one, and with
+
+$$
+h=(A_{22},-A_{12})^\top,\qquad \gamma=U_{2,*}^{-1}Ch,
+$$
+
+the Gram kernel identity gives $Bh=LB\gamma+z(\mathbf1^\top h/M)$. Applying $B^\top L^2$ gives $U_3^{\rm finite}\gamma=U_{2,*}h$ with $U_3^{\rm finite}=B^\top L^3B$.
+
+For this unique fast mode let $A_f$ denote its port weight at each member of the sequence and $H_f$ its term in $H$. For all $a>0$, $a^2\|H_f(a)\|_{\rm op}\le \|A_f\|_{\rm op}/(T^2\lambda)=O(T^3)$. The finite-rate terms are uniformly bounded down to zero and the mixed terms integrated in $G$ are therefore $O(T^3)$, with the same bound through two derivatives on $I$ by differentiation of the bulk integrand. The integral of the fast self term over $[0,\infty)$ is
+
+$$
+K_T=\frac{A_f^2}{T^3\lambda}
+\int_0^\infty b^2\left(\int_0^1 u e^{-bu}\,du\right)^2 db
+=\frac{A_f^2}{2T^3\lambda}.
+$$
+
+The last integral is $1/2$ by integration by parts using $1-(1+b)e^{-b}$. The tail from $a$ to infinity is $O_{C^2(I)}(T^6)$ by the fast derivative bounds and integration of the bound $O(1/(b^2T^4\lambda^2))$ for the self integrand at normalized horizon $b\ge a$. Along a subsequence $T^{-2}K_T\to s e_1e_1^\top$ for $s\ge0$. This term contributes $K_T a^{-3}$ to $Q_S$, with the mixed terms and tail still $O_{C^2(I)}(T^3)$ in total.
+
+For the actual bounded-rate moments at each member of the sequence, denoted $U_j^{\rm fin}$, the finite-rate contribution to $Q_S$ is
+
+$$
+\frac{(U_1^{\rm fin})^2}{12}
+-aT\frac{U_1^{\rm fin}U_2^{\rm fin}+U_2^{\rm fin}U_1^{\rm fin}}{24}
++a^2T^2\left(
+\frac{U_1^{\rm fin}U_3^{\rm fin}+U_3^{\rm fin}U_1^{\rm fin}}{80}
++\frac{(U_2^{\rm fin})^2}{45}\right)
++O_{C^2(I)}(T^3).
+$$
+
+Taking the second prefix difference of $R$ eliminates the constant and linear finite-rate terms. The value on $a^2$ is one and
+
+$$
+6\le [a_0,a_1,a_2]a^{-3}\le192
+$$
+
+by the scalar Hermite mean-value formula. Pass to a subsequence of node multisets and divide by $T^2$. The plateau and the $o(T^2)$ residual imply
+
+$$
+U_3^{\rm finite}=U_{3,*}-\tau\mathcal L_C^{-1}(e_1e_1^\top),
+\qquad \mathcal L_C(Y)=CY+YC,\quad \tau\ge0 .
+$$
+
+Combined with the Gram kernel identity, this requires proportionality of the vectors $U_{3,*}\gamma-U_{2,*}h$ and $\mathcal L_C^{-1}(e_1e_1^\top)\gamma$. In the rescaled symmetric and antisymmetric coordinates of §14.3 these are precisely the rational vectors $v,w$ evaluated there, with $h=(r_-,r_+)^\top$ and $\gamma_i=c_i h_i/m_i$ in those coordinates. Their determinant lies strictly between $-38/100000$ and $-36/100000$. The contradiction excludes the visible fast escape, including a vanishing limiting plateau and complete coalescence.
+
+It remains in each class to exclude bounded generators. Uniform expansion of $Q_S$ through degree $m$ in $aT$ has an $O_{C^m(I)}(T^{m+1})$ remainder. The prefix divided differences of the powers $1,a,\ldots,a^m$ form a triangular matrix with diagonal one and continuous entries on the compact multiset space. Its uniform inverse gives $T^\ell(W_{\ell+3,S}-W_{\ell+3,*})=o(T^m)+O(T^{m+1})$ for $0\le\ell\le m$. By the positive square root and Sylvester equations this forces $U_1,\ldots,U_{m+1}$ to converge to the target moments.
+
+In the free-mass case take a convergent matrix subsequence. The limiting Hankel rank five forces dimension five and full visibility from the ports. The ground vectors of the physical candidates have both port entries one. If their norms diverged, normalization would produce a nonzero nonnegative vector in the limiting kernel with zero port coordinates. The sign-compatible kernel equation implies that its positive support has no conductance edges to its complement, contradicting full visibility. The ground vectors are thus bounded. Their limit has port coordinates one and is strictly positive by the same support argument. The limiting generator with this ground vector is physical. The fourth-moment rigidity argument of §13.2 identifies the hidden block up to $\alpha nn^\top$ perpendicular to the two coupling columns, and the ground equations force $\alpha=0$. The four nonnegative vectors $x,y,(4I-D)y,(4I-D)x$ have a Gram of ordinary rank three and completely positive rank four, with opposite entry $251252001/31250000000<1/36$. The cycle obstruction of §12 requires four hidden coordinates, which excludes the five-state limit.
+
+In the fixed-mass case the ground vectors are already bounded by the mass. The limiting Gram of $[E,SE,z]$ has rank five, since it is fixed by $U_1,U_2,M$. If a coordinate of $z$ vanished, the sign-compatible kernel equation would make $E,SE,z$ all vanish there, contrary to rank five in dimension five. Hence the limiting ground vector is strictly positive. Matching $U_1,U_2,U_3$ and the mass identifies the rank-three hidden frame $[X,g]$ and its conserved compressed form $[X,g]^\top D[X,g]$ as in §13.2. The resulting port-preserving hidden isometry gives the excluded exact realization.
+
+This proves the first inequality of Theorem 15.1 by contradiction. For distinct nodes the ordinary divided-difference formula bounds all prefix differences by $C_m\max_i\|W_S(a_iT)-W_*(a_iT)\|_{\rm op}/(T^3d^m)$ since $a_i\ge1/2$ and $d\le1$. The second inequality follows.
+
+### 15.4 Sharp sublevel probabilities and physical contact
+
+**Theorem 15.2.** Let $a$ be uniform on $I$ and define
+
+$$
+P_T(\varepsilon)=\sup_S\Pr\big(\|W_S(aT)-W_*(aT)\|_{\rm op}\le\varepsilon\big),
+$$
+
+where the alternative is fixed before the draw. For all sufficiently small $T>0$ and every $\varepsilon\ge0$, uniformly in these two regimes,
+
+$$
+P_T(\varepsilon)\asymp
+\begin{cases}
+\min\{1,(\varepsilon/T^6)^{1/3}\},&\text{free total mass},\\
+\min\{1,(\varepsilon/T^5)^{1/2}\},&\text{total mass }M .
+\end{cases}
+$$
+
+The constants depend only on the target and mass regime. Complete physical five-vertex alternatives attain the lower orders by contact of order exactly $m$ at any prescribed center $a_0\in I$.
+
+For a sublevel set of positive Lebesgue length $l$ in $I$, choose $m+1$ points from it with minimum spacing at least $l/(4m)$. This is possible by successively removing intervals of radius $l/(4m)$, since $m$ such intervals remove at most $l/2$. Theorem 15.1 yields $\varepsilon\ge c T^{m+3}l^m$. The uniform probability equals $2l$, giving the claimed upper bound and zero probability at $\varepsilon=0$.
+
+For the lower bound use the strictly interior five-vertex charts of §13.3. In free mass the complete matching base allows nearby $(C,X^\top X,X^\top DX)$ and therefore $(U_1,U_2,U_3)$ by the construction there with positive masses and strict signs. The inverse-form root is simple since its derivative $-2/\beta^2+2/f^2$ is negative, and the hidden ground vector has a nonzero normal component to the two coupling columns. At fixed mass the positive definite Gram of $[X,g]$ allows nearby $C,X^\top X$ at fixed $g^\top g=M-2$, giving $(U_1,U_2)$ with strictly positive conductances. In each case the triangular moment-to-coefficient map with $W_3=C^2/12$ and the invertible Sylvester maps provides smooth physical coefficient coordinates $p=(W_3,\ldots,W_{m+2})$ in a neighborhood of the target tuple $p_0$.
+
+Let $F_p(t)=W_p(t)/t^3$ with analytic extension at zero. At $b=0$ the map
+
+$$
+p\longmapsto\left(\frac{F_p^{(j)}(b)}{j!}\right)_{j=0}^{m-1}
+$$
+
+is the identity in those coordinates. The parameterized implicit function theorem gives one smooth physical choice $p(b)$ for $b$ in a neighborhood of zero, with $p(0)=p_0$, such that these jets agree exactly with the target jets at $b$. Shrinking the parameter neighborhood gives a compact chart with a uniform bound on the $m$-th time derivative of $F_p-F_*$. Taking $b=a_0T$ and using Taylor's theorem gives, simultaneously for all $a,a_0\in I$ and sufficiently small $T$,
+
+$$
+\|W_{p(a_0T)}(aT)-W_*(aT)\|_{\rm op}
+\le C T^{m+3}|a-a_0|^m.
+$$
+
+These are actual complete five-vertex networks, with the required total mass in the calibrated class. Theorem 15.1 at $a_0=\cdots=a_m$ makes the first unmatched normalized derivative of order $m$ nonzero. The Gramian difference itself has contact of exactly that order by multiplication by $a^3T^3$. Taking $a_0=3/4$ gives a sublevel interval of length bounded below by a constant times $\min\{1,(\varepsilon/T^{m+3})^{1/m}\}$, proving attainment of the lower scale even at arbitrarily small positive $\varepsilon$ for fixed sufficiently small $T$. More generally the confluent separation shows that the common zeros of the full matrix difference in $I$, counted with common multiplicity, number at most $m$.
+
+### 15.5 Exact minimax risk for arbitrary common laws
+
+**Theorem 15.3.** In the same one-horizon experiment let $\mu$ be any probability law on $I$, common to the two hypotheses and allowed to depend on $T$ and $\delta\ge0$. Observe both $a\sim\mu$ and the full symmetric matrix $Y=W_S(aT)+e(a)$, with measurable symmetric error $e$ satisfying $\|e(a)\|_{\rm op}\le\delta$ at every horizon. The target is the null hypothesis. Each hypothesis may use its own measurable error function, and the alternative and error functions may depend on $\mu,T,\delta$. The alternative is fixed before the draw, while its error function may respond to the realized horizon. For a possibly randomized test $\phi(a,Y)\in[0,1]$ giving the conditional probability of rejecting the target, define the sum of the two worst-case errors by
+
+$$
+\mathcal R_\mu(\phi)=
+\sup_{e_*}\mathbb E_\mu\phi(a,W_*(aT)+e_*(a))
++\sup_{S,e_S}\mathbb E_\mu\big[1-\phi(a,W_S(aT)+e_S(a))\big].
+$$
+
+For each such common law and every $T>0,\delta\ge0$ the exact minimax identity is
+
+$$
+\inf_\phi\mathcal R_\mu(\phi)
+=\sup_S\mu\{a\in I:\|W_S(aT)-W_*(aT)\|_{\rm op}\le2\delta\}.
+$$
+
+In particular for all sufficiently small $T>0$ and all $\delta\ge0$,
+
+$$
+\inf_\mu\inf_\phi\mathcal R_\mu(\phi)\asymp
+\begin{cases}
+\min\{1,(\delta/T^6)^{1/3}\},&\text{free total mass},\\
+\min\{1,(\delta/T^5)^{1/2}\},&\text{total mass }M .
+\end{cases}
+$$
+
+Uniform sampling with the target-feasibility threshold test attains the optimal order, with type I error zero. The same orders hold within a factor of two for risk defined as the maximum of the two worst-case errors.
+
+To prove the identity, fix an alternative $S$ and let $D_S$ be the closed overlap set where the matrix distance is at most $2\delta$. On $D_S$ choose the midpoint of the two exact matrices as the common observation, and on its complement return the respective exact matrices. These two measurable error functions satisfy the pointwise bounds. At each common observation the conditional rejection probability under the target plus the conditional acceptance probability under the alternative is one, even when the test uses private randomization. Integration under the common law gives risk at least $\mu(D_S)$ on taking the separate worst cases. Taking the supremum over $S$ gives the lower bound, whether or not that supremum has a maximizer. Conversely accept the target exactly when $\|Y-W_*(aT)\|_{\rm op}\le\delta$. Its type I error is zero and type II error is possible only on $D_S$ by the triangle inequality. The midpoint choice attains $\mu(D_S)$ for each $S$, proving equality and giving an actual minimizing test for each law.
+
+For any law and $\delta>0$ take the uniform physical contact bound of §15.4 and set
+
+$$
+h=\min\left\{\frac14,
+ \left(\frac{2\delta}{CT^{m+3}}\right)^{1/m}\right\}.
+$$
+
+Partition $I$ into $N=\lceil 1/(4h)\rceil$ disjoint Borel intervals of length at most $2h$, assigning each boundary point once. Some interval has mass at least $1/N\ge2h$. Choose its midpoint $a_0$ and the corresponding physical contact network before drawing $a$. On the entire chosen interval its distance from the target is at most $2\delta$. The exact identity gives risk at least $2h$. This includes atomic and mixed laws and all laws depending on $T,\delta$. Theorem 15.2 at $\varepsilon=2\delta$ gives the matching upper order for the uniform law, including zero noise. For maximum risk, each test's maximum of the two worst-case errors lies between half their sum and their sum.
+
+The confluent separation, exact physical contact, sublevel estimates and common-law minimax statements have independent ordinary mathematical review, including exact rational checks of the target's Hankel and calibrated Gram ranks and the determinant of §14.3. The merged Lean declaration `D5.S3.Combinatorics.SpectralGraph.TwoPortHeatRealization.exact_order_gap` establishes the exact order gap and obstruction to matching through $U_4$ used in the free-mass bounded limit. The fixed-mass argument above invokes the ordinary exact obstruction of §13.2. The confluent analytic and statistical results have ordinary mathematical proof status. Optimal multiplicative constants and limiting rescaled residual shapes remain open here. Research priority remains unverified. [Merged PR #33943](https://github.com/the-omega-institute/trureturing/pull/33943) · [Lean at merge cafdf6e69893f0728a0890878db457a8abe70d84](https://github.com/the-omega-institute/trureturing/blob/cafdf6e69893f0728a0890878db457a8abe70d84/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean)
+
+### 15.6 Sharp minimax risk with several randomized horizons
+
+**定理 15.3（多时域随机观测的尖锐极小极大风险）。** Keep the rational six-vertex target $S_*$ of §13.1 and the actual full zero-net-current Gramian of §2. The alternative class $\mathcal S_m$ consists of the physical networks of Theorem 14.1 with at most five vertices, the same two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Set $m=3$ with free total mass and $m=2$ with total mass fixed at the target value $M=92879135005/30751504002$. The rates and conductances may be unbounded.
+
+In an experiment with at most $n$ queries, a measurable policy $\pi$ chooses each normalized horizon $a_i\in I=[1/2,1]$ using private randomness and the past queries and readings. It observes the full symmetric matrix $Y_i=W_S(a_iT)+e_i$ at time $a_iT$. The symmetric errors are measurable, may depend on the hypothesis, current horizon and past transcript, and satisfy $\|e_i\|_{\rm op}\le\delta$ at every query. The same network is used for all queries. The alternative may depend on $T,\delta$ and the policy and test, and is chosen before the private seed is drawn. With $\phi$ a measurable, possibly randomized decision, define
+
+$$
+\mathfrak R_{n,m}(T,\delta)=\inf_{\pi,\phi}
+\left(
+\sup_{e_*}\Pr_{S_*,e_*}^{\pi,\phi}(\mathrm{reject})
++\sup_{S\in\mathcal S_m,e_S}\Pr_{S,e_S}^{\pi,\phi}(\mathrm{accept})
+\right).
+$$
+
+For $1\le n\le m$ let
+
+$$
+E_{m,n}
+=\min_{\substack{k_1,\ldots,k_n\in\mathbb Z_{\ge1}\\ \sum_j k_j=m}}
+\sum_{j=1}^n \frac1{k_j}.
+$$
+
+There exist $c,C,T_0>0$, depending only on the target and mass class, such that for every $0<T<T_0$, every $\delta>0$ and $1\le n\le m$,
+
+$$
+c\,\min\{1,(\delta/T^{m+3})^{E_{m,n}}\}
+\ \le\ \mathfrak R_{n,m}(T,\delta)\
+\le\ C\,\min\{1,(\delta/T^{m+3})^{E_{m,n}}\}.
+$$
+
+The free-mass exponents at $n=1,2,3$ are $1/3,3/2,3$ on the scale $T^6$. The fixed-mass exponents at $n=1,2$ are $1/2,2$ on the scale $T^5$. Independent uniform draws in separated subintervals attain the upper orders with zero type I error. For $n\ge m+1$, $m+1$ fixed distinct horizons give zero risk whenever $0<T<T_0$ and $0\le\delta<c_0 T^{m+3}$ for a constant $c_0>0$.
+
+**Stratified upper bound.** Fix $n$ closed subintervals $I_j$ of $I$ with positive lengths and fixed positive gaps, and draw $a_j$ independently and uniformly in $I_j$. Accept exactly when $\|Y_j-W_*(a_jT)\|_{\rm op}\le\delta$ for every $j$. This always accepts the target. For a fixed alternative $S$, let $E_j=\{a\in I_j:\|W_S(aT)-W_*(aT)\|_{\rm op}\le2\delta\}$ and let $L_j$ be its Lebesgue length. Acceptance implies $a_j\in E_j$ for every $j$, even for errors depending on the past. Its probability is at most $\prod_j L_j/|I_j|$, which is zero if any $L_j=0$.
+
+Assume all $L_j>0$, put $B=m+1-n$, and set $\eta=A\delta/T^{m+3}$ for a constant $A\ge1$ to be chosen. When $\eta\ge1$ the risk bound by one gives the upper inequality upon enlarging $C$. For $0<\eta<1$, let $p_j$ be the largest integer in $[0,B]$ with $L_j^{p_j}>\eta$. If $\sum_j p_j\ge B$, choose integers $0\le t_j\le p_j$ with $\sum_j t_j=B$. Select $t_j+1$ points of $E_j$ separated by at least $L_j/(4m)$ by deleting an interval of radius $L_j/(4m)$ at each selection. At most $m$ deletions remove at most half the length of $E_j$. The sorted union has $m+1$ distinct nodes. At each such node $\|R(a)\|_{\rm op}\le16\delta/T^3$ in the notation of Theorem 15.1. In the explicit formula for any prefix divided difference, the denominator of the term for a node in $I_j$ contains at most $t_j$ factors from $I_j$. Each such factor in absolute value is at least $L_j/(4m)$. All other factors are bounded below by the fixed gaps. Since $L_j\le1$, the absolute denominator is at least $c_1L_j^{t_j}>c_1\eta$ with a uniform $c_1>0$. Every prefix divided difference then has norm at most $C_1\delta/(T^3\eta)=(C_1/A)T^m$, contradicting Theorem 15.1 for sufficiently large $A$.
+
+It follows that $\sum_j p_j<B$, so every $p_j<B$ and $L_j^{p_j+1}\le\eta$. With $k_j=p_j+1$ we have $\sum_j k_j\le m$. Increasing some multiplicities to reach a sum of $m$ can only decrease the sum of reciprocals, hence $\sum_j1/k_j\ge E_{m,n}$. Thus $\prod_j L_j\le\eta^{E_{m,n}}$, proving the upper bound. The minimizing multiplicities differ by at most one. If $v\ge u+2$, replacing $u,v$ by $u+1,v-1$ strictly lowers the reciprocal sum, since $1/(v(v-1))<1/(u(u+1))$. For $m=3$ this gives $(3),(2,1),(1,1,1)$ up to permutation, and for $m=2$ it gives $(2),(1,1)$. At zero noise each fixed competitor's sublevel sets have length zero by §15.4. With $m+1$ fixed distinct nodes, the second inequality of Theorem 15.1 guarantees a gap greater than $2\delta$ at some node for every alternative when $\delta<c_0T^{m+3}$. The same acceptance test then has zero error.
+
+**Uniform physical Hermite interpolation.** Fix $b_1,\ldots,b_n\in I$ and positive integers $k_j$ summing to $m$. Use the smooth physical coefficient charts of §15.4, with $p=(W_3,\ldots,W_{m+2})$ in a closed ball about the target coefficient tuple $p_0$ contained in the chart. They give complete five-vertex networks with positive hidden masses and conductances. The fixed-mass chart keeps the hidden squared ground-vector norm at $M-2$. Put $F_p(t)=W_p(t)/t^3$ with its analytic extension at zero, and use $F_*$ for the target. Sort the multiset of physical nodes $Tb_j$ with multiplicities $k_j$ as $s_1,\ldots,s_m$, adding multiplicities when centers coincide. The Newton data of a matrix function $F$ are
+
+$$
+\mathcal N(F)=(F[s_1],F[s_1,s_2],\ldots,F[s_1,\ldots,s_m]).
+$$
+
+For $0\le r<m$, the order-$r$ divided difference differs from $F_p^{(r)}(0)/r!$ by $O(T)$ uniformly on the ball. This follows entrywise from the Hermite mean-value formula and the uniform bounds for time derivatives on the compact chart. Applying the same estimate to the first parameter derivatives gives the $C^1$ bound $\mathcal N(F_p)=p+O_{C^1}(T)$. Likewise $\mathcal N(F_*)=p_0+O(T)$. For small $T$ the map $p\mapsto\mathcal N(F_*)-(\mathcal N(F_p)-p)$ maps the ball into itself and has Lipschitz constant at most $1/2$, uniformly over the node multiset. Its fixed point gives a physical $S$ with exactly matching Hermite jets at all the centers.
+
+For this interpolant there are uniform constants $c_2,C_2>0$ such that at every $a\in I$,
+
+$$
+c_2 T^{m+3}\prod_{j=1}^n|a-b_j|^{k_j}
+\ \le\ \|W_S(aT)-W_*(aT)\|_{\rm op}\
+\le\ C_2 T^{m+3}\prod_{j=1}^n|a-b_j|^{k_j}.
+$$
+
+For the upper estimate, take a unit vector $u$, put $g(s)=u^\top(F_p-F_*)(s)u$ and let $\omega(s)=\prod_j(s-Tb_j)^{k_j}$. At $t=aT$ off the centers, $g(s)-g(t)\omega(s)/\omega(t)$ has $m+1$ zeros counting multiplicity. Repeated Rolle gives $|g(t)|\le\sup_{[0,T]}|g^{(m)}|\,|\omega(t)|/m!$. The derivative bound is uniform over the ball and the unit vectors. Take the supremum of $|g(t)|$ over $u$ and multiply by $t^3$. At a center both sides vanish.
+
+For the reverse estimate at $a$ off the centers, append $a$ to the normalized center multiset and sort the $m+1$ nodes. The degree-at-most-$m$ Hermite interpolating polynomial of the matrix residual $R$ on these nodes has the form $D\prod_j(s-b_j)^{k_j}$ for a constant symmetric matrix $D$, because the center jets vanish. Its prefix divided differences coincide with those of $R$. The monic scalar product has uniformly bounded divided differences of orders $0,\ldots,m$ on $I$ by the bounds on its derivatives and the Hermite mean-value formula. Thus Theorem 15.1 implies $\|D\|_{\rm op}\ge c_3T^m$. Evaluating at $a$ and multiplying by $a^3T^3$, with $a^3\ge1/8$, proves the reverse estimate. Both constants are uniform through coalescence.
+
+**Adaptive lower bound.** Fix any policy and decision, padding early stopping with ignored queries to reach $n$. Write $\mu$ for the law of $(a_1,\ldots,a_n)$ on the exact target transcript, using the policy's private seed. Take a minimizing tuple $(k_1,\ldots,k_n)$ and set
+
+$$
+h_j=\min\left\{\frac14,\left(\frac{\delta}{C_2 T^{m+3}}\right)^{1/k_j}\right\}.
+$$
+
+Partition coordinate $j$ into $N_j=\lceil 1/(4h_j)\rceil$ Borel intervals of length at most $2h_j$, assigning each boundary point once. The product partition has at most $\prod_j (2h_j)^{-1}$ cells since $h_j\le1/4$. One cell has $\mu$-mass at least $\prod_j 2h_j$, with no restriction on atoms or dependence. Choose its coordinate midpoints as the centers $b_j$ and use the interpolating network just constructed. For every $a$ in coordinate interval $j$, the product estimate gives a gap at most $C_2 T^{m+3}h_j^{k_j}\le\delta$, since all other center distances are at most one.
+
+Under the target return exact readings. Under the chosen alternative return $W_*(aT)$ on the closed set where the gap is at most $\delta$, and return $W_S(aT)$ elsewhere. This Borel error rule uses only the current horizon and satisfies the pointwise budget. Couple all query and decision randomness across the experiments by using the same seed. For every seed whose exact-target tuple belongs to the cell, the first query receives the same answer under both hypotheses. Inductively identical histories force the same next query and that query also lies in its cell interval, so the entire transcript and decision agree. On this event the two error indicators sum to one. Taking the two separate worst cases gives risk at least $\mu(\mathrm{cell})$. The single interpolant was fixed using $\mu,T,\delta$ before the seed was drawn. The bound survives the infimum over policies because $\prod_j h_j$ is bounded below by a constant times $\min\{1,(\delta/T^{m+3})^{E_{m,n}}\}$. In fact for $\delta\ge C_2 T^{m+3}$ the one-center interpolant has gap at most $2\delta$ on all of $I$. Midpoint replies under both hypotheses then give identical transcripts for every seed and force sum risk at least one, which a constant decision attains.
+
+The multihorizon risk and the two-sided Hermite estimate have independent ordinary mathematical review, including exact rational checks of the two physical chart base points. The merged Lean declaration cited in §15.5 proves the exact order gap and the free-mass obstruction to matching $U_0,\ldots,U_4$. The calibrated obstruction used in §15.3, the uniform physical confluent separation, the interpolation estimates and the minimax conclusions here have ordinary mathematical proof status.
+
+## 追加锚（本行以下为增补区）
