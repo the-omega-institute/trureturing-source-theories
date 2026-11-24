@@ -188,3 +188,77 @@ The spectral trace result concerns mass-lumped interval discretizations. The ope
 The independent audits checked the ordered multiplication, singular Gramian case, rational root certificate, formal coefficient and its indexing, and the normalized finite modular examples. The early derivative-noise audit preceded the later uniform-Gramian endpoint proof. The scope of the formal-stage evidence is the coefficient claim in §3. The reviewed scoped report SHA-256 is `0850dea4375431e0f894e2da94e85a50951c13cf7365d5f5ef96851ed9c84560`.
 
 ## 追加锚（本行以下为增补区）
+
+## 9. Exact formal cubic, sparse readout and full jet
+
+The endpoint first reveal of §3 landed in trureturing PR #33867 at `3082d5c8b569198f53df01cbda59d1ec76735cf2`. PR #33889 landed the cubic coefficient and sharp fixed-length jet inverse at `39e2a52a9b73bb72e8427ee5037c1803e1dded8f`. The latter uses the former for the case of a nonempty common prefix and gives the formal counterpart of the fixed-length exact-jet statements in §5.2. [#33867 merge](https://github.com/the-omega-institute/trureturing/commit/3082d5c8b569198f53df01cbda59d1ec76735cf2) · [#33889 merge](https://github.com/the-omega-institute/trureturing/commit/39e2a52a9b73bb72e8427ee5037c1803e1dded8f)
+
+Use the ordered path $p\in\mathrm{Path}(n)$ of §3, with strictly positive lengths $\ell_i(p)$ indexed from the measured endpoint and total length $\mathcal L(p)=\sum_{i=0}^{n-1}\ell_i(p)$. Here $\mathrm{Path}(0)$ has the unique empty length vector of total zero. Write $w_d(p,c)=[X^d]\mathcal W(H_{p,c})$ for the coefficient of the real formal Gramian of §3. The definitions `readoutDegree` and `jetCutoff` are
+
+$$
+R(k)=\begin{cases}3&k=0,\\2k+2&k>0,\end{cases}
+\qquad
+D(n)=\begin{cases}0&n\le1,\\R(n-2)&n\ge2.\end{cases}
+$$
+
+[Path and heat definitions at the #33867 merge](https://github.com/the-omega-institute/trureturing/blob/3082d5c8b569198f53df01cbda59d1ec76735cf2/D5/S3/Quantum/Jacobi/NeumannHeatGramianJet.lean#L149-L177) · [Readout degree](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L63-L64) · [Jet cutoff](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L136-L137)
+
+**Theorem 9.1 (Formal cubic coefficient, cubic_coefficient).** Let $n>0$ be a natural number, $p\in\mathrm{Path}(n)$ and $c\in\mathbb R$ arbitrary. Then $w_d(p,c)=0$ for every natural $d<3$, and $w_3(p,c)=4/(3\ell_0(p)^6)$. [Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L44-L61)
+
+**Theorem 9.2 (Formal sparse injectivity, sparse_injective).** Let $n$ be any natural number, $p,q\in\mathrm{Path}(n)$ and $c,e\in\mathbb R$ independently arbitrary. If $\mathcal L(p)=\mathcal L(q)$ and $w_{R(k)}(p,c)=w_{R(k)}(q,e)$ for every natural $k$ with $k+1<n$, then $p=q$ as ordered paths. [Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L118-L134)
+
+**Theorem 9.3 (Formal full-jet injectivity criterion, finite_jet_injective_iff).** Fix natural numbers $n,d$, a real $L>0$ and independently arbitrary $c,e\in\mathbb R$. The implication below holds for every $p,q\in\mathrm{Path}(n)$ if and only if $D(n)\le d$.
+
+$$
+\mathcal L(p)=L,\quad \mathcal L(q)=L,\quad
+\bigl(w_j(p,c)=w_j(q,e)\text{ for every natural }j\le d\bigr)
+\quad\Longrightarrow\quad p=q.
+$$
+
+[Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L184-L204)
+
+## 10. Proof of the formal cutoff and its analytic interpretation
+
+For the cubic, the formal identity of §3 gives $\mathcal W'=F^2$ with $F=\mathcal A H-H$ and $[X]F=\mu_1/2$. Since $[X^0]F=0$ and $[X^0]\mathcal W=0$, the coefficients below degree three vanish and the cubic is $\mu_1^2/12$. At the marked endpoint $m_0=\ell_0/2$ and $(J)_{00}=1/(\ell_0m_0)$, so $\mu_1=4/\ell_0^3$. The arbitrary constant offset drops out of $F$. [Merged cubic proof](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L25-L61)
+
+If two ordered paths first differ at edge $k=0$, the positive first lengths give distinct cubics by strict monotonicity of $4/(3\ell_0^6)$. If $k>0$, §3 gives the first nonzero difference at $R(k)=2k+2$ for the two independent offsets. Thus sparse equality forces agreement on the first $n-1$ edges when $n\ge2$, and equal total length forces equality on the last edge. For $n=1$ the total supplies the sole length, and for $n=0$ the empty vector is unique. For $n\ge2$, the largest selected degree is $R(n-2)$, so a full jet through $D(n)$ contains every sparse readout. [Merged first reveal](https://github.com/the-omega-institute/trureturing/blob/3082d5c8b569198f53df01cbda59d1ec76735cf2/D5/S3/Quantum/Jacobi/NeumannHeatGramianJet.lean#L301-L311) · [Merged upper bound](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L118-L144)
+
+For the lower bound with $n\ge2$, take $a=L/(n+1)$ and the path with $n-1$ edges of length $a$ followed by one of length $2a$. Swap the final two edges to obtain the second path. Both have positive lengths and total $L$, and their first difference is exactly at $k=n-2$. Every degree below $R(n-2)$ agrees for arbitrary independent offsets, while degree $R(n-2)$ separates the pair. The cutoff is therefore $3$ for $n=2$ and $2n-2$ for $n\ge3$. For $n=1$ it is $0$, and the implication for $n=0$ is vacuous at positive total. [Merged swap witness and cutoff proof](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L146-L204)
+
+The Lean declarations concern real formal power series and equality of their coefficients. In the ordinary finite-path model with $n\ge1$, the physical load is $e_0u(t)$ in $M\dot z+Sz=e_0u(t)$ and the collocated reading is $z_0$. With $b=M^{-1/2}e_0$ the impulse response with offset is $H(t)=b^\top e^{-tJ}b+c$. Substituting $t=sT$ with $s\in[0,1]$ gives the ordinary Gramian
+
+$$
+W(T)=T\left(\int_0^1 H(sT)^2\,ds-\left(\int_0^1 H(sT)\,ds\right)^2\right).
+$$
+
+The matrix exponential and its products converge locally uniformly on bounded time sets, justifying termwise integration. Averaging divides each coefficient by its degree plus one, giving the formal $w_d(p,c)$ as the ordinary Taylor coefficients of $W$. For a fixed known nonzero target $y$, zero-net projection of the control gives the minimum squared effort $E(T)=Q/W(T)$ with $Q=|y|^2$. The heat has slope $-\mu_1<0$ at zero, so $W(T)>0$ for every $T>0$. Exact effort determines the analytic Gramian germ by taking $Q/E(T)$ and using analytic uniqueness on a positive open interval or along horizons accumulating at zero. The stationary weight of the physical kernel is $1/L$ at known total length. An arbitrary additive kernel offset cancels from $W$. The convergence, control interpretation and stability estimates use the calibrated analytic model.
+
+## 11. Ordinary short-window log-effort stability and collapsing cells
+
+### 11.1 Sharp rate on a compact positive class
+
+Fix $n\ge2$, $0<a<b$ and $na<L<nb$. Let $K=\{\ell\in[a,b]^n:\sum_i\ell_i=L\}$, using the calibrated port and fixed known nonzero target of §10. Use one-based lengths here, with independent coordinates $x_j=\ell_j$ for $1\le j\le r=n-1$. Put $G(\ell,T)=\log(T^3E_\ell(T)/Q)=-\log(W_\ell(T)/T^3)$, with its continuous extension at $T=0$. For $\varepsilon>0$ let $D_\varepsilon(\ell,\ell')$ be the norm of the difference of these log data over horizons $T=\varepsilon s$, using either the supremum over $0<s\le1$ or the maximum over $r$ fixed distinct points $s\in(0,1]$. Set $\alpha_1=0$, $\alpha_j=2j-3$ for $2\le j\le r$, and $p=\alpha_r$. For sufficiently small $\varepsilon>0$, uniformly for pairs in $K$ and $\delta\ge0$,
+
+$$
+D_\varepsilon(\ell,\ell')\asymp
+\sum_{j=1}^r\varepsilon^{\alpha_j}|x_j-x_j'|,
+\qquad
+\sup_{\substack{\ell,\ell'\in K\\D_\varepsilon(\ell,\ell')\le\delta}}\|\ell-\ell'\|_\infty
+\asymp \min\{\operatorname{diam}_\infty K,\delta/\varepsilon^p\}.
+$$
+
+The constants can depend on $K$ and the chosen observations. The worst exponent is $2n-5$ for $n\ge3$, and $0$ for $n=2$. The known-length one-cell class has zero inverse modulus.
+
+Indeed $W/T^3$ extends analytically near zero with positive value $A=4/(3\ell_1^6)$, uniformly on $K$. The cubic gives $\partial_{x_1}G=6/\ell_1+O(T)$. For $j\ge2$ put $k=j-1$ and $q=2k$. The compression in §3 determines the Gramian coefficients below degree $q+2$ from earlier edges. At degree $q+2$ the part depending on $x_j$ is $-\mu_1qP_j/(m_0(q+2)!m_k)$, with $P_j>0$ the prefix product in §3 excluding $1/m_0$ and $m_k=(\ell_{j-1}+\ell_j)/2$. Therefore $\partial_{x_j}G=T^{\alpha_j}(U_j+O(T))$, where $U_j=-\mu_1qP_j/(2A m_0(q+2)!m_k^2)$. Each leading derivative has constant sign and magnitude bounded away from zero on $K$.
+
+Integrate these derivatives along the segment joining the meshes. The leading data difference is a linear combination of $s^{\alpha_j}$ whose coefficient magnitudes are comparable to $\varepsilon^{\alpha_j}|x_j-x_j'|$. The remainder has norm bounded by $O(\varepsilon)$ times their sum. The monomials are independent both on the window and on the $r$ positive sample points. In the latter case, a nonzero sum of $r$ distinct powers has at most $r-1$ positive zeros, by division by its smallest power and induction using Rolle’s theorem. Equivalence of norms in this finite-dimensional span and absorption of the remainder give the weighted bound. The worst weight gives the upper inverse bound, since the dependent coordinate is controlled by the sum of the independent differences. Varying only $x_r$ from an interior point along a fixed positive-length segment, with the last length compensating, gives the matching lower bound.
+
+### 11.2 Loss of uniform inversion at cell collapse
+
+For $n\ge3$ choose positive $a_0,b_0,c_4,\ldots,c_n$ summing to $L$. Compare the meshes $(a_0,h,b_0-h,c_4,\ldots,c_n)$ and $(a_0,b_0-h,h,c_4,\ldots,c_n)$ as $h\downarrow0$. Their mesh distance tends to $b_0$. For every finite $H>0$ their full-window log data have distance at most $C_Hh$ uniformly for $0<\varepsilon\le H$. Thus the entire positive fixed-length simplex for $n\ge3$ has no uniform inverse modulus tending to zero, even on a fixed full window.
+
+In mass-scaled coordinates each arm has $J_h=h^{-1}w_hw_h^\top+B_h$, where $w_h=M_h^{-1/2}(e_i-e_{i-1})$ for the collapsing edge $i$ and $B_h$ is the bounded contribution of the other edges. A vanishing terminal mass is incident only to the collapsing edge. The calibrated port lies in $w_h^\perp$ because the first length is fixed and the collapsing edge is elsewhere. The component of $e^{-tJ_h}b$ along the unit vector of $w_h$ starts at zero and has damping at least $c/h$ for some $c>0$. Contractivity bounds the forcing from the orthogonal component, keeping the damped component $O(h)$. Variation of constants in the orthogonal component then bounds the heat error relative to the compressed generator by $O(ht)$. That compression identifies the endpoints of the removed edge, adds their masses and keeps the other stiffness terms. Its normalized matrix differs by $O(h)$ from the common reduced path with cells $(a_0,b_0,c_4,\ldots,c_n)$. The exponential difference contributes another $O(ht)$ on $[0,H]$. Centering the heat gives an $O(hT)$ difference of the functions $\overline H(T)-H(T)$, each of size $O(T)$ by the spectral bound $|H'(t)|\le\mu_1=4/a_0^3$. Integrating the difference of their squares using $W'=(\overline H-H)^2$ gives an $O(hT^3)$ Gramian gap to the reduced path. The reduced $W/T^3$ is positive on $[0,H]$, so the logarithm preserves the uniform $O(h)$ estimate.
+
+The short-window rate and the collapse argument were independently checked in ordinary mathematics in the research audit *Independent audit of sharp zero-net effort jets and short-time mesh stability*, §§3–4.
+
+## 追加锚（本行以下为增补区）

@@ -1,0 +1,14 @@
+## 9. Exact formal cubic, sparse readout and full jet
+
+The endpoint first reveal of §3 landed in trureturing PR #33867 at `3082d5c8b569198f53df01cbda59d1ec76735cf2`. PR #33889 landed the cubic coefficient and sharp fixed-length jet inverse at `39e2a52a9b73bb72e8427ee5037c1803e1dded8f`. The latter uses the former for the case of a nonempty common prefix and gives the formal counterpart of the fixed-length exact-jet statements in §5.2. [#33867 merge](https://github.com/the-omega-institute/trureturing/commit/3082d5c8b569198f53df01cbda59d1ec76735cf2) · [#33889 merge](https://github.com/the-omega-institute/trureturing/commit/39e2a52a9b73bb72e8427ee5037c1803e1dded8f)
+
+Use the ordered path $p\in\mathrm{Path}(n)$ of §3, with strictly positive lengths $\ell_i(p)$ indexed from the measured endpoint and total length $\mathcal L(p)=\sum_{i=0}^{n-1}\ell_i(p)$. Here $\mathrm{Path}(0)$ has the unique empty length vector of total zero. Write $w_d(p,c)=[X^d]\mathcal W(H_{p,c})$ for the coefficient of the real formal Gramian of §3. The definitions `readoutDegree` and `jetCutoff` are
+
+$$
+R(k)=\begin{cases}3&k=0,\\2k+2&k>0,\end{cases}
+\qquad
+D(n)=\begin{cases}0&n\le1,\\R(n-2)&n\ge2.\end{cases}
+$$
+
+[Path and heat definitions at the #33867 merge](https://github.com/the-omega-institute/trureturing/blob/3082d5c8b569198f53df01cbda59d1ec76735cf2/D5/S3/Quantum/Jacobi/NeumannHeatGramianJet.lean#L149-L177) · [Readout degree](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L63-L64) · [Jet cutoff](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L136-L137)
+

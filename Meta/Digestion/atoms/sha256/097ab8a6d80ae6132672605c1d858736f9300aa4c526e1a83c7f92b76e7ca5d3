@@ -1,0 +1,2 @@
+**Theorem 9.1 (Formal cubic coefficient, cubic_coefficient).** Let $n>0$ be a natural number, $p\in\mathrm{Path}(n)$ and $c\in\mathbb R$ arbitrary. Then $w_d(p,c)=0$ for every natural $d<3$, and $w_3(p,c)=4/(3\ell_0(p)^6)$. [Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L44-L61)
+

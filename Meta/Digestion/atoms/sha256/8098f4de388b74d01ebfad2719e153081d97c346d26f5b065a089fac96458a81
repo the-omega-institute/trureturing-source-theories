@@ -1,0 +1,18 @@
+### 11.1 Sharp rate on a compact positive class
+
+Fix $n\ge2$, $0<a<b$ and $na<L<nb$. Let $K=\{\ell\in[a,b]^n:\sum_i\ell_i=L\}$, using the calibrated port and fixed known nonzero target of §10. Use one-based lengths here, with independent coordinates $x_j=\ell_j$ for $1\le j\le r=n-1$. Put $G(\ell,T)=\log(T^3E_\ell(T)/Q)=-\log(W_\ell(T)/T^3)$, with its continuous extension at $T=0$. For $\varepsilon>0$ let $D_\varepsilon(\ell,\ell')$ be the norm of the difference of these log data over horizons $T=\varepsilon s$, using either the supremum over $0<s\le1$ or the maximum over $r$ fixed distinct points $s\in(0,1]$. Set $\alpha_1=0$, $\alpha_j=2j-3$ for $2\le j\le r$, and $p=\alpha_r$. For sufficiently small $\varepsilon>0$, uniformly for pairs in $K$ and $\delta\ge0$,
+
+$$
+D_\varepsilon(\ell,\ell')\asymp
+\sum_{j=1}^r\varepsilon^{\alpha_j}|x_j-x_j'|,
+\qquad
+\sup_{\substack{\ell,\ell'\in K\\D_\varepsilon(\ell,\ell')\le\delta}}\|\ell-\ell'\|_\infty
+\asymp \min\{\operatorname{diam}_\infty K,\delta/\varepsilon^p\}.
+$$
+
+The constants can depend on $K$ and the chosen observations. The worst exponent is $2n-5$ for $n\ge3$, and $0$ for $n=2$. The known-length one-cell class has zero inverse modulus.
+
+Indeed $W/T^3$ extends analytically near zero with positive value $A=4/(3\ell_1^6)$, uniformly on $K$. The cubic gives $\partial_{x_1}G=6/\ell_1+O(T)$. For $j\ge2$ put $k=j-1$ and $q=2k$. The compression in §3 determines the Gramian coefficients below degree $q+2$ from earlier edges. At degree $q+2$ the part depending on $x_j$ is $-\mu_1qP_j/(m_0(q+2)!m_k)$, with $P_j>0$ the prefix product in §3 excluding $1/m_0$ and $m_k=(\ell_{j-1}+\ell_j)/2$. Therefore $\partial_{x_j}G=T^{\alpha_j}(U_j+O(T))$, where $U_j=-\mu_1qP_j/(2A m_0(q+2)!m_k^2)$. Each leading derivative has constant sign and magnitude bounded away from zero on $K$.
+
+Integrate these derivatives along the segment joining the meshes. The leading data difference is a linear combination of $s^{\alpha_j}$ whose coefficient magnitudes are comparable to $\varepsilon^{\alpha_j}|x_j-x_j'|$. The remainder has norm bounded by $O(\varepsilon)$ times their sum. The monomials are independent both on the window and on the $r$ positive sample points. In the latter case, a nonzero sum of $r$ distinct powers has at most $r-1$ positive zeros, by division by its smallest power and induction using Rolle’s theorem. Equivalence of norms in this finite-dimensional span and absorption of the remainder give the weighted bound. The worst weight gives the upper inverse bound, since the dependent coordinate is controlled by the sum of the independent differences. Varying only $x_r$ from an interior point along a fixed positive-length segment, with the last length compensating, gives the matching lower bound.
+

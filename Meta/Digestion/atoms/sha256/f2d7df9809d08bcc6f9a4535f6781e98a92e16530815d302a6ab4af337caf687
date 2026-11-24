@@ -1,0 +1,2 @@
+**Theorem 9.2 (Formal sparse injectivity, sparse_injective).** Let $n$ be any natural number, $p,q\in\mathrm{Path}(n)$ and $c,e\in\mathbb R$ independently arbitrary. If $\mathcal L(p)=\mathcal L(q)$ and $w_{R(k)}(p,c)=w_{R(k)}(q,e)$ for every natural $k$ with $k+1<n$, then $p=q$ as ordered paths. [Merged Lean declaration](https://github.com/the-omega-institute/trureturing/blob/39e2a52a9b73bb72e8427ee5037c1803e1dded8f/D5/S3/Quantum/Jacobi/NeumannHeatGramianInverse.lean#L118-L134)
+
