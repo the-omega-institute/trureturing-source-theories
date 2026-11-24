@@ -1,0 +1,14 @@
+### 13.4 Uniform visible spectral tails
+
+The uniform upper guarantees also hold for a class of these alternatives with uniform integrability of the fourth visible moment for free mass or the third for fixed mass. For an orthonormal eigenbasis with rates $\lambda_j$ and port projections $v_j$, the precise condition for $m=4$ or $3$, respectively, is
+
+$$
+\lim_{L\to\infty}\ \sup_S\ \sum_{\lambda_j>L}\lambda_j^m\|v_j\|^2=0 .
+$$
+
+The trace weights sum to two. The Taylor remainder of $e^{-u}$ through degree $m$ is bounded by $C_m u^m\min(u,1)$ for $u\ge0$. Splitting the spectral sum at $L$ gives a uniform $o(t^m)$ heat remainder. Centering cancels $U_0$ and the centered kernel is $O(t)$ on a window of length $t$, so squaring in product order and integrating gives a uniform $o(T^{m+2})$ Gramian remainder. To retain the coefficient gap, a coefficient-matching sequence with an escaping eigenvalue would lose a rank-one term from its limiting rank-five Gram. At free mass the term comes from $(v_j,\lambda_j v_j,\lambda_j^2 v_j)$ and vanishes by the fourth visible tail. At fixed mass use the Gram of $[E,SE,z]$ and the term from $(v_j,\lambda_j v_j,\langle e_j,z\rangle)$, where $e_j$ is the eigenvector. Its ground coordinate is zero at every positive rate, and the visible coordinates vanish as the rate escapes. In both cases at most four terms remain, a contradiction. A bounded subsequence is excluded by the preceding compactness argument.
+
+Consequently the fixed designs still separate by at least $cT^k$ with $k=m+2$, and the random-horizon bound has a uniform $o(1)$ in place of $T$. The sharp lower noise bound requires the class to contain the matching alternative, and the deterministic count obstruction requires it to contain the corresponding local family.
+
+The two-port arguments above have independent mathematical review and exact rational replay of the underlying network. Lean formalization is pending and research priority remains unverified.
+

@@ -1,0 +1,11 @@
+### 14.1 Sharp separation without a spectral restriction
+
+**Theorem 14.1.** Keep the six-vertex target $S_*$ and its total mass $M=92879135005/30751504002$. Let $S$ range over all physical networks with at most five vertices, the same two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Use the actual full zero-net-current Gramian of §2 and any fixed matrix norm. Set $(d,k)=(4,6)$ for free total mass and $(d,k)=(3,5)$ when total mass equals $M$. For every fixed $0<a_1<\cdots<a_d\le1$ there exist $c,T_0>0$ such that
+
+$$
+\max_{1\le i\le d}\|W_S(a_iT)-W_*(a_iT)\|\ge cT^k
+\qquad(0<T<T_0)
+$$
+
+simultaneously for every such $S$, even if chosen as a function of $T$. Both classes allow arbitrarily large generators and visible moments without a uniform spectral-tail condition. The same conclusion at fixed mass consequently holds at any four fixed distinct fractions. In each mass regime a single fixed physical competitor from §13.2 satisfies $\sup_{0\le t\le T}\|W_S(t)-W_*(t)\|\le C T^k$ for small $T$.
+

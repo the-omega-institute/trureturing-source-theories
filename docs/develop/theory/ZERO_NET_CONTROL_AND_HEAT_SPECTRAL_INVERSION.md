@@ -354,3 +354,124 @@ Consequently the fixed designs still separate by at least $cT^k$ with $k=m+2$, a
 The two-port arguments above have independent mathematical review and exact rational replay of the underlying network. Lean formalization is pending and research priority remains unverified.
 
 ## 追加锚（本行以下为增补区）
+
+## 14. Unrestricted two-port separation and statistical experiments
+
+The exact order statement of §13.1 and the free-mass obstruction through $U_4$ in §13.2 are now formalized for the rational target. The Lean declaration `D5.S3.Combinatorics.SpectralGraph.TwoPortHeatRealization.exact_order_gap` proves stationary-inclusive Hankel and minimum linear order five, minimum physical order six, and the physical obstruction to matching all of $U_0,\ldots,U_4$. [Merged PR #33943](https://github.com/the-omega-institute/trureturing/pull/33943) · [Lean at merge cafdf6e69893f0728a0890878db457a8abe70d84](https://github.com/the-omega-institute/trureturing/blob/cafdf6e69893f0728a0890878db457a8abe70d84/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean)
+
+### 14.1 Sharp separation without a spectral restriction
+
+**Theorem 14.1.** Keep the six-vertex target $S_*$ and its total mass $M=92879135005/30751504002$. Let $S$ range over all physical networks with at most five vertices, the same two labeled unit-mass ports, arbitrary positive hidden masses and nonnegative conductances, including disconnected networks. Use the actual full zero-net-current Gramian of §2 and any fixed matrix norm. Set $(d,k)=(4,6)$ for free total mass and $(d,k)=(3,5)$ when total mass equals $M$. For every fixed $0<a_1<\cdots<a_d\le1$ there exist $c,T_0>0$ such that
+
+$$
+\max_{1\le i\le d}\|W_S(a_iT)-W_*(a_iT)\|\ge cT^k
+\qquad(0<T<T_0)
+$$
+
+simultaneously for every such $S$, even if chosen as a function of $T$. Both classes allow arbitrarily large generators and visible moments without a uniform spectral-tail condition. The same conclusion at fixed mass consequently holds at any four fixed distinct fractions. In each mass regime a single fixed physical competitor from §13.2 satisfies $\sup_{0\le t\le T}\|W_S(t)-W_*(t)\|\le C T^k$ for small $T$.
+
+### 14.2 Moment recovery in the presence of large rates
+
+Write $A_j=v_jv_j^\top$ for the port weight of an eigenvector of $S$ at rate $\lambda_j\ge0$. The weights sum to $I_2$. With $H(a)=(\overline K_{aT}-K(aT))/(aT)$ and $G(a)=W(aT)/T^3$,
+
+$$
+H(a)=\sum_j\lambda_j A_j\int_0^1 u e^{-aT\lambda_j u}\,du,
+\qquad G'(a)=a^2H(a)^2.
+$$
+
+All $(-1)^rH^{(r)}$ are positive semidefinite and $H(b)\preceq(a/b)^2H(a)$ for $0<b\le a$. The trace $f=\operatorname{tr}(H^2)$ is completely monotone by the product rule and positivity of the trace of a product of two positive matrices.
+
+Assume a sequence $T\downarrow0$ of competitors with data errors $o(T^k)$. For $a_0=0$, choose a linear combination $L(f)=\sum_{i=1}^d c_i\int_{a_{i-1}}^{a_i}a^2 f(a)\,da$ annihilating polynomials through degree $d-2$. The weighted moment minors are integrals of strictly positive Vandermonde determinants, so the cofactor weights alternate. Interpolation at $a_1,\ldots,a_{d-1}$ makes all signed remainders have the same sign and gives $|L(f)|\ge c_0(-1)^{d-1}f^{(d-1)}(a_d)$ with $c_0>0$. At the fixed target $f_*^{(d-1)}=O(T^{d-1})$, so $L(f_*)=O(T^{d-1})$. The measured increments of $G$, including $G(0)=0$, give the same bound for $L(f)$ for $(d,k)=(4,6)$ or $(3,5)$. On $[a_1,a_d]$, monotonicity bounds $\|H\|$ using $\operatorname{tr}G(a_1)$, and $H(a)^2\preceq C H(a_d)$. The increment $G(a_d)-G(a_1)$ has a positive definite limit proportional to $U_{1,*}^2$. Hence $H(a_d)\succeq\kappa I$ for some $\kappa>0$. The product rule bounds $\operatorname{tr}((-1)^{d-1}H^{(d-1)}(a_d))=O(T^{d-1})$.
+
+Split rates at $T\lambda_j=1$, writing $U_r^{\rm slow}$ for the moments summed over $T\lambda_j\le1$. The derivative multiplier for order $l=d-1$ is $\lambda_j(T\lambda_j)^l\int_0^1 u^{l+1}e^{-a_d T\lambda_j u}\,du$. It bounds a constant times $T^l\lambda_j^{l+1}$ on slow rates, and on fast rates bounds a constant times $\lambda_j/(T\lambda_j)^2$ by restricting the integral to $u\le1/(T\lambda_j)$. Thus $\operatorname{tr}U_d^{\rm slow}=O(1)$ and $H_{\rm fast}=O(T^{d-1})$ uniformly on $[a_1,a_d]$. Taylor expansion there gives
+
+$$
+H(a)=\frac{U_1^{\rm slow}}2
+       -\frac{aT U_2^{\rm slow}}3
+       +\frac{a^2T^2 U_3^{\rm slow}}8
+       +O(T^3)
+$$
+
+for four observations, or the linear truncation with $O(T^2)$ remainder for three. Integrate the ordered expansion of $H^2$ against $a^2$ over the $d-1$ intervals after $a_1$. Their weighted moment matrix is invertible. The constant coefficient gives the positive square root and the successive coefficients, divided by the corresponding powers of $T$, give invertible Sylvester equations at $U_{1,*}/2$. This recovers $U_r^{\rm slow}\to U_{r,*}$ for $1\le r\le d-1$.
+
+For free mass the limiting shifted Hankel matrix with blocks $[U_{1,*},U_{2,*};U_{2,*},U_{3,*}]$ is positive definite of rank four. Indeed it is the Gram of $S_*^{1/2}[E,S_*E]$ and $[E,S_*E,z_*]$ is independent by the hidden frame $[x,y,g]$. An escaping positive-rate mode is either omitted from the slow Gram or contributes squared row norm $(\lambda_j+\lambda_j^3)\|v_j\|^2=O(1/\lambda_j)$ by the fourth-moment bound. With at least one zero mode, at most three positive-rate rows remain. This contradicts the limiting rank four. Generators along the proposed sequence must therefore be bounded, and the bounded four-horizon separation in §13.3 contradicts its assumed errors.
+
+The four-horizon argument also gives the fixed-mass fifth power directly. For errors $o(T^5)$, the same interpolation with $d=4$ yields $T^3\operatorname{tr}U_4^{\rm slow}=o(T^2)$ and $H_{\rm fast}=o(T^2)$ on the positive observation interval. In the quadratic expansion of $H$, Hölder's inequality with weights $\lambda_j\|v_j\|^2$ and variable $T\lambda_j$ gives linear and quadratic coefficients $o(T^{2/3})$ and $o(T^{4/3})$. This controls the higher products in the square by $o(T^2)$ and again recovers the first three slow moments. The rank-four shifted Hankel limit excludes every fast mode. The calibrated Gram of $[E,SE,z]$, with $Sz=0$, $E^\top z=\mathbf1$ and $z^\top z=M$, now converges to the rank-five target Gram. A remaining escaping slow mode has zero ground coordinate and squared row norm $(1+\lambda_j^2)\|v_j\|^2=O(1/\lambda_j)$ by the bounded third moment, contradicting rank five. The bounded fixed-mass theorem applies to the resulting sequence.
+
+### 14.3 Three horizons at fixed mass
+
+With three observations, the first two slow moments converge and the third slow moment is bounded, as above. If all fast visible weights tend to zero, the slow calibrated Gram of $[E,SE,z]$ converges to the rank-five target Gram. Any escaping row is absent or vanishes by the third-moment bound. A bounded subsequence is already excluded by §13.3. Hence along a subsequence there is a fast atom with $w=\|v_j\|^2$ bounded away from zero. With the three cofactor weights chosen with signs $(+,-,+)$, each trace pair term in $f$ has nonnegative interpolation functional by complete monotonicity. The fast atom's self term on the first interval is therefore $O(T^2)$ because its later interval integrals are $O(T^4)$. This first integral equals
+
+$$
+\frac{w^2}{T^3\lambda_j}\int_0^{a_1T\lambda_j}
+ b^2\left(\int_0^1 u e^{-bu}\,du\right)^2 db.
+$$
+
+The integral is bounded below on $T\lambda_j>1$, forcing $\lambda_j\ge cT^{-5}$.
+
+Pass to a subsequence with fixed vertex count and converging eigenbasis. Let $P$ project onto the limiting finite-rate modes, $R$ be their generator, $B=PE$ and $z$ the limiting ground vector. The first two finite-rate moments equal $C=U_{1,*}$ and $U_{2,*}$ since the omitted slow escaping contributions vanish. Also $Pz=z$, $Rz=0$, $B^\top z=\mathbf1$ and $\|z\|^2=M$. Choosing times $s\downarrow0$ with $s\lambda_j\to\infty$ for all escaping rates makes $e^{-sS}\to P$. The off-diagonal signs of $S$ make $e^{-sS}$ entrywise nonnegative, by shifting $-S$ by a scalar diagonal before expanding the exponential. Hence $P$ is entrywise nonnegative. Each nonzero support block of this symmetric nonnegative projection has rank one by Perron–Frobenius. Positive definiteness of $C$ puts the projected ports in different blocks, so $B^\top B=\operatorname{diag}(b_1,b_2)$.
+
+In the Gram of $[B,RB,z]$ the positive definite lower block is $\operatorname{diag}(U_{2,*},M)$ and the Schur complement is
+
+$$
+A=\operatorname{diag}(b_1,b_2)-C U_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top.
+$$
+
+Its off-diagonal is nonzero by the rational evaluation below, forcing rank at least four for $P$. There are exactly five states and a single escaping eigenvector with limit $u$, so $P=I-uu^\top$. Nonnegativity implies $u_i u_j\le0$ for $i\ne j$. The visible escape, the diagonal port block and $C\succ0$ force its support to contain just one port and one hidden coordinate. By target symmetry take that port to be the first, so $b_2=1$. Put $A_*=I-CU_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top$. The rank-one Schur complement $A$ annihilates $h=(A_{*,22},-A_{*,12})^\top$. With $\gamma=U_{2,*}^{-1}Ch$, the projection residual gives $Bh=RB\gamma+z(\mathbf1^\top h/M)$. Applying $B^\top R^2$ yields
+
+$$
+U_{2,*}h=U_3^{\rm finite}\gamma,qquad U_3^{\rm finite}=B^\top R^3B.
+$$
+
+The escaping atom's initial layer contributes $O(T^2)$ to $G$ since $\lambda_j\ge cT^{-5}$. Its ordered mixed terms with the finite-rate response are $O(T^3)$ because $a^2\|H_j(a)\|\le C/(T^2\lambda_j)$. Its self term differs from the integral over $[0,\infty)$ by $O(T^6)$ at each positive observation fraction. After division by $T^2$ it thus has a common subsequential limit proportional to $e_1e_1^\top$ at the three observations. The finite-rate part of $G$ has coefficients at $a^3,a^4T,a^5T^2$ respectively
+
+$$
+\frac{U_1^2}{12},\qquad
+-\frac{U_1U_2+U_2U_1}{24},\qquad
+\frac{U_1U_3+U_3U_1}{80}+\frac{U_2^2}{45},
+$$
+
+using its actual finite-rate moments, with uniform remainder $O(T^3)$. A functional of the three values annihilating $a^3,a^4$ and nonzero on $a^5$ eliminates the lower-order differences before taking limits. Since the assumed errors in $G$ are $o(T^2)$, for some scalar $s$ we obtain
+
+$$
+U_3^{\rm finite}=U_{3,*}-s\mathcal L_C^{-1}(e_1e_1^\top),
+\qquad \mathcal L_C(Y)=CY+YC.
+$$
+
+The two equations are incompatible for this target. In the orthonormal symmetric and antisymmetric port basis indexed by $+,-$, let $p=125000/123999$ and use $q$ from §12. The eigenvalue pairs of $C,U_{2,*},U_{3,*}$ are respectively
+
+$$
+c=(p,p+2),\qquad m_i=c_i^2+d_i,\qquad
+n_i=c_i^3+2c_id_i+j_i,
+\quad d=(3+2q,1),\quad j=(4d_+-(1+2q)^2,3).
+$$
+
+Write $r_+=1-2/M-c_+^2/m_+$ and $r_-=1-c_-^2/m_-$. Direct rational evaluation gives $-72/10000<(r_+-r_-)/2=A_{*,12}<-70/10000$. Rescale $h$ and $\gamma$ in this basis by $\sqrt2$, giving coordinates $h=(r_-,r_+)$ and $\gamma_i=c_i h_i/m_i$. The preceding equations require proportionality of the vectors with coordinates
+
+$$
+v_i=n_i\gamma_i-m_i h_i,
+\qquad w_i=\sum_{j\in\{+,-\}}\frac{\gamma_j}{2(c_i+c_j)}.
+$$
+
+Exact rational arithmetic gives the determinant
+
+$$
+v_+w_--v_-w_+
+=-\frac{114045645488209846090976452240541508027266971504950645694164014592577566137505033999}
+{306736230930913013601872935583335745259128781992517186192615538933660287252187437500000}
+\in\left(-\frac{38}{100000},-\frac{36}{100000}\right).
+$$
+
+This excludes the fast regime and completes the three-horizon contradiction. All contradictions rule out sequences with normalized errors tending to zero, which establishes the uniform quantifiers of Theorem 14.1.
+
+### 14.4 Deterministic, Gaussian and random observations
+
+With additive noise bounded by $\delta$ in a fixed matrix norm at every observation, the $d$ fixed horizons of Theorem 14.1 discriminate uniformly for $2\delta<cT^k$. The fixed matching competitor gives identical midpoint replies under either hypothesis at every $0<t\le T$ when $\delta\ge C T^k$ for a sufficiently large constant. This forces maximal error at least $1/2$ for any finite adaptive experiment, including randomized ones. The local matching families of §13.3 are admitted in the unrestricted classes. For sufficiently small $T$ they match any $d-1$ exact positive horizons at most $T$, even clustered ones, including the nodes on a deterministic policy's target transcript. The minimum deterministic exact query counts are therefore four for free mass and three for fixed mass.
+
+For $N\ge d$ full-matrix readings, add independent centered Gaussian noise of covariance $\sigma^2 I_3$ in Frobenius-isometric symmetric vectorization. Average balanced repetitions at the $d$ separating horizons and accept within half the guaranteed separation of the target stack. The Gaussian norm tail bounds both errors by $\min\{1,C_0\exp(-c_0 NT^{2k}/\sigma^2)\}$. Against the fixed matching competitor, each conditional Gaussian divergence is at most $C_1T^{2k}/\sigma^2$ uniformly over query times in $(0,T]$. The chain rule gives this bound multiplied by $N$ for the full transcript of any adaptive randomized policy. If both errors are at most $r<1/2$, binary relative entropy requires divergence at least $(1-2r)\log((1-r)/r)$. Thus the same physical target has sharp information scales $NT^{12}/\sigma^2$ and $NT^{10}/\sigma^2$ respectively. Consistency for $N\ge d$ is equivalent to divergence of the corresponding scale, and vanishing scale rules out nonvanishing discrimination advantage.
+
+A single random horizon $t=aT$, with $a$ uniform on $[1/2,1]$, also suffices for consistency at $\delta=o(T^k)$ over the unrestricted class. The alternative may depend on $T$ but is fixed before the draw, and the bounded noise may depend on the realized horizon. Accept when the observed matrix is within $\delta$ of the target at that horizon. Type I error is zero. For any positive spacing $\eta$, the separation proof is uniform on the compact family of $d$-tuples in $[1/2,1]$ with consecutive gaps at least $\eta$. If the nodes varied along a contradiction sequence, their limiting Vandermonde determinants, interpolation remainder constants and positive Loewner floor would still be nondegenerate, and the rational determinant in §14.3 is independent of the nodes. If the sets where $\|W_S(aT)-W_*(aT)\|\le2\delta$ had lengths bounded below by $\varepsilon>0$, one could select $d$ points from each set separated by $\varepsilon/8$, by successively removing intervals of radius $\varepsilon/8$. This contradicts uniform separation. Acceptance requires membership in these sets, so the worst-case type II error tends to zero as $T\downarrow0$ and $\delta/T^k\to0$. The same spacing argument permits a sufficiently small positive constant times $T^k$ for any prescribed positive error tolerance. At zero noise, for every $T>0$ each fixed alternative has a nonzero analytic entry of the Gramian difference by the exact heat obstruction and §2, so the test has zero error. The midpoint pair applies to random horizons at the larger constant noise level. Sections 13.3–13.4 retain the quantitative type II bound $\min\{1,C(\delta/T^k+T)^{1/(k-3)}\}$ in the capped class and the same expression with a uniform $o(1)$ replacing $T$ under the stated visible-tail condition.
+
+The unrestricted separation and statistical conclusions, including the fixed-mass three-horizon argument, have independent ordinary mathematical review. The rational determinant has been verified by exact arithmetic. Research priority remains unverified.
+
+## 追加锚（本行以下为增补区）

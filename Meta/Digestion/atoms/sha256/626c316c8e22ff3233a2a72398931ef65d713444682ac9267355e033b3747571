@@ -1,0 +1,17 @@
+### 13.1 A single rational target
+
+Use $\epsilon$ and $q$ from §12, now with two labeled unit-mass ports and four hidden coordinates. Add $\epsilon\mathbf 1$ to each of $(1,1,0,0)^\top$, $(0,1,1,0)^\top$, $(0,0,1,1)^\top$ and $(1,0,0,1)^\top$ to obtain $x,y,u,v$, respectively. Set
+
+$$
+\begin{gathered}
+X=[x,y],\quad P=uu^\top+vv^\top,\quad D=4I-P,\quad r=x+y,\quad s=u+v,\\
+g=D^{-1}r=\frac r4+\frac{1+2q}{4(1-2q)}s,\qquad
+C=\begin{pmatrix}1+x^\top g&-1\\-1&1+y^\top g\end{pmatrix},\qquad
+S=\begin{pmatrix}C&-X^\top\\-X&D\end{pmatrix}.
+\end{gathered}
+$$
+
+With $z=(1,1,g^\top)^\top>0$ and $Z=\operatorname{diag}(z)$, the masses are the diagonal entries of $Z^2$ and the conductance Laplacian is $ZSZ$. Indeed $Sz=0$ and every off-diagonal entry of $S$ is strictly negative. This specifies a complete rational six-vertex network.
+
+Its full kernel has minimum linear order five and minimum physical order six, with the same calibration and physical conventions as §12. The vectors $x,y,s$ span the hidden hyperplane perpendicular to $(1,-1,1,-1)^\top$. It is $D$-invariant and $Pr=(1+2q)s$. Thus $[E,SE,S^2E]$ spans the five-dimensional visible space, giving both a restriction and a rank-five Hankel bound. Any physical candidate of order at most five matching all the heat moments must have exactly five vertices. Identifying the Krylov columns by their Gram matrices gives a port-preserving isometry that intertwines the generators by shifting the powers of $S$. It transfers $\lambda_{\max}(D|_{\mathrm{span}(x,y,s)})=4$ to the candidate's hidden block $D'$. Then $P'=4I-D'$ is entrywise nonnegative, by positive semidefiniteness on the diagonal and the physical signs off the diagonal. The Gram of $x',y',P'y',P'x'$ equals that of $x,y,Py,Px$. Its diagonal is at most $(1+2q)^2(2+q)<4$, its cycle entries are at least $1$ and its opposite entries are $2q(1+q)<1/36$. The four-column obstruction of §12 excludes a factor on three hidden coordinates. By §2, exact $W$ on a positive open interval recovers the full $K$ within the calibrated physical class since $K(0)=I_2$. The same physical minimum applies to those effort data.
+
