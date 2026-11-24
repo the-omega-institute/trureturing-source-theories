@@ -1,0 +1,4 @@
+## 14. Unrestricted two-port separation and statistical experiments
+
+The exact order statement of §13.1 and the free-mass obstruction through $U_4$ in §13.2 are now formalized for the rational target. The Lean declaration `D5.S3.Combinatorics.SpectralGraph.TwoPortHeatRealization.exact_order_gap` proves stationary-inclusive Hankel and minimum linear order five, minimum physical order six, and the physical obstruction to matching all of $U_0,\ldots,U_4$. [Merged PR #33943](https://github.com/the-omega-institute/trureturing/pull/33943) · [Lean at merge cafdf6e69893f0728a0890878db457a8abe70d84](https://github.com/the-omega-institute/trureturing/blob/cafdf6e69893f0728a0890878db457a8abe70d84/D5/S3/Combinatorics/SpectralGraph/TwoPortHeatRealization.lean)
+

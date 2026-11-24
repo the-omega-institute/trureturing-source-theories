@@ -1,0 +1,66 @@
+### 14.3 Three horizons at fixed mass
+
+With three observations, the first two slow moments converge and the third slow moment is bounded, as above. If all fast visible weights tend to zero, the slow calibrated Gram of $[E,SE,z]$ converges to the rank-five target Gram. Any escaping row is absent or vanishes by the third-moment bound. A bounded subsequence is already excluded by §13.3. Hence along a subsequence there is a fast atom with $w=\|v_j\|^2$ bounded away from zero. With the three cofactor weights chosen with signs $(+,-,+)$, each trace pair term in $f$ has nonnegative interpolation functional by complete monotonicity. The fast atom's self term on the first interval is therefore $O(T^2)$ because its later interval integrals are $O(T^4)$. This first integral equals
+
+$$
+\frac{w^2}{T^3\lambda_j}\int_0^{a_1T\lambda_j}
+ b^2\left(\int_0^1 u e^{-bu}\,du\right)^2 db.
+$$
+
+The integral is bounded below on $T\lambda_j>1$, forcing $\lambda_j\ge cT^{-5}$.
+
+Pass to a subsequence with fixed vertex count and converging eigenbasis. Let $P$ project onto the limiting finite-rate modes, $R$ be their generator, $B=PE$ and $z$ the limiting ground vector. The first two finite-rate moments equal $C=U_{1,*}$ and $U_{2,*}$ since the omitted slow escaping contributions vanish. Also $Pz=z$, $Rz=0$, $B^\top z=\mathbf1$ and $\|z\|^2=M$. Choosing times $s\downarrow0$ with $s\lambda_j\to\infty$ for all escaping rates makes $e^{-sS}\to P$. The off-diagonal signs of $S$ make $e^{-sS}$ entrywise nonnegative, by shifting $-S$ by a scalar diagonal before expanding the exponential. Hence $P$ is entrywise nonnegative. Each nonzero support block of this symmetric nonnegative projection has rank one by Perron–Frobenius. Positive definiteness of $C$ puts the projected ports in different blocks, so $B^\top B=\operatorname{diag}(b_1,b_2)$.
+
+In the Gram of $[B,RB,z]$ the positive definite lower block is $\operatorname{diag}(U_{2,*},M)$ and the Schur complement is
+
+$$
+A=\operatorname{diag}(b_1,b_2)-C U_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top.
+$$
+
+Its off-diagonal is nonzero by the rational evaluation below, forcing rank at least four for $P$. There are exactly five states and a single escaping eigenvector with limit $u$, so $P=I-uu^\top$. Nonnegativity implies $u_i u_j\le0$ for $i\ne j$. The visible escape, the diagonal port block and $C\succ0$ force its support to contain just one port and one hidden coordinate. By target symmetry take that port to be the first, so $b_2=1$. Put $A_*=I-CU_{2,*}^{-1}C-M^{-1}\mathbf1\mathbf1^\top$. The rank-one Schur complement $A$ annihilates $h=(A_{*,22},-A_{*,12})^\top$. With $\gamma=U_{2,*}^{-1}Ch$, the projection residual gives $Bh=RB\gamma+z(\mathbf1^\top h/M)$. Applying $B^\top R^2$ yields
+
+$$
+U_{2,*}h=U_3^{\rm finite}\gamma,qquad U_3^{\rm finite}=B^\top R^3B.
+$$
+
+The escaping atom's initial layer contributes $O(T^2)$ to $G$ since $\lambda_j\ge cT^{-5}$. Its ordered mixed terms with the finite-rate response are $O(T^3)$ because $a^2\|H_j(a)\|\le C/(T^2\lambda_j)$. Its self term differs from the integral over $[0,\infty)$ by $O(T^6)$ at each positive observation fraction. After division by $T^2$ it thus has a common subsequential limit proportional to $e_1e_1^\top$ at the three observations. The finite-rate part of $G$ has coefficients at $a^3,a^4T,a^5T^2$ respectively
+
+$$
+\frac{U_1^2}{12},\qquad
+-\frac{U_1U_2+U_2U_1}{24},\qquad
+\frac{U_1U_3+U_3U_1}{80}+\frac{U_2^2}{45},
+$$
+
+using its actual finite-rate moments, with uniform remainder $O(T^3)$. A functional of the three values annihilating $a^3,a^4$ and nonzero on $a^5$ eliminates the lower-order differences before taking limits. Since the assumed errors in $G$ are $o(T^2)$, for some scalar $s$ we obtain
+
+$$
+U_3^{\rm finite}=U_{3,*}-s\mathcal L_C^{-1}(e_1e_1^\top),
+\qquad \mathcal L_C(Y)=CY+YC.
+$$
+
+The two equations are incompatible for this target. In the orthonormal symmetric and antisymmetric port basis indexed by $+,-$, let $p=125000/123999$ and use $q$ from §12. The eigenvalue pairs of $C,U_{2,*},U_{3,*}$ are respectively
+
+$$
+c=(p,p+2),\qquad m_i=c_i^2+d_i,\qquad
+n_i=c_i^3+2c_id_i+j_i,
+\quad d=(3+2q,1),\quad j=(4d_+-(1+2q)^2,3).
+$$
+
+Write $r_+=1-2/M-c_+^2/m_+$ and $r_-=1-c_-^2/m_-$. Direct rational evaluation gives $-72/10000<(r_+-r_-)/2=A_{*,12}<-70/10000$. Rescale $h$ and $\gamma$ in this basis by $\sqrt2$, giving coordinates $h=(r_-,r_+)$ and $\gamma_i=c_i h_i/m_i$. The preceding equations require proportionality of the vectors with coordinates
+
+$$
+v_i=n_i\gamma_i-m_i h_i,
+\qquad w_i=\sum_{j\in\{+,-\}}\frac{\gamma_j}{2(c_i+c_j)}.
+$$
+
+Exact rational arithmetic gives the determinant
+
+$$
+v_+w_--v_-w_+
+=-\frac{114045645488209846090976452240541508027266971504950645694164014592577566137505033999}
+{306736230930913013601872935583335745259128781992517186192615538933660287252187437500000}
+\in\left(-\frac{38}{100000},-\frac{36}{100000}\right).
+$$
+
+This excludes the fast regime and completes the three-horizon contradiction. All contradictions rule out sequences with normalized errors tending to zero, which establishes the uniform quantifiers of Theorem 14.1.
+

@@ -1,0 +1,28 @@
+### 14.2 Moment recovery in the presence of large rates
+
+Write $A_j=v_jv_j^\top$ for the port weight of an eigenvector of $S$ at rate $\lambda_j\ge0$. The weights sum to $I_2$. With $H(a)=(\overline K_{aT}-K(aT))/(aT)$ and $G(a)=W(aT)/T^3$,
+
+$$
+H(a)=\sum_j\lambda_j A_j\int_0^1 u e^{-aT\lambda_j u}\,du,
+\qquad G'(a)=a^2H(a)^2.
+$$
+
+All $(-1)^rH^{(r)}$ are positive semidefinite and $H(b)\preceq(a/b)^2H(a)$ for $0<b\le a$. The trace $f=\operatorname{tr}(H^2)$ is completely monotone by the product rule and positivity of the trace of a product of two positive matrices.
+
+Assume a sequence $T\downarrow0$ of competitors with data errors $o(T^k)$. For $a_0=0$, choose a linear combination $L(f)=\sum_{i=1}^d c_i\int_{a_{i-1}}^{a_i}a^2 f(a)\,da$ annihilating polynomials through degree $d-2$. The weighted moment minors are integrals of strictly positive Vandermonde determinants, so the cofactor weights alternate. Interpolation at $a_1,\ldots,a_{d-1}$ makes all signed remainders have the same sign and gives $|L(f)|\ge c_0(-1)^{d-1}f^{(d-1)}(a_d)$ with $c_0>0$. At the fixed target $f_*^{(d-1)}=O(T^{d-1})$, so $L(f_*)=O(T^{d-1})$. The measured increments of $G$, including $G(0)=0$, give the same bound for $L(f)$ for $(d,k)=(4,6)$ or $(3,5)$. On $[a_1,a_d]$, monotonicity bounds $\|H\|$ using $\operatorname{tr}G(a_1)$, and $H(a)^2\preceq C H(a_d)$. The increment $G(a_d)-G(a_1)$ has a positive definite limit proportional to $U_{1,*}^2$. Hence $H(a_d)\succeq\kappa I$ for some $\kappa>0$. The product rule bounds $\operatorname{tr}((-1)^{d-1}H^{(d-1)}(a_d))=O(T^{d-1})$.
+
+Split rates at $T\lambda_j=1$, writing $U_r^{\rm slow}$ for the moments summed over $T\lambda_j\le1$. The derivative multiplier for order $l=d-1$ is $\lambda_j(T\lambda_j)^l\int_0^1 u^{l+1}e^{-a_d T\lambda_j u}\,du$. It bounds a constant times $T^l\lambda_j^{l+1}$ on slow rates, and on fast rates bounds a constant times $\lambda_j/(T\lambda_j)^2$ by restricting the integral to $u\le1/(T\lambda_j)$. Thus $\operatorname{tr}U_d^{\rm slow}=O(1)$ and $H_{\rm fast}=O(T^{d-1})$ uniformly on $[a_1,a_d]$. Taylor expansion there gives
+
+$$
+H(a)=\frac{U_1^{\rm slow}}2
+       -\frac{aT U_2^{\rm slow}}3
+       +\frac{a^2T^2 U_3^{\rm slow}}8
+       +O(T^3)
+$$
+
+for four observations, or the linear truncation with $O(T^2)$ remainder for three. Integrate the ordered expansion of $H^2$ against $a^2$ over the $d-1$ intervals after $a_1$. Their weighted moment matrix is invertible. The constant coefficient gives the positive square root and the successive coefficients, divided by the corresponding powers of $T$, give invertible Sylvester equations at $U_{1,*}/2$. This recovers $U_r^{\rm slow}\to U_{r,*}$ for $1\le r\le d-1$.
+
+For free mass the limiting shifted Hankel matrix with blocks $[U_{1,*},U_{2,*};U_{2,*},U_{3,*}]$ is positive definite of rank four. Indeed it is the Gram of $S_*^{1/2}[E,S_*E]$ and $[E,S_*E,z_*]$ is independent by the hidden frame $[x,y,g]$. An escaping positive-rate mode is either omitted from the slow Gram or contributes squared row norm $(\lambda_j+\lambda_j^3)\|v_j\|^2=O(1/\lambda_j)$ by the fourth-moment bound. With at least one zero mode, at most three positive-rate rows remain. This contradicts the limiting rank four. Generators along the proposed sequence must therefore be bounded, and the bounded four-horizon separation in §13.3 contradicts its assumed errors.
+
+The four-horizon argument also gives the fixed-mass fifth power directly. For errors $o(T^5)$, the same interpolation with $d=4$ yields $T^3\operatorname{tr}U_4^{\rm slow}=o(T^2)$ and $H_{\rm fast}=o(T^2)$ on the positive observation interval. In the quadratic expansion of $H$, Hölder's inequality with weights $\lambda_j\|v_j\|^2$ and variable $T\lambda_j$ gives linear and quadratic coefficients $o(T^{2/3})$ and $o(T^{4/3})$. This controls the higher products in the square by $o(T^2)$ and again recovers the first three slow moments. The rank-four shifted Hankel limit excludes every fast mode. The calibrated Gram of $[E,SE,z]$, with $Sz=0$, $E^\top z=\mathbf1$ and $z^\top z=M$, now converges to the rank-five target Gram. A remaining escaping slow mode has zero ground coordinate and squared row norm $(1+\lambda_j^2)\|v_j\|^2=O(1/\lambda_j)$ by the bounded third moment, contradicting rank five. The bounded fixed-mass theorem applies to the resulting sequence.
+

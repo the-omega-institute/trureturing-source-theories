@@ -1,0 +1,21 @@
+### 13.2 First separating moments
+
+All alternatives below have at most five vertices, positive masses, the same labeled unit-mass ports and nonnegative conductances. In the free-total-mass class, matching the target through $U_4$ is impossible. Those moments fix the Gram of $[E,SE,S^2E]$ and give a port-preserving isometry intertwining $S$ on the span of $[E,SE]$. After identifying the hidden spaces with the target's visible hidden space, $X$ is fixed and the only possible change in $D$ is $D'=D+\alpha nn^\top$, where $n$ is a unit normal to $x,y$ there. The port edge is fixed by $C$ and full visibility excludes a component disjoint from both ports. Thus $D'$ is positive definite by Dirichlet energy. With $g'=D'^{-1}r$, conservation gives $X^\top g'=X^\top g=C\mathbf 1$, hence
+
+$$
+0=r^\top(g'-g)=-\alpha(n^\top g)(n^\top g').
+$$
+
+Here $n^\top g\ne0$ by the formula for $g$. If $n^\top g'=0$, then $Dg'=r$ and $g'=g$, a contradiction. Thus $\alpha=0$ and the exact obstruction applies.
+
+For a five-vertex match through $U_3$, use $x'=(1,b,0)^\top$, $y'=(0,b,1)^\top$, $b=\sqrt{1+q}$. Give $D'$ eigenvalues $3,\beta,f$ on $(1,0,-1)^\top$, $(1,0,1)^\top$ and $(0,1,0)^\top$, respectively. Put $A_r=r^\top Dr$, $R_r=r^\top D^{-1}r$ and choose
+
+$$
+f=\frac{A_r-2\beta}{4b^2},\qquad
+\frac2\beta+\frac{4b^2}{f}=R_r,\qquad 1<\beta<3.
+$$
+
+The left side crosses $R_r$ on $[1,3]$, with $f>3$ there. This follows from $21.95<A_r<22.1$ and $2<R_r<2.03$. The construction keeps $C$, $X^\top X$ and $X^\top D X$. The sum coupling has the prescribed squared norm and direct and inverse quadratic forms, and the difference coupling has eigenvalue $3$. These forms give the first three moments by block multiplication. The positive hidden ground vector is $(1/\beta,2b/f,1/\beta)^\top$.
+
+With total mass fixed to $2+g^\top g$, matching through $U_3$ is already impossible. The moments $U_1,U_2$ and the mass fix the Gram of $[X,g]$, which has rank three. The third moment fixes $X^\top D X$, and $Dg=X\mathbf 1$ fixes the other blocks of $[X,g]^\top D[X,g]$. The resulting isometry intertwines the hidden blocks on their visible spaces, implying the excluded exact match. To match through $U_2$, reuse the two columns $x',y'$ above and put $a=1/(1-2q)$ and $h=g^\top g=31376127001/30751504002$. Here $C\mathbf 1=a\mathbf 1$. Choose $w\in(1/4,1/2)$ with $2(a-bw)^2+w^2=h$, which exists by opposite signs of the difference at the endpoints. Then $g'=(a-bw,w,a-bw)^\top>0$ gives the required Gram of $[X',g']$. Rotate the plane of $(1,0,1)^\top$ and $(0,1,0)^\top$ slightly to increase the first direction's coordinate in both columns while retaining positive coordinates of $g'$. Both coupling columns become strictly positive. Using masses $g_i'^2$, port-to-hidden conductances $g_i'X'_{ij}$, port edge $1$ and any fixed strictly positive hidden conductances gives a complete same-mass match.
+
