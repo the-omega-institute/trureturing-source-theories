@@ -1,0 +1,55 @@
+**命题 9.2（Vanishing weighted tails with a strict change of actual recovery）。** There is a supported two-qubit pair with joint reference of rank three and $Q\ge(3/16)I$, and with the compressor of Theorem 9.1, for which $t=b=w_\rho=0$ with $w_\rho=\operatorname{Tr}(K\rho)$. Nevertheless $x>0$, $\Phi(Y)=Y$ under the common embedding, and $Y'\ne Y$. Its actual residual decreases strictly under the compression. There is a family of faithful joint pairs approaching this example through the same compressor, with $t,b,w_\rho=O(\epsilon^2)$ and $Q_\epsilon\ge(3/32)I$ for $0<\epsilon<1$, for which the recovery gap tends to a positive value. Both original and compressed entropy defects are positive in the limit and their squared scores are below one.
+
+Proof. Take $E=B=\mathbb C^2$, with $J=|0\rangle\langle0|$ on $E$ and retained coordinates $e_0,e_1$. Set
+
+$$
+H_0=\begin{pmatrix}2&1\\1&2\end{pmatrix},\quad
+G_0=\operatorname{diag}(0,1),\quad C_0=\operatorname{diag}(0,2),\quad
+S_0=\begin{pmatrix}H_0&G_0\\G_0&C_0\end{pmatrix},\quad \sigma=S_0^2/16.
+$$
+
+The kernel of $S_0$ is spanned by $|1\rangle\otimes e_0$. On the complementary coordinates $(00,01,11)$ it is tridiagonal with diagonal $2$ and adjacent entries $1$, hence has eigenvalues $2+\sqrt2,2,2-\sqrt2$. Thus $\sqrt\sigma=S_0/4$ and $\operatorname{Tr}\sigma=1$. The kept block of $S_0^2$ is $A_0=\begin{pmatrix}5&4\\4&6\end{pmatrix}$, the discarded block is $\operatorname{diag}(0,5)$, and $Q=Q_0/16$ with $Q_0=\begin{pmatrix}5&4\\4&11\end{pmatrix}$ of eigenvalues $13,3$. For a unit vector $z$ write $P_z=|z\rangle\langle z|$. Put $v=\sqrt{Q_0}e_0/\sqrt5$ and $\rho=P_{|0\rangle\otimes v}$. It is supported in $\sigma$ and $P=P_v$, $L=(16/5)P_{e_0}$. Both weighted tails vanish since $G_0,G_0^\dagger,C_0$ annihilate $e_0$. The two recovered states have kept unit vectors $h=H_0 e_0/\sqrt5$ and $d=\sqrt{A_0}e_0/\sqrt5$. If $Xe_0=0$, Hermiticity gives $X=\operatorname{diag}(0,u_0)$ and the $01$ coordinate of $HX+XH+X^2=GG^\dagger$ forces $u_0=0$ since $H_{01}=1/4$. This contradicts $GG^\dagger\ne0$.
+
+For any positive definite two-by-two matrix $A$, Cayley–Hamilton verifies $\sqrt A=(A+\sqrt{\det A}I)/\sqrt{\operatorname{Tr} A+2\sqrt{\det A}}$. Consequently the respective slopes of $v,h,d$ are $\alpha,1/2,\beta$, where
+
+$$
+\alpha=4/(5+\sqrt{39}),\qquad \beta=4/(5+\sqrt{14}),\qquad 0<\alpha<\beta<1/2.
+$$
+
+Two real unit vectors of slopes $u,v_1$ and positive first coordinates have pure-state trace distance $R(u,v_1)=2|u-v_1|/\sqrt{(1+u^2)(1+v_1^2)}$, by diagonalizing the difference on their span. Increasing the angle $\arctan s-\arctan\alpha$ for $\alpha<s\le1/2$ proves $r=R(\alpha,1/2)>r'=R(\alpha,\beta)$. The actual output gap is $R(\beta,1/2)$ and $x^2=2-2(1+\beta/2)/\sqrt{(1+1/4)(1+\beta^2)}$.
+
+For the exact defects set $u=(1+\alpha^2)^{-1/2}$, $v_1=\alpha u$, $k_\pm=(11\pm\sqrt{65})/2$, and $p_*=(5u^2+8uv_1+6v_1^2-k_-)/(k_+-k_-)$. The log expectations at the pure vector are
+
+$$
+\begin{aligned}
+m&=(13\log13+12\log3)/25,\\
+s&=(u/2+v_1/\sqrt2)^2\log((2+\sqrt2)^2)+(u^2/2)\log4
+ +(u/2-v_1/\sqrt2)^2\log((2-\sqrt2)^2),\\
+s'&=p_*\log k_++(1-p_*)\log k_- .
+\end{aligned}
+$$
+
+Indeed the $e_0$ weights on the eigenspaces of $Q_0$ are $1/5,4/5$, which become $13/25,12/25$ in $v$. The three reference weights are the squared overlaps with $(1/2,\pm1/\sqrt2,1/2)$ and $(1/\sqrt2,0,-1/\sqrt2)$, and $p_*$ is the $k_+$ weight for $A_0$. Purity cancels the source entropies and the normalization logarithms cancel between the reference and its marginal. Thus $\Delta=m-s$ and $\Delta'=m-s'$. The pinned directed interval replay of these exact expressions gives
+
+$$
+\begin{aligned}
+r&\in(0.2431802107,0.2431802108),&r'&\in(0.1745435495,0.1745435496),\\
+r-r'&\in(0.0686366611,0.0686366612),&\|Y-Y'\|_1&\in(0.0690038604,0.0690038605),\\
+\Delta&\in(0.0731558158,0.0731558159),&\Delta'&\in(0.0455696576,0.0455696577),\\
+r^2/\Delta&\in(0.8083651886,0.8083651888),&r'^2/\Delta'&\in(0.6685468418,0.6685468419),\\
+x^2&\in(0.0011907376,0.0011907377).
+\end{aligned}
+$$
+
+For faithful approximation let $z_\epsilon^2=\|S_0+\epsilon I\|_2^2=16+12\epsilon+4\epsilon^2$, $\sigma_\epsilon=(S_0+\epsilon I)^2/z_\epsilon^2$, $Q_\epsilon=T\sigma_\epsilon$, $v_\epsilon=\sqrt{Q_\epsilon}e_0/\sqrt{(Q_\epsilon)_{00}}$, and $\delta=\epsilon^2$. Put $\rho_\epsilon=(1-\delta)P_{|0\rangle\otimes v_\epsilon}+\delta\sigma_\epsilon$. Both states are faithful for $0<\epsilon<1$. Their actual likelihood is $(1-\delta)P_{e_0}/(Q_\epsilon)_{00}+\delta I$. In particular $Q_\epsilon\ge Q_0/z_\epsilon^2\ge(3/32)I$, with least eigenvalue tending to $3/16$. Substitution gives
+
+$$
+\begin{aligned}
+w_{\sigma,\epsilon}&=(5+4\epsilon+2\epsilon^2)/z_\epsilon^2,& w_{\rho,\epsilon}&=\delta w_{\sigma,\epsilon},\\
+t_\epsilon&=(1-\delta)\epsilon^2/(5+4\epsilon+2\epsilon^2)+\delta w_{\sigma,\epsilon},&
+b_\epsilon&=\delta/z_\epsilon^2.
+\end{aligned}
+$$
+
+The compressor preserves the two retained marginals for each $\epsilon$, and these marginals may vary with $\epsilon$. Continuity of square roots and the retained inverse gives convergence of the recoveries and residuals. In the logarithm expectation the pure source component lies in the fixed positive spectral subspace of $S_0$, where the reference logarithms converge, and in the uniformly positive kept block after compression. The reference-mixture term contributes $\delta\operatorname{Tr}(\sigma_\epsilon\log\sigma_\epsilon)$ and its compressed counterpart, both tending to zero. Source entropies and retained terms are continuous. Hence both defects and both squared scores converge. This family rules out a modulus tending to zero in the weighted tails $t,b$ even with $w_\rho$ included, at the stated dimensions and marginal floor, for this compressor.
+

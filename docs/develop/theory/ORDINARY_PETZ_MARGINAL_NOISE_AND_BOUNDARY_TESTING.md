@@ -219,3 +219,130 @@ For any sequence of repeated blind POVMs the relative increment $\zeta=sd/q$ und
 The literature inputs used in the proofs are joint convexity and data processing of quantum relative entropy, Petz's equality theorem, Schatten Hölder, the resolvent identity for the log derivative, and the Lindeberg central limit theorem. The fixed-marginal identities, boundary expansions, and measured asymptotics are repo-derived ordinary proofs. The two independent symbolic replays checked the partial traces, root square identity, signed recovery entries, crossing coefficient, BKM coefficient and binary Fisher limits $8/9$ and $1$. The quantification over arbitrary finite matrix sizes and the statistical limits follow from the proofs. Formal acceptance of the faithful theorem and its consumers is pinned in Note 2.2.
 
 ## 追加锚（本行以下为增补区）
+
+## 9. Weighted environment truncation and finite-copy testing
+
+This supplement extends the finite-displacement problem in Section 8 by comparing actual ordinary Petz outputs under a specified environment compression and by exhibiting its two-qubit obstruction.
+
+**定理 9.1（Weighted kept-block Sylvester transport）。** Let $\rho,\sigma$ be joint densities on finite nonzero $E\otimes B$ with $\operatorname{supp}\rho\subseteq\operatorname{supp}\sigma$. In this section write $T=\operatorname{Tr}_E$, $P=T\rho$, $Q=T\sigma$, $L=Q^{-1/2}PQ^{-1/2}$ and $M=I_E\otimes L$. Restrict $B$ to $\operatorname{supp}Q$, so $Q>0$. The actual recovered density is $Y=\sqrt\sigma M\sqrt\sigma$. For any orthogonal projection $J$ on $E$ and $K=I_E-J$, use their lifts by $I_B$ and the channel $\Phi$ to $JE\oplus\mathbb C f$ given by
+
+$$
+\Phi(W)=JWJ\oplus\operatorname{Tr}_{KE}(KWK).
+$$
+
+Put $\rho'=\Phi(\rho)$, $\sigma'=\Phi(\sigma)$ and let $Y'$ be the ordinary Petz output from $\sigma'$ and the actual retained marginal of $\rho'$. Write $r=\|\rho-Y\|_1$, $r'=\|\rho'-Y'\|_1$ and the actual deficits $\Delta=D(\rho\Vert\sigma)-D(P\Vert Q)$ and $\Delta'=D(\rho'\Vert\sigma')-D(P\Vert Q)$. Use the common environment $JE\oplus KE\oplus\mathbb C f$, extending the respective states by zero. In the original two blocks write
+
+$$
+S=\sqrt\sigma=\begin{pmatrix}H&G\\G^\dagger&C\end{pmatrix},\quad
+D=\sqrt{H^2+GG^\dagger},\quad F=\sqrt{\operatorname{Tr}_{KE}(C^2+G^\dagger G)},\quad X=D-H.
+$$
+
+Use $A_J=I_{JE}\otimes\sqrt L$, $A_K=I_{KE}\otimes\sqrt L$, $A_f=\sqrt L$, with $\sqrt M$ lifted to the common space. Define $x=\|XA_J\|_2$, $t=\operatorname{Tr}(MK\sigma)$, $b=\|G^\dagger A_J\|_2^2$, and $a=\|S\sqrt M-\sqrt{\sigma'}\sqrt M\|_2$ in that space. Then
+
+$$
+\begin{aligned}
+a^2&=x^2+2t+b,&\|Y-Y'\|_1&\le\min(2,2a),\\
+DX+XH&=GG^\dagger,&HX+XH+X^2&=GG^\dagger,\\
+XA_J&=\int_0^\infty e^{-sD}GG^\dagger e^{-sH}A_J\,ds .
+\end{aligned}
+$$
+
+These identities include singular kept blocks. Writing $V=XA_J$, its weighted Sylvester equation is $DV+VH=GG^\dagger A_J+X[A_J,H]$. For $c=\|[A_J,H]\|_2$, $\kappa=\|L\|_\infty$ and $w_\sigma=\operatorname{Tr}(K\sigma)$, one has
+
+$$
+x\le c/\sqrt2+\sqrt{b+c^2/2},\qquad x^2\le\kappa\|G\|_2^2,\qquad a^2\le4\kappa w_\sigma.
+$$
+
+Proof. Support containment implies $\rho\le c_0\sigma$ for some finite $c_0$, so both retained marginals are supported on $Q$ and $\rho'\le c_0\sigma'$. The environment Kraus operators of $\Phi$ are the kept inclusion composed with $J$ and the operators $|f\rangle\langle k|$ for an orthonormal basis of $KE$. Their adjoint products sum to $I_E$. Summing the two diagonal environment marginals preserves $P,Q$ exactly, so the likelihood $L$ is common. The compressed square root is $D\oplus0\oplus F$ on the common space. The amplitudes $U=S\sqrt M$ and $U'=\sqrt{\sigma'}\sqrt M$ give $Y=UU^\dagger$, $Y'=U'U'^\dagger$, both with squared Hilbert–Schmidt norm of the amplitude equal to $\operatorname{Tr}(LQ)=1$. The discarded column contributes $t=\|GA_K\|_2^2+\|CA_K\|_2^2$, the off-diagonal discarded row contributes $b$, and the flag contributes $\|FA_f\|_2^2=t$. The full discarded row weight is $\operatorname{Tr}(KY)=b+\|CA_K\|_2^2$. Including the kept block gives the stated squared amplitude identity. Factoring the difference of the two amplitude products and using Schatten Hölder gives the trace bound.
+
+Square-root monotonicity gives $D\ge H\ge0$. Expand $D^2-H^2=GG^\dagger$ to obtain the two Sylvester identities. In separate eigenbases for $D,H$, the coefficient of the first Sylvester map is $d+h$ for eigenvalues $d,h\ge0$. At $d=h=0$ the corresponding block of $X$ vanishes since $\ker D\subseteq\ker H$ and $X$ annihilates $\ker D$. Integration of $e^{-s(d+h)}$ on the positive-sum blocks proves the formula. Multiplying the first identity by $A_J$ on the right and commuting $A_J$ across $H$ gives the weighted equation.
+
+For the estimates let $A=A_J$. Taking the trace of the quadratic identity against $A^2$ and expanding the double commutator gives
+
+$$
+x^2=b-2\operatorname{Tr}(XAHA)-\operatorname{Tr}([X,A][A,H]).
+$$
+
+The middle trace is nonnegative. Since $X,A\ge0$, the trace $\operatorname{Tr}(AXAX)$ is nonnegative and $\|[X,A]\|_2^2=2x^2-2\operatorname{Tr}(AXAX)\le2x^2$. Cauchy–Schwarz gives $x^2\le b+\sqrt2 cx$ and solving the quadratic yields the first estimate. The unweighted trace gives $\|X\|_2^2\le\|G\|_2^2$. Also $t\le\kappa w_\sigma$ and $b\le\kappa\|G\|_2^2\le\kappa w_\sigma$ because the discarded diagonal block of $\sigma$ is $C^2+G^\dagger G$. Substituting into the amplitude identity gives the final estimate.
+
+**命题 9.2（Vanishing weighted tails with a strict change of actual recovery）。** There is a supported two-qubit pair with joint reference of rank three and $Q\ge(3/16)I$, and with the compressor of Theorem 9.1, for which $t=b=w_\rho=0$ with $w_\rho=\operatorname{Tr}(K\rho)$. Nevertheless $x>0$, $\Phi(Y)=Y$ under the common embedding, and $Y'\ne Y$. Its actual residual decreases strictly under the compression. There is a family of faithful joint pairs approaching this example through the same compressor, with $t,b,w_\rho=O(\epsilon^2)$ and $Q_\epsilon\ge(3/32)I$ for $0<\epsilon<1$, for which the recovery gap tends to a positive value. Both original and compressed entropy defects are positive in the limit and their squared scores are below one.
+
+Proof. Take $E=B=\mathbb C^2$, with $J=|0\rangle\langle0|$ on $E$ and retained coordinates $e_0,e_1$. Set
+
+$$
+H_0=\begin{pmatrix}2&1\\1&2\end{pmatrix},\quad
+G_0=\operatorname{diag}(0,1),\quad C_0=\operatorname{diag}(0,2),\quad
+S_0=\begin{pmatrix}H_0&G_0\\G_0&C_0\end{pmatrix},\quad \sigma=S_0^2/16.
+$$
+
+The kernel of $S_0$ is spanned by $|1\rangle\otimes e_0$. On the complementary coordinates $(00,01,11)$ it is tridiagonal with diagonal $2$ and adjacent entries $1$, hence has eigenvalues $2+\sqrt2,2,2-\sqrt2$. Thus $\sqrt\sigma=S_0/4$ and $\operatorname{Tr}\sigma=1$. The kept block of $S_0^2$ is $A_0=\begin{pmatrix}5&4\\4&6\end{pmatrix}$, the discarded block is $\operatorname{diag}(0,5)$, and $Q=Q_0/16$ with $Q_0=\begin{pmatrix}5&4\\4&11\end{pmatrix}$ of eigenvalues $13,3$. For a unit vector $z$ write $P_z=|z\rangle\langle z|$. Put $v=\sqrt{Q_0}e_0/\sqrt5$ and $\rho=P_{|0\rangle\otimes v}$. It is supported in $\sigma$ and $P=P_v$, $L=(16/5)P_{e_0}$. Both weighted tails vanish since $G_0,G_0^\dagger,C_0$ annihilate $e_0$. The two recovered states have kept unit vectors $h=H_0 e_0/\sqrt5$ and $d=\sqrt{A_0}e_0/\sqrt5$. If $Xe_0=0$, Hermiticity gives $X=\operatorname{diag}(0,u_0)$ and the $01$ coordinate of $HX+XH+X^2=GG^\dagger$ forces $u_0=0$ since $H_{01}=1/4$. This contradicts $GG^\dagger\ne0$.
+
+For any positive definite two-by-two matrix $A$, Cayley–Hamilton verifies $\sqrt A=(A+\sqrt{\det A}I)/\sqrt{\operatorname{Tr} A+2\sqrt{\det A}}$. Consequently the respective slopes of $v,h,d$ are $\alpha,1/2,\beta$, where
+
+$$
+\alpha=4/(5+\sqrt{39}),\qquad \beta=4/(5+\sqrt{14}),\qquad 0<\alpha<\beta<1/2.
+$$
+
+Two real unit vectors of slopes $u,v_1$ and positive first coordinates have pure-state trace distance $R(u,v_1)=2|u-v_1|/\sqrt{(1+u^2)(1+v_1^2)}$, by diagonalizing the difference on their span. Increasing the angle $\arctan s-\arctan\alpha$ for $\alpha<s\le1/2$ proves $r=R(\alpha,1/2)>r'=R(\alpha,\beta)$. The actual output gap is $R(\beta,1/2)$ and $x^2=2-2(1+\beta/2)/\sqrt{(1+1/4)(1+\beta^2)}$.
+
+For the exact defects set $u=(1+\alpha^2)^{-1/2}$, $v_1=\alpha u$, $k_\pm=(11\pm\sqrt{65})/2$, and $p_*=(5u^2+8uv_1+6v_1^2-k_-)/(k_+-k_-)$. The log expectations at the pure vector are
+
+$$
+\begin{aligned}
+m&=(13\log13+12\log3)/25,\\
+s&=(u/2+v_1/\sqrt2)^2\log((2+\sqrt2)^2)+(u^2/2)\log4
+ +(u/2-v_1/\sqrt2)^2\log((2-\sqrt2)^2),\\
+s'&=p_*\log k_++(1-p_*)\log k_- .
+\end{aligned}
+$$
+
+Indeed the $e_0$ weights on the eigenspaces of $Q_0$ are $1/5,4/5$, which become $13/25,12/25$ in $v$. The three reference weights are the squared overlaps with $(1/2,\pm1/\sqrt2,1/2)$ and $(1/\sqrt2,0,-1/\sqrt2)$, and $p_*$ is the $k_+$ weight for $A_0$. Purity cancels the source entropies and the normalization logarithms cancel between the reference and its marginal. Thus $\Delta=m-s$ and $\Delta'=m-s'$. The pinned directed interval replay of these exact expressions gives
+
+$$
+\begin{aligned}
+r&\in(0.2431802107,0.2431802108),&r'&\in(0.1745435495,0.1745435496),\\
+r-r'&\in(0.0686366611,0.0686366612),&\|Y-Y'\|_1&\in(0.0690038604,0.0690038605),\\
+\Delta&\in(0.0731558158,0.0731558159),&\Delta'&\in(0.0455696576,0.0455696577),\\
+r^2/\Delta&\in(0.8083651886,0.8083651888),&r'^2/\Delta'&\in(0.6685468418,0.6685468419),\\
+x^2&\in(0.0011907376,0.0011907377).
+\end{aligned}
+$$
+
+For faithful approximation let $z_\epsilon^2=\|S_0+\epsilon I\|_2^2=16+12\epsilon+4\epsilon^2$, $\sigma_\epsilon=(S_0+\epsilon I)^2/z_\epsilon^2$, $Q_\epsilon=T\sigma_\epsilon$, $v_\epsilon=\sqrt{Q_\epsilon}e_0/\sqrt{(Q_\epsilon)_{00}}$, and $\delta=\epsilon^2$. Put $\rho_\epsilon=(1-\delta)P_{|0\rangle\otimes v_\epsilon}+\delta\sigma_\epsilon$. Both states are faithful for $0<\epsilon<1$. Their actual likelihood is $(1-\delta)P_{e_0}/(Q_\epsilon)_{00}+\delta I$. In particular $Q_\epsilon\ge Q_0/z_\epsilon^2\ge(3/32)I$, with least eigenvalue tending to $3/16$. Substitution gives
+
+$$
+\begin{aligned}
+w_{\sigma,\epsilon}&=(5+4\epsilon+2\epsilon^2)/z_\epsilon^2,& w_{\rho,\epsilon}&=\delta w_{\sigma,\epsilon},\\
+t_\epsilon&=(1-\delta)\epsilon^2/(5+4\epsilon+2\epsilon^2)+\delta w_{\sigma,\epsilon},&
+b_\epsilon&=\delta/z_\epsilon^2.
+\end{aligned}
+$$
+
+The compressor preserves the two retained marginals for each $\epsilon$, and these marginals may vary with $\epsilon$. Continuity of square roots and the retained inverse gives convergence of the recoveries and residuals. In the logarithm expectation the pure source component lies in the fixed positive spectral subspace of $S_0$, where the reference logarithms converge, and in the uniformly positive kept block after compression. The reference-mixture term contributes $\delta\operatorname{Tr}(\sigma_\epsilon\log\sigma_\epsilon)$ and its compressed counterpart, both tending to zero. Source entropies and retained terms are continuous. Hence both defects and both squared scores converge. This family rules out a modulus tending to zero in the weighted tails $t,b$ even with $w_\rho$ included, at the stated dimensions and marginal floor, for this compressor.
+
+**定理 9.3（Same-copy simulation and strict Bayes gap）。** Under Theorem 9.1 let $N\ge1$ be any finite integer. Define the decoder from $JE\oplus\mathbb C f$ to $E$ by keeping the kept block and replacing the flag by a fixed density on $KE$ while retaining its retained-system marginal. If $K=0$, decode the unused flag to any fixed environment density. The prescribed product channels $\Phi^{\otimes N}$ and the product decoder compare the triples $(\rho^{\otimes N},\sigma^{\otimes N},Y^{\otimes N})$ and $((\rho')^{\otimes N},(\sigma')^{\otimes N},(Y')^{\otimes N})$ with worst per-hypothesis unhalved trace error in either direction bounded by
+
+$$
+\min\big(2,\,2\sqrt{N\max(2w_\rho,2w_\sigma,a^2)}\big).\tag{9.1}
+$$
+
+For the binary experiment $(\rho,Y)$ use $\max(2w_\rho,a^2)$ in this expression. These are bounds for the specified product maps, hence also upper bounds for the respective optimal errors when the processing is optimized over all CPTP maps. Each collective POVM event has simulation error at most half the corresponding trace error.
+
+In Proposition 9.2 the equal-prior optimal Bayes error strictly increases for every finite $N\ge1$. Writing
+
+$$
+r_N=2\sqrt{1-|\langle v,h\rangle|^{2N}},\qquad
+r'_N=2\sqrt{1-|\langle v,d\rangle|^{2N}},
+$$
+
+the increase is $(r_N-r'_N)/4>0$. Every reverse CPTP simulation of this binary pair has maximum per-hypothesis unhalved trace error at least $(r_N-r'_N)/2$. The prescribed forward compressor has exact benchmark error $2\sqrt{1-|\langle h,d\rangle|^{2N}}$. For each fixed $N$, the strict Bayes gap persists for sufficiently small positive $\epsilon$ in the faithful family of Proposition 9.2.
+
+Proof. Write $f(A,B)=\|\sqrt A\sqrt B\|_1$ for root fidelity. For $W=\rho,\sigma$ the compressed and decoded densities both dominate $JWJ$ in the relevant common embedding. Since $\sqrt W JWJ\sqrt W=(\sqrt W J\sqrt W)^2$, monotonicity of the square root gives root fidelity at least $1-w_W$ with $W$. The source and reference forward simulations are exact. For the actual benchmarks the normalized amplitudes of Theorem 9.1 have real Hilbert–Schmidt overlap $1-a^2/2$. Vectorizing them gives purifications, so $f(Y,Y')\ge g=(1-a^2/2)_+$. The common-space extensions of the compressor and decoder dephase between $E$ and the flag, then respectively fix the flag and fix $E$. They therefore fix the corresponding embedded target states. Contractivity bounds the benchmark errors in both directions by the common-space distance of the tensor powers. Multiplicativity of root fidelity and the fidelity–trace inequality yield the reverse source and reference bounds $2\sqrt{1-(1-w_W)^{2N}}$ and the two benchmark bounds $2\sqrt{1-g^{2N}}$. Using $1-(1-u)^N\le Nu$ for $0\le u\le1$ gives (9.1), with the trivial upper bound $2$. The event estimate follows from trace duality for effects. At bounded $N\Delta$, the binary error bound tends to zero along any family with positive $\Delta$ and $w_\rho+a^2=o(\Delta)$.
+
+For the example the angle order from Proposition 9.2 gives $0<|\langle v,h\rangle|<|\langle v,d\rangle|<1$. The pure-state trace formula and tensor-product overlaps give $r_N>r'_N$ for every finite $N\ge1$. By the Helstrom formula the two optimal equal-prior errors are $1/2-r_N/4$ and $1/2-r'_N/4$. If a reverse CPTP map has maximum per-hypothesis trace error $q$, then trace contractivity and the triangle inequality imply $r_N\le r'_N+2q$. The forward formula follows because the specified compressor fixes both kept pure densities. At each fixed copy number continuity of the tensor-product densities and trace norms gives the strict faithful gap.
+
+### 9.4 Sources and scope
+
+The three results are repo-derived ordinary proofs from “Weighted ordinary Petz comparison for a projection and external flag” (25 November 2026), independently approved in the sshx review with run ID `37c949e5411f902b6ac0d741`. The pinned research artifacts in `petz-weighted-environment-truncation-proof` are `proof.txt` (SHA-256 `49341ee6e760de214eaf38978895658bfc174b28142edcc7401cdfba69ba2654`), `replay.py` (SHA-256 `2301116be5102ed4a6d668ba4b8ece532d91d03fdb8804af7ecc84d897cafd67`) and `independent-review-result.json` (SHA-256 `c899a5155e527aaba841474188b5be7816251d5ec55810871358883c7b0d082d`). The exact scalar replay `python3 -I -B replay.py` passed all nine open intervals using 55-digit directed Decimal arithmetic, enclosing the correctly rounded square roots and logarithms by adjacent decimals. The fidelity and Helstrom formulas used in Theorem 9.3 are standard quantum testing identities. The scope of (9.1) is equation (7) of the approved proof. Both squared scores in the witness are strictly below one. The bounded-dimension compression question for a strict margin above squared score six and the assertion $C(2)=6$ remain open.
+
+## 追加锚（本行以下为增补区）

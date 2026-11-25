@@ -1,0 +1,21 @@
+**定理 9.3（Same-copy simulation and strict Bayes gap）。** Under Theorem 9.1 let $N\ge1$ be any finite integer. Define the decoder from $JE\oplus\mathbb C f$ to $E$ by keeping the kept block and replacing the flag by a fixed density on $KE$ while retaining its retained-system marginal. If $K=0$, decode the unused flag to any fixed environment density. The prescribed product channels $\Phi^{\otimes N}$ and the product decoder compare the triples $(\rho^{\otimes N},\sigma^{\otimes N},Y^{\otimes N})$ and $((\rho')^{\otimes N},(\sigma')^{\otimes N},(Y')^{\otimes N})$ with worst per-hypothesis unhalved trace error in either direction bounded by
+
+$$
+\min\big(2,\,2\sqrt{N\max(2w_\rho,2w_\sigma,a^2)}\big).\tag{9.1}
+$$
+
+For the binary experiment $(\rho,Y)$ use $\max(2w_\rho,a^2)$ in this expression. These are bounds for the specified product maps, hence also upper bounds for the respective optimal errors when the processing is optimized over all CPTP maps. Each collective POVM event has simulation error at most half the corresponding trace error.
+
+In Proposition 9.2 the equal-prior optimal Bayes error strictly increases for every finite $N\ge1$. Writing
+
+$$
+r_N=2\sqrt{1-|\langle v,h\rangle|^{2N}},\qquad
+r'_N=2\sqrt{1-|\langle v,d\rangle|^{2N}},
+$$
+
+the increase is $(r_N-r'_N)/4>0$. Every reverse CPTP simulation of this binary pair has maximum per-hypothesis unhalved trace error at least $(r_N-r'_N)/2$. The prescribed forward compressor has exact benchmark error $2\sqrt{1-|\langle h,d\rangle|^{2N}}$. For each fixed $N$, the strict Bayes gap persists for sufficiently small positive $\epsilon$ in the faithful family of Proposition 9.2.
+
+Proof. Write $f(A,B)=\|\sqrt A\sqrt B\|_1$ for root fidelity. For $W=\rho,\sigma$ the compressed and decoded densities both dominate $JWJ$ in the relevant common embedding. Since $\sqrt W JWJ\sqrt W=(\sqrt W J\sqrt W)^2$, monotonicity of the square root gives root fidelity at least $1-w_W$ with $W$. The source and reference forward simulations are exact. For the actual benchmarks the normalized amplitudes of Theorem 9.1 have real Hilbert–Schmidt overlap $1-a^2/2$. Vectorizing them gives purifications, so $f(Y,Y')\ge g=(1-a^2/2)_+$. The common-space extensions of the compressor and decoder dephase between $E$ and the flag, then respectively fix the flag and fix $E$. They therefore fix the corresponding embedded target states. Contractivity bounds the benchmark errors in both directions by the common-space distance of the tensor powers. Multiplicativity of root fidelity and the fidelity–trace inequality yield the reverse source and reference bounds $2\sqrt{1-(1-w_W)^{2N}}$ and the two benchmark bounds $2\sqrt{1-g^{2N}}$. Using $1-(1-u)^N\le Nu$ for $0\le u\le1$ gives (9.1), with the trivial upper bound $2$. The event estimate follows from trace duality for effects. At bounded $N\Delta$, the binary error bound tends to zero along any family with positive $\Delta$ and $w_\rho+a^2=o(\Delta)$.
+
+For the example the angle order from Proposition 9.2 gives $0<|\langle v,h\rangle|<|\langle v,d\rangle|<1$. The pure-state trace formula and tensor-product overlaps give $r_N>r'_N$ for every finite $N\ge1$. By the Helstrom formula the two optimal equal-prior errors are $1/2-r_N/4$ and $1/2-r'_N/4$. If a reverse CPTP map has maximum per-hypothesis trace error $q$, then trace contractivity and the triangle inequality imply $r_N\le r'_N+2q$. The forward formula follows because the specified compressor fixes both kept pure densities. At each fixed copy number continuity of the tensor-product densities and trace norms gives the strict faithful gap.
+

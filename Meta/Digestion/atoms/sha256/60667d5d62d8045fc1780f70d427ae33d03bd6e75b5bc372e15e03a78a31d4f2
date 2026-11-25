@@ -1,0 +1,41 @@
+**定理 9.1（Weighted kept-block Sylvester transport）。** Let $\rho,\sigma$ be joint densities on finite nonzero $E\otimes B$ with $\operatorname{supp}\rho\subseteq\operatorname{supp}\sigma$. In this section write $T=\operatorname{Tr}_E$, $P=T\rho$, $Q=T\sigma$, $L=Q^{-1/2}PQ^{-1/2}$ and $M=I_E\otimes L$. Restrict $B$ to $\operatorname{supp}Q$, so $Q>0$. The actual recovered density is $Y=\sqrt\sigma M\sqrt\sigma$. For any orthogonal projection $J$ on $E$ and $K=I_E-J$, use their lifts by $I_B$ and the channel $\Phi$ to $JE\oplus\mathbb C f$ given by
+
+$$
+\Phi(W)=JWJ\oplus\operatorname{Tr}_{KE}(KWK).
+$$
+
+Put $\rho'=\Phi(\rho)$, $\sigma'=\Phi(\sigma)$ and let $Y'$ be the ordinary Petz output from $\sigma'$ and the actual retained marginal of $\rho'$. Write $r=\|\rho-Y\|_1$, $r'=\|\rho'-Y'\|_1$ and the actual deficits $\Delta=D(\rho\Vert\sigma)-D(P\Vert Q)$ and $\Delta'=D(\rho'\Vert\sigma')-D(P\Vert Q)$. Use the common environment $JE\oplus KE\oplus\mathbb C f$, extending the respective states by zero. In the original two blocks write
+
+$$
+S=\sqrt\sigma=\begin{pmatrix}H&G\\G^\dagger&C\end{pmatrix},\quad
+D=\sqrt{H^2+GG^\dagger},\quad F=\sqrt{\operatorname{Tr}_{KE}(C^2+G^\dagger G)},\quad X=D-H.
+$$
+
+Use $A_J=I_{JE}\otimes\sqrt L$, $A_K=I_{KE}\otimes\sqrt L$, $A_f=\sqrt L$, with $\sqrt M$ lifted to the common space. Define $x=\|XA_J\|_2$, $t=\operatorname{Tr}(MK\sigma)$, $b=\|G^\dagger A_J\|_2^2$, and $a=\|S\sqrt M-\sqrt{\sigma'}\sqrt M\|_2$ in that space. Then
+
+$$
+\begin{aligned}
+a^2&=x^2+2t+b,&\|Y-Y'\|_1&\le\min(2,2a),\\
+DX+XH&=GG^\dagger,&HX+XH+X^2&=GG^\dagger,\\
+XA_J&=\int_0^\infty e^{-sD}GG^\dagger e^{-sH}A_J\,ds .
+\end{aligned}
+$$
+
+These identities include singular kept blocks. Writing $V=XA_J$, its weighted Sylvester equation is $DV+VH=GG^\dagger A_J+X[A_J,H]$. For $c=\|[A_J,H]\|_2$, $\kappa=\|L\|_\infty$ and $w_\sigma=\operatorname{Tr}(K\sigma)$, one has
+
+$$
+x\le c/\sqrt2+\sqrt{b+c^2/2},\qquad x^2\le\kappa\|G\|_2^2,\qquad a^2\le4\kappa w_\sigma.
+$$
+
+Proof. Support containment implies $\rho\le c_0\sigma$ for some finite $c_0$, so both retained marginals are supported on $Q$ and $\rho'\le c_0\sigma'$. The environment Kraus operators of $\Phi$ are the kept inclusion composed with $J$ and the operators $|f\rangle\langle k|$ for an orthonormal basis of $KE$. Their adjoint products sum to $I_E$. Summing the two diagonal environment marginals preserves $P,Q$ exactly, so the likelihood $L$ is common. The compressed square root is $D\oplus0\oplus F$ on the common space. The amplitudes $U=S\sqrt M$ and $U'=\sqrt{\sigma'}\sqrt M$ give $Y=UU^\dagger$, $Y'=U'U'^\dagger$, both with squared Hilbert–Schmidt norm of the amplitude equal to $\operatorname{Tr}(LQ)=1$. The discarded column contributes $t=\|GA_K\|_2^2+\|CA_K\|_2^2$, the off-diagonal discarded row contributes $b$, and the flag contributes $\|FA_f\|_2^2=t$. The full discarded row weight is $\operatorname{Tr}(KY)=b+\|CA_K\|_2^2$. Including the kept block gives the stated squared amplitude identity. Factoring the difference of the two amplitude products and using Schatten Hölder gives the trace bound.
+
+Square-root monotonicity gives $D\ge H\ge0$. Expand $D^2-H^2=GG^\dagger$ to obtain the two Sylvester identities. In separate eigenbases for $D,H$, the coefficient of the first Sylvester map is $d+h$ for eigenvalues $d,h\ge0$. At $d=h=0$ the corresponding block of $X$ vanishes since $\ker D\subseteq\ker H$ and $X$ annihilates $\ker D$. Integration of $e^{-s(d+h)}$ on the positive-sum blocks proves the formula. Multiplying the first identity by $A_J$ on the right and commuting $A_J$ across $H$ gives the weighted equation.
+
+For the estimates let $A=A_J$. Taking the trace of the quadratic identity against $A^2$ and expanding the double commutator gives
+
+$$
+x^2=b-2\operatorname{Tr}(XAHA)-\operatorname{Tr}([X,A][A,H]).
+$$
+
+The middle trace is nonnegative. Since $X,A\ge0$, the trace $\operatorname{Tr}(AXAX)$ is nonnegative and $\|[X,A]\|_2^2=2x^2-2\operatorname{Tr}(AXAX)\le2x^2$. Cauchy–Schwarz gives $x^2\le b+\sqrt2 cx$ and solving the quadratic yields the first estimate. The unweighted trace gives $\|X\|_2^2\le\|G\|_2^2$. Also $t\le\kappa w_\sigma$ and $b\le\kappa\|G\|_2^2\le\kappa w_\sigma$ because the discarded diagonal block of $\sigma$ is $C^2+G^\dagger G$. Substituting into the amplitude identity gives the final estimate.
+
