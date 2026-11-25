@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using StrataLint.Cli;
 using StrataLint.Engine;
+using Trureturing.Truth;
 
 namespace StrataLint.Digestion.Tests;
 
@@ -66,6 +67,47 @@ public sealed class FrozenBranchTests
         }
     }
 
+    [Fact]
+    public void PairedStateResolvesOfficialMembershipAndKeepsTheRawDigest()
+    {
+        var state = StateWithDeclarations(
+            new
+            {
+                declaration_name_key = Name,
+                kind = "theorem",
+                libraries = new[] { "Init", "OmegaMath" },
+                axioms = new[] { "propext" },
+                strict_omega = new StrictOmegaMeasurement(Name, "theorem", Id('2'), Id('3'), ["OmegaInit", "OmegaMath"], []),
+            },
+            new { declaration_name_key = "ns(n0,5:other)", kind = "theorem" });
+        var branch = new FrozenBranch("dev", Commit('a'), _ => state);
+        var evidence = branch.Resolve(Gid);
+        Assert.Null(evidence.TargetStatementId);
+        Assert.Equal(Name, evidence.BranchEvidence!.DeclarationNameKey);
+        Assert.Equal(Id('1'), evidence.BranchEvidence.ModuleStatementId);
+        Assert.Equal("sha256:" + Convert.ToHexStringLower(SHA256.HashData(state)), evidence.BranchEvidence.StateSha256);
+        Assert.Equal(evidence.BranchEvidence.StateSha256, branch.Resolve(Other).BranchEvidence!.StateSha256);
+    }
+
+    [Theory]
+    [InlineData("ns(n0,5:other)", "theorem", true)]
+    [InlineData(Name, "def", true)]
+    [InlineData(Name, "theorem", false)]
+    public void RejectsPairsWithCrossedIdentityOrMissingOfficialMeasurement(string name, string kind, bool hasOfficialAxioms)
+    {
+        var strict = new StrictOmegaMeasurement(name, kind, Id('2'), Id('3'), [], []);
+        var declaration = new Dictionary<string, object>
+        {
+            ["declaration_name_key"] = Name,
+            ["kind"] = "theorem",
+            ["libraries"] = new[] { "Init" },
+            ["strict_omega"] = strict,
+        };
+        if (hasOfficialAxioms) declaration.Add("axioms", new[] { "propext" });
+        var branch = new FrozenBranch("dev", Commit('a'), _ => StateWithDeclarations(declaration));
+        Assert.Throws<FormatException>(() => branch.Resolve(Gid));
+    }
+
     [Theory]
     [InlineData(""" "unknown":[] """)]
     [InlineData(""" "Libraries":[] """)]
@@ -76,6 +118,8 @@ public sealed class FrozenBranchTests
     [InlineData(""" "axioms":null """)]
     [InlineData(""" "axioms":{} """)]
     [InlineData(""" "axioms":[null] """)]
+    [InlineData(""" "strict_omega":null """)]
+    [InlineData(""" "strict_omega":{},"strict_omega":{} """)]
     public void InvalidAnnotationFieldsRejectTheWholeModule(string fields)
     {
         using var declaration = JsonDocument.Parse($$"""
