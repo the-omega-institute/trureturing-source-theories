@@ -1,0 +1,24 @@
+**定理 10.3（Exact deficiency for two pure hypotheses）。** Let $U_i=P_{u_i}$ and $V_i=P_{v_i}$ be pairs of unit-vector densities on arbitrary nonzero finite-dimensional carriers. For $a_0=|\langle u_0,u_1\rangle|$, $b_0=|\langle v_0,v_1\rangle|$ and $s_c=\sqrt{1-c^2}$, one has
+
+$$
+\delta(U\to V)=(s_{b_0}-s_{a_0})_+,
+\tag{10.5}
+$$
+
+with attainment by a common CPTP map on the full carriers.
+
+Proof. The trace norms of the pure contrasts are $2s_{a_0}$ and $2s_{b_0}$, using the two-dimensional span and determinant of the difference. Contractivity and the triangle inequality give the lower bound. Rephase the second vector in each pair for real nonnegative overlap. For any such pair $(z_0,z_1)$ with overlap $c<1$, its orthonormal sum and difference vectors are $(z_0+z_1)/\sqrt{2(1+c)}$ and $(z_0-z_1)/\sqrt{2(1-c)}$. Let the map from $\mathbb C^2$ into the carrier with these columns be denoted by $U_z$. For $c=1$ take columns $z_0,0$. On the canonical qubit the two pure projectors are $(I+(-1)^i s_c X+c Z)/2$, where $X$ interchanges coordinates and $Z=\operatorname{diag}(1,-1)$. Their images by $U_z$ give the original states also at $c=1$.
+
+If $a_0\ge b_0$, $a_0>0$ and $b_0<1$, use $U=U_u$, $V=U_v$, $P_U=UU^\dagger$, $p_0=(1+b_0/a_0)/2$ and any fixed target density $\tau$. The channel is
+
+$$
+\Gamma(W)=p_0 VU^\dagger WUV^\dagger
+ +(1-p_0)VXU^\dagger WUXV^\dagger
+ +\operatorname{Tr}((I-P_U)W)\tau.
+\tag{10.6}
+$$
+
+The first two Kraus adjoint products sum to $P_U$ because $V^\dagger V=I$. The last term is CP with Kraus adjoint products summing to $I-P_U$, as is seen by taking a spectral decomposition of $\tau$ and a basis of the complementary input subspace. On the input span the canonical transformation fixes the $X$ coefficient and scales the $Z$ coefficient by $b_0/a_0$. Both output differences have eigenvalues $\pm(s_{b_0}-s_{a_0})/2$, proving attainment including the rank-one input encoding with $a_0=1$.
+
+If $a_0\le b_0$ and $b_0>0$, use unit ancilla vectors $\eta_0=(1,0)$ and $\eta_1=(a_0/b_0,\sqrt{1-(a_0/b_0)^2})$. The product vectors $v_i\otimes\eta_i$ have the same Gram matrix as the $u_i$. The linear map $W_0u_i=v_i\otimes\eta_i$ is consequently well-defined and isometric on their span. Extend it by zero on the complement and send $W$ to $\operatorname{Tr}_{\rm anc}(W_0WW_0^\dagger)+\operatorname{Tr}((I-P_U)W)\tau$. The partial trace Kraus adjoint products sum to $P_U$ and the complement term supplies the remainder. This maps both hypotheses exactly. At $a_0=b_0=0$ a span isometry with the same complement term gives exactness. At $b_0=1$ the constant channel to $V_0$ also suffices, including the one-dimensional target. These cases exhaust the overlap endpoints.
+

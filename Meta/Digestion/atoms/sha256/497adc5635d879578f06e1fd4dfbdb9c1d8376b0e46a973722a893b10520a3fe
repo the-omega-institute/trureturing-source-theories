@@ -1,0 +1,52 @@
+**定理 10.1（Exact reverse benchmark and protected spectral threshold）。** Allow any environment-local CPTP map $\Phi=\Phi_E\otimes\mathrm{id}_B$ from $E\otimes B$ to $E'\otimes B$, and put $T'=\operatorname{Tr}_{E'}$. Define $\rho',\sigma',Y',r',\Delta'$ as in Theorem 9.1. Then $T'\Phi=T$, $0\le\Delta'\le\Delta$, and a common CPTP channel $\mathcal A$ from the compressed space to the original space has
+
+$$
+\begin{aligned}
+\mathcal A_0(W)&=\sqrt\sigma\,\Phi^\dagger((\sigma')^{-1/2}W(\sigma')^{-1/2})\sqrt\sigma,\\
+\mathcal A(W)&=\mathcal A_0(W)+\operatorname{Tr}((I-s')W)\tau,\qquad s'=\operatorname{supp}\sigma',
+\end{aligned}
+$$
+
+where $\tau$ is any fixed original density and the inverse uses the support. The supported ordinary Petz maps compose as $R_{\sigma,T}=\mathcal A R_{\sigma',T'}$ on the retained support. In particular
+
+$$
+\mathcal A(\sigma')=\sigma,\qquad \mathcal A(Y')=Y,\qquad
+r'\ge r-\|\rho-\mathcal A(\rho')\|_1.
+\tag{10.1}
+$$
+
+For the projection and one-flag compressor of Theorem 9.1, let $R$ be a joint projection satisfying $R\le\operatorname{supp}\sigma$, $[R,\sigma]=0$ and $R\le\Pi=J\otimes I_B$. Put $e_R=\operatorname{Tr}(\rho(I-R))$ and $w_R=\operatorname{Tr}(Y(I-R))$. Then
+
+$$
+\begin{aligned}
+(\mathcal A\Phi)(RXR)&=RXR\quad\text{for every joint operator }X,\\
+\|\rho-\mathcal A(\rho')\|_1&\le \min(2,4\sqrt{e_R}),\\
+a&\le 2\sqrt{w_R},\qquad w_R=\operatorname{Tr}(M\sigma(I-R)),\\
+|r-r'|&\le 2\sqrt{w_\rho(1-w_\rho)}+2w_\rho+4\sqrt{w_R}
+\le 2\sqrt{e_R}+2e_R+4\sqrt{w_R}.
+\end{aligned}
+\tag{10.2}
+$$
+
+Here $a$ and $w_\rho$ are the quantities of Section 9. For $d=\dim B$, let $\Omega=\sum_\lambda E_\lambda\rho E_\lambda$ be the pinching by the spectral projections of $\sigma$, and $e_k=1-\sum_{j=1}^k\lambda_j^\downarrow(\Omega)$, padding by zero eigenvalues. For every nonnegative integer $k$ there is a projection $J$ of rank at most $dk$ with $\dim E'\le dk+1$ and $r'\ge r-4\sqrt{e_k}$. In retained dimension two, for $\eta>0$ and $\Delta>0$ the sufficient strict threshold is
+
+$$
+\frac{r^2}{\Delta}>6+\eta,\qquad
+e_k<\frac{(\sqrt{6+\eta}-\sqrt6)^2}{16}\Delta
+\quad\Longrightarrow\quad
+\Delta'>0,\qquad \frac{(r')^2}{\Delta'}>6 .
+\tag{10.3}
+$$
+
+For any prescribed $J$ let $B_J=(\Pi\sigma\Pi)|_{\Pi}$ and use its support inverse to form $V_J=\sqrt\sigma\,\Pi B_J^{-1/2}\Pi$ (with the inverse extended by zero off the kept space). Then $\zeta_J=1-|\operatorname{Tr}(\rho V_J)|^2\ge w_\rho$ and $r'\ge r-2\sqrt{\zeta_J}$. In (10.3) the spectral condition can alternatively be replaced by $\zeta_J<(\sqrt{6+\eta}-\sqrt6)^2\Delta/4$.
+
+Proof. Support containment gives $\rho\le c_0\sigma$ and hence $\rho'\le c_0\sigma'$. The marginals are preserved and joint data processing gives the deficit inequality. The formula for $\mathcal A_0$ is CP and its trace is $\operatorname{Tr}(s'W)$ by trace duality. The complement preparation term completes the trace. If $V_i$ are Kraus operators of $\Phi$, positivity of their contributions to $\sigma'$ gives $s'V_i\sqrt\sigma=V_i\sqrt\sigma$. Substituting the compressed ordinary Petz formula for any retained operator cancels the two inverse roots against the square roots, leaving $s'$ on either side of the lifted retained operator. Those projections disappear inside the Kraus sandwiches by the preceding identity. Since $\Phi^\dagger(I_{E'}\otimes L)=I_E\otimes L$ for every retained matrix $L$, this proves composition. Substitution of $Q$ and $P$ yields the two identities in (10.1), and contraction and the triangle inequality give its residual bound.
+
+For spectral protection, $B_JR=RB_J=\sigma R$ on the kept space. Thus $B_J^{-1/2}R=\sigma^{-1/2}R$ and substitution into the kept part of the reverse map fixes every $RXR$. With $\Lambda=\mathcal A\Phi$, write $\rho-R\rho R=(I-R)\rho+R\rho(I-R)$. Hilbert–Schmidt Cauchy–Schwarz after factoring $\sqrt\rho$ bounds its trace norm by $2\sqrt{e_R}$. Since $\Lambda$ fixes $R\rho R$, the contraction estimate for the difference gives $\|\rho-\Lambda(\rho)\|_1\le4\sqrt{e_R}$.
+
+For the weighted comparison decompose $\sigma=\sigma_0+\sigma_1$ with $\sigma_0=R\sigma R$ and $\sigma_1=(I-R)\sigma(I-R)$. The summands have orthogonal supports. Compression fixes $\sigma_0$ and $\Phi(\sigma_1)$ is orthogonal to $R$ in the common flagged embedding. Their square roots therefore add separately before and after compression. The common head cancels in the weighted root difference, and both tail amplitudes have squared Hilbert–Schmidt norm $\operatorname{Tr}(M\sigma_1)=w_R$ by the adjoint identity. Commutation of $R$ and $\sqrt\sigma$ proves the equality with the benchmark tail. The amplitude bound follows by the triangle inequality. The two normalized amplitudes give $\|Y-Y'\|_1\le2a$ as in Theorem 9.1. For $\rho-\rho'$ the removed off-diagonal blocks have total trace norm at most $2\sqrt{w_\rho(1-w_\rho)}$ by factoring through $\sqrt\rho$. The discarded diagonal block and the added positive flag block each have trace $w_\rho$. This gives (10.2) by the reverse triangle inequality and $w_\rho\le e_R$. In particular, to protect both weights one may pinch $(\rho+2Y)/3$ by $\sigma$ and choose its leading common eigenvectors. For a commuting $R$ with $u_R=(e_R+2w_R)/3$, (10.2) gives $|r-r'|\le6\sqrt{u_R}+6u_R$ by Cauchy–Schwarz.
+
+The operator $\Omega$ commutes with $\sigma$ and is supported on its positive support. Choose $R$ from a common eigenbasis on that support, taking the first $k$ eigenvectors of $\Omega$ or the whole support if $k$ exceeds its dimension. Then $e_R=e_k$. Expanding these vectors in a retained basis of size $d$ gives at most $dk$ environment coordinates spanning a space whose projection $J$ protects $R$. This includes $k=0$, where the source and benchmark after compression both equal $P$ and the deficit is zero. For a positive spectral cutoff of $\sigma$ the same reasoning applies to its spectral projection, with the corresponding source and benchmark weights in (10.2). A cutoff at zero may use the positive support. Under the strict condition in (10.3), (10.1)–(10.2) imply $r'>\sqrt{6\Delta}\ge\sqrt{6\Delta'}$. If $\Delta'=0$, supported Petz equality for $T'$ forces $\rho'=Y'$, a contradiction.
+
+The kept-to-kept branch of $\Lambda$ has Kraus operator $V_J$. Its adjoint product is the kept reference support projection on $\Pi$. Since $\rho\le c_0\sigma$, $\operatorname{Tr}(\rho V_J^\dagger V_J)=1-w_\rho$. Cauchy–Schwarz gives $\zeta_J\ge w_\rho$. For a purification of $\rho$, the squared overlap of the original purification with its image by $\Lambda$ is the sum of $|\operatorname{Tr}(\rho V)|^2$ over Kraus operators $V$ of $\Lambda$. It is at least $1-\zeta_J$. The pure-state fidelity–trace bound for a pure density and an arbitrary density, followed by partial-trace contraction, gives $\|\rho-\Lambda(\rho)\|_1\le2\sqrt{\zeta_J}$. Applying (10.1) proves the alternate condition by the same threshold argument.
+

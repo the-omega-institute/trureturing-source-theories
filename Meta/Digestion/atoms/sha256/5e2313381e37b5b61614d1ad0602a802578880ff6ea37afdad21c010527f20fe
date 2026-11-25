@@ -1,0 +1,28 @@
+**定理 10.4（Optimal directed errors for Proposition 9.2）。** Use precisely the states $v,h,d$ and the slopes $\alpha,1/2,\beta$ of Proposition 9.2. Write $c_h=|\langle v,h\rangle|$, $c_d=|\langle v,d\rangle|$, $c_{hd}=|\langle h,d\rangle|$. For every integer $N\ge1$,
+
+$$
+\begin{aligned}
+\delta(O_N\to C_N)&=0,\\
+\delta(C_N\to O_N)&=\delta_N=\sqrt{1-c_h^{2N}}-\sqrt{1-c_d^{2N}}>0,\\
+B_N&=2\sqrt{1-c_{hd}^{2N}} .
+\end{aligned}
+\tag{10.7}
+$$
+
+With the added constraint that a simulator preserve the retained input marginal on the benchmark hypothesis, the optimum in each direction is $B_N$. This includes all collective environment-only CPTP channels with the identity on the retained factors. In particular $\delta_N\le B_N/2<B_N$. For an arbitrary finite decision set and losses in $[0,1]$, the compressed optimal risk minus the original optimal risk lies in $[0,\delta_N/2]$, and its supremum over such problems and priors is $\delta_N/2$.
+
+Proof. The actual benchmarks from the two references are the pure kept states of Proposition 9.2. The overlap of real unit vectors of positive first coordinate and slopes $x,y$ is $(1+xy)/\sqrt{(1+x^2)(1+y^2)}$. The angle order $0<\alpha<\beta<1/2$ gives $0<c_h<c_d<1$ and $0<c_{hd}<1$. Tensorization gives overlaps $c_h^N,c_d^N$ and Theorem 10.3 yields (10.7). Explicitly for reverse simulation let the input isometry $U$ have sum and difference columns of the two vectors $(|0\rangle\otimes v)^{\otimes N},(|0\rangle\otimes d)^{\otimes N}$ in the compressed kept block, and the target isometry $V$ have the columns from $(|0\rangle\otimes v)^{\otimes N},(|0\rangle\otimes h)^{\otimes N}$ on the original carrier. In (10.6) take $p_0=(1+(c_h/c_d)^N)/2$ and $\tau=\rho^{\otimes N}$ to obtain both errors equal to $\delta_N$. The exact forward channel is the ancillary construction in Theorem 10.3 with the spans interchanged, ancilla overlap $(c_h/c_d)^N$ and target complement density $(\rho')^{\otimes N}$. The maps use the joint pair spans and act also on the unused flag coordinates through the complement term. The one-copy exact forward channel can also be tensorized. Since the two nonorthogonal inputs have distinct pure outputs, an exact measure-and-prepare realization would require disjoint outcome laws to prepare them, which trace contractivity forbids.
+
+Under retained-benchmark-marginal preservation, the partial trace of the benchmark error already has norm $B_N$ by the pure trace-distance formula. The physical product compressor and Section 9 decoder attain this bound in their respective directions since they fix the kept block and send the source exactly. The triangle inequality on the retained pure densities gives $2\delta_N\le B_N$. Thus an unrestricted exact forward simulator must change the benchmark retained marginal, and any optimal unrestricted reverse simulator changes it as well. Both environment marginals of each pair are the same kept pure factor. An environment-only measurement therefore has the same law on both hypotheses.
+
+For a pure pair of overlap $c$ and prior $\pi\in[0,1]$ on the first hypothesis, the optimum binary zero-one loss is
+
+$$
+e(c,\pi)=\frac{1-\sqrt{1-4\pi(1-\pi)c^2}}{2}.
+\tag{10.8}
+$$
+
+Indeed on the span the prior-weighted difference has trace $2\pi-1$ and determinant $-\pi(1-\pi)(1-c^2)$, and the positive spectral projector maximizes the correct decision probability against effects between zero and the identity. The scalar cases at prior or overlap endpoints give the same formula. Taking $c=c_h^N,c_d^N$ proves a strictly positive risk gap at every interior prior. Rationalizing the difference of square roots shows that it increases with $4\pi(1-\pi)$, so its maximum is $\delta_N/2$ at $\pi=1/2$. For general bounded losses the exact forward channel allows every compressed decision to be reproduced on the original pair. Conversely, pullback through the reverse optimizer increases each conditional loss by at most $\delta_N/2$ times its maximum loss, by the effect estimate in Theorem 10.2. This yields the risk bound, with the maximum attained by equal-prior binary loss. It is also the classical decision-procedure deficiency in the half-trace-norm convention for this pair. At fixed interior prior and fixed states, (10.8) gives $e(c^N,\pi)\sim\pi(1-\pi)c^{2N}$. The two Chernoff rates are $-2\log c_h$ and $-2\log c_d$, respectively, and $\delta_N\sim c_d^{2N}/2$ while $B_N\to2$.
+
+For the faithful approximation of Proposition 9.2, these directed deficiencies converge at each fixed $N$. Indeed changing both pairs changes the objective of every common CPTP simulator by at most the sum of the maximum trace distances within the two perturbed pairs, by contraction and triangle inequalities. This bound passes to the infima, and tensor powers converge by telescoping. The retained-marginal-preserving optima also converge to $B_N$ by the partial-trace lower bound and the errors of the prescribed compressor and decoder. The strictly positive reverse deficiency and strict fixed-interior-prior testing gap persist sufficiently near the limiting pure model at each fixed $N$.
+
