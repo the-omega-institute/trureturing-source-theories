@@ -1,0 +1,6 @@
+## 1. Scope and provenance
+
+This volume owns the ordinary Petz recovery of a retained marginal under partial trace, its faithful regularization, and the resulting one-copy statistical experiments. The manuscript is an append-only reference input for the main trureturing repository, with generic-v1 digestion. Subsequent corrections and extensions belong after the final append anchor.
+
+The ordinary proofs below synthesize the research manuscripts “Ordinary Petz at a singular joint reference under marginal-preserving faithful noise” and “Blind one-copy tests of the two-qubit Petz regularization” (25 November 2026). The source synchronization was implemented in an sshx worker using the first manuscript and the separately reviewed second manuscript supplied by the coordinator. Both companion exact symbolic replays were executed on the rational two-qubit data. The proofs in this volume have ordinary mathematical status. Formal coverage is recorded by the separate main-repository freezing and settlement ledger.
+

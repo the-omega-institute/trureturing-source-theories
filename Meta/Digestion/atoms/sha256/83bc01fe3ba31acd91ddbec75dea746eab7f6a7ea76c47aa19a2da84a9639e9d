@@ -1,0 +1,25 @@
+**定理 3.1（Finite entropy loss and quantitative recovery stability）。** For every pair of Definition 2.1 and $0\le e\le1$, put
+
+$$
+M(X)=I_E/m\otimes NX,\qquad F_e=(1-e)\mathrm{id}+e M,\qquad
+Z_e=F_e(Z),\quad \rho_e=F_e(\rho).
+$$
+
+Then $NZ_e=P$, $N\rho_e=p$, and $Z_e\ge e\lambda_{\min}(P) I/m$. If $e>0$ and $p>0$, both joint states are faithful. With $Y_e=R_{Z_e}(p)$, $Y=R_Z(p)$, $n_e=\|\rho_e-Y_e\|_1$, $\Delta_e=D(\rho_e\Vert Z_e)-D(p\Vert P)$ and $K=P^{-1/2}pP^{-1/2}$, one has
+
+$$
+\begin{aligned}
+0&\le\Delta_e\le (1-e)\Delta,\qquad \lim_{e\downarrow0}\Delta_e=\Delta,\\
+L&=\sqrt{\operatorname{Tr}PK^2},\qquad
+\|Y_e-Y\|_1\le 2L\sqrt{e\|MZ-Z\|_1},\\
+|n_e-n|&\le e\|M\rho-\rho\|_1+2L\sqrt{e\|MZ-Z\|_1}
+\le 2e+2\sqrt{2}L\sqrt e .
+\end{aligned}
+$$
+
+The same recovery modulus holds for any two joint references $Z',Z$ with common faithful $P$ and any Hermitian retained matrix $x$, with $K=P^{-1/2}xP^{-1/2}$ and $\|Z'-Z\|_1$ in place of $e\|MZ-Z\|_1$.
+
+Proof. The replacement map $M$ discards $E$ and prepares $I_E/m$. It is CPTP and $NM=N$. Joint convexity applies to the original supported pair and the replacement pair, for which the tensor-product logarithm gives $D(M\rho\Vert MZ)=D(p\Vert P)$. Subtracting the common output entropy proves the upper bound, and data processing proves the lower bound, also when $p$ is singular. Lower semicontinuity follows by taking the supremum over $a\downarrow0$ of $\operatorname{Tr}X\log X-\operatorname{Tr}X\log(\max(T,aI))$ for $D(X\Vert T)$ on densities. These expressions are continuous and increase to the support-aware entropy by diagonalizing $T$. Thus $\liminf\Delta_e\ge\Delta$, giving convergence.
+
+For positive semidefinite $A,B$, set $U=\sqrt A,V=\sqrt B,D=U-V,W=\operatorname{sign}D$. Since $A-B=UD+DV$, cyclicity gives $\operatorname{Tr}W(A-B)=\operatorname{Tr}|D|(U+V)\ge\operatorname{Tr}D^2$ in an eigenbasis of $D$, using nonnegative diagonal entries of $U,V$. Trace norm duality gives $\|\sqrt A-\sqrt B\|_2^2\le\|A-B\|_1$, where $\|\cdot\|_2$ is the Hilbert–Schmidt norm. Now let $J=I_E\otimes K$, $S'=\sqrt{Z'}$, $S=\sqrt Z$. The identity $S'JS'-SJS=(S'-S)JS'+SJ(S'-S)$ and $\|JS'\|_2=\|SJ\|_2=L$ by the partial trace identity give the modulus by Schatten Hölder. Applying it to $Z_e$ and using the reverse triangle inequality for the residual yields the displayed bounds, independent of the joint rank and environment dimension except through the explicitly fixed marginal. For a density $p$, $0\le K\le\lambda_{\min}(P)^{-1}I$ and $\operatorname{Tr}PK=1$, so $L\le\lambda_{\min}(P)^{-1/2}$.
+

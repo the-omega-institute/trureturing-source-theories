@@ -1,0 +1,24 @@
+**定理 5.1（Support/kernel crossing for arbitrary fixed faithful reference noise）。** Keep $Z,P$ as above, let $Q=I-\Pi$, and take any fixed faithful joint density $\tau>0$ with $N\tau=P$. For $0\le e\le1$ let $Z_e=(1-e)Z+e\tau$. For every Hermitian retained matrix $x$, set $J=I_E\otimes P^{-1/2}xP^{-1/2}$ and $T=Q\sqrt{(Q\tau Q)|_Q}Q$, extended by zero on $\Pi$ (zero if $Q=0$). Then in every fixed finite matrix norm
+
+$$
+\begin{aligned}
+\sqrt{Z_e}&=\sqrt Z+\sqrt e\,T+O(e),\\
+R_{Z_e}(x)-R_Z(x)&=\sqrt e\,(TJ\sqrt Z+\sqrt ZJT)+O(e),\\
+\lim_{e\downarrow0}\frac{\|R_{Z_e}(x)-R_Z(x)\|_1}{\sqrt e}&=2\|TJ\sqrt Z\|_1 .
+\end{aligned}
+$$
+
+The coefficient is positive exactly when $QJ\Pi\ne0$, equivalently $[J,\Pi]\ne0$. In that case the change has order $\Theta(\sqrt e)$, and in the zero-coefficient case it is $O(e)$. If $x>0$ and $Q\ne0$, the zero-coefficient case has order $\Theta(e)$.
+
+Proof. Write the positive square root in support/kernel blocks as
+
+$$
+\sqrt{Z_e}=\begin{pmatrix}A_e&B_e\\B_e^\dagger&C_e\end{pmatrix},\qquad S_0=\sqrt{Z_\Pi}.
+$$
+
+The root modulus proves convergence to $S_0\oplus0$. Hence for sufficiently small $e$, $A_e\ge aI$ for some fixed $a>0$, and $C_e\ge0$. The off-diagonal equation obtained by squaring is $A_e B_e+B_e C_e=e\tau_{\Pi Q}$. The Sylvester map is invertible, because in separate eigenbases every coordinate is multiplied by an eigenvalue sum at least $a$. Its Hilbert–Schmidt inverse bound gives $B_e=O(e)$. The top equation gives $A_e^2-S_0^2=e(\tau_{\Pi\Pi}-Z_\Pi)-B_eB_e^\dagger=O(e)$. Apply the same argument to $A_e(A_e-S_0)+(A_e-S_0)S_0$ to get $A_e-S_0=O(e)$. The bottom equation $C_e^2=e\tau_{QQ}-B_e^\dagger B_e$ implies $(C_e/\sqrt e)^2=\tau_{QQ}+O(e)$. The Sylvester map with second factor $\sqrt{\tau_{QQ}}>0$ gives $C_e/\sqrt e=\sqrt{\tau_{QQ}}+O(e)$. When $Q=0$ only the top equation is needed.
+
+The resulting root expansion gives the recovery expansion by multiplication. Its leading coefficient is Hermitian off-diagonal with trace norm $2\|TJ\sqrt Z\|_1$, by the paired positive and negative singular values of the off-diagonal blocks. The restrictions of $T$ to $Q$ and $\sqrt Z$ to $\Pi$ are invertible, proving the crossing equivalence. For $J>0$ the new recovery has $Q$-block trace $e\operatorname{Tr}(TJT)+O(e^{3/2})$ from these block estimates, with positive coefficient if $Q\ne0$. The old $Q$ block vanishes, giving the claimed lower bound by trace duality.
+
+For the product noise of Theorem 3.1, $\rho_e-\rho=O(e)$, so the residual $\rho_e-R_{Z_e}(p)$ changes with the negative of the same leading coefficient. In the tangent family $Z+sH$ the exact identities $F_e(Z)=Z_e=R_{Z_e}(P)$ give a remainder $O(|s|e)$ after expanding the recovery of $h=NH$. These are pointwise fixed-reference boundary expansions. The uniform weighted modulus of Theorem 3.1 uses only the common marginal.
+
