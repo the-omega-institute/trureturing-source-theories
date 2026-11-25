@@ -1007,3 +1007,178 @@ Below the threshold use the optimal triple and accept the target exactly when ea
 The prefactor, physical recovery, quantitative certificates and adaptive threshold have ordinary mathematical proof status. The derivation and independent replay are recorded in the research files two-port-fixed-mass-leading-constant.txt and two-port-fixed-mass-leading-constant-audit.txt. The quantitative bounded-fiber estimate is recorded under the fixed-mass three-horizon frontier in the accompanying research ledger. The exact value of $\mu$, risk at critical equality, and the sharp constants for one or two randomized or adaptive queries remain open.
 
 ## 追加锚（本行以下为增补区）
+
+## 17. Sharp local physical moment inversion and Hermite design
+
+### 17.1 Local inversion and deterministic minimax recovery
+
+**Theorem 17.1.** Use a complete five-vertex matching base of §13.3, with two labeled unit-mass ports, and the smooth physical family there described. Put $m=2$ at the fixed total mass $92879135005/30751504002$ and $m=3$ for free mass. Let $U_q=E^\top S^qE$ be the calibrated moments of the mass-normalized generator $S$, where $E$ inserts the ports. The family has open coordinates $p=(b_0,\ldots,b_{m-1})$, with $b_\ell=[t^{\ell+3}]W_p(t)$ for the actual Gramian of §2. Write $p_0$ for the base and $\kappa=\lambda_{\min}(U_1(p_0))=125000/123999$.
+
+For any multiset $1/2\le a_0\le\cdots\le a_m\le1$ define $\mathcal H_{\mathbf a}f=([a_0,\ldots,a_j]f)_{j=1}^m$, with Hermite divided differences at repeats (a derivative of order $j$ at complete coalescence is divided by $j!$). Define the actual observations, their center and the scalar sampling matrix by
+
+$$
+Y(p)=\mathcal H_{\mathbf a}(a\mapsto T^{-3}W_p(aT)),\qquad y_0=Y(p_0),\qquad M_{j\ell}=[a_0,\ldots,a_j]a^{\ell+3}.
+$$
+
+All blocks are real symmetric $2\times2$ matrices, with Euclidean operator norm and the maximum block norm $\|\cdot\|_\infty$ on tuples. For each fixed $A>0$, all sufficiently small $T>0$ and all node multisets, there is a smooth physical inverse $p(y)$ in this family on a neighborhood of $\|y-y_0\|_\infty\le AT^m$. Set $u_k(y)=U_{k+1}(p(y))$ for $0\le k<m$. Then, with
+
+$$
+L_k(\mathbf a)=\frac{(k+3)k!(k+2)}{\kappa}\sum_{j=1}^m |(M^{-1})_{kj}|,
+$$
+
+one has $\|T^k D u_k(y_0)\|_{\infty\to\mathrm{op}}=L_k(\mathbf a)+O(T)$ and, for every $0<\varepsilon\le AT^m$,
+
+$$
+\sup_{\|y-y_0\|_\infty\le\varepsilon}T^k\|u_k(y)-u_k(y_0)\|_{\mathrm{op}}
+=\varepsilon L_k(\mathbf a)+O_A(T\varepsilon).
+$$
+
+For any $r\ge\varepsilon>0$ with $r+\varepsilon\le AT^m$, the parameter set is the physical preimage of the closed observation ball of radius $r$ about $y_0$. Given one data tuple $y+\eta$ with $\|\eta\|_\infty\le\varepsilon$, the deterministic minimax risk for loss $T^k\|\widehat U-U_{k+1}\|_{\rm op}$ is $\varepsilon L_k(\mathbf a)+O_A(T\varepsilon)$. All errors are uniform through arbitrary coalescence and for arbitrarily small positive noise. At complete coalescence at $1/2$, the constants in increasing moment order are $(32,72)/\kappa$ and $(78,348,736)/\kappa$, respectively.
+
+**Proof.** Write the physical generator and positive ground vector as
+
+$$
+S=\begin{pmatrix}C&-X^\top\\-X&D\end{pmatrix},\qquad z=(1,1,g^\top)^\top,\qquad X^\top g=C\mathbf1,\quad Dg=X\mathbf1.
+$$
+
+The masses are $z_i^2$ and the conductances are $-z_iS_{ij}z_j$ for $i\ne j$. Set $B=X^\top X$, $J=X^\top DX$. Block multiplication gives $U_1=C$, $U_2=C^2+B$ and $U_3=C^3+CB+BC+J$. In the fixed-mass construction of §13.2 the three-column Gram of $[X,g]$ is positive definite. Its Schur complement in the $B$ block equals $g^\top g-2\kappa^2/(3+2q)>0$ for the explicit target data. At the complete matching base let this Gram be $Q_0$. For nearby $C,B$ prescribe
+
+$$
+Q=\begin{pmatrix}B&C\mathbf1\\\mathbf1^\top C&g_0^\top g_0\end{pmatrix},\qquad [X,g]=[X_0,g_0]Q_0^{-1/2}Q^{1/2}.
+$$
+
+The columns remain strictly positive. Prescribe port edge $-C_{12}$, coupling conductances $g_iX_{ij}$ and the base hidden conductances. Conservation determines the diagonals and gives the requested $C,B$ at precisely the fixed mass.
+
+At free mass choose $X=X_0B_0^{-1/2}B^{1/2}$ near the complete matching base. In the orthonormal hidden frame formed by $XB^{-1/2}$ and a smoothly chosen unit normal, write the blocks of $D$ as $V=B^{-1/2}JB^{-1/2}$, $\xi$ and last diagonal $d>0$. Put $\nu=B^{-1/2}C\mathbf1$ and $\omega=V\nu-B^{1/2}\mathbf1$. Conservation in this frame requires the ground coordinates $(\nu,-\xi^\top\nu/d)$ and $\xi\xi^\top\nu/d=\omega$. The ground's normal coordinate is nonzero at the base by §13.3, so $\nu^\top\omega=(\xi^\top\nu)^2/d>0$. Keeping $d$ fixed, choose
+
+$$
+\xi=\pm\sqrt d\,\frac{\omega}{\sqrt{\nu^\top\omega}}
+$$
+
+with the base sign. This realizes arbitrary nearby $(C,B,J)$, with the prescribed ground equations and strict physical signs by continuity. Both families are smooth, bounded on compact subcharts, and have $C_0=\kappa I+\left(\begin{smallmatrix}1&-1\\-1&1\end{smallmatrix}\right)$. The smallest-eigenvalue projection at the base is $P=\mathbf1\mathbf1^\top/2$.
+
+The actual heat identity of §15.2, now with the full finite generator, gives
+
+$$
+T^{-3}W_p(aT)=\int_0^a s^2H_p(s,T)^2\,ds,\qquad H_p(s,T)=E^\top S\left(\int_0^1 v e^{-sTvS}\,dv\right)E.
+$$
+
+On a compact subchart every rate satisfies $T\lambda\le1$ for small $T$, so the slow moments of §15.2 coincide with all the above moments. Expanding the exponential and retaining the matrix product order gives
+
+$$
+H_p(s,T)=\sum_{i\ge0} c_i(sT)^i U_{i+1},\quad c_i=\frac{(-1)^i}{i!(i+2)},\qquad
+b_\ell=\frac1{\ell+3}\sum_{i=0}^{\ell}c_ic_{\ell-i}U_{i+1}U_{\ell-i+1}.
+$$
+
+In particular, using $\{C,Z\}=CZ+ZC$,
+
+$$
+b_0=U_1^2/12,\qquad b_1=-\{U_1,U_2\}/24,\qquad b_2=\{U_1,U_3\}/80+U_2^2/45.
+$$
+
+The triangular map from moments to $b_k$ has diagonal derivative $\alpha_k\mathcal L_{U_1}$, where $\mathcal L_C Z=CZ+ZC$ and $\alpha_k=(-1)^k/(2(k+3)k!(k+2))$. The formula follows from the two endpoint terms for $k>0$ and differentiation of the square for $k=0$. For $C\succ0$ the Sylvester map has eigenbasis multipliers $\lambda_i(C)+\lambda_j(C)>0$. Its inverse norm on symmetric matrices with operator norm is exactly $1/(2\lambda_{\min}(C))$. Indeed, for $Z=\mathcal L_C X$ take a unit eigenvector $v$ of $X$ of eigenvalue with largest absolute value. Then $|v^\top Zv|=2|v^\top Xv|v^\top Cv\ge2\lambda_{\min}(C)\|X\|_{\rm op}$. Equality holds on a smallest-eigenvalue projection. Thus the moment and coefficient charts are locally smoothly equivalent. In the triangular inverse $\Psi_k(p)=U_{k+1}(p)$ only $b_0,\ldots,b_k$ occur and $D_{b_k}\Psi_k=\alpha_k^{-1}\mathcal L_{U_1(p)}^{-1}$.
+
+Each entry of $M$ is polynomial in its prefix nodes by monic polynomial division, including at repeats. If $M\beta=0$, the polynomial $f(a)=\sum_{\ell<m}\beta_\ell a^{\ell+3}$ differs from its value at $a_0$ by a polynomial with $m+1$ roots at the nodes counting multiplicities. Rolle's theorem gives at least $m$ positive roots of $f'$. Since $f'=a^2 h(a)$ with $\deg h\le m-1$, one has $\beta=0$. Compactness yields a common finite bound $K$ on $\|M^{-1}\|_\infty$.
+
+Take a closed convex ball of radius $\rho>0$ about $p_0$ inside the coefficient chart. The extension of $W_p(t)/t^3$ to zero is analytic in time and smooth in the physical parameters, so
+
+$$
+W_p(t)/t^3=\sum_{\ell<m}b_\ell t^\ell+t^m Q(p,t),\qquad
+Y(p)=MD_Tp+T^mR(p),
+$$
+
+where $D_T=\operatorname{diag}(T^\ell)_{0\le\ell<m}$ and $R(p)=\mathcal H_{\mathbf a}(a\mapsto a^{m+3}Q(p,aT))$. The mixed derivatives $\partial_t^j D_pQ$ for $0\le j\le m$ are bounded on this ball times a fixed small time interval by the matrix exponential series and Taylor's formula. For symmetric matrix functions the Hermite mean-value bound
+
+$$
+\|[a_0,\ldots,a_j]f\|_{\rm op}\le\sup_{a\in I}\|f^{(j)}(a)\|_{\rm op}/j!,\qquad I=[1/2,1],
+$$
+
+follows by applying the scalar bound to every unit-vector quadratic form. The scalar bound uses the degree-at-most-$j$ Hermite interpolant and Rolle's theorem with multiplicities. Apply it to the parameter derivative and integrate along the segment from $p'$ to $p$. This gives $\|R(p)-R(p')\|_\infty\le L\|p-p'\|_\infty$ with $L$ uniform in $T,\mathbf a$.
+
+Use $z'=D_T(p-p_0)$ as the scaled coefficient displacement (independent of the ground vector $z$) and $e=y-y_0$. Then $e=Mz'+N(z')$, where
+
+$$
+N(z')=T^m\big(R(p_0+D_T^{-1}z')-R(p_0)\big),\qquad\operatorname{Lip}(N)\le LT.
+$$
+
+For $KLT\le1/2$ the map $z'\mapsto M^{-1}(e-N(z'))$ is a contraction on the closed ball of radius $\rho T^{m-1}$ into itself whenever $\|e\|_\infty\le\rho T^{m-1}/(2K)$. It gives an exact physical preimage. The same Lipschitz inequality gives injectivity on the entire scaled chart ball, and the derivative is invertible there. In particular the inverse is smooth on a neighborhood of the stated observation ball for small $T$. For two such observations, writing $\Delta$ for their difference, the contraction equations give
+
+$$
+\|\Delta z'\|_\infty\le 2K\|\Delta y\|_\infty,\qquad \Delta z'=M^{-1}\Delta y+O(T\|\Delta y\|_\infty).
+$$
+
+Both reconstructions are $O_A(T)$ from $p_0$. Integrating the derivative of $\Psi_k$ on their segment, each lower coefficient $b_\ell$ with $\ell<k$ contributes $O(T^{k-\ell}\|\Delta z'\|_\infty)$ in the scaled norm and the diagonal derivative differs from its base value by $O_A(T)$. Hence
+
+$$
+T^k\Delta u_k=\alpha_k^{-1}\mathcal L_{C_0}^{-1}\left(\sum_j(M^{-1})_{kj}\Delta y_j\right)+O_A(T\|\Delta y\|_\infty).
+$$
+
+The leading linear operator has norm $L_k(\mathbf a)$. Its upper bound follows by the triangle inequality and the Sylvester norm, and equality follows for the unit tuple $(v_k)_j=\operatorname{sgn}((M^{-1})_{kj})P$, taking sign zero at zero. The inverse produces physical networks with data $y_0+\varepsilon v_k$ and $y_0$. This proves the asserted sharp modulus, and taking a difference quotient at the center proves the derivative norm estimate. Substitution of $M_{j\ell}=\binom{\ell+3}{j}(1/2)^{\ell+3-j}$ gives the coalescence examples.
+
+For minimax recovery, invert the noisy datum and return $\Psi_k(p(y+\eta))$. The last pairwise estimate bounds its worst-case error by $\varepsilon L_k+O_A(T\varepsilon)$. Nonsymmetric additive errors, if allowed, can first be symmetrized, which is nonexpansive in operator norm. For the lower bound the two physical preimages of $y_0\pm\varepsilon v_k$ are in the parameter set and both can return $y_0$. Their scaled moment separation is $2\varepsilon L_k+O_A(T\varepsilon)$, forcing any deterministic estimator to incur at least half that separation. If $0<r<\varepsilon$ with $r+\varepsilon\le AT^m$, the same comparison using $r$ and the constant estimator at $y_0$ give risk $rL_k+O_A(Tr)$.
+
+### 17.2 Exact highest-row design
+
+**Theorem 17.2.** More generally let $m\ge1$ and $0<a_0\le\cdots\le a_m\le b$, with $M$ defined as in Theorem 17.1. For independently bounded positive-order Hermite coefficient errors in operator norm, the exact highest polynomial coefficient amplification is the row sum $\sum_{j=1}^m |(M^{-1})_{m-1,j}|$. It decreases strictly in each node and has its unique minimum at $a_0=\cdots=a_m=b$. At this multiset, with $n=m+1$, the individual absolute entries are
+
+$$
+|(M^{-1})_{m-1,j}|=\frac{j(n-j)}{n+1}\,b^{-(n+1-j)},\qquad 1\le j\le m.
+$$
+
+At $b=1$ the row sum is $m(m+1)/6$. In the two physical charts on $[1/2,1]$, the unique leading-order design minimizing the highest-moment scaled local modulus and minimax constant of Theorem 17.1 is therefore complete coalescence at $1$. The minimum constants for $T\Delta U_2$ at fixed mass and $T^2\Delta U_3$ at free mass are $12/\kappa$ and $80/\kappa$, respectively.
+
+**Proof.** Put $r_i=1/a_i$. For the $j$-th inverse column partition the reciprocals into the lists $S_j=(r_0,\ldots,r_{j-1})$ and $U_j=(r_j,\ldots,r_m)$. Use $s_1=e_1(S_j)$, $u_i=e_i(U_j)$, $h_S=s_1^2-e_2(S_j)$ and $H=h_2(S_j\cup U_j)$, where $e_i$ are elementary symmetric functions and $h_2=e_1^2-e_2$, with multiplicities retained. Write $P_j(x)=\prod_{i<j}(x-a_i)$ and $N(x)=\prod_{i\le m}(x-a_i)$. The positive-order prefix Newton data of $P_j$ form the $j$-th unit vector, including repeated nodes. Every polynomial $x^3p(x)$, $\deg p<m$, with those data has the form $P_j(x)+c+N(x)(\alpha+\beta x)$ by Hermite interpolation. Cancel the coefficients of $x,x^2$ using $N_1/N_0=-(s_1+u_1)$ and $N_2/N_0=e_2(S_j\cup U_j)$. The two equations in $\alpha,\beta$ have determinant $-N_0^2H\ne0$. The constant $c$ then cancels the constant coefficient. The highest coefficient is
+
+$$
+\beta=-\frac{P_j(0)}{N(0)}\frac{u_1h_S+s_1u_2}{H},\qquad
+|(M^{-1})_{m-1,j}|=\left(\prod_{r\in U_j}r\right)\frac{B}{H},\quad B=u_1h_S+s_1u_2.
+$$
+
+For a reciprocal $x\in S_j$, differentiation of $B/H$ gives numerator
+
+$$
+(u_1^2-u_2)\big(e_2(S_j)+s_1x+u_1(s_1+x)+u_2\big)>0.
+$$
+
+For a reciprocal $x\in U_j$, let $v_1,v_2$ be the first two elementary symmetric functions of the remaining entries of $U_j$. Write $H=x^2+Rx+H_0$, $B=C_1x+B_0$, where $R=s_1+v_1$, $C_1=h_S+s_1v_1$, $B_0=v_1h_S+s_1v_2$, $H_0=h_2(S_j\cup(U_j\setminus\{x\}))$ (remove one occurrence). The numerator of the derivative of $xB/H$ is
+
+$$
+(C_1R-B_0)x^2+2C_1H_0x+B_0H_0,\qquad
+C_1R-B_0=s_1\big(h_S+v_1(s_1+v_1)-v_2\big)>0.
+$$
+
+Here $H_0,C_1>0$ and $B_0\ge0$, so this numerator is strictly positive. Each absolute entry increases strictly in every reciprocal. Under $r_i\ge1/b$ the unique minimum has all reciprocals $1/b$. Substitution gives the displayed entries and summing at $b=1$ gives $m(m+1)/6$. For symmetric matrix data the triangle inequality gives the exact highest coefficient bound, attained by independent sign-weighted observations along a common rank-one projection. In the physical inverse choose that projection to be $P$ from Theorem 17.1. Multiplication by $(m+2)(m-1)!(m+1)/\kappa$ gives the two sharp leading constants. The optimum here concerns the leading constants for direct Hermite noise.
+
+### 17.3 Physical ambiguity with an additional hidden parameter
+
+**Proposition 17.3.** In either regime of Theorem 17.1, every open physical neighborhood of the complete matching base contains, for all sufficiently small $T$ and all node multisets in $[1/2,1]$, two actual physical networks with identical positive-order Hermite data $Y$ but distinct moments $U_{k+1}$ for every $0\le k<m$. A single additional hidden parameter suffices. The generators remain bounded and the fixed-mass example retains the exact calibrated mass. For each fixed sufficiently small nonzero auxiliary change the unscaled moment separations are of order $T^{m-k}$, uniformly in the node multiset.
+
+**Proof.** At fixed mass keep $C,X,g$ at the base and add $sww^\top$ to $D$ for $w=e_i/g_i-e_j/g_j$, changing one hidden conductance by $s$. There is a hidden pair with $X^\top w\ne0$, since otherwise both columns of $X$ are proportional to $g$, contradicting the rank-three Gram. This preserves conservation, mass and the first two moments, and changes $U_3$ by $s(X^\top w)(X^\top w)^\top$.
+
+At free mass keep $C,X,J$ fixed and vary the last diagonal $d$ of the hidden block in the Schur construction of Theorem 17.1, choosing $\xi$ by its same smooth formula. The first three moments stay fixed. Block multiplication gives
+
+$$
+U_4=(C^2+B)^2+(XC+DX)^\top(XC+DX).
+$$
+
+Only the contribution $B^{1/2}\xi\xi^\top B^{1/2}$ to $X^\top D^2X$ varies, and $\xi\xi^\top=d\,\omega\omega^\top/(\nu^\top\omega)$ with $\omega\ne0$. Thus the next moment changes nontrivially. Small auxiliary changes in either regime retain strict physical signs and positive masses. The coefficient formula in Theorem 17.1 implies that $b_0,\ldots,b_{m-1}$ are preserved and the next coefficient changes by a nonzero matrix $\Delta b_m$.
+
+The perturbed network's observation is $y_0+T^m w_{\mathbf a}\Delta b_m+O(T^{m+1})$ with $w_{\mathbf a}=\mathcal H_{\mathbf a}(a^{m+3})$ (the error is uniform by the Hermite mean-value bound). The original chart gives a second actual network with precisely these data. The first $m$ moments of the perturbed network equal those of the base. By the pairwise inverse estimate, the scaled difference between the matching chart moment and the perturbed network's moment is
+
+$$
+T^k\Delta U_{k+1}=T^m(M^{-1}w_{\mathbf a})_k\alpha_k^{-1}\mathcal L_{C_0}^{-1}\Delta b_m+O(T^{m+1}).
+$$
+
+Every scalar factor $(M^{-1}w_{\mathbf a})_k$ is nonzero. By Cramer's rule its numerator is the determinant of $M$ with column $k$ replaced by $w_{\mathbf a}$. The columns still sample $m$ distinct monomials of positive degree. A vanishing Newton tail would give $m+1$ positive roots counting multiplicities after subtracting a constant, hence $m$ positive roots of the derivative. A nonzero polynomial with at most $m$ nonzero monomials has at most $m-1$ positive roots counting multiplicities. To see this, divide by its smallest power of the variable, differentiate to remove the constant, and apply Rolle's theorem and induction on the number of monomials. This excludes a singular replacement matrix. Continuity and compactness give a uniform positive lower bound on the absolute scalar factors. With a fixed nonzero sufficiently small auxiliary change, all the differences displayed above are nonzero for small $T$. The chart reconstructions tend uniformly to the base, and the perturbed network can be placed in the prescribed neighborhood by choosing the auxiliary change small enough.
+
+### 17.4 Provenance, observation metric and formal scope
+
+This append batch was composed by Codex from the ordinary proofs and independent mathematical audit of 25 November 2026, recorded in two-port-hermite-moment-sharp-inverse-proof.txt, two-port-hermite-inversion-design-audit-result.txt and two-port-hermite-highest-moment-design.txt. The underlying physical chart and the rational target are those of §13. The center here is the actual five-vertex base, and the local modulus concerns reconstructions in its chosen chart. The physical sharp inverse, minimax theorem, general highest-row design and additional-parameter ambiguity have ordinary proof status. Research priority remains unverified.
+
+The measurement norm is that of the $m$ positive-order Hermite coordinates of $G(a)=W(aT)/T^3$, independently bounded at the readout. Distinct raw horizon readings instead induce correlated errors by the divided-difference linear map with factor $T^{-3}$. For minimum spacing $h>0$ and raw error bound $\delta$, order $j$ has error at most $\delta T^{-3}2^j/(j!h^j)$, by the Lagrange formula and the ordered spacings. Repeated-node readout requires derivatives. Theorem 17.2 optimizes the leading direct-Hermite risk, and exact finite-$T$ nonlinear design remains open.
+
+The merged polynomial theorem `D5.S3.Analytic.Interpolation.ConfluentPositiveSampling.weightedNewtonTail_uniform_lower` of PR #33992 proves uniform qualitative recovery of the weighted polynomial coefficients on a positive compact interval, including repeated nodes. PR #34010 supplies `hermiteTail` and `matrixHermiteTail` using actual within-interval jets and proves `hermiteTail_noisy_recovery` and `matrixHermiteTail_noisy_recovery`. For a decomposition $F=K+a^r p(a)+E(a)$ with constant $K$, $r>0$, smooth remainder and bounds on its within derivatives of orders $1,\ldots,m$, these declarations bound the coefficient norm by the tail norm plus the maximum factorial-scaled derivative bounds, with a uniform positive constant depending on the interval, $m,r$ (a two-port operator-norm version with factor two over the scalar inverse bound). These are merged qualitative supplier results. [Polynomial PR #33992](https://github.com/the-omega-institute/trureturing/pull/33992) · [Pinned polynomial theorem](https://github.com/the-omega-institute/trureturing/blob/c77c578d29c78a29f768993a501a15e1014002cf/D5/S3/Analytic/Interpolation/ConfluentPositiveSampling.lean#L388) · [Hermite PR #34010](https://github.com/the-omega-institute/trureturing/pull/34010) · [Pinned scalar observation theorem](https://github.com/the-omega-institute/trureturing/blob/f68ac7d929ef8e5bb69a7695ecdf45cf822f1128/D5/S3/Analytic/Interpolation/ConfluentHermiteObservation.lean#L598) · [Pinned matrix observation theorem](https://github.com/the-omega-institute/trureturing/blob/f68ac7d929ef8e5bb69a7695ecdf45cf822f1128/D5/S3/Analytic/Interpolation/ConfluentHermiteObservation.lean#L672)
+
+A separate scalar $m=2$ highest-coefficient theorem for `weightedNewtonTail 3` has scoped Lean kernel evidence for the explicit inverse, unique optimal unit endpoint triple and sharp worst-case scalar noise bound. The saved `HermiteHighestCoefficient.verified.lean` has SHA-256 `b7895696a6f2e08bed99d61e43404f94fc70626e018a1d11a2b0dc6c63294a9c` and `hermite-highest-row-scoped-report.json` has SHA-256 `dfbb11c754f3e00a9fb1a187e8703d0d0069b1d8d6e5431f51d5d8fd2c87474d`, with only standard Lean axioms. Its formal merged delivery is pending. These receipts concern scalar polynomial observations. The new physical conclusions above remain outstanding for formalization.
+
+## 追加锚（本行以下为增补区）

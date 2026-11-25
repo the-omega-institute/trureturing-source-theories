@@ -1,0 +1,32 @@
+### 17.2 Exact highest-row design
+
+**Theorem 17.2.** More generally let $m\ge1$ and $0<a_0\le\cdots\le a_m\le b$, with $M$ defined as in Theorem 17.1. For independently bounded positive-order Hermite coefficient errors in operator norm, the exact highest polynomial coefficient amplification is the row sum $\sum_{j=1}^m |(M^{-1})_{m-1,j}|$. It decreases strictly in each node and has its unique minimum at $a_0=\cdots=a_m=b$. At this multiset, with $n=m+1$, the individual absolute entries are
+
+$$
+|(M^{-1})_{m-1,j}|=\frac{j(n-j)}{n+1}\,b^{-(n+1-j)},\qquad 1\le j\le m.
+$$
+
+At $b=1$ the row sum is $m(m+1)/6$. In the two physical charts on $[1/2,1]$, the unique leading-order design minimizing the highest-moment scaled local modulus and minimax constant of Theorem 17.1 is therefore complete coalescence at $1$. The minimum constants for $T\Delta U_2$ at fixed mass and $T^2\Delta U_3$ at free mass are $12/\kappa$ and $80/\kappa$, respectively.
+
+**Proof.** Put $r_i=1/a_i$. For the $j$-th inverse column partition the reciprocals into the lists $S_j=(r_0,\ldots,r_{j-1})$ and $U_j=(r_j,\ldots,r_m)$. Use $s_1=e_1(S_j)$, $u_i=e_i(U_j)$, $h_S=s_1^2-e_2(S_j)$ and $H=h_2(S_j\cup U_j)$, where $e_i$ are elementary symmetric functions and $h_2=e_1^2-e_2$, with multiplicities retained. Write $P_j(x)=\prod_{i<j}(x-a_i)$ and $N(x)=\prod_{i\le m}(x-a_i)$. The positive-order prefix Newton data of $P_j$ form the $j$-th unit vector, including repeated nodes. Every polynomial $x^3p(x)$, $\deg p<m$, with those data has the form $P_j(x)+c+N(x)(\alpha+\beta x)$ by Hermite interpolation. Cancel the coefficients of $x,x^2$ using $N_1/N_0=-(s_1+u_1)$ and $N_2/N_0=e_2(S_j\cup U_j)$. The two equations in $\alpha,\beta$ have determinant $-N_0^2H\ne0$. The constant $c$ then cancels the constant coefficient. The highest coefficient is
+
+$$
+\beta=-\frac{P_j(0)}{N(0)}\frac{u_1h_S+s_1u_2}{H},\qquad
+|(M^{-1})_{m-1,j}|=\left(\prod_{r\in U_j}r\right)\frac{B}{H},\quad B=u_1h_S+s_1u_2.
+$$
+
+For a reciprocal $x\in S_j$, differentiation of $B/H$ gives numerator
+
+$$
+(u_1^2-u_2)\big(e_2(S_j)+s_1x+u_1(s_1+x)+u_2\big)>0.
+$$
+
+For a reciprocal $x\in U_j$, let $v_1,v_2$ be the first two elementary symmetric functions of the remaining entries of $U_j$. Write $H=x^2+Rx+H_0$, $B=C_1x+B_0$, where $R=s_1+v_1$, $C_1=h_S+s_1v_1$, $B_0=v_1h_S+s_1v_2$, $H_0=h_2(S_j\cup(U_j\setminus\{x\}))$ (remove one occurrence). The numerator of the derivative of $xB/H$ is
+
+$$
+(C_1R-B_0)x^2+2C_1H_0x+B_0H_0,\qquad
+C_1R-B_0=s_1\big(h_S+v_1(s_1+v_1)-v_2\big)>0.
+$$
+
+Here $H_0,C_1>0$ and $B_0\ge0$, so this numerator is strictly positive. Each absolute entry increases strictly in every reciprocal. Under $r_i\ge1/b$ the unique minimum has all reciprocals $1/b$. Substitution gives the displayed entries and summing at $b=1$ gives $m(m+1)/6$. For symmetric matrix data the triangle inequality gives the exact highest coefficient bound, attained by independent sign-weighted observations along a common rank-one projection. In the physical inverse choose that projection to be $P$ from Theorem 17.1. Multiplication by $(m+2)(m-1)!(m+1)/\kappa$ gives the two sharp leading constants. The optimum here concerns the leading constants for direct Hermite noise.
+

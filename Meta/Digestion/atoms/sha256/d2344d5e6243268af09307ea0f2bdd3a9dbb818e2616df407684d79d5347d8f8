@@ -1,0 +1,22 @@
+### 17.3 Physical ambiguity with an additional hidden parameter
+
+**Proposition 17.3.** In either regime of Theorem 17.1, every open physical neighborhood of the complete matching base contains, for all sufficiently small $T$ and all node multisets in $[1/2,1]$, two actual physical networks with identical positive-order Hermite data $Y$ but distinct moments $U_{k+1}$ for every $0\le k<m$. A single additional hidden parameter suffices. The generators remain bounded and the fixed-mass example retains the exact calibrated mass. For each fixed sufficiently small nonzero auxiliary change the unscaled moment separations are of order $T^{m-k}$, uniformly in the node multiset.
+
+**Proof.** At fixed mass keep $C,X,g$ at the base and add $sww^\top$ to $D$ for $w=e_i/g_i-e_j/g_j$, changing one hidden conductance by $s$. There is a hidden pair with $X^\top w\ne0$, since otherwise both columns of $X$ are proportional to $g$, contradicting the rank-three Gram. This preserves conservation, mass and the first two moments, and changes $U_3$ by $s(X^\top w)(X^\top w)^\top$.
+
+At free mass keep $C,X,J$ fixed and vary the last diagonal $d$ of the hidden block in the Schur construction of Theorem 17.1, choosing $\xi$ by its same smooth formula. The first three moments stay fixed. Block multiplication gives
+
+$$
+U_4=(C^2+B)^2+(XC+DX)^\top(XC+DX).
+$$
+
+Only the contribution $B^{1/2}\xi\xi^\top B^{1/2}$ to $X^\top D^2X$ varies, and $\xi\xi^\top=d\,\omega\omega^\top/(\nu^\top\omega)$ with $\omega\ne0$. Thus the next moment changes nontrivially. Small auxiliary changes in either regime retain strict physical signs and positive masses. The coefficient formula in Theorem 17.1 implies that $b_0,\ldots,b_{m-1}$ are preserved and the next coefficient changes by a nonzero matrix $\Delta b_m$.
+
+The perturbed network's observation is $y_0+T^m w_{\mathbf a}\Delta b_m+O(T^{m+1})$ with $w_{\mathbf a}=\mathcal H_{\mathbf a}(a^{m+3})$ (the error is uniform by the Hermite mean-value bound). The original chart gives a second actual network with precisely these data. The first $m$ moments of the perturbed network equal those of the base. By the pairwise inverse estimate, the scaled difference between the matching chart moment and the perturbed network's moment is
+
+$$
+T^k\Delta U_{k+1}=T^m(M^{-1}w_{\mathbf a})_k\alpha_k^{-1}\mathcal L_{C_0}^{-1}\Delta b_m+O(T^{m+1}).
+$$
+
+Every scalar factor $(M^{-1}w_{\mathbf a})_k$ is nonzero. By Cramer's rule its numerator is the determinant of $M$ with column $k$ replaced by $w_{\mathbf a}$. The columns still sample $m$ distinct monomials of positive degree. A vanishing Newton tail would give $m+1$ positive roots counting multiplicities after subtracting a constant, hence $m$ positive roots of the derivative. A nonzero polynomial with at most $m$ nonzero monomials has at most $m-1$ positive roots counting multiplicities. To see this, divide by its smallest power of the variable, differentiate to remove the constant, and apply Rolle's theorem and induction on the number of monomials. This excludes a singular replacement matrix. Continuity and compactness give a uniform positive lower bound on the absolute scalar factors. With a fixed nonzero sufficiently small auxiliary change, all the differences displayed above are nonzero for small $T$. The chart reconstructions tend uniformly to the base, and the perturbed network can be placed in the prescribed neighborhood by choosing the auxiliary change small enough.
+
