@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -44,14 +45,12 @@ internal sealed class FrozenBranch(string branch, string commit, Func<string, by
             using var doc = JsonDocument.Parse(bytes);
             var record = doc.RootElement;
             RequireFields(record, ["statement_id", "declarations"]);
-            var moduleId = record.GetProperty("statement_id").GetString() ?? throw new FormatException("missing module statement_id");
+            var moduleId = ReadString(record, "statement_id");
             TruthExportValidation.RequireSha256Id(moduleId, "module statement_id");
-            var names = record.GetProperty("declarations").EnumerateArray().Select(d =>
-            {
-                RequireFields(d, ["declaration_name_key", "kind"], "libraries", "axioms");
-                TruthExportValidation.RequireKind(d.GetProperty("kind").GetString() ?? "");
-                return d.GetProperty("declaration_name_key").GetString() ?? throw new FormatException("missing declaration name");
-            }).ToArray();
+            var declarations = record.GetProperty("declarations");
+            if (declarations.ValueKind != JsonValueKind.Array)
+                throw new FormatException("invalid declarations in main repository frozen state: expected an array");
+            var names = declarations.EnumerateArray().Select(ReadDeclarationName).ToArray();
             module = new(moduleId, "sha256:" + Convert.ToHexStringLower(SHA256.HashData(bytes)), names);
             modules.Add(path, module);
         }
@@ -61,23 +60,56 @@ internal sealed class FrozenBranch(string branch, string commit, Func<string, by
         return new(text, null, BranchEvidence: new(branch, commit, module.StatementId, module.Digest, matches[0]));
     }
 
-    private static void RequireFields(JsonElement record, string[] required, params string[] optionalStringArrays)
+    private static string ReadDeclarationName(JsonElement declaration)
+    {
+        RequireFields(declaration, ["declaration_name_key", "kind"], "libraries", "axioms", "strict_omega");
+        var name = ReadString(declaration, "declaration_name_key");
+        var kind = ReadString(declaration, "kind");
+        TruthExportValidation.RequireKind(kind);
+        var libraries = ReadOptionalStringArray(declaration, "libraries");
+        var axioms = ReadOptionalStringArray(declaration, "axioms");
+        if (declaration.TryGetProperty("strict_omega", out var strict))
+        {
+            if (libraries is null || axioms is null)
+                throw new FormatException("strict_omega requires measured official libraries and axioms");
+            TruthExportValidation.RequireAnnotation(libraries, "libraries");
+            TruthExportValidation.RequireAnnotation(axioms, "axioms");
+            StrictOmegaMeasurement.Read(strict).RequireValid(name, kind);
+        }
+        return name;
+    }
+
+    private static string ReadString(JsonElement record, string field) =>
+        record.GetProperty(field) is { ValueKind: JsonValueKind.String } value
+            ? value.GetString()!
+            : throw new FormatException($"invalid {field} in main repository frozen state: expected a string");
+
+    private static ImmutableArray<string>? ReadOptionalStringArray(JsonElement record, string field)
+    {
+        if (!record.TryGetProperty(field, out var value))
+            return null;
+        if (value.ValueKind != JsonValueKind.Array)
+            throw new FormatException($"invalid {field} in main repository frozen state: expected a string array");
+        return value.EnumerateArray().Select(item => item.ValueKind == JsonValueKind.String
+            ? item.GetString()!
+            : throw new FormatException($"invalid {field} in main repository frozen state: expected a string array"))
+            .ToImmutableArray();
+    }
+
+    private static void RequireFields(JsonElement record, string[] required, params string[] optional)
     {
         const string invalidFields = "invalid fields in main repository frozen state";
         if (record.ValueKind != JsonValueKind.Object)
             throw new FormatException(invalidFields);
 
         var missing = required.ToHashSet(StringComparer.Ordinal);
-        var availableAnnotations = optionalStringArrays.ToHashSet(StringComparer.Ordinal);
+        var availableAnnotations = optional.ToHashSet(StringComparer.Ordinal);
         foreach (var field in record.EnumerateObject())
         {
             if (missing.Remove(field.Name))
                 continue;
             if (!availableAnnotations.Remove(field.Name))
                 throw new FormatException(invalidFields);
-            if (field.Value.ValueKind != JsonValueKind.Array ||
-                field.Value.EnumerateArray().Any(item => item.ValueKind != JsonValueKind.String))
-                throw new FormatException($"invalid {field.Name} in main repository frozen state: expected a string array");
         }
         if (missing.Count != 0)
             throw new FormatException(invalidFields);

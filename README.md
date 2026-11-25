@@ -48,6 +48,8 @@ Set `TRUTH_BRANCH` to follow a different main-repository branch. Each branch rec
 
 For offline use or a release-specific declaration ID, supply all three export arguments. Use a trusted version 2 truth export and its published digest. The transport filename can end in `v1.json`.
 
+Both inputs support declaration measurements from the strict Omega backend when present. An empty strict axiom array records a measurement. Cover continues to resolve the canonical declaration identity and record its provenance.
+
 ```sh
 make cover ATOM_ID="$atom" GID="$gid" TRUTH_EXPORT="$export_file" \
   SOURCE_COMMIT="$main_commit" EXPORT_SHA256="$export_digest"
