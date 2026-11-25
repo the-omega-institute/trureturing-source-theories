@@ -1182,3 +1182,118 @@ The merged polynomial theorem `D5.S3.Analytic.Interpolation.ConfluentPositiveSam
 A separate scalar $m=2$ highest-coefficient theorem for `weightedNewtonTail 3` has scoped Lean kernel evidence for the explicit inverse, unique optimal unit endpoint triple and sharp worst-case scalar noise bound. The saved `HermiteHighestCoefficient.verified.lean` has SHA-256 `b7895696a6f2e08bed99d61e43404f94fc70626e018a1d11a2b0dc6c63294a9c` and `hermite-highest-row-scoped-report.json` has SHA-256 `dfbb11c754f3e00a9fb1a187e8703d0d0069b1d8d6e5431f51d5d8fd2c87474d`, with only standard Lean axioms. Its formal merged delivery is pending. These receipts concern scalar polynomial observations. The new physical conclusions above remain outstanding for formalization.
 
 ## 追加锚（本行以下为增补区）
+
+## 18. Exact cumulative sampling of scalar heat and boundary resolvent
+
+**Theorem 18.1 (Root-exponential exact-query lower bound).** Fix $M,T>0$ and an integer $N\ge1$. Consider finite connected weighted paths with strictly positive capacities and edge conductances, endpoint capacity $1$ and total capacity $2$. Write $A=D^{-1/2}L_cD^{-1/2}$ for the mass-normalized conductance Laplacian, where $D$ is the diagonal capacity matrix and $L_c$ the conductance Laplacian. The endpoint port is the unit vector $B=e_0$. Its heat response $K(t)=B^\top e^{-tA}B$ has a spectral probability measure $\mu$ with $\mu(\{0\})=1/2$ and assumed first-moment bound $\int\lambda\,d\mu\le M$. The only observations are exact cumulative scalar Gramians
+
+$$
+W_K(t)=\int_0^t\left(K(v)-\frac1t\int_0^t K(a)\,da\right)^2dv.
+$$
+
+A protocol may query at most $N$ arbitrary finite positive times, including times greater than $T$, and estimate $K$ on $[0,T]$ using the answers. Adaptive times and the final estimate may depend measurably on earlier answers and an independent random seed (for deterministic collisions arbitrary deterministic rules suffice). Use the supremum loss on $[0,T]$. Set
+
+$$
+\begin{aligned}
+d&=N+1,\quad s=\sqrt d,\quad h=2/s,\quad L=32s,\quad \lambda_j=(L/T)e^{(j-1)h}\quad (1\le j\le d),\\
+w&=\min\{1/8,M/(4\lambda_d)\},\quad r=w/(16d^2),\quad \ell=r/(8d^2),\\
+q&=e^{-\pi^2s/4}/(80\sqrt{s}),\qquad \theta=q\ell/32.
+\end{aligned}
+$$
+
+For fixed query times there are two admissible paths on $N+3$ vertices with identical samples and heat distance at least $2qr$. For every deterministic adaptive protocol there are two such paths with identical full transcripts and heat distance at least $q\ell$. For every jointly measurable randomized adaptive protocol, some admissible path on $N+3$ vertices satisfies
+
+$$
+\Pr_{\rm seed}(\|\widehat K-K\|_{[0,T]}>\theta)\ge1/4,\qquad
+\theta\ge 2^{-26}\min\{1,MT\}e^{-9\sqrt{N+1}}.
+$$
+
+Consequently the infimum over randomized adaptive protocols of the worst-case expected supremum loss is at least $\theta/4$ (and for predetermined fixed times with randomized postprocessing at least $qr$). At fixed $M,T>0$ the optimal worst-case expected loss has root-exponential order in $N$, with query complexity $\Theta(\log^2(1/\varepsilon))$ as the error tolerance $\varepsilon$ tends to zero.
+
+**Proof.** Put $\beta=\min\{M,1/T\}$, $p_*=(w/d,\ldots,w/d)$ and let $\mathcal C$ be the open cube $|p_j-p_{*,j}|<r$. For $p\in\overline{\mathcal C}$ and $0\le b\le\beta$ use the single family of spectral measures
+
+$$
+\mu_p^b=\tfrac12\delta_0+\left(\tfrac12-\sum_j p_j\right)\delta_b+\sum_j p_j\delta_{\lambda_j},\qquad
+K_p^b(t)=\int e^{-t\lambda}\,d\mu_p^b(\lambda).
+$$
+
+With $\eta=1/(16d)$ each $p_j$ is within factors $1\pm\eta$ of $p_{*,j}$. The total high-rate mass is at most $(1+\eta)w<1/2$ and the first moment is at most $b/2+(1+\eta)w\lambda_d<M$. For $b>0$ all $d+2$ atoms are distinct and have positive weights. Orthonormalizing $1,\lambda,\ldots,\lambda^{d+1}$ with positive leading coefficients in $L^2(\mu_p^b)$ makes multiplication by $\lambda$ a symmetric tridiagonal matrix with positive successive off-diagonals, by degree and comparison of leading coefficients. Alternating basis signs gives a matrix $S$ with negative successive off-diagonals and endpoint law $\mu_p^b$. The unit zero eigenvector $z$ is strictly positive by Perron–Frobenius applied to a sufficiently large scalar shift of $-S$. Its first squared entry is $1/2$. Set $m_i=2z_i^2$ and $g_{i,i+1}=-S_{i,i+1}\sqrt{m_i m_{i+1}}$. Then $D^{1/2}SD^{1/2}$ has zero row sums by $Sz=0$ and is the path conductance Laplacian for those positive capacities and edge weights. The endpoint mass and total mass have the required values and $A=S$. The auxiliary family at $b=0$ merges the reserve atom with zero.
+
+For the quantitative separation on this cube, for a real zero-sum vector $a$ write $f(x)=\sum_j a_j e^{-\exp(x+y_j)}$, $y_j=\log(\lambda_jT)$. Under the convention $\widehat f(\xi)=\int e^{-i\xi x}f(x)dx$, substitution in the derivative and integration by parts give
+
+$$
+i\xi\widehat f(\xi)=-\Gamma(1-i\xi)\sum_j a_j e^{i\xi y_j},\qquad
+|\Gamma(1-i\xi)|^2=\pi|\xi|/\sinh(\pi|\xi|).
+$$
+
+Zero sum gives integrability at the left tail, and exponential decay at the right tail gives $f\in L^1\cap L^2$. The gamma identity follows from recurrence and reflection. For $0<|\xi|\le\pi/h$ the squared multiplier for $f$ is at least $2h e^{-\pi^2/h}$. Orthogonality of $e^{i(j-1)h\xi}$ on this interval and Plancherel give $\int_{\mathbb R}|f|^2\ge2e^{-\pi^2/h}\|a\|_2^2$. [Gamma recurrence and reflection](https://dlmf.nist.gov/5.5)
+
+For $x<-18s-\log L$ use $|f(x)|\le\sqrt d\|a\|_2 L e^{x+(d-1)h}$, by zero sum and $1-e^{-v}\le v$. For $x>0$ use $|f(x)|\le\sqrt d\|a\|_2e^{-L e^x}$. The squared tail integrals are bounded respectively by $(d/2)e^{-32s}\|a\|_2^2$ and $(d/(2L))e^{-2L}\|a\|_2^2$, with sum at most $e^{-\pi^2/h}\|a\|_2^2$. The remaining interval has length at most $22s$. Returning to $t=Te^x$ gives $\|\sum_j a_j e^{-\lambda_j t}\|_{[0,T]}\ge Q\|a\|_2$ for zero sum, where $Q=e^{-\pi^2s/4}/(5\sqrt{s})$.
+
+For arbitrary $a$ let $S_a=\sum_j a_j$, $a'=a-S_ae_1$ and $F(t)=\sum_j a_j e^{-\lambda_jt}-S_ae^{-bt}$. At $t=T$, $|S_a|\le e(\|F\|_{[0,T]}+\sqrt d e^{-32s}\|a\|_2)$, since $bT\le1$. The zero-sum bound applied to $a'$ gives $Q\|a\|_2\le\|F\|_{[0,T]}+(1+Q)|S_a|$, because $|e^{-bt}-e^{-\lambda_1t}|\le1$. Since $Q\le1$ and $2e\sqrt d e^{-32s}\le Q/2$, this yields
+
+$$
+\|K_p^b-K_{p'}^b\|_{[0,T]}\ge q\|p-p'\|_2\qquad(0\le b\le\beta).
+$$
+
+Also $\lambda_dT\le32s e^{2s}$ implies $w\ge\min\{1,MT\}e^{-2s}/(128s)$. Substitution gives $\theta\ge \min\{1,MT\}d^{-19/4}e^{-(2+\pi^2/4)s}/(80\cdot128\cdot4096)$, which implies the claimed constant using $\log s\le s/e$ and $80\cdot128\cdot4096<2^{26}$.
+
+For the fixed-time claim take any fixed $b\in(0,\beta]$ and $p_\pm=p_*\pm ra$, $\|a\|_2=1$. The difference of their centered-square Gramians at $t$ is $4r\int_0^t(C_tK_{p_*}^b)(C_tF)$, where $C_t$ subtracts the mean on $[0,t]$. Thus equality of at most $N$ samples imposes at most $N$ homogeneous linear constraints on $a\in\mathbb R^d$. A unit null vector gives the collision and distance $2qr$. The triangle inequality at the common transcript also bounds the maximum expected loss for randomized postprocessing.
+
+To handle adaptive times, analyze the auxiliary rate $b=0$. Write $R_K(t)=t^{-1}\int_0^tK(v)dv-K(t)$, so $W'_K(t)=R_K(t)^2$, and $W_K(0)=0$. With $\phi(t\lambda)=(\lambda/t)\int_0^t v e^{-v\lambda}dv$, $R_{K_p^0}(t)=R_p(t)=\sum_j p_j\phi(t\lambda_j)>0$. For a fixed tuple $\tau=(t_1,\ldots,t_k)$ of distinct positive times let $F^b_\tau(p)$ be the vector of $W_{K_p^b}$ answers. The entries of $DF^0_\tau$ are $2\int_0^{t_i}R_p(v)\phi(v\lambda_j)dv$. Every $k$-column minor $D_I(p)=\det\partial_I F^0_\tau(p)$ is sign-regular and satisfies
+
+$$
+0<(1-\eta)^k|D_I(p_*)|\le |D_I(p)|\le(1+\eta)^k|D_I(p_*)|.
+$$
+
+Indeed order the rows by time and difference successive cumulative rows. Multilinearity writes the determinant as an integral of $\det[\phi(v_i\lambda_j)]$ multiplied by $2^k\prod_i R_p(v_i)$ over the successive intervals. Factor $\lambda_j$ from columns and $1/v_i$ from rows in the inner determinant. Differencing the cumulative rows again writes it as an integral of $\det[e^{-u_i\lambda_j}]\prod_i u_i$ over successive intervals. The exponential determinant is nonzero for strictly ordered $u_i$ and ordered distinct rates, since a nonzero linear combination of $k$ distinct exponentials has at most $k-1$ real zeros by division by an exponential, differentiation and Rolle induction. The sign is constant on the connected strictly ordered region. Both integrations therefore have fixed sign and positive absolute integral. Comparison of each $R_p$ with $(1\pm\eta)R_{p_*}$ proves the bounds, independently of the time gaps.
+
+Choose a pivot $I$ maximizing $|D_I(p_*)|$ and split coordinates as $(x,y)$ into pivot and free coordinates. For each $z$ the auxiliary level $F^0_\tau(p)=z$ in $\mathcal C$ is a single smooth graph $x=x_z(y)$ over an open free domain. Local graphs follow from the implicit function theorem. For fixed $y$, the exact midpoint formula for the quadratic map $F^0_\tau$ implies global uniqueness, since its pivot minor at the midpoint of two solutions is nonzero. Cramer's rule bounds each free partial derivative of $x_z$ in absolute value by $((1+\eta)/(1-\eta))^k<2$. The same ratio bounds the variation of $1/|D_I|$ on the cube. Let $\mathcal C_{\rm in}$ be the concentric open cube of radius $r-\delta$, $\delta=r/(2d)$. A fiber meeting this inner cube contains the free cube of radius $\ell=\delta/(4d)$ about that point's free coordinate. Lift a straight free segment from that point. Each pivot coordinate moves by at most $2(d-k)\ell\le\delta/2$ and each free coordinate by at most $\ell$. These bounds keep any limit inside $\mathcal C$ so that the implicit function theorem extends the lift to its destination.
+
+Repeated queries can be simulated from cached answers, and unused or repeated slots padded with fresh times from a fixed positive countable list whose added answers are ignored. This gives $N$ distinct queries preserving the original output and measurability. Extend deterministic query rules arbitrarily to undefined histories. Run the deterministic padded protocol on $K^0_{p_*}$ and freeze its ordered times $\tau$ and answers $z$. Here $k=N$ and one free coordinate remains. The auxiliary fiber contains the center and a second point at free distance $\ell$, by the segment argument. At each point, fix the free coordinate and solve $F^b_\tau(p)=z$ for the pivot as $b$ increases from zero. The map is smooth in $(b,p)$ for fixed times and both minors are nonzero at zero. The implicit function theorem supplies both points in $\mathcal C$ at a common sufficiently small positive $b\le\beta$. Induction through the answers proves that the actual protocol follows the same transcript on both physical paths. Their heat distance is at least $q\ell$.
+
+For randomized queries take the uniform prior of density $\rho=(2r)^{-d}$ on $\mathcal C$, independently of the seed. Fix the seed and freeze each numerical history $z=(z_1,\ldots,z_k)$, so that the ordered times $\tau(z)$ are determined by its prefixes. Let $J_k^b(p;z)=\sqrt{\det(DF^b_{\tau(z)}(DF^b_{\tau(z)})^\top)}$, with derivatives holding times fixed. For nonnegative measurable $G$ the expectation of $G(z,p)$ on the rank-$k$ part of the actual history law is
+
+$$
+\int_{\mathbb R^k}\int_{\{p\in\mathcal C:F^b_{\tau(z)}(p)=z,\ J_k^b>0\}}
+\frac{\rho G(z,p)}{J_k^b(p;z)}\,d\mathcal H^{d-k}(p)\,dz .
+$$
+
+To prove this adaptive coarea identity, start with $J_0=1$. At a fixed numerical prefix of length $k-1$ the next time is fixed. On the smooth regular prefix level apply scalar coarea to the next sample where the tangential gradient is nonzero. Gram–Schmidt on the derivative rows gives $J_k=J_{k-1}\|\nabla_{\rm level}W(t_k)\|$, introducing precisely the required new Jacobian factor. Induction proves the rule for the regular part, and at $b=0$ all fibers are regular by the minor bounds. On a local graph with pivot block $P$ and free derivative block $V$, the graph derivative is $X=-P^{-1}V$. Its area factor $\sqrt{\det(I+X^\top X)}$ cancels the corresponding factor of $J_k=|\det P|\sqrt{\det(I+XX^\top)}$. Thus the fiber measure is $dy/|\det P|$, summed over all local branches. For measurability, use a countable cover by inverse-function charts in variables $(b,\tau,x,y)$ on each nonzero-minor region, with coordinates $(b,\tau,F^b_\tau(x,y),y)$, and a subordinate Borel partition. Fiber integrals are then sums of measurable integrals in $y$ composed with the measurable history rules. This also justifies the induction and joint integration over the seed.
+
+Evaluate loss on a fixed countable dense subset of $[0,T]$, where all the heat separations hold by continuity. This measurable loss is bounded by the full supremum loss. Fix a full virtual history and the maximizing pivot (the first maximizer in a fixed order makes the choice measurable). Any two success points with loss at most $\theta$ have free separation at most $2\theta/q=\ell/16$. Hence their free set has length at most $\ell/16$. If the fiber meets the inner cube, its free domain contains an interval of length $2\ell$, and its graph density varies by a factor at most two. Success inside the inner cube therefore has at most $1/16$ of the full fiber mass. The probability of the inner cube is $(1-1/(2d))^d\ge1/2$. Integrating gives virtual strict failure probability at least $7/16$.
+
+At each fixed seed, numerical history $z$ and free coordinate $y$ in the virtual fiber, keep $z,\tau(z),y$ fixed and solve the pivot equations at positive reserves $b_m=\beta/m$ tending to zero. The implicit function theorem at the virtual point gives a local physical branch whose pivot minor stays nonzero and whose heat curve converges uniformly. Strict failure at the fixed prediction persists along this branch because it is the union of strict evaluation inequalities at the dense set. In the graph formula the branch weight converges to the virtual weight. Restrict the physical coarea integral to this chosen nonzero pivot region, summing nonnegative contributions of all branches. Its pointwise lower limit in $y$ dominates the virtual failure integrand. Fatou in $y$, then in $z$, then in the seed gives $\liminf_m\Pr_{b_m}(\mathrm{loss}>\theta)\ge7/16$. The physical expectation includes the regular part counted here. The exact same answers along each branch fix the entire adaptive history despite discontinuities of the rules. Some positive reserve prior therefore has joint failure probability above $1/4$, so some actual path has seed failure probability at least $1/4$. This proves the expected loss bound.
+
+The matching upper estimate follows from the ordinary analytic sampling argument. For clarity take $J$ maximal with $6J^2-2J+1\le N$ and use the point $T$ and the cosine grids on $[a_j,2a_j]$, $a_j=T2^{-j}$, $m_j=3(J-j)+1$, with nodes $3a_j/2+(a_j/2)\cos(k\pi/(4m_j))$, $0\le k\le4m_j$, $1\le j\le J$. Shared endpoints leave $6J^2-2J+1$ nodes. The first moment gives $|R_K(z)|\le M|z|/2$ in the right half-plane by integrating the Lipschitz bound for complex exponentials, and $|W_K(z)|\le M^2|z|^3/12$ by $W_K(z)=z\int_0^1 R_K(vz)^2dv$. For the difference of two feasible Gramians, Taylor truncation of degree $m_j$ on the circle of radius $a_j$ about $3a_j/2$ gives error $O(M^2a_j^3 2^{-m_j})$ throughout the cell by Cauchy's estimate. A polynomial of degree $m$ on a cosine grid is a trigonometric polynomial of degree $m$ in the angle, so Bernstein's inequality gives supremum at most $(1-\pi/8)^{-1}$ times the sample maximum (the nearest grid angle is within $\pi/(8m)$). Thus for fits within sample defect $\varepsilon_0$, the uniform Gramian defect is $\Delta=O(\varepsilon_0+M^2T^3 2^{-3J})$, including below $T2^{-J}$ by the real cubic bound. The scalar estimate of §4 gives $|R_1(t)-R_2(t)|\le\min\{Mt/2,8\sqrt{\Delta/t}\}$. With the known anchor $K(0)=1$, the identity $K(t)=1-R_K(t)-\int_0^tR_K(v)dv/v$ gives a uniform heat error $O((M\Delta)^{1/3})$ by splitting the integral at the intersection of the two bounds. Choose the first member of a countable dense list of admissible curves in $C([0,T])$ with sample defects below $M^2T^3 2^{-3J}$. Such a member exists by continuity of the fixed-time samples and the selection is measurable. This obtains $O(MT2^{-J})=O(MT e^{-c\sqrt N})$ for an absolute $c>0$. Together with the lower bound it gives the stated query complexity. [Scalar positive-time estimate](#4-sharp-stability-on-a-positive-time-window)
+
+**Theorem 18.2 (Joint same-port heat and boundary-resolvent failure).** Under Theorem 18.1, suppose the protocol estimates both $K$ on $[0,T]$ and the normalized boundary resolvent $H(\sigma)=\sigma B^\top(\sigma I+A)^{-1}B$ on
+
+$$
+I_N=[e^{-24s}/T,e^{28s}/T],\qquad q_H=e^{-\pi^2s/2}/(80\sqrt{s}),\qquad \theta_H=q_H\ell/32.
+$$
+
+The fixed-time exact-transcript pair can be chosen to have both heat distance at least $2qr$ and resolvent distance at least $2q_Hr$. The deterministic adaptive pair can be chosen with both distances at least $q\ell$ and $q_H\ell$, respectively. For each jointly measurable randomized adaptive protocol there is a single admissible path on $N+3$ vertices with probability at least $1/4$ that both supremum losses exceed their respective thresholds $\theta$ and $\theta_H$. For the unnormalized boundary entry $B^\top(\sigma I+A)^{-1}B$ the same assertions hold with $q_H$ replaced by $Te^{-28s}q_H$ in the resolvent constants. These resolvent lower bounds have root-exponential dependence at fixed $M,T$ in the stated growing window.
+
+**Proof.** Use exactly the same weights and rates of Theorem 18.1 with $0\le b\le\min\{M,e^{-24s}/T\}$. Write $x=\log(\sigma T)$, $y_j=\log(\lambda_jT)$, so $0<y_j\le6s$, and $g(x)=(1+e^{-x})^{-1}$. In the spectral representation $H_p^b(\sigma)=\int \sigma/(\sigma+\lambda)d\mu_p^b$. For zero-sum $a$ let $f(x)=\sum_j a_j g(x-y_j)$. It and its derivative are integrable and square integrable by exponential tail bounds. The substitution $v=e^x$ gives $\widehat{g'}(\xi)=\int_0^\infty v^{-i\xi}(1+v)^{-2}dv=\pi\xi/\sinh(\pi\xi)$ by the beta and gamma identities. Thus $|\widehat f(\xi)|=\pi|\sum_j a_j e^{-i\xi y_j}|/|\sinh(\pi\xi)|$ for $\xi\ne0$. On $0<|\xi|\le\pi/h$ the multiplier is at least $2\pi e^{-\pi^2/h}$. Orthogonality and Plancherel yield
+
+$$
+\int_{\mathbb R}|f|^2\ge (4\pi^2/h)e^{-2\pi^2/h}\|a\|_2^2
+=2\pi^2s e^{-\pi^2s}\|a\|_2^2.
+$$
+
+At $x\le-24s$ use $|f|\le\sqrt d\|a\|_2e^x$, and at $x\ge28s$ subtract the constants using zero sum to get $|f|\le\sqrt d\|a\|_2e^{6s-x}$. The squared tail integrals sum to at most $d e^{-44s}\|a\|_2^2$. The remaining interval of length $52s$ therefore gives a supremum at least $Q_H\|a\|_2$, $Q_H=e^{-\pi^2s/2}/(8\sqrt{s})$.
+
+For arbitrary $a$ write $S_a=\sum_j a_j$ and $F(x)=\sum_j a_j g(x-y_j)-S_a\sigma/(\sigma+b)$, with $E=\|F\|_{[-24s,28s]}$. At the left endpoint $\sigma/(\sigma+b)\ge1/2$, so $|S_a|\le2(E+s e^{-24s}\|a\|_2)$. The zero-sum estimate for $a-S_ae_1$ then gives $Q_H\|a\|_2\le E+(1+Q_H)|S_a|\le 5E+4s e^{-24s}\|a\|_2$, and $4s e^{-24s}\le Q_H/2$ for $s\ge1$. Consequently
+
+$$
+\|H_p^b-H_{p'}^b\|_{I_N}\ge q_H\|p-p'\|_2.
+$$
+
+The fixed-time null-vector construction and the deterministic adaptive exact-answer continuation work at this smaller reserve bound, preserving both inverse inequalities on the same pair of spectra. For randomized estimation use the virtual uniform cube and exactly the same adaptive coarea integral as in Theorem 18.1. Evaluate both losses on dense countable subsets of their respective intervals. Each success set has free-coordinate diameter at most $\ell/16$ by its own inverse estimate and threshold. Each therefore contributes at most $1/16$ of the full fiber mass when restricted to the inner cube. By the union bound the virtual probability of joint strict failure is at least $1/2-1/8=3/8$. At fixed seed, history and free coordinate, the positive-reserve branch converges in both target norms (the window has strictly positive left endpoint for fixed $N$). Both strict failures persist, and the same nonnegative graph weights and iterated Fatou argument give physical prior joint failure lower limit at least $3/8$. Averaging for a sufficiently small positive reserve yields one physical path with both failures with seed probability at least $1/4$. For the unnormalized target, division by $\sigma$ in the inverse separation reduces its constant by at most the upper endpoint multiplier $Te^{-28s}$. Repeating the same fiber argument with that reduced constant proves the joint assertion for the unnormalized target.
+
+### 18.3 Provenance and formal scope
+
+This append batch was composed by Codex from the ordinary proofs and independent mathematical reviews of the exact-query heat lower bound and its same-port resolvent extension. The research records are `heat-noiseless-quantitative-lower/proof.txt` (SHA-256 `b93fdf551ac1482e5532f6dce38951d8ffc15b30faef432264e570691f237c7e`) and `heat-noiseless-quantitative-lower/shared-resolvent-lower.proof.txt` (SHA-256 `3bac92483cfa70aec576f4c3751c345da866e1c969e0d360f3c0391b0def2c66`), approved in independent reviews `6b0695f893fb33df318e75a7` and `6b069720f667077bca69b7a3`, respectively. The upper comparison uses `heat-analytic-sampling/proof.txt` (SHA-256 `0b8bf2a9f91ffb838439d128991aa3efe1dd12f34caa2fbd56d22a98826791d9`). Research priority remains unverified. The Fourier separation, sign-regular minor estimates, adaptive coarea and physical continuation, sharp query exponent and joint resolvent bound have ordinary mathematical proof status. Formal kernel verification and coverage of these new conclusions remain open.
+
+## 追加锚（本行以下为增补区）
