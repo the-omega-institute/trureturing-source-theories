@@ -83,6 +83,7 @@ public sealed class TruthExportReaderTests
     [InlineData("statement_type_address", "statement_id")]
     [InlineData("sha256:", "SHA256:")]
     [InlineData("[]", "null")]
+    [InlineData("[]", "[\"sorryAx\"]")]
     [InlineData("[]", "[42]")]
     [InlineData("[]", "[\"propext\", \"propext\"]")]
     [InlineData("[]", "[\"propext\", \"Classical.choice\"]")]
