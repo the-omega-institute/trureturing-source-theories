@@ -1,0 +1,9 @@
+**定义 2.1（Actual recovery and deficit）。** Let $E,B$ be nonzero finite-dimensional complex Hilbert spaces, $m=\dim E$, $d=\dim B$, in factor order $E\otimes B$. Write $N=\operatorname{Tr}_E$. All traces are unnormalized, all logarithms natural, and the trace norm is full (unhalved). Let $Z,\rho$ be positive semidefinite trace-one joint matrices with $\operatorname{supp}\rho\subseteq\operatorname{supp} Z$ and $P=NZ>0$. Set $p=N\rho$. For any retained matrix $x$ define
+
+$$
+R_Z(x)=\sqrt Z(I_E\otimes P^{-1/2}xP^{-1/2})\sqrt Z,\qquad
+\Delta=D(\rho\Vert Z)-D(p\Vert P),\qquad n=\|\rho-R_Z(p)\|_1.
+$$
+
+Here $D(A\Vert B)=\operatorname{Tr}A(\log A-\log B)$ on compatible supports and $+\infty$ when support containment fails, with $0\log 0=0$. Data processing gives $\Delta\ge0$. The partial trace identity gives $R_Z(P)=Z$ and $\operatorname{Tr}R_Z(x)=\operatorname{Tr}x$. The recovery formula uses the actual retained marginal $p$ of the source.
+

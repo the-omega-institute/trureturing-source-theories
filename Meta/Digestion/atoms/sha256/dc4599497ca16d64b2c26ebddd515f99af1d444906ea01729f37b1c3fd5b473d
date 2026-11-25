@@ -1,0 +1,42 @@
+**定理 7.1（Sharp repeated blind POVM constants）。** Use exactly the hypotheses of Theorem 6.2. A one-copy POVM is blind if it gives equal laws at $e=0$ for every physical $s$. Consider sequences with $s=s_N\to0$, $e=e_N\downarrow0$, and $Ns_N^2e_N\to\ell\in[0,\infty]$. Among all fixed finite blind POVMs repeated independently, the best limiting equal-prior and maximum conditional errors are $\Phi(-\sqrt{2\ell}/3)$. Among sequences of finite blind POVMs (arbitrary finite outcome counts) that may depend on $s,e,N$ and are repeated independently within each experiment, the sharp limits of the infima of these errors are $\Phi(-\sqrt\ell/2)$. A binary POVM depending only on $e$ attains the second limit. The constants are strictly distinct for $0<\ell<\infty$.
+
+Proof. At $e=0$, $R_Z(h)-H=(2/3)(P_{00}-P_+)$. Consequently blindness is exactly equality of the $00$ and $++$ diagonals of every effect. Write an arbitrary effect's diagonal as $(a,a,b,c)$ and $z=\operatorname{Re}E_{+,-}$. Positivity and completeness give $|z|\le\sqrt{ab}$, $\sum a=\sum b=\sum c=1$ and $\sum z=0$. For each effect, write $p=\operatorname{Tr}E Z_e$, $g=\operatorname{Tr}E H_e$, and $d=\operatorname{Tr}E(R_{Z_e}(h)-H_e)$. From the matrices in Theorem 6.2 the two exact laws are $q=p+sg$, $r=q+sd$, where
+
+$$
+\begin{aligned}
+p&=(1-3e/8)a+eb/4+ec/8-ez/4,&g&=e(c-a)/4+ez/2,\\
+d&=\beta_e(b-a)+2f(e)z,&\beta_e&=e/6+(8/3)BC .
+\end{aligned}
+$$
+
+Indeed the $--$ diagonal of the recovery derivative minus $H_e$ is $(2/3)(e/4)+(8/3)BC$, the $11$ entry is zero, and the trace is zero. The off-diagonal is $f(e)$ from Theorem 6.2. Here $B=O(e), C=O(\sqrt e)$, using its root block. In particular, with $k=2\sqrt2/3$,
+
+$$
+d=d_0+R,\qquad d_0=k\sqrt e\,z+eb/6,\qquad |R|\le C_0(ea+e^{3/2}(b+c)+e\sqrt{ab}).
+$$
+
+Let $p_*=a+eb/4+ec/8$. Rows with $p_*=0$ for $e>0$ are zero effects and can be omitted. By $|z|\le\sqrt{ab}$ and $\sqrt{eab}\le a+eb/4$, one has $q/p_*=1+O(\sqrt e+|s|)$, $|g|/p_*=O(1)$ and $|d|/q=O(1)$ uniformly for sufficiently small $e,|s|$. Squaring the remainder with the factor three bound and using $a^2/p_*\le a$, $(b+c)^2/p_*\le8(b+c)/e$, $ab/p_*\le b$ gives $\sum R^2/p_*=O(e^2)$. Weighted Cauchy–Schwarz gives
+
+$$
+|d_0|/\sqrt e\le\sqrt b(k\sqrt a+\tfrac13\sqrt{eb/4}),\qquad
+d_0^2/(ep_*)\le b(k^2+1/9)=b.
+$$
+
+Thus, using Cauchy–Schwarz also on the mixed remainder, the squared score norm $J_{s,e}=\sum d^2/q$ obeys uniformly over all finite blind POVMs
+
+$$
+J_{s,e}/e=\sum d_0^2/(ep_*)+O(\sqrt e+|s|)\le1+O(\sqrt e+|s|).
+$$
+
+In a fixed finite POVM, rows with $a>0$ contribute $k^2z^2/a\le(8/9)b$ in the limit. Rows with $a=0$ have $z=0$ and contribute $(b/6)^2/(b/4+c/8)\le b/9$. Hence
+
+$$
+J_{s,e}/e\longrightarrow I(M)=k^2\sum_{a>0}z^2/a+\sum_{a=0}\frac{(b/6)^2}{b/4+c/8}\le8/9,
+$$
+
+with the zero row interpreted as zero. The fixed effects $(I\pm W)/2$ attain $8/9$ since both have $a=b=c=1/2$ and $z=\pm1/2$.
+
+For the moving test, choose $\theta\in(0,\pi/2)$ with $\tan^2\theta=2e$, $v=\cos\theta\,\psi_-+\sin\theta\,\psi_+$. The effect $E=P_v+\sin^2\theta\,P_{00}$ and its complement form a blind POVM, since the two projectors in $E$ have orthogonal supports. For $E$, $(a,b,c,z)=(2e,1,0,\sqrt{2e})/(1+2e)$. The rare outcome has $q\sim9e/4$ and $d\sim3e/2$, by the exact formulas and $s\to0$. Its complement has $q\to1$ and opposite $d$. Hence $J_{s,e}/e\to1$.
+
+For any sequence of repeated blind POVMs the relative increment $\zeta=sd/q$ under the source law has mean zero, variance $V=s^2J_{s,e}$ and $|\zeta|=O(|s|)$ uniformly. The log likelihood increment $\log(1+\zeta)$ has mean $-V/2+O(|s|V)$, second moment $V+O(|s|V)$ and third absolute moment $O(|s|V)$. Under the recovery law, weighting each expectation by $1+\zeta$ changes the mean to $V/2+O(|s|V)$ and preserves the second moment estimate. For a subsequence with $J_{s,e}/e\to I$ and finite $\ell$, the summed log likelihood converges under the two hypotheses to normal laws with means $\mp\ell I/2$ and variance $\ell I$ when $\ell I>0$, by Lindeberg and the uniform vanishing increment bound. If $\ell I=0$, the source log likelihood tends to zero in probability from its mean and variance. The optimal average error is $\tfrac12\mathbb E_q\min(1,\exp L_N)$, where $L_N$ is the summed log likelihood, so bounded continuity gives $\Phi(-\sqrt{\ell I}/2)$ in both cases. When $\ell I>0$ the two conditional threshold errors have that limit, and for $\ell I=0$ random guessing suffices for the maximum conditional criterion. Every sequence has such subsequences because the coefficients $J_{s,e}/e$ are bounded, with all accumulation points at most one (and at most $8/9$ for each fixed finite POVM). This proves the lower bounds including for a sequence approaching the infima. The displayed attaining POVMs give the matching limits. For $\ell=\infty$ and either attaining POVM, the repeated score $d/q$ has source mean zero and variance $J_{s,e}$, recovery mean $sJ_{s,e}$ and variance at most $(1+O(|s|))J_{s,e}$. The mean-score threshold $sJ_{s,e}/2$, oriented by the sign of $s$, has conditional errors $O(1/(Ns^2J_{s,e}))\to0$. This finishes both endpoint cases as well.
+

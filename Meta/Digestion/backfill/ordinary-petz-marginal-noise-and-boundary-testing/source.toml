@@ -1,0 +1,5 @@
+source_id = "ordinary-petz-marginal-noise-and-boundary-testing"
+path = "docs/develop/theory/ORDINARY_PETZ_MARGINAL_NOISE_AND_BOUNDARY_TESTING.md"
+atomizer = "generic-v1"
+genre_registry_check = "no-registry"
+unregistered_genres = []

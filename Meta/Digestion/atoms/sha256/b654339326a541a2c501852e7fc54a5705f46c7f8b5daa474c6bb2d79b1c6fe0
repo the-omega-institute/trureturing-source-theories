@@ -1,0 +1,24 @@
+**定理 6.2（Fixed binary POVM and critical copy limit）。** On the same family let $W=|+\rangle\langle-|+|-\rangle\langle+|$ extended by zero, and measure the fixed POVM $\{(I+W)/2,(I-W)/2\}$ independently on each copy of the two joint hypotheses $\rho_{s,e}=F_e(\rho_s)$ and $Y_{s,e}$. For every sequence $e=e_N\in(0,1]$ tending to zero and $s=s_N\in[-1/2,1/2]$, with $N s_N^2 e_N\to\ell\in[0,\infty]$, the optimal equal-prior average measured error and optimal maximum conditional measured error converge to
+
+$$
+\Phi(-\sqrt{2\ell}/3)
+$$
+
+with $\Phi$ the standard normal CDF and the value zero at $\ell=\infty$.
+
+Proof. The effects are positive and sum to $I$, as $\|W\|_\infty=1$. The middle block of $Z_e$ and its positive square root are
+
+$$
+M_e=\begin{pmatrix}1/2-e/4&-e/8\\-e/8&e/4\end{pmatrix},\qquad
+d_e=\sqrt{e(8-5e)}/8,\qquad
+\sqrt{M_e}=\begin{pmatrix}A&B\\B&C\end{pmatrix}=(M_e+d_e I)/\sqrt{1/2+2d_e}.
+$$
+
+The square identity follows from Cayley–Hamilton with $\operatorname{Tr}M_e=1/2$ and $\det M_e=d_e^2$, and positivity selects the root. In particular $AC-B^2=d_e$ and $B=-e/(8\sqrt{1/2+2d_e})$. Write $J=I_E\otimes P^{-1/2}hP^{-1/2}$. Its middle block is $(2/3)I+(4/3)W$. The reference cancels exactly from the difference $Y_{s,e}-\rho_{s,e}=s(R_{Z_e}(h)-H_e)$, and the off-diagonal entry of $H_e$ is $e/4$. The first effect has outcome probability $1/2$ plus the middle off-diagonal entry on these real densities. Multiplying the root blocks therefore gives the two first-outcome probabilities $u,v$ exactly,
+
+$$
+u=1/2-e/8+se/4,\qquad v-u=sf(e),\qquad f(e)=-e/3+(4/3)d_e+(8/3)B^2=(\sqrt2/3)\sqrt e+O(e).
+$$
+
+Thus $u,v\to1/2$ uniformly in the physical $s$ interval. Put $b_N=v-u$. For $0<\ell<\infty$, $I_N=Nb_N^2/[u(1-u)]\to I=8\ell/9$. The one-copy log likelihood of $v$ against $u$ takes values $\log(1+b_N/u)$ and $\log(1-b_N/(1-u))$. Taylor expansion gives means under the two hypotheses respectively $-b_N^2/(2u(1-u))+O(|b_N|^3)$ and $+b_N^2/(2u(1-u))+O(|b_N|^3)$, and variances $b_N^2/(u(1-u))+O(|b_N|^3)$. The remainders sum to zero in the limit and the centered increments are uniformly $O(|b_N|)$. The triangular-array Lindeberg theorem gives log likelihood limits $N(-I/2,I)$ and $N(I/2,I)$ (normal laws). The zero threshold likelihood test minimizes the equal-prior average error, and both conditional errors tend to $\Phi(-\sqrt I/2)$. The maximum conditional error is at least the optimal average error, yielding the same minimax limit. For $\ell=0$, the Bernoulli relative entropy is $O(b_N^2)$, so additivity and Pinsker give product total variation tending to zero. Random guessing attains the limit $1/2$ for both criteria. For $\ell=\infty$, the empirical mean threshold $(u+v)/2$ oriented by the sign of $v-u$ has both errors at most $1/(Nb_N^2)$ by Chebyshev. These proofs allow changing signs and vanishing perturbations.
+

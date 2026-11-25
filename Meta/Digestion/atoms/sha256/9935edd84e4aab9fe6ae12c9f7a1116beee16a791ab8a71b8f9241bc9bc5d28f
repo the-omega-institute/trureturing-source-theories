@@ -1,0 +1,22 @@
+**注记 2.2（Pinned Lean anchor）。** PR 34116 merged at ec070acbd5dd7e8c5a729ebe8f8be01d063486e4. The accepted theorem D5.S3.Quantum.Recovery.PetzTangentTraceNorm.faithful_traceNorm_tangent quantifies over every nonempty finite environment index type $E$ with decidable equality, every complex matrix $H$ and every positive definite joint matrix $Z$ indexed by $\mathrm{Fin}\,2\times E$ with $\operatorname{Re}\operatorname{Tr}Z=1$. In the Lean factor order $B\otimes E$, put $P=\operatorname{partialTraceRight}Z$, $h=\operatorname{partialTraceRight}H$ and let $p_0,p_1$ be the two eigenvalues of $P$. Writing $\delta=2\sqrt{p_0p_1}$, the precise coefficient and conclusion are
+
+$$
+\begin{aligned}
+\kappa(\delta)&=\begin{cases}1&\delta=1,\\ \max\{2,(3-\delta)/(1+\delta)\}&0<\delta<1,\end{cases}\\
+\|H-R_Z(h)\|_1^2 &\le \kappa(\delta)
+\operatorname{Re}\operatorname{Tr}\big(H^\dagger D\log_Z[H]-h^\dagger D\log_P[h]\big).
+\end{aligned}
+$$
+
+The definition of $\kappa$ is parityMultiplier, with its exceptional coincident-node case. Here $D\log$ denotes the log derivative used by logDeriv, and $R_Z$ denotes partialTracePetz in Lean. Swapping the tensor factors by the permutation unitary identifies that setting with Definition 2.1. The exact merged [trace-norm theorem](https://github.com/the-omega-institute/trureturing/blob/ec070acbd5dd7e8c5a729ebe8f8be01d063486e4/D5/S3/Quantum/Recovery/NoncommutingQubit/PetzTangentTraceNorm.lean#L86) and [PR 34116](https://github.com/the-omega-institute/trureturing/pull/34116) supply the faithful anchor.
+
+The proof consumes faithful_weighted_tangent, whose left side is $\sum_{ij}|(U^\dagger(H-R_Z(h))U)_{ij}|^2/((\lambda_i+\lambda_j)/2)$, for a joint diagonalizing unitary $U$ with eigenvalues $\lambda_i>0$, and whose right side is the same $\kappa$ times the BKM difference. Its entrywise physical arcsine bound uses paired_parity_bound, valid for complex $a,b,c,d$, real $g,\beta,\delta$ with $g>0$, $0<\delta\le1$, $g^2+\beta^2\le1$. Its precise inequality is
+
+$$
+|g(a+b)+\beta(c+d)|^2\le\kappa(\delta)\int_0^\infty\sqrt{1+t}
+\left(\frac{|a/(1+t)+b\delta/(\delta^2+t)|^2}{2}
++\frac{|c(g+1)/(1+t)+d\delta(g+\delta)/(\delta^2+t)|^2}{2(g^2+t)}\right)dt.
+$$
+
+This gives the proof chain via [faithful_weighted_tangent and physical_entry_arcsine_and_bound](https://github.com/the-omega-institute/trureturing/blob/ec070acbd5dd7e8c5a729ebe8f8be01d063486e4/D5/S3/Quantum/Recovery/NoncommutingQubit/PetzTangentPhysical.lean#L720) and [paired_parity_bound](https://github.com/the-omega-institute/trureturing/blob/ec070acbd5dd7e8c5a729ebe8f8be01d063486e4/D5/S3/Quantum/Recovery/NoncommutingQubit/PetzTangentReciprocalGram.lean#L752).
+

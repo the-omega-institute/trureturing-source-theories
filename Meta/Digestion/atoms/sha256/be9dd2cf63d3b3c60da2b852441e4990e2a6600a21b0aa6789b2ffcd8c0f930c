@@ -1,0 +1,19 @@
+**命题 6.1（An actual sharp crossing at a fixed marginal）。** Take $E=B=\mathbb C^2$ and order the orthonormal basis as $(00,+,-,11)$ with $\psi_\pm=(01\pm10)/\sqrt2$ and $P_v=|v\rangle\langle v|$. Use
+
+$$
+\begin{aligned}
+Z&=(P_{00}+P_+)/2,\quad H=P_+-P_{00},\quad \rho_s=Z+sH,\quad -1/2\le s\le1/2,\\
+P&=\operatorname{diag}(3/4,1/4),\quad h=\operatorname{diag}(-1/2,1/2),\quad p_s=P+sh .
+\end{aligned}
+$$
+
+The input matrices have rational computational-basis entries for rational $s$. For the product regularization and $Y_{s,e}=R_{Z_e}(p_s)$,
+
+$$
+\lim_{e\downarrow0}\|Y_{s,e}-Y_{s,0}\|_1/\sqrt e=(2\sqrt2/3)|s|.
+$$
+
+In particular the exponent $1/2$ is sharp at fixed $P$ and dimension four. On the same family $G_Z(H)=8/3$, $\Delta(s)=4s^2/3+o(s^2)$ and $\|H-R_Z(h)\|_1=4/3$.
+
+Proof. Partial traces give the displayed $P,h$. On $\Pi=\operatorname{span}(00,+)$ the two weights of $\rho_s$ are $1/2-s,1/2+s$. Hence $g_Z(H)=4$ and $g_P(h)=(4/3+4)/4=4/3$. The tangent recovery on $\Pi$ is diagonal with entries $-1/3,1/3$. In the $(+,-)$ block the lifted likelihood $J_s=I_E\otimes P^{-1/2}p_sP^{-1/2}$ has off-diagonal entry $4s/3$. On the kernel, the compression of $\tau=I_E/2\otimes P$ is $\operatorname{diag}(1/4,1/8)$, so $TJ_s\sqrt Z=(2s/(3\sqrt2))|-\rangle\langle+|$. Theorem 5.1 gives the limit, and Theorem 4.1 gives the entropy expansion.
+

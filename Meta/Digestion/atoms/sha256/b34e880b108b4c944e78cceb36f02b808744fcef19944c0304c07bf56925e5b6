@@ -1,0 +1,25 @@
+**定理 4.1（Transfer of the faithful tangent bound）。** For every joint reference $Z$ as in Definition 2.1, let $\Pi=\operatorname{supp}Z$, $H=H^\dagger=\Pi H\Pi$ with $\operatorname{Tr}H=0$ and $h=NH$. On the support define
+
+$$
+g_Z(H)=\int_0^\infty\operatorname{Tr}\left[H_\Pi(Z_\Pi+tI)^{-1}H_\Pi(Z_\Pi+tI)^{-1}\right]dt,\qquad G_Z(H)=g_Z(H)-g_P(h).
+$$
+
+For real sufficiently small $s$, $\rho_s=Z+sH$ is a supported density. Set $\Delta(s)=D(\rho_s\Vert Z)-D(P+sh\Vert P)$. Then
+
+$$
+\Delta(s)=\tfrac12 s^2 G_Z(H)+o(s^2),\qquad
+\rho_s-R_Z(P+sh)=s(H-R_Z(h)).
+$$
+
+For $0<e\le1$, with $H_e=F_e(H)$ as in Theorem 3.1, one has $0\le G_{Z_e}(H_e)\le (1-e)G_Z(H)$ and $G_{Z_e}(H_e)\to G_Z(H)$. If $d=2$, the supported direction satisfies
+
+$$
+\|H-R_Z(h)\|_1^2\le\kappa(2\sqrt{\det P})G_Z(H).
+$$
+
+When $G_Z(H)>0$, the actual infinitesimal squared-score limit is therefore bounded by $2\kappa(2\sqrt{\det P})<6$.
+
+Proof. On the support, $|s|\|Z_\Pi^{-1/2}H_\Pi Z_\Pi^{-1/2}\|_\infty<1$ suffices for positivity. Differentiating the trace entropy gives first derivative $\operatorname{Tr}H(\log Z_\Pi+I)$ and second derivative $\operatorname{Tr}H D\log_{Z_\Pi}[H]=g_Z(H)$ by the log resolvent formula. The output uses the same computation at faithful $P$. The first variations of both relative entropies vanish since the directions have trace zero. The residual identity follows from linearity. Apply the finite-loss contraction to $(Z+sH,Z)$, whose regularized source is $Z_e+sH_e$ with unchanged output. Divide by $s^2/2$ and let $s\to0$ for fixed $e$.
+
+For energy convergence, $Z_e\ge(1-e)Z$ implies $\Pi(Z_e+tI)^{-1}\Pi\le((1-e)Z_\Pi+tI)^{-1}$ for $t>0$. For $e\le1/2$ the integrand with $H$ is dominated by $\|H\|_2^2/(\lambda_{\min}(Z_\Pi)/2+t)^2$ and converges by continuity of the inverse. The energy of $eMH$ is bounded by $e^2\|MH\|_2^2/(e\lambda_{\min}(P)/m)=O(e)$, and the mixed term by the BKM Cauchy–Schwarz inequality. Thus $g_{Z_e}(H_e)\to g_Z(H)$. Apply the accepted faithful theorem from Note 2.2 to $(Z_e,H_e)$ at the identical $P$. The Hermitian-direction recovery modulus in Theorem 3.1 and $H_e\to H$ allow passage to the limit. If $G_Z(H)=0$ the resulting residual vanishes. Otherwise the expansion yields the factor of two in the infinitesimal quotient. In particular the positive-marginal restriction is retained even for singular joint references.
+
