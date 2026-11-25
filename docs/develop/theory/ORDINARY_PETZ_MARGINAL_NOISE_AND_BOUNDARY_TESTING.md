@@ -346,3 +346,228 @@ For the example the angle order from Proposition 9.2 gives $0<|\langle v,h\rangl
 The three results are repo-derived ordinary proofs from “Weighted ordinary Petz comparison for a projection and external flag” (25 November 2026), independently approved in the sshx review with run ID `37c949e5411f902b6ac0d741`. The pinned research artifacts in `petz-weighted-environment-truncation-proof` are `proof.txt` (SHA-256 `49341ee6e760de214eaf38978895658bfc174b28142edcc7401cdfba69ba2654`), `replay.py` (SHA-256 `2301116be5102ed4a6d668ba4b8ece532d91d03fdb8804af7ecc84d897cafd67`) and `independent-review-result.json` (SHA-256 `c899a5155e527aaba841474188b5be7816251d5ec55810871358883c7b0d082d`). The exact scalar replay `python3 -I -B replay.py` passed all nine open intervals using 55-digit directed Decimal arithmetic, enclosing the correctly rounded square roots and logarithms by adjacent decimals. The fidelity and Helstrom formulas used in Theorem 9.3 are standard quantum testing identities. The scope of (9.1) is equation (7) of the approved proof. Both squared scores in the witness are strictly below one. The bounded-dimension compression question for a strict margin above squared score six and the assertion $C(2)=6$ remain open.
 
 ## 追加锚（本行以下为增补区）
+
+## 10. Protected compression, exact reverse transport and binary decision comparison
+
+This batch extends Theorems 9.1 and 9.3 with spectral protection and ordinary Petz reverse transport. It computes the optimal binary simulation errors for Proposition 9.2 and gives a separate entropy-exact compression with strict improvement of the recomputed binary experiment. Use the notation of Section 9, including full trace norms, natural logarithms and the actual deficits. The prior Section 8 problem remains open.
+
+**定理 10.1（Exact reverse benchmark and protected spectral threshold）。** Allow any environment-local CPTP map $\Phi=\Phi_E\otimes\mathrm{id}_B$ from $E\otimes B$ to $E'\otimes B$, and put $T'=\operatorname{Tr}_{E'}$. Define $\rho',\sigma',Y',r',\Delta'$ as in Theorem 9.1. Then $T'\Phi=T$, $0\le\Delta'\le\Delta$, and a common CPTP channel $\mathcal A$ from the compressed space to the original space has
+
+$$
+\begin{aligned}
+\mathcal A_0(W)&=\sqrt\sigma\,\Phi^\dagger((\sigma')^{-1/2}W(\sigma')^{-1/2})\sqrt\sigma,\\
+\mathcal A(W)&=\mathcal A_0(W)+\operatorname{Tr}((I-s')W)\tau,\qquad s'=\operatorname{supp}\sigma',
+\end{aligned}
+$$
+
+where $\tau$ is any fixed original density and the inverse uses the support. The supported ordinary Petz maps compose as $R_{\sigma,T}=\mathcal A R_{\sigma',T'}$ on the retained support. In particular
+
+$$
+\mathcal A(\sigma')=\sigma,\qquad \mathcal A(Y')=Y,\qquad
+r'\ge r-\|\rho-\mathcal A(\rho')\|_1.
+\tag{10.1}
+$$
+
+For the projection and one-flag compressor of Theorem 9.1, let $R$ be a joint projection satisfying $R\le\operatorname{supp}\sigma$, $[R,\sigma]=0$ and $R\le\Pi=J\otimes I_B$. Put $e_R=\operatorname{Tr}(\rho(I-R))$ and $w_R=\operatorname{Tr}(Y(I-R))$. Then
+
+$$
+\begin{aligned}
+(\mathcal A\Phi)(RXR)&=RXR\quad\text{for every joint operator }X,\\
+\|\rho-\mathcal A(\rho')\|_1&\le \min(2,4\sqrt{e_R}),\\
+a&\le 2\sqrt{w_R},\qquad w_R=\operatorname{Tr}(M\sigma(I-R)),\\
+|r-r'|&\le 2\sqrt{w_\rho(1-w_\rho)}+2w_\rho+4\sqrt{w_R}
+\le 2\sqrt{e_R}+2e_R+4\sqrt{w_R}.
+\end{aligned}
+\tag{10.2}
+$$
+
+Here $a$ and $w_\rho$ are the quantities of Section 9. For $d=\dim B$, let $\Omega=\sum_\lambda E_\lambda\rho E_\lambda$ be the pinching by the spectral projections of $\sigma$, and $e_k=1-\sum_{j=1}^k\lambda_j^\downarrow(\Omega)$, padding by zero eigenvalues. For every nonnegative integer $k$ there is a projection $J$ of rank at most $dk$ with $\dim E'\le dk+1$ and $r'\ge r-4\sqrt{e_k}$. In retained dimension two, for $\eta>0$ and $\Delta>0$ the sufficient strict threshold is
+
+$$
+\frac{r^2}{\Delta}>6+\eta,\qquad
+e_k<\frac{(\sqrt{6+\eta}-\sqrt6)^2}{16}\Delta
+\quad\Longrightarrow\quad
+\Delta'>0,\qquad \frac{(r')^2}{\Delta'}>6 .
+\tag{10.3}
+$$
+
+For any prescribed $J$ let $B_J=(\Pi\sigma\Pi)|_{\Pi}$ and use its support inverse to form $V_J=\sqrt\sigma\,\Pi B_J^{-1/2}\Pi$ (with the inverse extended by zero off the kept space). Then $\zeta_J=1-|\operatorname{Tr}(\rho V_J)|^2\ge w_\rho$ and $r'\ge r-2\sqrt{\zeta_J}$. In (10.3) the spectral condition can alternatively be replaced by $\zeta_J<(\sqrt{6+\eta}-\sqrt6)^2\Delta/4$.
+
+Proof. Support containment gives $\rho\le c_0\sigma$ and hence $\rho'\le c_0\sigma'$. The marginals are preserved and joint data processing gives the deficit inequality. The formula for $\mathcal A_0$ is CP and its trace is $\operatorname{Tr}(s'W)$ by trace duality. The complement preparation term completes the trace. If $V_i$ are Kraus operators of $\Phi$, positivity of their contributions to $\sigma'$ gives $s'V_i\sqrt\sigma=V_i\sqrt\sigma$. Substituting the compressed ordinary Petz formula for any retained operator cancels the two inverse roots against the square roots, leaving $s'$ on either side of the lifted retained operator. Those projections disappear inside the Kraus sandwiches by the preceding identity. Since $\Phi^\dagger(I_{E'}\otimes L)=I_E\otimes L$ for every retained matrix $L$, this proves composition. Substitution of $Q$ and $P$ yields the two identities in (10.1), and contraction and the triangle inequality give its residual bound.
+
+For spectral protection, $B_JR=RB_J=\sigma R$ on the kept space. Thus $B_J^{-1/2}R=\sigma^{-1/2}R$ and substitution into the kept part of the reverse map fixes every $RXR$. With $\Lambda=\mathcal A\Phi$, write $\rho-R\rho R=(I-R)\rho+R\rho(I-R)$. Hilbert–Schmidt Cauchy–Schwarz after factoring $\sqrt\rho$ bounds its trace norm by $2\sqrt{e_R}$. Since $\Lambda$ fixes $R\rho R$, the contraction estimate for the difference gives $\|\rho-\Lambda(\rho)\|_1\le4\sqrt{e_R}$.
+
+For the weighted comparison decompose $\sigma=\sigma_0+\sigma_1$ with $\sigma_0=R\sigma R$ and $\sigma_1=(I-R)\sigma(I-R)$. The summands have orthogonal supports. Compression fixes $\sigma_0$ and $\Phi(\sigma_1)$ is orthogonal to $R$ in the common flagged embedding. Their square roots therefore add separately before and after compression. The common head cancels in the weighted root difference, and both tail amplitudes have squared Hilbert–Schmidt norm $\operatorname{Tr}(M\sigma_1)=w_R$ by the adjoint identity. Commutation of $R$ and $\sqrt\sigma$ proves the equality with the benchmark tail. The amplitude bound follows by the triangle inequality. The two normalized amplitudes give $\|Y-Y'\|_1\le2a$ as in Theorem 9.1. For $\rho-\rho'$ the removed off-diagonal blocks have total trace norm at most $2\sqrt{w_\rho(1-w_\rho)}$ by factoring through $\sqrt\rho$. The discarded diagonal block and the added positive flag block each have trace $w_\rho$. This gives (10.2) by the reverse triangle inequality and $w_\rho\le e_R$. In particular, to protect both weights one may pinch $(\rho+2Y)/3$ by $\sigma$ and choose its leading common eigenvectors. For a commuting $R$ with $u_R=(e_R+2w_R)/3$, (10.2) gives $|r-r'|\le6\sqrt{u_R}+6u_R$ by Cauchy–Schwarz.
+
+The operator $\Omega$ commutes with $\sigma$ and is supported on its positive support. Choose $R$ from a common eigenbasis on that support, taking the first $k$ eigenvectors of $\Omega$ or the whole support if $k$ exceeds its dimension. Then $e_R=e_k$. Expanding these vectors in a retained basis of size $d$ gives at most $dk$ environment coordinates spanning a space whose projection $J$ protects $R$. This includes $k=0$, where the source and benchmark after compression both equal $P$ and the deficit is zero. For a positive spectral cutoff of $\sigma$ the same reasoning applies to its spectral projection, with the corresponding source and benchmark weights in (10.2). A cutoff at zero may use the positive support. Under the strict condition in (10.3), (10.1)–(10.2) imply $r'>\sqrt{6\Delta}\ge\sqrt{6\Delta'}$. If $\Delta'=0$, supported Petz equality for $T'$ forces $\rho'=Y'$, a contradiction.
+
+The kept-to-kept branch of $\Lambda$ has Kraus operator $V_J$. Its adjoint product is the kept reference support projection on $\Pi$. Since $\rho\le c_0\sigma$, $\operatorname{Tr}(\rho V_J^\dagger V_J)=1-w_\rho$. Cauchy–Schwarz gives $\zeta_J\ge w_\rho$. For a purification of $\rho$, the squared overlap of the original purification with its image by $\Lambda$ is the sum of $|\operatorname{Tr}(\rho V)|^2$ over Kraus operators $V$ of $\Lambda$. It is at least $1-\zeta_J$. The pure-state fidelity–trace bound for a pure density and an arbitrary density, followed by partial-trace contraction, gives $\|\rho-\Lambda(\rho)\|_1\le2\sqrt{\zeta_J}$. Applying (10.1) proves the alternate condition by the same threshold argument.
+
+**定理 10.2（Reverse transport of the actual tensor-power experiment）。** For every integer $N\ge1$ define the ordered binary experiments $O_N=(\rho^{\otimes N},Y^{\otimes N})$ and $C_N=((\rho')^{\otimes N},(Y')^{\otimes N})$ on their actual joint carriers. The copywise compression uses independent flags when $\Phi$ is the compressor of Section 9. Define directed deficiency for any two ordered binary experiments $U=(U_0,U_1)$ and $V=(V_0,V_1)$ by
+
+$$
+\delta(U\to V)=\inf_{\Gamma\ {\rm CPTP}}\max_{i=0,1}\|\Gamma(U_i)-V_i\|_1.
+$$
+
+For the hypotheses of Theorem 10.1, the product reverse channel $\mathcal A_N=\mathcal A^{\otimes N}$ sends both compressed benchmark and reference exactly to the original tensor powers. In the protected projection setting put $e_N=1-(1-e_R)^N$ and $g=(1-2w_R)_+$. With $q_N=\|\rho^{\otimes N}-\mathcal A_N((\rho')^{\otimes N})\|_1$,
+
+$$
+\begin{aligned}
+\delta(C_N\to O_N)&\le q_N\le \min(2,4\sqrt{e_N}),\\
+q_N&\le 2\sqrt{1-(1-2e_N)_+^2},\\
+\|\Phi^{\otimes N}(Y^{\otimes N})-(Y')^{\otimes N}\|_1
+&\le 2\sqrt{1-g^{2N}}\le\min(2,4\sqrt{Nw_R}).
+\end{aligned}
+\tag{10.4}
+$$
+
+For any prior $\pi$ on the first hypothesis and any finite decision problem with losses in $[0,1]$, the infimum of Bayes risk over collective POVMs on $C_N$ is at most the corresponding risk on $O_N$ plus $\pi q_N/2$. Along positive-deficit families with bounded $N\Delta$, $e_R=o(\Delta)$ suffices for vanishing reverse simulation error. With the additional condition $w_R=o(\Delta)$ the prescribed forward simulation error vanishes as well.
+
+Proof. Ordinary Petz benchmarks tensorize by multiplicativity of partial traces, roots and support inverses. The product channel has exact benchmark and reference recovery by (10.1). Also $(\mathcal A_N\Phi^{\otimes N})(R^{\otimes N}XR^{\otimes N})=R^{\otimes N}XR^{\otimes N}$ on every joint operator, by expanding within the protected subspace in tensor matrix units. The protected source tail equals $e_N\le Ne_R$. The gentle estimate of Theorem 10.1 gives the first bound. The Kraus operator $V_J$ is a contraction with $V_J R=R$ and $V_J^\dagger R=R$, the second identity following from contraction and the first. Hence $V_J^{\otimes N}$ is the identity on $R^{\otimes N}$, with zero cross blocks and complementary norm at most one. The real part of its expectation under $\rho^{\otimes N}$ is at least $1-2e_N$. The purification argument of Theorem 10.1 gives the second bound. For the forward estimate the normalized amplitudes have real overlap $1-a^2/2\ge1-2w_R$, giving root fidelity at least $g$. Fidelity multiplicativity, the fidelity–trace bound and contraction under the compressor give the forward estimate on the actual output. The source maps forward exactly. More precisely, for $F=f(\Phi Y,Y')$ the forward benchmark tensor error vanishes along a sequence exactly when $N(1-F)\to0$, by $2(1-F^N)\le\|(\Phi Y)^{\otimes N}-(Y')^{\otimes N}\|_1\le2\sqrt{1-F^{2N}}$.
+
+For a POVM on $O_N$, its pullback by $\mathcal A_N^\dagger$ is a POVM on $C_N$. Each hypothesis contributes an expected loss given by an effect between zero and the identity, namely the sum of POVM effects weighted by the loss for that hypothesis. Its change in expectation is bounded by half the full trace error since the state error is traceless. The benchmark error is zero, yielding the prior-weighted assertion. Taking infima and using $e_N\le Ne_R$ proves the limits. A single global projection onto $J^{\otimes N}$ followed by one external flag is also allowed in Theorem 10.1, with $e_R,w_R$ replaced by $1-(1-e_R)^N,1-(1-w_R)^N$. Its benchmark is recomputed on that global-flag space. Both copy constructions have retained dimension $d^N$.
+
+**定理 10.3（Exact deficiency for two pure hypotheses）。** Let $U_i=P_{u_i}$ and $V_i=P_{v_i}$ be pairs of unit-vector densities on arbitrary nonzero finite-dimensional carriers. For $a_0=|\langle u_0,u_1\rangle|$, $b_0=|\langle v_0,v_1\rangle|$ and $s_c=\sqrt{1-c^2}$, one has
+
+$$
+\delta(U\to V)=(s_{b_0}-s_{a_0})_+,
+\tag{10.5}
+$$
+
+with attainment by a common CPTP map on the full carriers.
+
+Proof. The trace norms of the pure contrasts are $2s_{a_0}$ and $2s_{b_0}$, using the two-dimensional span and determinant of the difference. Contractivity and the triangle inequality give the lower bound. Rephase the second vector in each pair for real nonnegative overlap. For any such pair $(z_0,z_1)$ with overlap $c<1$, its orthonormal sum and difference vectors are $(z_0+z_1)/\sqrt{2(1+c)}$ and $(z_0-z_1)/\sqrt{2(1-c)}$. Let the map from $\mathbb C^2$ into the carrier with these columns be denoted by $U_z$. For $c=1$ take columns $z_0,0$. On the canonical qubit the two pure projectors are $(I+(-1)^i s_c X+c Z)/2$, where $X$ interchanges coordinates and $Z=\operatorname{diag}(1,-1)$. Their images by $U_z$ give the original states also at $c=1$.
+
+If $a_0\ge b_0$, $a_0>0$ and $b_0<1$, use $U=U_u$, $V=U_v$, $P_U=UU^\dagger$, $p_0=(1+b_0/a_0)/2$ and any fixed target density $\tau$. The channel is
+
+$$
+\Gamma(W)=p_0 VU^\dagger WUV^\dagger
+ +(1-p_0)VXU^\dagger WUXV^\dagger
+ +\operatorname{Tr}((I-P_U)W)\tau.
+\tag{10.6}
+$$
+
+The first two Kraus adjoint products sum to $P_U$ because $V^\dagger V=I$. The last term is CP with Kraus adjoint products summing to $I-P_U$, as is seen by taking a spectral decomposition of $\tau$ and a basis of the complementary input subspace. On the input span the canonical transformation fixes the $X$ coefficient and scales the $Z$ coefficient by $b_0/a_0$. Both output differences have eigenvalues $\pm(s_{b_0}-s_{a_0})/2$, proving attainment including the rank-one input encoding with $a_0=1$.
+
+If $a_0\le b_0$ and $b_0>0$, use unit ancilla vectors $\eta_0=(1,0)$ and $\eta_1=(a_0/b_0,\sqrt{1-(a_0/b_0)^2})$. The product vectors $v_i\otimes\eta_i$ have the same Gram matrix as the $u_i$. The linear map $W_0u_i=v_i\otimes\eta_i$ is consequently well-defined and isometric on their span. Extend it by zero on the complement and send $W$ to $\operatorname{Tr}_{\rm anc}(W_0WW_0^\dagger)+\operatorname{Tr}((I-P_U)W)\tau$. The partial trace Kraus adjoint products sum to $P_U$ and the complement term supplies the remainder. This maps both hypotheses exactly. At $a_0=b_0=0$ a span isometry with the same complement term gives exactness. At $b_0=1$ the constant channel to $V_0$ also suffices, including the one-dimensional target. These cases exhaust the overlap endpoints.
+
+**定理 10.4（Optimal directed errors for Proposition 9.2）。** Use precisely the states $v,h,d$ and the slopes $\alpha,1/2,\beta$ of Proposition 9.2. Write $c_h=|\langle v,h\rangle|$, $c_d=|\langle v,d\rangle|$, $c_{hd}=|\langle h,d\rangle|$. For every integer $N\ge1$,
+
+$$
+\begin{aligned}
+\delta(O_N\to C_N)&=0,\\
+\delta(C_N\to O_N)&=\delta_N=\sqrt{1-c_h^{2N}}-\sqrt{1-c_d^{2N}}>0,\\
+B_N&=2\sqrt{1-c_{hd}^{2N}} .
+\end{aligned}
+\tag{10.7}
+$$
+
+With the added constraint that a simulator preserve the retained input marginal on the benchmark hypothesis, the optimum in each direction is $B_N$. This includes all collective environment-only CPTP channels with the identity on the retained factors. In particular $\delta_N\le B_N/2<B_N$. For an arbitrary finite decision set and losses in $[0,1]$, the compressed optimal risk minus the original optimal risk lies in $[0,\delta_N/2]$, and its supremum over such problems and priors is $\delta_N/2$.
+
+Proof. The actual benchmarks from the two references are the pure kept states of Proposition 9.2. The overlap of real unit vectors of positive first coordinate and slopes $x,y$ is $(1+xy)/\sqrt{(1+x^2)(1+y^2)}$. The angle order $0<\alpha<\beta<1/2$ gives $0<c_h<c_d<1$ and $0<c_{hd}<1$. Tensorization gives overlaps $c_h^N,c_d^N$ and Theorem 10.3 yields (10.7). Explicitly for reverse simulation let the input isometry $U$ have sum and difference columns of the two vectors $(|0\rangle\otimes v)^{\otimes N},(|0\rangle\otimes d)^{\otimes N}$ in the compressed kept block, and the target isometry $V$ have the columns from $(|0\rangle\otimes v)^{\otimes N},(|0\rangle\otimes h)^{\otimes N}$ on the original carrier. In (10.6) take $p_0=(1+(c_h/c_d)^N)/2$ and $\tau=\rho^{\otimes N}$ to obtain both errors equal to $\delta_N$. The exact forward channel is the ancillary construction in Theorem 10.3 with the spans interchanged, ancilla overlap $(c_h/c_d)^N$ and target complement density $(\rho')^{\otimes N}$. The maps use the joint pair spans and act also on the unused flag coordinates through the complement term. The one-copy exact forward channel can also be tensorized. Since the two nonorthogonal inputs have distinct pure outputs, an exact measure-and-prepare realization would require disjoint outcome laws to prepare them, which trace contractivity forbids.
+
+Under retained-benchmark-marginal preservation, the partial trace of the benchmark error already has norm $B_N$ by the pure trace-distance formula. The physical product compressor and Section 9 decoder attain this bound in their respective directions since they fix the kept block and send the source exactly. The triangle inequality on the retained pure densities gives $2\delta_N\le B_N$. Thus an unrestricted exact forward simulator must change the benchmark retained marginal, and any optimal unrestricted reverse simulator changes it as well. Both environment marginals of each pair are the same kept pure factor. An environment-only measurement therefore has the same law on both hypotheses.
+
+For a pure pair of overlap $c$ and prior $\pi\in[0,1]$ on the first hypothesis, the optimum binary zero-one loss is
+
+$$
+e(c,\pi)=\frac{1-\sqrt{1-4\pi(1-\pi)c^2}}{2}.
+\tag{10.8}
+$$
+
+Indeed on the span the prior-weighted difference has trace $2\pi-1$ and determinant $-\pi(1-\pi)(1-c^2)$, and the positive spectral projector maximizes the correct decision probability against effects between zero and the identity. The scalar cases at prior or overlap endpoints give the same formula. Taking $c=c_h^N,c_d^N$ proves a strictly positive risk gap at every interior prior. Rationalizing the difference of square roots shows that it increases with $4\pi(1-\pi)$, so its maximum is $\delta_N/2$ at $\pi=1/2$. For general bounded losses the exact forward channel allows every compressed decision to be reproduced on the original pair. Conversely, pullback through the reverse optimizer increases each conditional loss by at most $\delta_N/2$ times its maximum loss, by the effect estimate in Theorem 10.2. This yields the risk bound, with the maximum attained by equal-prior binary loss. It is also the classical decision-procedure deficiency in the half-trace-norm convention for this pair. At fixed interior prior and fixed states, (10.8) gives $e(c^N,\pi)\sim\pi(1-\pi)c^{2N}$. The two Chernoff rates are $-2\log c_h$ and $-2\log c_d$, respectively, and $\delta_N\sim c_d^{2N}/2$ while $B_N\to2$.
+
+For the faithful approximation of Proposition 9.2, these directed deficiencies converge at each fixed $N$. Indeed changing both pairs changes the objective of every common CPTP simulator by at most the sum of the maximum trace distances within the two perturbed pairs, by contraction and triangle inequalities. This bound passes to the infima, and tensor powers converge by telescoping. The retained-marginal-preserving optima also converge to $B_N$ by the partial-trace lower bound and the errors of the prescribed compressor and decoder. The strictly positive reverse deficiency and strict fixed-interior-prior testing gap persist sufficiently near the limiting pure model at each fixed $N$.
+
+**定理 10.5（Entropy-exact compression and strict reverse decision comparison）。** In the general setting of Theorem 10.1, assume $D(\rho\Vert\sigma)=D(\rho'\Vert\sigma')$. Then $\Delta'=\Delta$ and $\mathcal A(\rho')=\rho$ by supported Petz equality, so $r'\ge r$ and for $\Delta>0$ the squared score cannot decrease. In every finite tensor power the common channel $\mathcal A_N$ simulates the original actual binary experiment exactly from the compressed experiment. In particular $\delta(C_N\to O_N)=0$ and every Bayes risk for arbitrary collective POVMs and finite decisions weakly decreases under this compression.
+
+For a prior $\pi$ let $Z'_N=\pi(\rho')^{\otimes N}-(1-\pi)(Y')^{\otimes N}$ and $Z_N=\pi\rho^{\otimes N}-(1-\pi)Y^{\otimes N}$. With Jordan parts $(Z'_N)_+,(Z'_N)_-$, equality of the two Helstrom risks holds precisely when
+
+$$
+\mathcal A_N((Z'_N)_+)\,\mathcal A_N((Z'_N)_-)=0 .
+\tag{10.9}
+$$
+
+There is a strict example of this entropy equality with faithful joint reference on $\mathbb C^2\otimes\mathbb C^2$ and environment dephasing. It has pure source, positive deficit and $r'>r$. At every finite $N$ and every interior prior the compressed actual error is strictly lower. Its genuine projection-and-one-flag extension with environment dimensions three to two also has faithful reference and the same strict testing property.
+
+Proof. Exact recovery of the source follows from the equality theorem on compatible supports. The reverse recovery of the benchmark and reference follows from (10.1). Hence contractivity orders the residuals and the adjoint POVM pullback reproduces all conditional laws at each $N$. For any Hermitian $Z'=Z'_+-Z'_-$ put $U=\mathcal A_N(Z'_+)$ and $V=\mathcal A_N(Z'_-)$. The trace norm equals $\operatorname{Tr}U+\operatorname{Tr}V$ exactly when these positive operators have orthogonal supports. In the equality direction, take a norming Hermitian contraction $H$ for $U-V$. The nonnegative traces $\operatorname{Tr}((I-H)U)$ and $\operatorname{Tr}((I+H)V)$ sum to zero, and their vanishing puts the respective supports in the $+1$ and $-1$ eigenspaces of $H$. Orthogonality gives the converse by simultaneous diagonalization. Since the Helstrom value is $(1-\|Z_N\|_1)/2$ by maximizing the contrast over effects, this proves (10.9). In Kraus terms, equality holds exactly when every Kraus image of the positive support is orthogonal to every Kraus image of the negative support. This follows because a sum of positive operators has support equal to the span of their supports. If also $\Phi(Y)=Y'$, the two channels map the actual hypotheses in both directions, giving equality of their decision regions.
+
+For the strict example work in environment-first order and let $J_0,J_1$ be the embeddings of the retained $\mathbb C^2$ into environment levels zero and one. Write $e_0,e_1$ for the retained coordinate vectors and set
+
+$$
+H_*=\operatorname{diag}(2,1),\qquad G_*=\operatorname{diag}(0,1),\qquad
+C_*=\begin{pmatrix}2&1\\1&2\end{pmatrix},\qquad
+S_*=\frac1{\sqrt{17}}\begin{pmatrix}H_*&G_*\\G_*&C_*\end{pmatrix}.
+$$
+
+The Schur complement of $H_*$ in the unnormalized block matrix is $\begin{pmatrix}2&1\\1&1\end{pmatrix}>0$, so $S_*>0$. Take $\sigma=S_*^2$, $u=J_0e_0$, $\rho=P_u$. Multiplication gives the kept, cross and second diagonal blocks of $17\sigma$ as
+
+$$
+\operatorname{diag}(4,2),\qquad\begin{pmatrix}0&0\\1&3\end{pmatrix},\qquad
+\begin{pmatrix}5&4\\4&6\end{pmatrix}.
+$$
+
+Their diagonal traces sum to $17$, proving normalization and faithfulness. Compress by dephasing the two environment levels, labeling the second level as the flag. Thus $\sigma'=D_*^2\oplus F_*$ where $D_*=\operatorname{diag}(2,\sqrt2)/\sqrt{17}$ and $F_*=\begin{pmatrix}5&4\\4&6\end{pmatrix}/17$. The joint source remains the same pure kept state and its eigenvalue in each reference is $4/17$, giving $D(\rho\Vert\sigma)=D(\rho'\Vert\sigma')=\log(17/4)$. The retained marginals are $P=P_{e_0}$ and $Q=M_*/17$ with $M_*=\begin{pmatrix}9&4\\4&8\end{pmatrix}$. Put $l=Q^{-1/2}e_0$. By the two-by-two square-root identity in Proposition 9.2,
+
+$$
+l_0>0,\qquad z=l_1/l_0=-4/(8+\sqrt{56})\in(-1/3,0),
+\qquad l_0+3l_1>0,\qquad l^\dagger Ql=1.
+$$
+
+The eigenvalues of $M_*$ are $(17\pm\sqrt{65})/2$ and their weights in $e_0$ are $(1\pm1/\sqrt{65})/2$. Consequently
+
+$$
+\Delta=\Delta'=\frac12\left[
+(1+1/\sqrt{65})\log\frac{17+\sqrt{65}}8+
+(1-1/\sqrt{65})\log\frac{17-\sqrt{65}}8
+\right]>0 ,
+$$
+
+because both log arguments exceed one.
+
+The recomputed benchmark has two orthogonal flag blocks $Y'=|a_*\rangle\langle a_*|\oplus|b_*\rangle\langle b_*|$ with $a_*=D_*l$, $b_*=\sqrt{F_*}l$, and $\|a_*\|^2+\|b_*\|^2=1$. The original benchmark is $Y=|S_*J_0l\rangle\langle S_*J_0l|+|S_*J_1l\rangle\langle S_*J_1l|$. The reverse Kraus embeddings on the two blocks are $L_0=S_*J_0 D_*^{-1}$ and $L_1=S_*J_1 F_*^{-1/2}$, both isometries by the displayed diagonal blocks. Their cross vector is
+
+$$
+L_0^\dagger L_1 b_*=D_*^{-1}J_0^\dagger\sigma J_1 l
+ =c_* e_1,\qquad c_*=(l_0+3l_1)/\sqrt{34}>0 .
+\tag{10.10}
+$$
+
+For every finite $N\ge1$ and interior prior, the all-kept block of $Z'_N$ is the difference of positive rank-one terms $\pi P_{e_0^{\otimes N}}-(1-\pi)|a_*^{\otimes N}\rangle\langle a_*^{\otimes N}|$. Their vectors are independent since both entries of $a_*$ are nonzero. The determinant of the difference on their span is negative, by expanding the second vector in the first vector and its orthogonal complement. It has one positive eigenvector $w_N=\alpha_N e_0^{\otimes N}+\beta_N a_*^{\otimes N}$ with $\beta_N\ne0$, because $\langle a_*^{\otimes N},e_0^{\otimes N}\rangle\ne0$ and the first vector is neither parallel nor orthogonal to the second. The sector with the first copy flagged and the others kept contributes the nonzero negative ket $b_*\otimes a_*^{\otimes(N-1)}$. Under the respective Kraus products the inner product of these positive and negative kets equals
+
+$$
+\langle w_N,c_* e_1\otimes a_*^{\otimes(N-1)}\rangle
+=c_*\overline{\beta_N}\,\overline{(a_*)_1}\,\|a_*\|^{2(N-1)}\ne0 .
+$$
+
+By (10.9) the contraction under $\mathcal A_N$ is strict, so the compressed Helstrom error is strictly lower. At endpoint priors both errors vanish. At equal priors and one copy this gives $r'>r$. For all finite $N$, any forward CPTP simulator has error at least $\big(\|(\rho')^{\otimes N}-(Y')^{\otimes N}\|_1-\|\rho^{\otimes N}-Y^{\otimes N}\|_1\big)/2>0$ by contraction and the triangle inequality. The physical pushforward $\Phi(Y)$ has faithful blocks since $H_*l,G_*l$ are independent and $G_*l,C_*l$ are independent. The recomputed $Y'$ has rank two. The original pure source $u$ lies outside the support spanned by $S_*J_0l,S_*J_1l$, since $S_*u$ is proportional to $u$ and $l$ is nonparallel to $e_0$. Thus recovery of the physical transported pair $(\rho',\Phi(Y))$ is also impossible, since $\rho'\le c\Phi(Y)$ for a finite $c$ would imply the corresponding support containment of their recovered images.
+
+For an actual reduction of dimension three to two let $0<\theta<1$, add an isolated environment level two and set $\sigma_\theta=(1-\theta)\sigma\oplus\theta Q$ with source $u$ supported on level zero as before. Keep level zero and send levels one and two into the same external flag by the channel of Theorem 9.1. This has faithful reference and retained marginal $Q$, and the source eigenvalue in both references is $(1-\theta)4/17$. The joint relative entropy is preserved and the deficit is $\Delta_\theta=\Delta-\log(1-\theta)>0$. The compressed reference has kept root $D_\theta=\sqrt{1-\theta}\,D_*$ and flag block $F_\theta=(1-\theta)F_*+\theta Q$. Its two benchmark vectors are $a_\theta=D_\theta l$ and $b_\theta=\sqrt{F_\theta}l$. The kept reverse Kraus operator $\sqrt{\sigma_\theta}J_0D_\theta^{-1}$ is an isometry. One of the flag reverse Kraus operators is $\sqrt{\sigma_\theta}J_1 F_\theta^{-1/2}$, using level one. Its action on $b_\theta$ gives $\sqrt{\sigma_\theta}J_1l$. The cross vector in (10.10) is now $\sqrt{1-\theta}\,c_* e_1$. Both coordinates of $a_\theta$ remain nonzero. The entire tensor-power overlap argument applies with these substituted vectors, selecting that flag Kraus branch and the kept isometries for the other factors. The nonorthogonal images persist in the positive Kraus sums regardless of the additional flag branch. This proves strict comparison at all finite copy counts and interior priors for each fixed $\theta$.
+
+For either fixed reference, mixing the source with the reference as $\rho_t=(1-t)\rho+t\sigma$ (or with $\sigma_\theta$) gives faithful joint pairs at $0<t<1$. The reverse channel recovers the mixture exactly, so two-way data processing proves entropy equality. By linearity of the retained ordinary Petz map, the recomputed benchmarks mix with their respective references in the same proportions. The one-copy residuals scale by $1-t$, preserving strictness and positivity and hence positive deficits by supported equality. For any fixed $N$ and interior prior, strict testing persists for sufficiently small $t>0$ by continuity of the tensor contrasts. The pure-source all-prior conclusion is for the unmixed witness. For fixed positive mixing in finite dimensions the hypotheses are faithful and sufficiently close to an endpoint prior both contrasts are sign-definite, yielding the same trivial risk.
+
+**命题 10.6（Limits of the comparison criteria）。** Under the hypotheses of Theorem 10.1 without entropy equality, write $g_N(\pi)=\|Z'_N\|_1-\|\mathcal A_N(Z'_N)\|_1$ and $q_N$ as in Theorem 10.2. Then
+
+$$
+g_N(\pi)\ge0,\qquad
+\left|\|Z'_N\|_1-\|Z_N\|_1-g_N(\pi)\right|\le \pi q_N,\qquad
+q_N\le\min(2,Nq_1).
+$$
+
+In particular $g_N(\pi)>\pi q_N$ suffices for strict improvement of binary testing by compression even with approximate source recovery. Also, if a hypothetical positive-deficit witness has $r^2/\Delta>6+\eta$ for $\eta>0$, adjoining a common maximally mixed environment spectator of dimension $s$ gives the same score while its protected spectral tail at every fixed joint rank $k$ tends to one as $s\to\infty$.
+
+Proof. Contractivity proves nonnegativity of $g_N$. The benchmark is recovered exactly, so the difference between $Z_N$ and $\mathcal A_N(Z'_N)$ has trace norm $\pi q_N$. Telescoping the product densities proves the last bound. For the spectator, let $\omega_s=I_s/s$ and tensor it with both original states, permuting it into the environment. Product entropy cancellation, trace-norm multiplicativity and the Petz root formula show that $\Delta,r$ are preserved and the benchmark becomes $Y\otimes\omega_s$. The pinched source becomes $\Omega\otimes\omega_s$ because the distinct eigenvalues of the joint reference are those of $\sigma$ scaled by $1/s$, with corresponding projections $E_\lambda\otimes I_s$. Its top-$k$ mass is at most $k\|\Omega\|_\infty/s$. The conditional obstruction pertains to a rank bound obtained solely from such normalized spectral tails. For example a projection keeping the whole original environment and a fraction $\alpha>0$ of spectator coordinates gives $r'=\alpha r$ and $\Delta'=\alpha\Delta$, by direct sum decomposition of the kept product block and the flag pair $P,Q$. Its squared score is $\alpha r^2/\Delta$. Discarding the common spectator by partial trace itself is an entropy-exact environment compression.
+
+### 10.7 Sources, scope and verification
+
+Theorems 10.1–10.2 and the spectral-tail limitation in Proposition 10.6 use “A spectral-tail theorem sufficient to retain a score above six” and its independent ordinary proof of same-copy reverse transport. The supplied research directory is *petz-weighted-environment-truncation-review*. Its answer.txt has SHA-256 1749851617140073627f4871f69e82e601f92e3fe814894e3f7f85ad6aad5b86 and its independent-review-result.json has SHA-256 90dadef79dd41f85aadccea2b71ba43935c3c09dc36c8ea466ffb807176c8643. The approved review run is 51abfd80ed1276406cab9410.
+
+Theorems 10.3–10.4 use “Exact binary quantum experiment deficiency for the weighted Petz obstruction” in *petz-weighted-truncation-binary-deficiency*. The approved proof.txt has SHA-256 07ca5ee995e9611c29af06224ddf1a5676310f7b8ddfbb228028deb9f31bcd6d and its independent-review-result.json has SHA-256 1130f0e8416c2eb49840e9782d31f4fc57f64e822159418ddbdc6c5b32ffe882. The approved review run is 57c79550b610f3aa2da4822e. Its pinned finite matrix replay tested the actual pair and channels for $N=1,2,3$ with endpoint and unequal-carrier cases. Independent exact arithmetic certified the scalar enclosures. In particular the one-copy reverse unhalved deficiency is approximately $0.0343183305783$, the maximum bounded-loss risk gap is $0.0171591652892$ and the retained-marginal-preserving unhalved deficiency is $0.0690038604283$.
+
+Theorem 10.5 and the approximate testing bound in Proposition 10.6 use “Entropy-exact environment compression and ordinary Petz testing” in *petz-entropy-exact-compression-score*. The approved proof.txt has SHA-256 98777ba77c725ffe7ab80987553020b772f1446684852044242e34b5bc6e4dfe and its independent-review-result.json has SHA-256 89f20da3d7696c66b4a68c73b0d355141aa926d75139be77d0551e36a6353810. The approved review run is dfd70c403cf0eb111c9580e2. The pinned rational replay and independent matrix calculation certified the base dephasing values $0.966719838800<r<0.966719838802$, $0.966849221413<r'<0.966849221415$ and $0.690326352952<\Delta<0.690326352955$. The corresponding squared scores lie in $(1.35377599,1.35377601)$ and $(1.35413838,1.35413841)$. The strict analytic overlap proof covers the entire family of finite copy counts and interior priors specified above.
+
+The ordinary proofs and explicit channel constructions are repo-derived, assembled by an sshx implementation worker using the three independently approved research inputs with hashes checked against the receipts. The literature-attested equality and completion ingredients follow Petz, *Sufficient subalgebras and the relative entropy of states of a von Neumann algebra*, CMP 105 (1986), 123–131, and *Sufficiency of channels over von Neumann algebras*, QJM 39 (1988), 97–108, with local source suppliers CanonicalPetzEquality.lean and ReferencePetzChannel.lean cited by the research reviews. The exact pure-state Gram construction is the binary instance of Chefles, Jozsa and Winter, *On the existence of physical transformations between sets of quantum states*, IJQI 2 (2004), 11–21, Theorem 2 [arXiv:quant-ph/0307227](https://arxiv.org/abs/quant-ph/0307227). Related comparison locators are Alberti and Uhlmann, Rep. Math. Phys. 18 (1980), 163–176, and Jenčová, *Comparison of quantum binary experiments*, Rep. Math. Phys. 70 (2012), 237–249, Sections 3–4 [arXiv:1110.4792](https://arxiv.org/abs/1110.4792). The latter identifies the classical decision and testing deficiency conventions, with the general equivalence against every comparator restricted to abelian source experiments. The equality of decision and state-simulation deficiencies here follows from the explicit pure-pair optimizers. The Gram and sum/difference constructions also draw on the local GramIsometryExtension.lean and BinaryPureRecordDecoding.lean source locators. The standard Holevo–Helstrom formula and quantum Chernoff bound of Audenaert et al., Phys. Rev. Lett. 98 (2007), 160501, provide the testing antecedents. The attribution is scoped to the inspected local sources and the review receipts.
+
+The protected-tail threshold gives a conditional finite-dimensional reduction. Every available entropy-exact environment compressor preserves a strict input squared score above six, when such an input exists. The obstruction of Proposition 9.2 has scores below one, and the base faithful-reference example in Theorem 10.5 has scores below two. Uniform bounded-output compression on the strict-score class and the assertion $C(2)=6$ of Section 8 remain outstanding. The current proofs have ordinary mathematical status.
+
+## 追加锚（本行以下为增补区）

@@ -1,0 +1,24 @@
+**定理 10.2（Reverse transport of the actual tensor-power experiment）。** For every integer $N\ge1$ define the ordered binary experiments $O_N=(\rho^{\otimes N},Y^{\otimes N})$ and $C_N=((\rho')^{\otimes N},(Y')^{\otimes N})$ on their actual joint carriers. The copywise compression uses independent flags when $\Phi$ is the compressor of Section 9. Define directed deficiency for any two ordered binary experiments $U=(U_0,U_1)$ and $V=(V_0,V_1)$ by
+
+$$
+\delta(U\to V)=\inf_{\Gamma\ {\rm CPTP}}\max_{i=0,1}\|\Gamma(U_i)-V_i\|_1.
+$$
+
+For the hypotheses of Theorem 10.1, the product reverse channel $\mathcal A_N=\mathcal A^{\otimes N}$ sends both compressed benchmark and reference exactly to the original tensor powers. In the protected projection setting put $e_N=1-(1-e_R)^N$ and $g=(1-2w_R)_+$. With $q_N=\|\rho^{\otimes N}-\mathcal A_N((\rho')^{\otimes N})\|_1$,
+
+$$
+\begin{aligned}
+\delta(C_N\to O_N)&\le q_N\le \min(2,4\sqrt{e_N}),\\
+q_N&\le 2\sqrt{1-(1-2e_N)_+^2},\\
+\|\Phi^{\otimes N}(Y^{\otimes N})-(Y')^{\otimes N}\|_1
+&\le 2\sqrt{1-g^{2N}}\le\min(2,4\sqrt{Nw_R}).
+\end{aligned}
+\tag{10.4}
+$$
+
+For any prior $\pi$ on the first hypothesis and any finite decision problem with losses in $[0,1]$, the infimum of Bayes risk over collective POVMs on $C_N$ is at most the corresponding risk on $O_N$ plus $\pi q_N/2$. Along positive-deficit families with bounded $N\Delta$, $e_R=o(\Delta)$ suffices for vanishing reverse simulation error. With the additional condition $w_R=o(\Delta)$ the prescribed forward simulation error vanishes as well.
+
+Proof. Ordinary Petz benchmarks tensorize by multiplicativity of partial traces, roots and support inverses. The product channel has exact benchmark and reference recovery by (10.1). Also $(\mathcal A_N\Phi^{\otimes N})(R^{\otimes N}XR^{\otimes N})=R^{\otimes N}XR^{\otimes N}$ on every joint operator, by expanding within the protected subspace in tensor matrix units. The protected source tail equals $e_N\le Ne_R$. The gentle estimate of Theorem 10.1 gives the first bound. The Kraus operator $V_J$ is a contraction with $V_J R=R$ and $V_J^\dagger R=R$, the second identity following from contraction and the first. Hence $V_J^{\otimes N}$ is the identity on $R^{\otimes N}$, with zero cross blocks and complementary norm at most one. The real part of its expectation under $\rho^{\otimes N}$ is at least $1-2e_N$. The purification argument of Theorem 10.1 gives the second bound. For the forward estimate the normalized amplitudes have real overlap $1-a^2/2\ge1-2w_R$, giving root fidelity at least $g$. Fidelity multiplicativity, the fidelity–trace bound and contraction under the compressor give the forward estimate on the actual output. The source maps forward exactly. More precisely, for $F=f(\Phi Y,Y')$ the forward benchmark tensor error vanishes along a sequence exactly when $N(1-F)\to0$, by $2(1-F^N)\le\|(\Phi Y)^{\otimes N}-(Y')^{\otimes N}\|_1\le2\sqrt{1-F^{2N}}$.
+
+For a POVM on $O_N$, its pullback by $\mathcal A_N^\dagger$ is a POVM on $C_N$. Each hypothesis contributes an expected loss given by an effect between zero and the identity, namely the sum of POVM effects weighted by the loss for that hypothesis. Its change in expectation is bounded by half the full trace error since the state error is traceless. The benchmark error is zero, yielding the prior-weighted assertion. Taking infima and using $e_N\le Ne_R$ proves the limits. A single global projection onto $J^{\otimes N}$ followed by one external flag is also allowed in Theorem 10.1, with $e_R,w_R$ replaced by $1-(1-e_R)^N,1-(1-w_R)^N$. Its benchmark is recomputed on that global-flag space. Both copy constructions have retained dimension $d^N$.
+

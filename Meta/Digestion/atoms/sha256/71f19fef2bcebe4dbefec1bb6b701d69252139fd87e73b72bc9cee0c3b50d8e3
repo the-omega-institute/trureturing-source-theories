@@ -1,0 +1,12 @@
+**命题 10.6（Limits of the comparison criteria）。** Under the hypotheses of Theorem 10.1 without entropy equality, write $g_N(\pi)=\|Z'_N\|_1-\|\mathcal A_N(Z'_N)\|_1$ and $q_N$ as in Theorem 10.2. Then
+
+$$
+g_N(\pi)\ge0,\qquad
+\left|\|Z'_N\|_1-\|Z_N\|_1-g_N(\pi)\right|\le \pi q_N,\qquad
+q_N\le\min(2,Nq_1).
+$$
+
+In particular $g_N(\pi)>\pi q_N$ suffices for strict improvement of binary testing by compression even with approximate source recovery. Also, if a hypothetical positive-deficit witness has $r^2/\Delta>6+\eta$ for $\eta>0$, adjoining a common maximally mixed environment spectator of dimension $s$ gives the same score while its protected spectral tail at every fixed joint rank $k$ tends to one as $s\to\infty$.
+
+Proof. Contractivity proves nonnegativity of $g_N$. The benchmark is recovered exactly, so the difference between $Z_N$ and $\mathcal A_N(Z'_N)$ has trace norm $\pi q_N$. Telescoping the product densities proves the last bound. For the spectator, let $\omega_s=I_s/s$ and tensor it with both original states, permuting it into the environment. Product entropy cancellation, trace-norm multiplicativity and the Petz root formula show that $\Delta,r$ are preserved and the benchmark becomes $Y\otimes\omega_s$. The pinched source becomes $\Omega\otimes\omega_s$ because the distinct eigenvalues of the joint reference are those of $\sigma$ scaled by $1/s$, with corresponding projections $E_\lambda\otimes I_s$. Its top-$k$ mass is at most $k\|\Omega\|_\infty/s$. The conditional obstruction pertains to a rank bound obtained solely from such normalized spectral tails. For example a projection keeping the whole original environment and a fraction $\alpha>0$ of spectator coordinates gives $r'=\alpha r$ and $\Delta'=\alpha\Delta$, by direct sum decomposition of the kept product block and the flag pair $P,Q$. Its squared score is $\alpha r^2/\Delta$. Discarding the common spectator by partial trace itself is an entropy-exact environment compression.
+

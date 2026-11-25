@@ -1,0 +1,4 @@
+## 10. Protected compression, exact reverse transport and binary decision comparison
+
+This batch extends Theorems 9.1 and 9.3 with spectral protection and ordinary Petz reverse transport. It computes the optimal binary simulation errors for Proposition 9.2 and gives a separate entropy-exact compression with strict improvement of the recomputed binary experiment. Use the notation of Section 9, including full trace norms, natural logarithms and the actual deficits. The prior Section 8 problem remains open.
+

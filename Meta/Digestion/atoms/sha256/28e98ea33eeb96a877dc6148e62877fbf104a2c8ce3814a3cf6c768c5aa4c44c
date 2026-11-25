@@ -1,0 +1,67 @@
+**定理 10.5（Entropy-exact compression and strict reverse decision comparison）。** In the general setting of Theorem 10.1, assume $D(\rho\Vert\sigma)=D(\rho'\Vert\sigma')$. Then $\Delta'=\Delta$ and $\mathcal A(\rho')=\rho$ by supported Petz equality, so $r'\ge r$ and for $\Delta>0$ the squared score cannot decrease. In every finite tensor power the common channel $\mathcal A_N$ simulates the original actual binary experiment exactly from the compressed experiment. In particular $\delta(C_N\to O_N)=0$ and every Bayes risk for arbitrary collective POVMs and finite decisions weakly decreases under this compression.
+
+For a prior $\pi$ let $Z'_N=\pi(\rho')^{\otimes N}-(1-\pi)(Y')^{\otimes N}$ and $Z_N=\pi\rho^{\otimes N}-(1-\pi)Y^{\otimes N}$. With Jordan parts $(Z'_N)_+,(Z'_N)_-$, equality of the two Helstrom risks holds precisely when
+
+$$
+\mathcal A_N((Z'_N)_+)\,\mathcal A_N((Z'_N)_-)=0 .
+\tag{10.9}
+$$
+
+There is a strict example of this entropy equality with faithful joint reference on $\mathbb C^2\otimes\mathbb C^2$ and environment dephasing. It has pure source, positive deficit and $r'>r$. At every finite $N$ and every interior prior the compressed actual error is strictly lower. Its genuine projection-and-one-flag extension with environment dimensions three to two also has faithful reference and the same strict testing property.
+
+Proof. Exact recovery of the source follows from the equality theorem on compatible supports. The reverse recovery of the benchmark and reference follows from (10.1). Hence contractivity orders the residuals and the adjoint POVM pullback reproduces all conditional laws at each $N$. For any Hermitian $Z'=Z'_+-Z'_-$ put $U=\mathcal A_N(Z'_+)$ and $V=\mathcal A_N(Z'_-)$. The trace norm equals $\operatorname{Tr}U+\operatorname{Tr}V$ exactly when these positive operators have orthogonal supports. In the equality direction, take a norming Hermitian contraction $H$ for $U-V$. The nonnegative traces $\operatorname{Tr}((I-H)U)$ and $\operatorname{Tr}((I+H)V)$ sum to zero, and their vanishing puts the respective supports in the $+1$ and $-1$ eigenspaces of $H$. Orthogonality gives the converse by simultaneous diagonalization. Since the Helstrom value is $(1-\|Z_N\|_1)/2$ by maximizing the contrast over effects, this proves (10.9). In Kraus terms, equality holds exactly when every Kraus image of the positive support is orthogonal to every Kraus image of the negative support. This follows because a sum of positive operators has support equal to the span of their supports. If also $\Phi(Y)=Y'$, the two channels map the actual hypotheses in both directions, giving equality of their decision regions.
+
+For the strict example work in environment-first order and let $J_0,J_1$ be the embeddings of the retained $\mathbb C^2$ into environment levels zero and one. Write $e_0,e_1$ for the retained coordinate vectors and set
+
+$$
+H_*=\operatorname{diag}(2,1),\qquad G_*=\operatorname{diag}(0,1),\qquad
+C_*=\begin{pmatrix}2&1\\1&2\end{pmatrix},\qquad
+S_*=\frac1{\sqrt{17}}\begin{pmatrix}H_*&G_*\\G_*&C_*\end{pmatrix}.
+$$
+
+The Schur complement of $H_*$ in the unnormalized block matrix is $\begin{pmatrix}2&1\\1&1\end{pmatrix}>0$, so $S_*>0$. Take $\sigma=S_*^2$, $u=J_0e_0$, $\rho=P_u$. Multiplication gives the kept, cross and second diagonal blocks of $17\sigma$ as
+
+$$
+\operatorname{diag}(4,2),\qquad\begin{pmatrix}0&0\\1&3\end{pmatrix},\qquad
+\begin{pmatrix}5&4\\4&6\end{pmatrix}.
+$$
+
+Their diagonal traces sum to $17$, proving normalization and faithfulness. Compress by dephasing the two environment levels, labeling the second level as the flag. Thus $\sigma'=D_*^2\oplus F_*$ where $D_*=\operatorname{diag}(2,\sqrt2)/\sqrt{17}$ and $F_*=\begin{pmatrix}5&4\\4&6\end{pmatrix}/17$. The joint source remains the same pure kept state and its eigenvalue in each reference is $4/17$, giving $D(\rho\Vert\sigma)=D(\rho'\Vert\sigma')=\log(17/4)$. The retained marginals are $P=P_{e_0}$ and $Q=M_*/17$ with $M_*=\begin{pmatrix}9&4\\4&8\end{pmatrix}$. Put $l=Q^{-1/2}e_0$. By the two-by-two square-root identity in Proposition 9.2,
+
+$$
+l_0>0,\qquad z=l_1/l_0=-4/(8+\sqrt{56})\in(-1/3,0),
+\qquad l_0+3l_1>0,\qquad l^\dagger Ql=1.
+$$
+
+The eigenvalues of $M_*$ are $(17\pm\sqrt{65})/2$ and their weights in $e_0$ are $(1\pm1/\sqrt{65})/2$. Consequently
+
+$$
+\Delta=\Delta'=\frac12\left[
+(1+1/\sqrt{65})\log\frac{17+\sqrt{65}}8+
+(1-1/\sqrt{65})\log\frac{17-\sqrt{65}}8
+\right]>0 ,
+$$
+
+because both log arguments exceed one.
+
+The recomputed benchmark has two orthogonal flag blocks $Y'=|a_*\rangle\langle a_*|\oplus|b_*\rangle\langle b_*|$ with $a_*=D_*l$, $b_*=\sqrt{F_*}l$, and $\|a_*\|^2+\|b_*\|^2=1$. The original benchmark is $Y=|S_*J_0l\rangle\langle S_*J_0l|+|S_*J_1l\rangle\langle S_*J_1l|$. The reverse Kraus embeddings on the two blocks are $L_0=S_*J_0 D_*^{-1}$ and $L_1=S_*J_1 F_*^{-1/2}$, both isometries by the displayed diagonal blocks. Their cross vector is
+
+$$
+L_0^\dagger L_1 b_*=D_*^{-1}J_0^\dagger\sigma J_1 l
+ =c_* e_1,\qquad c_*=(l_0+3l_1)/\sqrt{34}>0 .
+\tag{10.10}
+$$
+
+For every finite $N\ge1$ and interior prior, the all-kept block of $Z'_N$ is the difference of positive rank-one terms $\pi P_{e_0^{\otimes N}}-(1-\pi)|a_*^{\otimes N}\rangle\langle a_*^{\otimes N}|$. Their vectors are independent since both entries of $a_*$ are nonzero. The determinant of the difference on their span is negative, by expanding the second vector in the first vector and its orthogonal complement. It has one positive eigenvector $w_N=\alpha_N e_0^{\otimes N}+\beta_N a_*^{\otimes N}$ with $\beta_N\ne0$, because $\langle a_*^{\otimes N},e_0^{\otimes N}\rangle\ne0$ and the first vector is neither parallel nor orthogonal to the second. The sector with the first copy flagged and the others kept contributes the nonzero negative ket $b_*\otimes a_*^{\otimes(N-1)}$. Under the respective Kraus products the inner product of these positive and negative kets equals
+
+$$
+\langle w_N,c_* e_1\otimes a_*^{\otimes(N-1)}\rangle
+=c_*\overline{\beta_N}\,\overline{(a_*)_1}\,\|a_*\|^{2(N-1)}\ne0 .
+$$
+
+By (10.9) the contraction under $\mathcal A_N$ is strict, so the compressed Helstrom error is strictly lower. At endpoint priors both errors vanish. At equal priors and one copy this gives $r'>r$. For all finite $N$, any forward CPTP simulator has error at least $\big(\|(\rho')^{\otimes N}-(Y')^{\otimes N}\|_1-\|\rho^{\otimes N}-Y^{\otimes N}\|_1\big)/2>0$ by contraction and the triangle inequality. The physical pushforward $\Phi(Y)$ has faithful blocks since $H_*l,G_*l$ are independent and $G_*l,C_*l$ are independent. The recomputed $Y'$ has rank two. The original pure source $u$ lies outside the support spanned by $S_*J_0l,S_*J_1l$, since $S_*u$ is proportional to $u$ and $l$ is nonparallel to $e_0$. Thus recovery of the physical transported pair $(\rho',\Phi(Y))$ is also impossible, since $\rho'\le c\Phi(Y)$ for a finite $c$ would imply the corresponding support containment of their recovered images.
+
+For an actual reduction of dimension three to two let $0<\theta<1$, add an isolated environment level two and set $\sigma_\theta=(1-\theta)\sigma\oplus\theta Q$ with source $u$ supported on level zero as before. Keep level zero and send levels one and two into the same external flag by the channel of Theorem 9.1. This has faithful reference and retained marginal $Q$, and the source eigenvalue in both references is $(1-\theta)4/17$. The joint relative entropy is preserved and the deficit is $\Delta_\theta=\Delta-\log(1-\theta)>0$. The compressed reference has kept root $D_\theta=\sqrt{1-\theta}\,D_*$ and flag block $F_\theta=(1-\theta)F_*+\theta Q$. Its two benchmark vectors are $a_\theta=D_\theta l$ and $b_\theta=\sqrt{F_\theta}l$. The kept reverse Kraus operator $\sqrt{\sigma_\theta}J_0D_\theta^{-1}$ is an isometry. One of the flag reverse Kraus operators is $\sqrt{\sigma_\theta}J_1 F_\theta^{-1/2}$, using level one. Its action on $b_\theta$ gives $\sqrt{\sigma_\theta}J_1l$. The cross vector in (10.10) is now $\sqrt{1-\theta}\,c_* e_1$. Both coordinates of $a_\theta$ remain nonzero. The entire tensor-power overlap argument applies with these substituted vectors, selecting that flag Kraus branch and the kept isometries for the other factors. The nonorthogonal images persist in the positive Kraus sums regardless of the additional flag branch. This proves strict comparison at all finite copy counts and interior priors for each fixed $\theta$.
+
+For either fixed reference, mixing the source with the reference as $\rho_t=(1-t)\rho+t\sigma$ (or with $\sigma_\theta$) gives faithful joint pairs at $0<t<1$. The reverse channel recovers the mixture exactly, so two-way data processing proves entropy equality. By linearity of the retained ordinary Petz map, the recomputed benchmarks mix with their respective references in the same proportions. The one-copy residuals scale by $1-t$, preserving strictness and positivity and hence positive deficits by supported equality. For any fixed $N$ and interior prior, strict testing persists for sufficiently small $t>0$ by continuity of the tensor contrasts. The pure-source all-prior conclusion is for the unmixed witness. For fixed positive mixing in finite dimensions the hypotheses are faithful and sufficiently close to an endpoint prior both contrasts are sign-definite, yielding the same trivial risk.
+
