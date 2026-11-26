@@ -13,6 +13,10 @@ This repository owns theory manuscripts and the working record of their digestio
 
 [Read theory manuscripts and literature notes together](https://the-omega-institute.github.io/trureturing-source-theories/). The reader follows references across both repositories.
 
+## Riemann hypothesis
+
+The Golden Observer survey describes the literature through its August 30, 2026 cutoff. The Lean and Mathlib communities subsequently verified Levent Alpöge’s proof of Mathlib’s classical Riemann hypothesis. The recommended Lean repository, lsernau/grh-lean, provides readable and compact editions of the proofs of classical RH and Dirichlet GRH. [Golden Observer survey](docs/develop/theory/GOLDEN_OBSERVER_RH_ROUTE.md) · [Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Recommended Lean repository](https://github.com/lsernau/grh-lean)
+
 ## Working with a source
 
 Install Git and the .NET 10 SDK. Run the commands in this checkout. A prose contribution can consist of the manuscript alone. To start or update its ledger, use its path on first ingestion and its source ID for queries.
