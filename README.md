@@ -15,7 +15,7 @@ This repository owns theory manuscripts and the working record of their digestio
 
 ## Riemann hypothesis
 
-The Golden Observer survey describes the literature through its August 30, 2026 cutoff. The Lean and Mathlib communities subsequently verified Levent Alpöge’s proof of Mathlib’s classical Riemann hypothesis. The recommended Lean repository, lsernau/grh-lean, provides readable and compact editions of the proofs of classical RH and Dirichlet GRH. [Golden Observer survey](docs/develop/theory/GOLDEN_OBSERVER_RH_ROUTE.md) · [Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Recommended Lean repository](https://github.com/lsernau/grh-lean)
+The Golden Observer survey describes the literature through its August 30, 2026 cutoff. The Lean and Mathlib communities subsequently verified Levent Alpöge’s proof of Mathlib’s classical Riemann hypothesis. The current primary Lean repository is leanprover-community/riemann-hypothesis, whose main branch contains the community-maintained cleanup and five-theorem entry point. The historical replay archive is the-omega-institute/riemann-hypothesis. [Golden Observer survey](docs/develop/theory/GOLDEN_OBSERVER_RH_ROUTE.md) · [Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Current primary repository](https://github.com/leanprover-community/riemann-hypothesis)
 
 ## Working with a source
 
