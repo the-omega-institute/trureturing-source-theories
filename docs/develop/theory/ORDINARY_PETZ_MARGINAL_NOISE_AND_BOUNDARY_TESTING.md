@@ -841,3 +841,269 @@ $$
 Independent review `727b4068155cab3df32dd99b`, attempt 1, approved the construction and checked the entropy identities, benchmark probabilities, defect, finite-copy optimum, Poisson limits, strict comparison, and faithful perturbation with no equation corrections. Lean formalization of Theorem 12.1 is ongoing.
 
 ## 追加锚（本行以下为增补区）
+
+## 13. An explicit gap for binary commuting retained marginals
+
+The earlier weighted Gram analysis of commuting retained marginals proved a dimension-independent qualitative gap below six at retained reference rank two by ruling out sequences of scores tending to six. This section quantifies that gap and gives two criteria for transferring the resulting estimate to the original recovery at noncommuting retained marginals.
+
+**Theorem 13.1 (Uniform binary commuting-output bound).** Let $\Phi$ be a finite-dimensional CPTP map and let $\rho,\sigma$ be density matrices with $\operatorname{supp}\rho\subseteq\operatorname{supp}\sigma$. Write $P=\Phi(\rho)$ and $Q=\Phi(\sigma)$ for the actual retained marginals. Suppose $\operatorname{rank}Q=2$ and $[P,Q]=0$. With natural logarithms and the unhalved trace norm, set
+
+$$
+\begin{aligned}
+\mathcal R_{\sigma,\Phi}(X)&=
+\sqrt{\sigma}\,\Phi^\dagger(Q^{-1/2}XQ^{-1/2})\sqrt{\sigma},\\
+R&=\mathcal R_{\sigma,\Phi}(P),\qquad
+\Delta=D(\rho\Vert\sigma)-D(P\Vert Q),\qquad
+C=\frac{59999}{10000}.
+\end{aligned}
+$$
+
+Here $\Phi^\dagger$ is the trace adjoint and the inverse is taken on $\operatorname{supp}Q$. Then
+
+$$
+\|\rho-R\|_1^2\le C\Delta.
+\tag{13.1}
+$$
+
+The bound holds for every binary POVM on an arbitrary finite-dimensional input, including the rank-one reference case. The optimal uniform coefficient at retained reference rank two remains open.
+
+Proof. On $\operatorname{supp}\sigma$, each positive input is dominated by a finite multiple of $\sigma$. It therefore has output supported on $\operatorname{supp}Q$. The restricted channel is CPTP, and $\mathcal R_{\sigma,\Phi}$ is CPTP on $\operatorname{supp}Q$ because the formula is completely positive and its trace is $\operatorname{Tr}(Q Q^{-1/2}XQ^{-1/2})=\operatorname{Tr}X$ there.
+
+Use a finite Stinespring isometry $V$ into $E\otimes K$, with $K=\operatorname{supp}Q$ after the channel restriction. Put $A=V\rho V^\dagger$ and $B=V\sigma V^\dagger$. Partial trace over $E$ gives $P,Q$. For a retained operator $L$ write $\widehat L=I_E\otimes L$. Since $\sqrt B=V\sqrt{\sigma}V^\dagger$ and the restricted channel has adjoint $L\mapsto V^\dagger\widehat L V$, the partial-trace Petz return is $VRV^\dagger$. Isometric invariance preserves the joint relative entropy and the trace error.
+
+First take $A,B$ faithful on $E\otimes K$. In a common retained eigenbasis let $p_i,q_i$ be the respective eigenvalues of $P,Q$ and $F_i$ the lifted eigenprojections for $i=0,1$. Order the likelihoods as $h=h_0=p_0/q_0\le h_1=p_1/q_1$, so that $h\le1\le h_1$ by $\sum_i q_i h_i=1$. Define
+
+$$
+\begin{aligned}
+S_i&=\sqrt A F_i, & T_i&=\sqrt{h_i}F_i\sqrt B, & W_i&=S_i-T_i,\\
+S&=\sum_i S_i=\sqrt A, & T&=\sum_i T_i, & W&=\sum_i W_i=S-T.
+\end{aligned}
+$$
+
+The two families $(S_i)_i$ and $(T_i)_i$ are each orthogonal for the Hilbert–Schmidt pairing $\langle X,Y\rangle=\operatorname{Tr}(X^\dagger Y)$ by $F_0F_1=0$ and cyclicity of trace. Their squared norms satisfy $\|S_i\|_2^2=p_i=\|T_i\|_2^2$ by the actual partial traces. Thus $\|S\|_2=\|T\|_2=1$, with $S^\dagger S=A$ and $T^\dagger T$ equal to the partial-trace return.
+
+Take matrix entries with the eigenbasis of $A$ on the left and that of $B$ on the right, with eigenvalues $\mu_\alpha,\lambda_\beta$, respectively. At entry $(\alpha,\beta)$ set
+
+$$
+a_i=h_i\lambda_\beta/\mu_\alpha,\qquad x_i=\log a_i,\qquad
+z_i=(S_i)_{\alpha\beta},\qquad \delta_i=(1-\sqrt{a_i})z_i.
+$$
+
+The entry of $T_i$ is $\sqrt{a_i}z_i$, and $\delta_i=(W_i)_{\alpha\beta}$. For $a,b>0$ define the scalar kernels
+
+$$
+\begin{aligned}
+f(a)&=\frac{a\log a}{a-1},&
+\mathcal B(a,b)&=(1+\sqrt a)(1+\sqrt b)\frac{f(a)-f(b)}{a-b},\\
+K(t)&=\frac{t/2}{\sinh(t/2)},&
+c(t)&=\frac{t}{2}\coth(t/2).
+\end{aligned}
+$$
+
+Use continuous values at removable singularities. In particular $K(0)=c(0)=1$. Direct expansion of the divided difference gives
+
+$$
+\begin{aligned}
+\mathcal L(x,y)
+&=(1-e^{x/2})(1-e^{y/2})\mathcal B(e^x,e^y)\\
+&=\frac{e^x x(e^y-1)-e^y y(e^x-1)}{e^x-e^y}\\
+&=-\frac{x+y}{2}+e^{(x+y)/2}K(x-y)-c(x-y).
+\end{aligned}
+\tag{13.2}
+$$
+
+Write $\mathbf B_{\alpha\beta}=(\mathcal B(a_i,a_j))_{i,j=0,1}$. In the sum of $\delta^\dagger\mathbf B_{\alpha\beta}\delta$ over spectral entries, the $K$ and $c$ terms in (13.2) have off-diagonal sums zero separately. Indeed $x_i-x_j=\log(h_i/h_j)$ is constant across entries, and the corresponding pairings are those of $T_i,T_j$ and $S_i,S_j$. On the diagonal the two terms sum to $\|T_i\|_2^2-\|S_i\|_2^2=0$. Splitting the linear term into the common spectral logarithm and the two likelihood logarithms yields
+
+$$
+\begin{aligned}
+\sum_{\alpha,\beta}\delta^\dagger\mathbf B_{\alpha\beta}\delta
+&=-\sum_{\alpha,\beta}\log(\lambda_\beta/\mu_\alpha)|S_{\alpha\beta}|^2
+  -\sum_i p_i\log h_i\\
+&=D(A\Vert B)-D(P\Vert Q)=\Delta.
+\end{aligned}
+\tag{13.3}
+$$
+
+The likelihood contribution uses $\sum_{\alpha,\beta}\overline z_i z_j=0$ for $i\ne j$ and $\sum_{\alpha,\beta}|z_i|^2=p_i$. In the spectral contribution $|S_{\alpha\beta}|^2$ is $\mu_\alpha$ times the squared overlap of the eigenvectors, which gives the joint entropy.
+
+Let $G_{ij}=K(\log(h_i/h_j))$ and $g=G_{01}=K(\log(h_1/h))$. Applying (13.2) at $(x,y)$ and $(x/2,y/2)$ and using $K(t/2)=\cosh(t/4)K(t)$ and $2c(t/2)-c(t)=K(t)$ gives $\mathcal L(x,y)-2\mathcal L(x/2,y/2)=(1-e^{x/2})(1-e^{y/2})K(x-y)$. Dividing by $(1-e^{x/2})(1-e^{y/2})$ and extending by continuity gives
+
+$$
+\mathcal B(a,b)-K(\log(a/b))
+=\frac{2\mathcal B(\sqrt a,\sqrt b)}{(1+a^{1/4})(1+b^{1/4})},
+\qquad
+\mathcal B(a,b)=(1+\sqrt a)(1+\sqrt b)
+\int_0^\infty\frac{t\,dt}{(1+t)(a+t)(b+t)}.
+\tag{13.4}
+$$
+
+The integral follows by taking the divided difference in $f(a)=\int_0^\infty a\,dt/((1+t)(a+t))$. It exhibits $\mathbf B_{\alpha\beta}-G$ as a Gram matrix with nonnegative entries. Also $G=\left(\begin{smallmatrix}1&g\\g&1\end{smallmatrix}\right)$ with $0<g\le1$. At the first diagonal entry the remainder is $r(a_0)$, where differentiation of $f$ gives
+
+$$
+r(a)=\mathcal B(a,a)-1=\int_0^1\frac{2u\,du}{1+(\sqrt a-1)u}
+\ge \frac{3}{1+2\sqrt a}.
+\tag{13.5}
+$$
+
+The inequality is Jensen's inequality for the probability measure $2u\,du$.
+
+At each entry rotate both $\delta_i$ by a common phase to make their sum real and nonnegative. Taking real parts $d_i$ preserves this sum and can only decrease the energy because $\mathbf B_{\alpha\beta}$ is real symmetric positive semidefinite. If $d_0d_1<0$, the logistic form obeys $d^{\mathsf T}Gd=(d_0+d_1)^2+2(g-1)d_0d_1\ge(d_0+d_1)^2$. When both real parts are nonnegative, (13.4) gives energy at least $(1+r(a_0))d_0^2+d_1^2$. Weighted Cauchy–Schwarz gives coefficient $(1+r(a_0))/(2+r(a_0))$ for the squared sum in this case. A zero sum is covered by positivity. In either case,
+
+$$
+\delta^\dagger\mathbf B_{\alpha\beta}\delta
+\ge \left(\frac12+\frac1{m(a_0)}\right)|W_{\alpha\beta}|^2,
+\qquad m(a)=2+\frac4{r(a)}.
+\tag{13.6}
+$$
+
+Put $e=\|A-T^\dagger T\|_1$ and $w=\|W\|_2$. Take $Z$ to be the Hermitian unitary sign of $A-T^\dagger T$, assigning either sign on its kernel. Let $Y=SZ$, $b=|\langle Y,W\rangle|$, and at each entry set $x=\sqrt{a_0}$. The entries of $xY$ are exactly those of $Y'=\sqrt h\,Z\sqrt B$, since the factor $\sqrt{\lambda_\beta/\mu_\alpha}$ cancels the left spectral factor of $\sqrt A$ and supplies the right spectral factor of $\sqrt B$. The weights $|Y_{\alpha\beta}|^2$ have total mass one. In this probability law, with $m_1=\mathbb E[x]$, one has
+
+$$
+\mathbb E[x^2]=h,\qquad m_1\le\sqrt h\le1,\qquad
+\mathbb E[(x-1)^2]=\|Y-Y'\|_2^2=1+h-2m_1.
+\tag{13.7}
+$$
+
+Sum (13.6) and apply weighted Cauchy–Schwarz to the $Y,W$ pairing. By (13.5),
+
+$$
+\Delta\ge \frac{w^2}{2}+\frac{b^2}{N},\qquad
+N=\sum_{\alpha,\beta}m(a_0)|Y_{\alpha\beta}|^2
+\le 2+\frac43(1+2m_1)\le6.
+\tag{13.8}
+$$
+
+Expanding $S^\dagger S-T^\dagger T$ gives $e=\operatorname{Re}\langle SZ,W\rangle+\operatorname{Re}\langle TZ,W\rangle$. The real pairings are each at most $w$, so $e\le2w$ and $e\le b+w$. Using $N\le6$ and $e^2\le2(b^2+w^2)$ in (13.8) yields $\Delta\ge w^2/3+e^2/12$. This also gives $e=0$ at zero loss.
+
+Set $\varepsilon=1/10000$ and suppose $e>0$ and $e^2\ge(6-\varepsilon)\Delta$. The reciprocal bound $1/(6-\varepsilon)\le1/6+\varepsilon/30$ gives $w^2/e^2\le1/4+\varepsilon/10$. The inequality $(1+t)^{-1/2}\ge1-t/2$ for $t\ge0$, together with $e\le2w$, now gives
+
+$$
+\frac{e}{w}\ge 2-\frac{2\varepsilon}{5},\qquad
+\frac{\Delta}{w^2}\le\frac{4}{6-\varepsilon}\le \frac23+\frac{\varepsilon}{8}.
+\tag{13.9}
+$$
+
+The real pairing with $Y$ is at least $e-w$. It follows that $\|W/w-Y\|_2^2\le 4\varepsilon/5\le\varepsilon$ and $b/w\ge1-2\varepsilon/5$. Equations (13.8)–(13.9) force
+
+$$
+N\ge\frac{(1-2\varepsilon/5)^2}{1/6+\varepsilon/8}\ge6-10\varepsilon.
+\tag{13.10}
+$$
+
+The last inequality has cleared-denominator slack $7\varepsilon/60+141\varepsilon^2/100$. The upper bound on $N$ gives $m_1\ge1-15\varepsilon/4$. Using $m_1^2\le h\le1$ in (13.7) gives both $1-h\le15\varepsilon/2$ and $\|Y-Y'\|_2^2\le15\varepsilon/2$.
+
+Suppose first that $g\ge1/4$. At entries with $|x-1|\le1/8$, (13.5) gives $r(a_0)\ge12/13$. Use the same rotation and real parts as in (13.6). Opposite signs give coefficient at least one for the squared sum. For two nonnegative real parts of positive sum, put $u=d_0/(d_0+d_1)$. Keeping the logistic cross term and the first diagonal remainder gives the normalized lower bound
+
+$$
+(1+r(a_0))u^2+(1-u)^2+2g u(1-u)
+\ge 1-\frac32u+\frac{63}{26}u^2\ge\frac{43}{56}.
+$$
+
+The final number is the minimum of the quadratic. Zero sums are covered by positivity. On the complementary entries with $|x-1|>1/8$, the restriction of $Y$ has Hilbert–Schmidt norm at most $8\|Y-Y'\|_2<24\sqrt{\varepsilon}$. The restriction of $W/w$ there has norm at most $25\sqrt{\varepsilon}$. By (13.3) the remaining entries then give
+
+$$
+\frac{\Delta}{w^2}\ge\frac{43}{56}(1-25^2\varepsilon)=\frac{645}{896}.
+$$
+
+This exceeds the upper bound $2/3+\varepsilon/8$ by $44677/840000$.
+
+Suppose now that $g<1/4$. The function $K$ decreases on $[0,\infty)$ since $s\cosh s>\sinh s$ for $s>0$. The identity $K(\log 64)=16\log 2/21>8/21>1/4$ uses $\log 2=\int_1^2 dt/t>1/2$. Hence $h_1/h>64$. The probability identities give $p_1(1-h/h_1)=1-h$ and $q_1\le p_1$, so $p_1\le(15/2)(64/63)\varepsilon<8\varepsilon$. Unitarity of $Z$ and the two true partial traces give $\|F_1Y\|_2^2=p_1$ and $\|Y'F_1\|_2^2=h q_1$. Approximating $W/w$ on the left by $Y$ and on the right by $Y'$ gives
+
+$$
+\begin{aligned}
+\|F_1W\|_2/w &\le \sqrt{p_1}+\sqrt{\varepsilon}\le4\sqrt{\varepsilon},\\
+\|WF_1\|_2/w &\le \sqrt{h q_1}+\sqrt{\varepsilon}+\sqrt{15\varepsilon/2}\le7\sqrt{\varepsilon}.
+\end{aligned}
+$$
+
+The two opposite blocks satisfy
+
+$$
+\begin{aligned}
+F_0WF_1 &= F_0SF_1-\sqrt h\,F_0\sqrt B F_1,\\
+(F_1WF_0)^\dagger &= F_0SF_1-\sqrt{h_1}\,F_0\sqrt B F_1 .
+\end{aligned}
+$$
+
+Subtracting gives $\sqrt h\|F_0\sqrt B F_1\|_2\le (11/7)w\sqrt{\varepsilon}$ because $\sqrt{h_1/h}-1>7$. The first block identity gives $\|F_0SF_1\|_2\le (7+11/7)w\sqrt{\varepsilon}$. Self-adjointness of $S$ gives $\|[S,F_1]\|_2=\sqrt 2\|F_0SF_1\|_2<13w\sqrt{\varepsilon}$, using $2(7+11/7)^2<13^2$. Hence $W_1=F_1W+[S,F_1]$ has $\|W_1\|_2\le17w\sqrt{\varepsilon}$.
+
+Summing the logistic part of (13.4) yields the full two-term energy estimate
+
+$$
+\begin{aligned}
+\Delta
+&\ge \|W_0\|_2^2+\|W_1\|_2^2+2g\operatorname{Re}\langle W_0,W_1\rangle\\
+&=w^2-2(1-g)\operatorname{Re}\langle W-W_1,W_1\rangle.
+\end{aligned}
+$$
+
+For $v=\|W_1\|_2/w$ one has $0\le v\le17/100$ and $\operatorname{Re}\langle W-W_1,W_1\rangle/w^2\le v-v^2$ by Cauchy–Schwarz. Since $0\le1-g\le1$ and $v-v^2\ge0$, it follows that
+
+$$
+\frac{\Delta}{w^2}\ge1-2v+2v^2\ge\frac{3589}{5000}.
+$$
+
+The quadratic decreases on the stated interval and the last value exceeds $2/3+\varepsilon/8$ by $12269/240000$. This is the second contradiction to (13.9) and proves the faithful estimate.
+
+To pass to the supported $A,B$ from the Stinespring reduction, set $B_*=(I_E/\dim E)\otimes Q$ and put $A_\tau=(1-\tau)A+\tau B_*$ and $B_\tau=(1-\tau)B+\tau B_*$ for $\tau\in(0,1)$. These approximants are faithful, with retained pair $((1-\tau)P+\tau Q,Q)$, which commutes at the same reference rank. Joint convexity gives $D(A_\tau\Vert B_\tau)\le(1-\tau)D(A\Vert B)$. Lower semicontinuity then gives convergence to the finite $D(A\Vert B)$. The retained relative entropy converges by continuity of $x\log x$ and the fixed positive reference on $K$. Continuity of the square root and the fixed supported inverse give convergence of the Petz return in trace norm. The closed inequality (13.1) passes to the limit, including singular retained $P$. A binary POVM produces diagonal retained matrices. If its reference has rank one, $P=Q$ by support inclusion, $R=\sigma$, and Pinsker's inequality gives $\|\rho-R\|_1^2\le2\Delta$.
+
+**Corollary 13.2 (Transfer through either physical output pinching).** Keep the supported input pair, reference output rank two and definitions of Theorem 13.1, allowing arbitrary $P,Q$ on $K$. Let $P_0$ be the pinching of $P$ in an eigenbasis of $Q$, and $Q_0$ the pinching of $Q$ in an eigenbasis of $P$. Define
+
+$$
+j_P=D(P\Vert P_0),\qquad
+j_Q=D(P\Vert Q)-D(P\Vert Q_0)=\operatorname{Tr}P(\log Q_0-\log Q).
+$$
+
+Then the return of the original channel satisfies
+
+$$
+\|\rho-R\|_1\le
+\min\!\left\{
+\sqrt{C(\Delta+j_P)}+\sqrt{2j_P},
+\ \sqrt{C(\Delta+j_Q)}+2\sqrt{1-e^{-j_Q}}
+\right\}.
+\tag{13.11}
+$$
+
+In particular, if either $j=j_P$ or $j=j_Q$ satisfies
+
+$$
+j\le \left(\frac{\sqrt6-\sqrt C}{\sqrt C+2}\right)^2\Delta,
+\tag{13.12}
+$$
+
+then $\|\rho-R\|_1^2\le6\Delta$. The constants are independent of the smallest positive eigenvalue of $Q$.
+
+Proof. Compose the restricted channel with pinching in a $Q$ eigenbasis. The actual output pair becomes $P_0,Q$. The relative entropy removed from the output is $D(P\Vert Q)-D(P_0\Vert Q)=D(P\Vert P_0)$ because the trace against both diagonal logarithms depends only on $P_0$. A zero diagonal of $P_0$ gives a zero row and column of $P$ by positivity, so the identity applies on the corresponding support. The pinched channel has loss $\Delta+j_P$. The pinching is self-adjoint for the trace pairing and fixes $Q^{-1/2}P_0Q^{-1/2}$. The ordinary Petz return for this channel is therefore $\mathcal R_{\sigma,\Phi}(P_0)$. Contractivity of the supported Petz channel and natural-log Pinsker give
+
+$$
+\|R-\mathcal R_{\sigma,\Phi}(P_0)\|_1\le \|P-P_0\|_1\le\sqrt{2j_P}.
+$$
+
+Theorem 13.1 and the triangle inequality give the first estimate in (13.11).
+
+For pinching in a $P$ eigenbasis, the output pair becomes $P,Q_0$. Here $Q_0$ is positive on $K$, and data processing under the pinching gives $j_Q\ge0$. The new loss is $\Delta+j_Q$. Use the same Stinespring isometry as in the theorem and write the original and pinched Petz returns on its range as $UU^\dagger$ and $U_0U_0^\dagger$, where
+
+$$
+U=\sqrt B\,\widehat{Q^{-1/2}P^{1/2}},\qquad
+U_0=\sqrt B\,\widehat{Q_0^{-1/2}P^{1/2}}.
+$$
+
+The second formula uses the adjoint of the output pinching, which fixes the diagonal $Q_0^{-1/2}P Q_0^{-1/2}$. Both amplitudes have Hilbert–Schmidt norm one. For $U_0$ the squared norm is $\operatorname{Tr}(Q Q_0^{-1/2}P Q_0^{-1/2})=\operatorname{Tr}P$ by diagonality in the $P$ basis. If $p_i$ are the eigenvalues of $P$ in that basis and $q_i=\langle i|Q|i\rangle$, then
+
+$$
+\langle U,U_0\rangle=\operatorname{Tr}(P Q^{1/2}Q_0^{-1/2})
+=\sum_i p_i\frac{\langle i|\sqrt Q|i\rangle}{\sqrt{q_i}}.
+$$
+
+Spectral Jensen gives $\langle i|\sqrt Q|i\rangle/\sqrt{q_i}\ge e^{-\ell_i/2}$ for $\ell_i=\log q_i-\langle i|\log Q|i\rangle$. Jensen under the probabilities $p_i$ gives $\langle U,U_0\rangle\ge e^{-j_Q/2}$ since $\sum_i p_i\ell_i=j_Q$. The vectorizations are unit purifications of the two returns, so trace-norm contractivity under partial trace and the pure-state trace formula bound the unhalved distance of the returns by $2\sqrt{1-e^{-j_Q}}$. The argument permits zero eigenvalues of $P$. Applying Theorem 13.1 to the pinched channel and taking the triangle inequality proves the second estimate in (13.11).
+
+Each estimate is at most $\sqrt{C(\Delta+j)}+2\sqrt j\le\sqrt{C\Delta}+(\sqrt C+2)\sqrt j$ for the respective loss. Under (13.12) the upper bound is $\sqrt{6\Delta}$.
+
+### 13.3 Sources and verification
+
+The ordinary channel recovery formula is Petz's. Yang's faithful Poisson-strip identity represents the same entropy loss in strip form. Equations (13.2)–(13.4) derive the spectral Gram representation used here directly for commuting retained marginals. [Petz, *Sufficiency of channels over von Neumann algebras*, QJM 39 (1988), 97–108](https://doi.org/10.1093/qmath/39.1.97) · [Yang, *Quantum data processing equality*, arXiv:2609.33815v2, Theorem II.1 and Eq. (II.5)](https://arxiv.org/html/2609.33815v2#S2.E5)
+
+The two contradiction margins were checked by exact rational arithmetic.
+
+## 追加锚（本行以下为增补区）
