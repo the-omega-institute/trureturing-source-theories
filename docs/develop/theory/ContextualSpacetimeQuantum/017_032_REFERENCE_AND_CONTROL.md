@@ -4464,3 +4464,75 @@ $$
 证明。$f=0$ 时，定理 22.3 的无参考共同系统幺正构造已经达到 $U(E,0)$，并由定理 22.2 的上界确定等号。$0<f<1/2$ 时应用定理 32.1；$1/2\le f\le1$ 时应用定理 31.2。三个互不重叠的参数范围穷尽 $f\in[0,1]$，给出所述完整等号条件。
 
 当 $\dim M=1$ 时，共同 $SM$ CPTP 控制就是系统 CPTP 控制，任意额外惰性参考与最终输出恰对应 $T_N^{\mathrm{ref,CPTP}}$。因此，在等号条件的补集上，严格不等式排除了维数一的记忆达到 $U$。定理 22.2 用一个初始为 $|0\rangle$ 的可操作记忆量子比特、末次前的一次 SWAP 及此前共同实反馈达到 $U$，不需要额外参考，所以维数二足够。在等号域，定理 22.3 的无参考系统幺正构造已以维数一达到；非零记忆的维数不能小于一。单步值由定理 27.2 与定理 22.2 给出，指针输入以维数一的记忆达到。这证明全部维数结论。证毕。
+## 32A. 低温 Wu 亏量下逐份判别与联合判别的严格差距
+
+第 17 节援引的 Acín 等人的结果表明，两种已知纯态的多副本判别可以只用逐份测量和经典反馈达到联合 Helstrom 界。这里沿用同一经典历史决定同一控制的原则，在低温 Gibbs 混态的副本判别中计算两种测量权限各自的最优误差。[Acín 等，§III.B](https://arxiv.org/abs/quant-ph/0410097v2)
+
+**定理 32.3（同一低温预算下的两种最优错误率）。** 令 $D_h=\operatorname{diag}(1-b,b)$，其中 $b=(1+e^{2h})^{-1}$、$h\ge 0$。写 $C=\cosh h$、$k=\tanh(h/2)$，并令 $a=k/h$（$h=0$ 时取 $a=1/2$）。对任意复二阶半正定迹一态 $\rho=(I+v\mathbf n\cdot\boldsymbol\sigma)/2$，设 $v\in[0,1]$ 为 Bloch 向量长度、$z=\mathbf n\cdot\mathbf e_z$ 为其方向在 Gibbs 轴上的分量（$v=0$ 时方向任取）。用物理嵌入 $X=D_h^{-1/4}\sqrt\rho\,D_h^{-1/4}$，Wu 指数二的归一化能量–熵亏量有如下闭式。设 $t=v/(1+\sqrt{1-v^2})$，$w=t^2$，$g(v)=\big((1+v)\log(1+v)+(1-v)\log(1-v)\big)/2$，取 $0\log 0=0$，则
+
+$$
+\begin{aligned}
+\delta(h,\rho)&=G_h(w)+\frac{(k-tz)^2}{C(1+t^2)},\\
+G_h(w)&=1-\frac{2}{(1+C)(1+w)}
+-a\left[g\!\left(\frac{2\sqrt w}{1+w}\right)+\log C\right].
+\end{aligned}
+$$
+
+给定任意固定 $d\in[0,\infty)$，取任意满足 $h_N\ge0$、$h_N\to\infty$ 和 $Nb_N\to\infty$ 的序列，其中 $b_N=(1+e^{2h_N})^{-1}$。在所有满足 $N^2\cosh(h_N)\delta(h_N,\rho)\le d$ 的上述 $\rho$ 上，对等先验假设 $D_{h_N}^{\otimes N}$ 与 $\rho^{\otimes N}$ 取逐对最优错误率的下确界。记逐份测量的下确界为 $p_N^{\rm seq}(d)$，任意联合 POVM 的下确界为 $p_N^{\rm coll}(d)$。逐份测量允许任意经典记忆、随机化及反馈。对每个已知候选对，两种假设在同一轮、同一经典历史与同一随机种子下使用同一个单份 POVM，轮间只传递经典信息，末次判决可读全部记录。记录分布 $P,Q$ 的等先验最优判决误差为 $(1-\operatorname{TV}(P,Q))/2$。若 $\Phi$ 为标准正态分布函数，则
+
+$$
+\lim_{N\to\infty} p_N^{\rm seq}(d)=\Phi\!\left(-(d/2)^{1/4}\right),
+\qquad
+\lim_{N\to\infty} p_N^{\rm coll}(d)=
+\frac{1-\sqrt{1-\exp(-\sqrt{d/2})}}{2}.
+$$
+
+当 $d>0$ 时，联合极限严格更小。当 $d=0$ 时，两种错误率对每个 $N$ 都是 $1/2$。联合极限对任意 $h_N\to\infty$ 成立。
+
+**证明。** 上述闭式是 Wu 在 $\beta=2h$、$s=s'=2$ 时的能量减去 $a$ 倍熵，按 $z$ 配方所得。[Wu，式 (3.6)–(3.7)、(3.54)–(3.55)](https://arxiv.org/html/2610.33686v1#S3.E54)
+
+令 $f(w)=\int_0^1(1-w)/(1-wx^2)\,dx$，在 $w=1$ 取连续值。对 $0<w<1$，直接求导给出 $G_h'(w)=2a[f(k^2)-f(w)]/(1+w)^2$，且 $G_h(k^2)=0$。对 $w_1<w_2<1$，两被积式之差为 $(w_2-w_1)(1-x^2)/[(1-w_1x^2)(1-w_2x^2)]$，故 $f(w_1)-f(w_2)\ge 2(w_2-w_1)/3$。积分并取端点连续值，得 $G_h(w)\ge a(w-k^2)^2/6$，覆盖秩一态。亏量为零当且仅当 $\rho=D_h$，于是下文取 $d>0$。
+
+由于 $Ca\to\infty$、$k\to1$，预算给出 $N|t^2-k^2|\le\sqrt{6d/(Ca)}=o(1)$，因而 $N|t-k|=o(1)$，且 $N|k-tz|\le\sqrt{d(1+t^2)}$。函数 $2t/(1+t^2)$ 在 $[0,1]$ 上是 $2$-Lipschitz 的。把 $\rho$ 换成同轴、与 $D_h$ 等谱的旋转态 $R$，张量积逐项相减给出 $\|\rho^{\otimes N}-R^{\otimes N}\|_1\le 2N|t-k|=o(1)$，对预算内所有态一致，故任意测量记录的总变差也只改变 $o(1)$。由 $k(1-z)=k-tz+(t-k)z$，极角 $\theta=\arccos z$ 满足 $\limsup N(1-z)\le\sqrt{2d}$，即 $\limsup N\theta^2\le2\sqrt{2d}$。取 $t=k$ 及
+
+$$
+1-z=\frac{\sqrt{d(1+k^2)}}{Nk}
+$$
+
+可在充分大的 $N$ 精确用尽预算，并达到 $N\theta^2\to2\sqrt{2d}$。绕 Gibbs 轴共同旋转可将任意候选对放在 $xz$ 平面。
+
+对这类等谱对，简记 $D=D_h$，$r=1-2b$。单份 POVM 在 $D,R$ 下的分布记为 $P,Q$。令 $\eta=\|D^{-1/2}(R-D)D^{-1/2}\|_{\rm op}$，则 $-\eta D\le R-D\le\eta D$，且由矩阵元可得 $\eta=O(|\theta|/\sqrt b+\theta^2/b)$。取厄米矩阵 $A$ 解 $R-D=(DA+AD)/2$。对每个正效应 $E$，有 $\operatorname{Tr}[E(R-D)]=\operatorname{Re}\operatorname{Tr}(EAD)$。对 $E^{1/2}D^{1/2}$ 与 $E^{1/2}AD^{1/2}$ 用 Hilbert–Schmidt Cauchy–Schwarz，得 $|\operatorname{Tr}[E(R-D)]|^2\le\operatorname{Tr}(ED)\operatorname{Tr}(EADA)$。用 POVM 关于其迹测度的矩阵密度积分，令 $x=dQ/dP-1$，得到 $\mathbb E_P x=0$、$|x|\le\eta$ 和
+
+$$
+\mathbb E_P x^2\le J=\operatorname{Tr}(DA^2)
+=r^2\sin^2\theta+\frac{r^2(1-\cos\theta)^2}{4}
+\left(\frac1{1-b}+\frac1b\right).
+$$
+
+测量 $A$ 的谱投影可使该单份 $\chi^2$ 界取等号。对适应测量，记两假设下截至第 $i$ 轮的历史律为 $P_i,Q_i$，历史包含共同种子。用 $P_{i-1}$ 的过去接上 $R$ 下当前结果核，得到 $\widetilde Q_i$。置 $x_i=d\widetilde Q_i/dP_i-1$、$M_i=dQ_i/dP_i$，则 $M_0=1$、$M_i=M_{i-1}(1+x_i)$。在 $D$ 假设下取期望，过去边缘相同给出 $\mathbb E_P[x_i\mid\mathcal F_{i-1}]=0$，其中 $\mathcal F_{i-1}$ 是过去记录生成的 $\sigma$ 代数。对任一过去事件 $H$，将所选 POVM 按 $P_{i-1}$ 在 $H$ 上积分，得到总效应为 $P_{i-1}(H)I$ 的联合历史矩阵测度。上述效应不等式给出 $\int_H x_i^2\,dP_i\le J P_{i-1}(H)$，即条件二阶矩至多 $J$，且阶界同样给出 $|x_i|\le\eta$。由 $N\theta^2=O(1)$ 和 $Nb\to\infty$，一致地有 $\eta=o(1)$、$NJ=N\theta^2+o(1)$。
+
+令 $Z$ 服从标准正态分布，$F_s(m)=\mathbb E[(1-me^{\sqrt{s}Z-s/2})_+]$。Jensen 不等式给出 $F_s(m)\ge(1-m)_+$。记 $\phi=\Phi'$、$u=(-\log m+s/2)/\sqrt{s}$，则对 $m>0$
+
+$$
+F_s(m)=\Phi(u)-m\Phi(u-\sqrt{s}),\qquad
+\partial_s F_s(m)=\tfrac12m^2 F_s''(m)=\frac{\phi(u)}{2\sqrt{s}} .
+$$
+
+再微分得 $m^3F_s'''(m)=\phi(u)(u/s-2/\sqrt{s})$、$\partial_{ss}F_s(m)=\phi(u)[(u^2-1)/(4s^{3/2})-u/(4s)]$，二者在 $s\ge\varepsilon>0$ 时一致有界。取 $s_i=\varepsilon+(N-i)J$。令 $m=M_{i-1}$，将 $F_{s_i}(m(1+x_i))$ 在 $x_i=0$ 作二阶 Taylor 展开，条件均值消去线性项，二次项至多 $J\partial_s F_{s_i}(m)$。当 $\eta\le1/2$，中间点至少为 $m/2$，故余项的条件期望为 $O_\varepsilon(\eta J)$。在 $s$ 方向展开把二次项并入 $F_{s_{i-1}}(m)$，余项为 $O_\varepsilon(J^2)$。逐轮相加得
+
+$$
+\operatorname{TV}(P_N,Q_N)
+=\mathbb E_P[(1-M_N)_+]
+\le 2\Phi\!\left(\frac{\sqrt{\varepsilon+NJ}}2\right)-1
++O_\varepsilon\bigl(N\eta J+NJ^2\bigr).
+$$
+
+沿 $N\theta^2\to\lambda^2$ 的任一子序列，先取 $N\to\infty$，再令 $\varepsilon\downarrow0$，得总变差上界 $2\Phi(\lambda/2)-1$，对所有反馈策略一致。独立测量每份的 $\sigma_x$ 达到此界。符号 $S_i\in\{-1,1\}$ 在两假设下的均值为 $0$ 和 $\mu=r\sin\theta$。当 $\lambda>0$ 时，似然比检验对 $\sum_i S_i/\sqrt N$ 的阈值是 $-\sqrt N\log(1-\mu^2)/\log((1+\mu)/(1-\mu))\to\lambda/2$。有界三角阵列中心极限定理给出两假设下该统计量分别收敛到 $\mathcal N(0,1)$ 和 $\mathcal N(\lambda,1)$，故等先验误差趋于 $\Phi(-\lambda/2)$。取用尽预算的旋转，$\lambda^2=2\sqrt{2d}$，于是 $\lambda/2=(d/2)^{1/4}$。角度上界和任意子序列上的总变差界给出对整个预算集匹配的错误率下界。
+
+联合测量的最大总变差为半迹距离。将 $N$ 份分解为自旋块 $V_j\otimes M_j$。在每块上 $D^{\otimes N}$ 正比于 $e^{2hJ_z}\otimes I_{M_j}$，把 $D$ 送到 $R$ 的旋转在各块只作用于 $V_j$，因此两态的块权重 $p_j$ 相同。块内归一化 Gibbs 态在磁量子数 $m=j-\ell$ 上的权重正比于 $q^\ell$，其中 $q=e^{-2h}$、$0\le\ell\le 2j$。非最高权重的总概率至多 $q$，故将两态的块内自旋部分换成各自的最高权投影，使总半迹距离改变至多 $2q$。在 $V_j=\operatorname{Sym}^{2j}(\mathbb C^2)$ 中，最高权向量是单份最高权向量的 $2j$ 重张量，旋转前后的平方重叠为 $x^{2j}$，其中 $x=\cos^2(\theta/2)=(1+z)/2$。故纯态块的平均半迹距离为 $\sum_j p_j\sqrt{1-x^{2j}}$，由先测自旋块，再作块内纯态 Helstrom 判决达到。[Guță 与 Kahn，§4](https://arxiv.org/html/quant-ph/0512075v3#S4)
+
+在 Gibbs 态的自旋和磁量子数联合分布中 $j\ge m$，故 $\mathbb E[N/2-j]\le\mathbb E[N/2-m]=Nb$。由 $x^y$ 对 $y$ 的凸性，$\sqrt{1-x^{2j}}$ 介于 $\sqrt{2j/N}\sqrt{1-x^N}$ 与 $\sqrt{1-x^N}$ 之间。因此平均纯态距离与 $\sqrt{1-x^N}$ 相差至多 $2b$，实际半迹距离相差至多 $2q+2b$。沿 $N\theta^2\to\lambda^2$ 有 $x^N\to e^{-\lambda^2/4}$。径向替换及角度上界给出全预算上的上界，用尽预算的旋转给出同值下界，故联合最优总变差趋于 $\sqrt{1-\exp(-\sqrt{d/2})}$。最后，两种等方差正态律 $\mathcal N(0,1)$ 与 $\mathcal N(\lambda,1)$ 的平方根亲和为 $e^{-\lambda^2/8}$。对两密度 $p,q$，将 $|p-q|$ 分解为 $|\sqrt p-\sqrt q|(\sqrt p+\sqrt q)$ 后用 Cauchy–Schwarz，得总变差上界 $\sqrt{1-e^{-\lambda^2/4}}$。等号要求 $|\sqrt p-\sqrt q|/(\sqrt p+\sqrt q)$ 几乎处处为常数，使似然比至多取两个值。$\lambda>0$ 时正态似然比连续且非常数，故此界严格。证毕。
+
+定理 32.3 的两项判别极限及严格差距已经独立数学审查（SSHX 审查 wu-cold-sequential-helstrom-audit-01a1da1d-20261128），Lean 形式化待完成。已合并的 Lean 结果给出指数二下单模平方根亲和亏量平方前的最优系数。[Lean #35196](https://github.com/the-omega-institute/trureturing/pull/35196)
+
+## 追加锚（本行以下为增补区）
