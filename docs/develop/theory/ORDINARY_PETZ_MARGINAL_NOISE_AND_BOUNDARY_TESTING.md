@@ -571,3 +571,174 @@ The ordinary proofs and explicit channel constructions are repo-derived, assembl
 The protected-tail threshold gives a conditional finite-dimensional reduction. Every available entropy-exact environment compressor preserves a strict input squared score above six, when such an input exists. The obstruction of Proposition 9.2 has scores below one, and the base faithful-reference example in Theorem 10.5 has scores below two. Uniform bounded-output compression on the strict-score class and the assertion $C(2)=6$ of Section 8 remain outstanding. The current proofs have ordinary mathematical status.
 
 ## 追加锚（本行以下为增补区）
+
+## 11. Ordinary Petz benchmark drift under environment erasure
+
+Use the setting of Section 9 with retained qubit $B$, finite environment $E$, and joint densities $\rho,\sigma$ satisfying $\operatorname{supp}\rho\subseteq\operatorname{supp}\sigma$. Write $P=\operatorname{Tr}_E\rho$, $Q=\operatorname{Tr}_E\sigma>0$, and $L=Q^{-1/2}PQ^{-1/2}$. For any CPTP map $T:E\to F$, set $\Phi=T\otimes\mathrm{id}_B$, $\sigma'=\Phi(\sigma)$ and $\rho'=\Phi(\rho)$. The marginals of $\rho',\sigma'$ are still $P,Q$. Put
+$$
+Y=\sqrt{\sigma}(I_E\otimes L)\sqrt{\sigma},\qquad
+Y_0=\Phi(Y),\qquad Y_1=\sqrt{\sigma'}(I_F\otimes L)\sqrt{\sigma'}.
+$$
+Both benchmarks have trace $\operatorname{Tr}(QL)=1$ and are supported on $\sigma'$. Use ordinary traces, natural logarithms, unhalved trace norms, root fidelity $f(U,V)=\|\sqrt U\sqrt V\|_1$, and $d_{\rm B}^2(U,V)=2(1-f(U,V))$. Write $\Delta=D(\rho\Vert\sigma)-D(P\Vert Q)$ and $\Delta_T=D(\rho'\Vert\sigma')-D(P\Vert Q)$.
+
+**Theorem 11.1 (The Pauli Gram defect).** For every such pair and channel,
+$$
+\Gamma=\operatorname{Tr}_B L\bigl(\operatorname{Tr}_F Y_1-\operatorname{Tr}_E Y\bigr)\ge0,
+\qquad \|Y_1-Y_0\|_1^2\le\Gamma.
+\tag{11.1}
+$$
+In particular, equality of the retained benchmark marginals at the actual $P$ is equivalent to $Y_0=Y_1$.
+
+Proof. On complex Hilbert–Schmidt spaces let $\mathcal L_\omega,\mathcal R_\omega$ denote left and right multiplication by $\omega$, and let $\mathcal K_\omega(X)=\sqrt\omega X\sqrt\omega$. The block operator with diagonal $\mathcal L_\sigma,\mathcal R_\sigma$ and off-diagonal $\mathcal K_\sigma$ is positive by factoring it with the column $(\mathcal L_\sigma^{1/2},\mathcal R_\sigma^{1/2})^{\mathsf T}$. Conjugate by $\operatorname{diag}(\Phi,\Phi)$. Unital Schwarz for $\Phi^\dagger$ bounds the resulting diagonals above by $\mathcal L_{\sigma'},\mathcal R_{\sigma'}$. For the left diagonal the quadratic form is bounded by $\operatorname{Tr}\sigma\,\Phi^\dagger(XX^\dagger)=\operatorname{Tr}\sigma'XX^\dagger$, and the right diagonal uses $X^\dagger X$ instead.
+
+Write $U=\Phi\mathcal K_\sigma\Phi^\dagger\succeq0$ for the off-diagonal operator. Add $tI$ to the enlarged diagonals to obtain commuting positive definite operators $A_t,B_t$. The Schur complement gives $(A_t^{-1/2}UA_t^{-1/2})^2\preceq A_t^{-1/2}B_t A_t^{-1/2}$. Monotonicity of the positive square root gives $U\preceq A_t^{1/2}B_t^{1/2}$. Let $t\downarrow0$. Thus, including for singular references,
+$$
+0\preceq\mathcal D:=\mathcal K_{\sigma'}-\Phi\mathcal K_\sigma\Phi^\dagger
+\preceq\mathcal K_{\sigma'},\qquad \mathcal D(I)=0.
+$$
+The identity follows from $\Phi^\dagger(I)=I$ and $\Phi(\sigma)=\sigma'$. For $\widehat L=I_F\otimes L$, the adjoint sends $\widehat L$ to $I_E\otimes L$. Hence $\mathcal D\widehat L=Y_1-Y_0$ and $\Gamma=\langle\widehat L,\mathcal D\widehat L\rangle$. For every Hermitian $H$,
+$$
+|\operatorname{Tr}H(Y_1-Y_0)|^2\le\Gamma\langle H,\mathcal D H\rangle
+\le\Gamma\operatorname{Tr}(\sigma'H^2).
+\tag{11.2}
+$$
+The last step uses $\sqrt{s_i s_j}\le(s_i+s_j)/2$ in a $\sigma'$ eigenbasis. Taking the supremum over Hermitian contractions gives (11.1). The three standard Pauli matrices $X_i$ are unscaled, with $\operatorname{Tr}X_iX_j=2\delta_{ij}$. Their lifts $\widehat X_i=I_F\otimes X_i$ give the real positive semidefinite matrix $G_{ij}=\langle\widehat X_i,\mathcal D\widehat X_j\rangle$. If $L=\ell_0 I+\sum_i\ell_iX_i$, then $\Gamma=\ell^{\mathsf T}G\ell$ by $\mathcal D(I)=0$.
+
+**Theorem 11.2 (Comparison at positive likelihood floor).** If $P\succeq mQ$ for any $m>0$, then
+$$
+d_{\rm B}^2(Y_0,Y_1)\le\frac{\Gamma}{4m},\qquad
+\|Y_0^{\otimes N}-Y_1^{\otimes N}\|_1\le\min\{2,\sqrt{N\Gamma/m}\}
+\quad(N\ge1).
+\tag{11.3}
+$$
+There is no lower eigenvalue requirement on $Q$ beyond positivity or on the nonzero spectrum of $\sigma'$.
+
+Proof. Both benchmarks dominate $m\sigma'$. For a POVM $(E_j)$ put $s_j=\operatorname{Tr}\sigma'E_j$, $u_j=\operatorname{Tr}Y_0 E_j$, $v_j=\operatorname{Tr}Y_1 E_j$, omitting $s_j=0$ since $u_j=v_j=0$ there. Apply (11.2) to $H=\sum_j h_j E_j$. Unital Schwarz gives $H^2\preceq\sum_j h_j^2E_j$ for real $h_j$. Taking $h_j=(v_j-u_j)/s_j$ yields $\sum_j(v_j-u_j)^2/s_j\le\Gamma$. Since $u_j,v_j\ge ms_j$, the squared Hellinger distance $\sum_j(\sqrt{u_j}-\sqrt{v_j})^2$ is at most $\Gamma/(4m)$.
+
+On $\operatorname{supp}\sigma'$ measure the spectral projections of $C=Y_0^{-1/2}\sqrt{Y_0^{1/2}Y_1Y_0^{1/2}}\,Y_0^{-1/2}$. Since $Y_1=CY_0 C$, an eigenvalue $c_j$ gives $v_j=c_j^2u_j$. The resulting affinity is $\sum_j\sqrt{u_jv_j}=\operatorname{Tr}(CY_0)=f(Y_0,Y_1)$, giving the Bures bound. In general, fidelity multiplicativity and the trace-distance–fidelity inequality give
+$$
+\|Y_0^{\otimes N}-Y_1^{\otimes N}\|_1
+\le 2\sqrt{1-f(Y_0,Y_1)^{2N}}
+\le 2\sqrt{N d_{\rm B}^2(Y_0,Y_1)}.
+\tag{11.4}
+$$
+
+With prior $w$ on the benchmark, replacing $Y_0^{\otimes N}$ by $Y_1^{\otimes N}$ in the encoded experiment with source $(\rho')^{\otimes N}$ changes every decision risk with losses in $[0,1]$, and hence the optimal risk, by at most $w\|Y_0^{\otimes N}-Y_1^{\otimes N}\|_1/2$. A decision's conditional loss is the expectation of an effect between zero and the identity, and the benchmark difference is traceless. This gives the same comparison in both directions using the identity channel. At equal priors the multiplier is $1/4$. In particular $\Gamma=o(m\Delta)$ suffices along positive-deficit sequences with $N\Delta=O(1)$.
+
+**Theorem 11.3 (Complete erasure of a coherent environment).** For $F=\mathbb C$ and $T=\operatorname{Tr}_E$, set $K=1+\sqrt2$. Then for every joint reference in the stated setting,
+$$
+d_{\rm B}^2(Y_0,P)\le (K+1/4)\Gamma,\qquad
+\|Y_0^{\otimes N}-P^{\otimes N}\|_1\le\min\{2,2\sqrt{(K+1/4)N\Gamma}\}.
+\tag{11.5}
+$$
+This includes singular $P$ and arbitrary reference coherences. In the bounded $N\Delta$ window, $\Gamma=o(\Delta)$ suffices for vanishing benchmark replacement error.
+
+Proof. First let $L=|e\rangle\langle e|/q$ for unit $e$ and $q=\langle e,Qe\rangle$. Use a retained basis starting with $e$ and write the roots in retained-index blocks,
+$$
+\sqrt\sigma=\begin{pmatrix}A&B_0^\dagger\\ B_0&C_0\end{pmatrix},\qquad
+\sqrt Q=\begin{pmatrix}a&\bar b\\ b&c\end{pmatrix}.
+$$
+Here $A,B_0,C_0$ are environmental Hilbert–Schmidt vectors, with $A,C_0$ Hermitian. Squaring the roots and taking the environmental trace gives
+$$
+\delta=a^2-\|A\|_2^2=c^2-\|C_0\|_2^2=\|B_0\|_2^2-|b|^2,\qquad
+(a+c)b=\operatorname{Tr}((A+C_0)B_0).
+$$
+The first diagonal entry of the benchmark difference gives $\Gamma=\delta/q^2$. Set $h=(A+C_0)/(a+c)$, so $\|h\|_2\le1$ by $\delta\ge0$ and $\langle h,B_0\rangle=b$. With $t=(1-\|h\|_2^2)|b|^2$, expanding the squared norms gives $\|B_0-bh\|_2^2=\delta-t$ and $\|A-ah\|_2^2=ac(1-\|h\|_2^2)-\delta$. Thus $0\le t\le\delta$ and
+$$
+\|a B_0-bA\|_2\le a\sqrt{\delta-t}+\sqrt{ac\,t}
+\le\sqrt{(a^2+ac)\delta}.
+$$
+The recomputed state is the projector onto $v=(a,b)^{\mathsf T}/\sqrt q$, where $q=a^2+|b|^2$. The transported state is the partial trace of the first block column times its adjoint, divided by $q$. Its mass on $(-\bar b,a)^{\mathsf T}/\sqrt q$ is therefore $\|aB_0-bA\|_2^2/q^2$. Since $f(Y_0,P)^2=\langle v,Y_0v\rangle$, this proves the rank-one estimate
+$$
+d_{\rm B}^2(Y_0,P)\le 2(a^2+ac)\Gamma\le K\Gamma.
+\tag{11.6}
+$$
+The last inequality uses $a^2+c^2\le\operatorname{Tr}Q=1$ and the largest eigenvalue $K/2$ of $\left(\begin{smallmatrix}1&1/2\\1/2&0\end{smallmatrix}\right)$.
+
+For general $L$ let $m=\lambda_{\min}(L)\in[0,1]$. At $m=1$, $L=I$ and the benchmarks coincide. Otherwise $L=mI+(1-m)L_*$ with $L_*$ rank one and $\operatorname{Tr}(QL_*)=1$. For any encoder the two benchmarks then mix those for $L_*$ with the shared component $m\sigma'$. Because $\mathcal D(I)=0$, $\Gamma=(1-m)^2\Gamma_*$. Joint concavity of root fidelity bounds the Bures square by $(1-m)d_{\rm B,*}^2$. In complete erasure this gives coefficient $K/(1-m)$. For $0<m<1$, (11.3) also gives $1/(4m)$. Their minimum is bounded by their common value $K+1/4$ at $m=1/(1+4K)$. The endpoint $m=0$ follows from (11.6), and (11.4) gives the tensor bound.
+
+**Theorem 11.4 (Erasure inside retained sectors).** Let $E=\bigoplus_f E_f$ be any finite orthogonal decomposition and $\sigma=\bigoplus_f\sigma_f$. The channel $T$ records $f$ and traces out $E_f$. Then for every supported source, including sources with cross-sector coherences,
+$$
+d_{\rm B}^2(Y_0,Y_1)\le\min\{2,2^{5/3}\Gamma^{2/3}\}.
+\tag{11.7}
+$$
+The bound is uniform over all sector dimensions and all $Q>0$. The sector hypothesis supplies equal benchmark masses on each retained label.
+
+Proof. For the inclusion $J_f:E_f\hookrightarrow E$, the Kraus operators of $T$ are $|f\rangle\langle j|J_f^\dagger$ over an orthonormal basis $(|j\rangle)$ of each $E_f$. Their adjoint products sum to $I_E$. Put $Q_f=\operatorname{Tr}_{E_f}\sigma_f$ and $q_f=\operatorname{Tr}Q_f$. The benchmark blocks and their common masses are
+$$
+Y_{0,f}=\operatorname{Tr}_{E_f}\bigl[\sqrt{\sigma_f}(I_{E_f}\otimes L)\sqrt{\sigma_f}\bigr],
+\quad Y_{1,f}=\sqrt{Q_f}L\sqrt{Q_f},\qquad p_f=\operatorname{Tr}(LQ_f).
+$$
+Cyclicity gives $\operatorname{Tr}Y_{i,f}=p_f$ and $\sum_f p_f=\sum_f q_f=1$. Put $\Gamma_f=\operatorname{Tr}L(Y_{1,f}-Y_{0,f})\ge0$ by the half-density comparison for the sector partial trace. Then $\Gamma=\sum_f\Gamma_f$. Zero masses give zero blocks. If $Q_f$ has rank one, positivity confines $\sigma_f$ to the same retained line, so both blocks equal $p_f$ times the projection onto that line.
+
+Take $L=\lambda|e\rangle\langle e|$ first. Then $\lambda\ge1$ by $\operatorname{Tr}QL=1$. On a full-rank branch of positive mass, normalize the reference to $\sigma_f/q_f$ and the likelihood to $q_f L/p_f$. The benchmarks become $Y_{i,f}/p_f$, and the local defect is $q_f\Gamma_f/p_f^2$. For the diagonal entries $a,c$ of $\sqrt{Q_f/q_f}$ in the basis starting with $e$, $a^2\le p_f/(\lambda q_f)$ and $a+c\le\sqrt2$. Multiply (11.6) by $p_f$ and use additivity of root fidelity over direct sums. The contribution to the global Bures square is bounded by
+$$
+\min\!\left\{2p_f,\,2\sqrt2\,\Gamma_f\sqrt{\frac{q_f}{\lambda p_f}}\right\}
+\le 2^{4/3}\Gamma_f^{2/3}(q_f/\lambda)^{1/3}.
+$$
+The last step is $\min(x,y)\le x^{1/3}y^{2/3}$. Hölder with exponents $3/2,3$ gives the sum bound $2^{4/3}\lambda^{-1/3}\Gamma^{2/3}$. For $m=\lambda_{\min}(L)<1/2$, the mixture argument of Theorem 11.3 costs a factor $(1-m)^{-1/3}\le2^{1/3}$. For $m\ge1/2$, (11.3) and the bound by two give $\min(2,\Gamma/2)\le\min(2,2^{5/3}\Gamma^{2/3})$.
+
+Combining (11.7) with (11.4) gives the tensor bound $\min\{2,2\sqrt{2^{5/3}N\Gamma^{2/3}}\}$ and the same prior-weighted risk comparison. Thus $\Gamma=o(\Delta^{3/2})$ suffices when $N\Delta=O(1)$ along positive-deficit sequences.
+
+**Proposition 11.5 (Sharp power and exact collective risk).** Use sectors of dimensions two and one, with the sector-erasure channel of Theorem 11.4. For $\varepsilon>0$ put $\Pi=|0\rangle\langle0|$ on the retained qubit and define
+$$
+Z_1=\varepsilon\Pi,\qquad Z_2=\begin{pmatrix}\varepsilon^2&\varepsilon\\\varepsilon&1\end{pmatrix},\qquad
+R_0=Z_1^2+Z_2^2,\qquad n_\varepsilon=\operatorname{Tr}R_0=1+3\varepsilon^2+\varepsilon^4.
+$$
+Use $\sigma_0=(Z_1^2\oplus Z_2^2)/(2n_\varepsilon)$ in sector zero and $\sigma_1=I/4$ in sector one. Each sector has trace $1/2$. Set $Q=R_0/(2n_\varepsilon)+I/4\succeq I/4$, $\lambda=1/\langle0|Q|0\rangle$, and $P=\sqrt Q\,\lambda\Pi\sqrt Q$. The actual source is $\rho=0\oplus P$. It is a supported density with retained marginal $P$, and its likelihood is $L=\lambda\Pi$.
+
+Since $Z_2^2=(1+\varepsilon^2)Z_2$, $R_{0,00}=2\varepsilon^2+\varepsilon^4$ and $\det R_0=\varepsilon^2(1+\varepsilon^2)$. By Cayley–Hamilton,
+$$
+\sqrt{R_0}=\frac{R_0+\sqrt{\det R_0}\,I}{\sqrt{n_\varepsilon+2\sqrt{\det R_0}}}.
+$$
+Its first column $(a_0,b_0)^{\mathsf T}$ has entries $\varepsilon+\varepsilon^2+O(\varepsilon^3)$ and $\varepsilon-\varepsilon^2+O(\varepsilon^3)$. Sector one has identical benchmark blocks. Since $\lambda\to4$, sector zero gives
+$$
+p_0=\frac{\lambda(2\varepsilon^2+\varepsilon^4)}{2n_\varepsilon}\sim4\varepsilon^2,\qquad
+\Gamma=\frac{\lambda^2}{2n_\varepsilon}\bigl[a_0^2-\varepsilon^2-\varepsilon^4\bigr]\sim16\varepsilon^3.
+$$
+The normalized transported block is $\left(\begin{smallmatrix}1+\varepsilon^2&\varepsilon\\\varepsilon&1\end{smallmatrix}\right)/(2+\varepsilon^2)$, which tends to $I/2$. The normalized recomputed block is the projector onto $(a_0,b_0)^{\mathsf T}/\sqrt{2\varepsilon^2+\varepsilon^4}$, which tends to $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$. Its limiting root fidelity with the transported block is $1/\sqrt2$. Consequently $d_{\rm B}^2(Y_0,Y_1)\sim 4(2-\sqrt2)\varepsilon^2$, so $d_{\rm B}^2/\Gamma^\alpha$ diverges for every $\alpha>2/3$ even with $Q\succeq I/4$.
+
+For $\varepsilon\downarrow0$ and integers $N\ge1$ with $N\varepsilon^2\to c\in[0,\infty)$, the number $J$ of sector-zero labels has law $\operatorname{Bin}(N,p_0)$ under both hypotheses. The product trace distance is the expectation of the conditional distance given the label string, since the labels form orthogonal blocks. Common sector-one factors have trace norm one. At fixed $J=j$, the conditional distance tends to $\|I/2^j-(|+\rangle\langle+|)^{\otimes j}\|_1=2(1-2^{-j})$. The distances are bounded by two and $\Pr(J>k)\le Np_0/(k+1)$, so the error in replacing the conditional distance by its limit tends to zero after truncation. Since $\mathbb E[2^{-J}]=(1-p_0/2)^N\to e^{-2c}$, the optimal equal-prior risk is
+$$
+\frac12-\frac14\|Y_0^{\otimes N}-Y_1^{\otimes N}\|_1\ \longrightarrow\ \frac12 e^{-2c}.
+\tag{11.8}
+$$
+A measurement attaining this limit reads the labels, measures each sector-zero qubit in the $|+\rangle,|-\rangle$ basis, and declares $Y_0$ if any minus outcome occurs. At fixed $j$ its conditional errors under $Y_0$ and $Y_1$ tend to $2^{-j}$ and zero, respectively. The same tail bound gives the limiting average error.
+
+For the actual pair, $D(\rho\Vert\sigma)=D(\rho'\Vert\sigma')=\log4$ because the encoder acts identically on sector one, which contains the source. Hence $\Delta_T=\Delta=\log4+\operatorname{Tr}(P\log Q)$. Direct expansion gives $Q_{00}=1/4+\varepsilon^2+O(\varepsilon^4)$ and $Q_{10}=\varepsilon/2+O(\varepsilon^3)$. With $\operatorname{Tr}Q=1$, the smaller eigenvalue is $1/4+\varepsilon^2/2+O(\varepsilon^4)$. The larger-eigenvalue projection has weight $\varepsilon^2+O(\varepsilon^4)$ in $|0\rangle$, by the formula $(Q-\lambda_{\min}(Q)I)/(\lambda_{\max}(Q)-\lambda_{\min}(Q))$. Multiplying that weight by $\lambda_{\max}(Q)/Q_{00}$ gives its weight in $P$, namely $3\varepsilon^2+O(\varepsilon^4)$. Therefore
+$$
+\Delta_T=\Delta=(2+3\log3)\varepsilon^2+O(\varepsilon^4),\qquad
+\frac{\Gamma}{\Delta^{3/2}}\longrightarrow\frac{16}{(2+3\log3)^{3/2}}.
+$$
+In the window $N\Delta\to s\in[0,\infty)$, (11.8) is $\tfrac12\exp[-2s/(2+3\log3)]$.
+
+A faithful version replaces $Z_i$ by $Z_i+\varepsilon^4 I$, recomputes the rare-sector normalization and $P$, and mixes the new pure source with weight $\varepsilon^8$ of the new $\sigma$. The perturbation of $R_0$ and its determinant is $O(\varepsilon^4)$, so the root formula changes its first column by $O(\varepsilon^3)$. The transported column norms squared change by $O(\varepsilon^5)$. These orders preserve the leading defect, mass and conditional limits. The $O(\varepsilon^4)$ perturbation of $Q$ preserves the entropy expansion, and the final source mixture changes the entropies by $O(\varepsilon^8\log(1/\varepsilon))$ by finite-dimensional entropy continuity and $\sigma\succeq c_0\varepsilon^8 I$ for some $c_0>0$ and small $\varepsilon$. The benchmark mixtures scale the defect by $(1-\varepsilon^8)^2$ and perturb each tensor benchmark in trace norm by at most $2N\varepsilon^8$. Entropy equality is exact because the rare sector of the mixed source is proportional to the reference and the encoder acts identically on sector one.
+
+**Proposition 11.6 (The power for coherent references).** For arbitrary physical compression, (11.1) and the fidelity–trace distance inequality give $d_{\rm B}^2(Y_0,Y_1)\le\sqrt{\Gamma}$. The power $1/2$ is attained in order by a family with $Q\succeq I/4$ and a two-dimensional output environment. A three-dimensional output version preserves the same entropy loss exactly.
+
+Proof. In the environment use three orthogonal labels. Put $\psi_1=|1\rangle$, $\psi_2=\sqrt{\varepsilon}|0\rangle+\sqrt{1-\varepsilon}|1\rangle$, and $\chi=(|1\rangle_E\otimes\psi_1+|2\rangle_E\otimes\psi_2)/\sqrt2$. Take the reference $\sigma=|\chi\rangle\langle\chi|/2+|3\rangle\langle3|\otimes I/4$. Then $Q=I/4+(|\psi_1\rangle\langle\psi_1|+|\psi_2\rangle\langle\psi_2|)/4$. Let $\lambda=4/(1+\varepsilon)$, $L=\lambda|0\rangle\langle0|$, and $P=\sqrt Q\,L\sqrt Q$. The actual source is $\rho=|3\rangle\langle3|\otimes P$, supported on $\sigma$.
+
+Apply projective dephasing on the environmental labels. The root of the reference on labels 1 and 2 is $|\chi\rangle\langle\chi|/\sqrt2$. The likelihood expectation on $\chi$ is $\lambda\varepsilon/2$. The conditional benchmark states on the two labels are the respective $\psi_f$ projectors, with zero weight allowed. Both benchmarks share the block $L/4$ on label 3. Put $p=\varepsilon/(1+\varepsilon)$. The three probabilities are $(p/2,p/2,1-p)$ for $Y_0$ and $(0,p,1-p)$ for $Y_1$. Pairing their difference with $L$ gives $\Gamma=2p^2$, while their root fidelity is $1-p+p/\sqrt2$. Hence
+$$
+d_{\rm B}^2(Y_0,Y_1)=(\sqrt2-1)\sqrt{\Gamma},\qquad
+\|Y_0^{\otimes N}-Y_1^{\otimes N}\|_1=2\bigl(1-(1-p/2)^N\bigr).
+$$
+For the second identity, on every label string with no 1 the transported probability is bounded by the recomputed one. The sum of their pointwise minima is therefore the transported probability of seeing no 1. The conditional quantum states are identical on those strings. Reading the labels and declaring $Y_0$ if any 1 appears achieves the optimal equal-prior error $(1-p/2)^N/2$.
+
+The encoder is the identity on the reference block containing the source, so both actual relative entropies are $\log4$. The entries $Q_{00}=1/4+\varepsilon/4$, $Q_{11}=3/4-\varepsilon/4$, and $Q_{10}=\sqrt{\varepsilon(1-\varepsilon)}/4$ give a smaller eigenvalue $1/4+\varepsilon/8+O(\varepsilon^2)$. The weight of $|0\rangle$ on the larger eigenspace is $\varepsilon/4+O(\varepsilon^2)$ from its spectral projection. The weight in $P$ is $3\varepsilon/4+O(\varepsilon^2)$ after multiplying by the larger eigenvalue and dividing by $Q_{00}$. Thus
+$$
+\Delta_T=\Delta=(1/2+(3/4)\log3)\varepsilon+O(\varepsilon^2).
+$$
+Along $N\Delta\to s$, the optimal error converges to $\tfrac12\exp[-s/(1+(3/2)\log3)]$.
+
+Grouping labels 1 and 3 and tracing out the group of dimension two gives an output of dimension two. The grouped reference block is $\operatorname{diag}(1/4,1/2)$. Its recomputed benchmark is $L/4$, and its transported block is $L/4+(p/2)|1\rangle\langle1|$. The two retained occupations are orthogonal. The benchmark on label 2 and all three effective probabilities are unchanged. The measurement reads the output label and the retained occupation on the grouped sector. This yields the same $\Gamma$, Bures distance, and exact product risk. By Theorem 11.3, output dimension one gives the linear bound.
+
+Both examples have faithful versions with the same leading scales. Mix the reference with weight $\varepsilon^8$ of the normalized joint identity, recompute $P$ from the new reference marginal using the rank-one likelihood, then mix the source with weight $\varepsilon^8$ of the new reference. The marginal inverse remains uniformly bounded. The operator-norm square-root inequality for positive matrices bounds each joint or output square-root change by $O(\varepsilon^4)$. In fixed dimension each benchmark changes in trace norm by $O(\varepsilon^4)$. This preserves the leading defect and the critical product risk by tensor telescoping. The Bures distance changes by $O(\varepsilon^2)$, so the leading Bures square is preserved. For three labels the rare sector of the faithful source is proportional to the reference and the encoder is the identity on label 3. This preserves $\Delta_T=\Delta$. Finite-dimensional entropy continuity and the reference spectral floor of order $\varepsilon^8$ bound the change in $\Delta$ by $O(\varepsilon^8\log(1/\varepsilon))$.
+
+### 11.7 Sources and verification
+
+The ordinary recovery convention is the partial-trace instance of Petz's channel recovery formula. [Petz, *Sufficiency of channels over von Neumann algebras*](https://doi.org/10.1093/qmath/39.1.97)
+
+Review `fac4dd900e4154acf8534d22`, attempt 1, verified the flagged determinant argument and derived the coherent complete-erasure extension and improved coefficient. Review `663d80464792b8a942002dae`, attempt 1, independently checked the half-density and POVM comparisons, the improved erasure bound, the sector normalizations and power bound, and the physical witness through the exact tensor trace-distance limit underlying (11.8). The attaining label-and-qubit measurement, entropy expansion with $\Delta_T=\Delta$, and faithful variant are additional derivations on that witness. Review `36f213dd15a16d9e26e2cf9f`, attempt 1, independently checked the general square-root bound, the coherent three-label witness, its exact entropy equality and risk, and its faithful approximation. The two-label version follows by grouping two labels while the retained occupations still distinguish the transported mass. Each power is optimal within its stated class. The displayed prefactors are upper bounds. The risk limit compares the two encoded benchmarks.
+
+## 追加锚（本行以下为增补区）
