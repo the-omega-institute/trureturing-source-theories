@@ -4638,3 +4638,147 @@ $$
 在双模四维空间中，以上两定理覆盖全部至多两个不同特征值的嵌入谱。余下谱型恰为三个不同特征值（重数 $2,1,1$，二重值可处于任一谱位）和四个不同特征值（重数 $1,1,1,1$），均按包含零特征值计数。定理 32.4 与 32.5 已经独立数学复核，完整 Lean 形式化待完成。
 
 ## 追加锚（本行以下为增补区）
+
+## 32C. 有限带符号自旋系统在指数二附近的精确超收缩时间
+
+**定理 32.6（Wu 猜想 3.14 的有限带符号自旋情形）。** 固定整数 $n\ge1$ 和有限逆温上界 $B_0\ge0$。存在 $\epsilon=\epsilon(n,B_0)\in(0,1)$，对 Wu v1 §3.3 中所有 $n$ 模带符号自旋系统同时适用。交换符号可任取 $\varepsilon_{ij}=\varepsilon_{ji}\in\{-1,1\}$（$i\ne j$），各模逆温满足 $0\le\beta_j\le B_0$。设 $\Phi_t=e^{-t\mathcal L}$ 为该系统的 Ornstein–Uhlenbeck 半群，$B_*=\max_j\beta_j$，$D=\bigotimes_j d_j$，其中 $d_j=\operatorname{diag}(a_j,b_j)$、$a_j=(1+e^{\beta_j})^{-1}$、$b_j=1-a_j$。取普通矩阵迹 $\operatorname{Tr}$，使 $\operatorname{Tr}D=1$，并记 $\|X\|_{s,D}=\|D^{1/(2s)}XD^{1/(2s)}\|_{S_s}$。[Wu v1，§3.3](https://arxiv.org/html/2610.33686v1#S3.SS3)
+
+对任一外加上界 $B_*\le B\le B_0$、任一实指数 $|s-2|<\epsilon$ 和任一复正半定矩阵 $X$，原式 (3.54) 成立，且等号恰在 $X=cI$、$c\ge0$ 时成立。系数沿用原式 (3.55)，其中 $s'=s/(s-1)$：
+
+$$
+\mathcal E_{s,D}(X)\ge \alpha_s^*(B)\operatorname{Ent}_{s,D}(X),
+\qquad
+\alpha_s^*(B)=
+\frac{ss'\sinh(B/(2s))\sinh(B/(2s'))}{B\sinh(B/2)},
+\qquad \alpha_s^*(0)=\tfrac12.
+$$
+
+对任意 $2-\epsilon<p\le q<2+\epsilon$ 及 $t\ge0$，在全复矩阵代数上的算子范数满足
+
+$$
+\|\Phi_t\|_{p\to q}\le1
+\quad\Longleftrightarrow\quad
+t\ge\tfrac12\log\frac{B_q(B_*)}{B_p(B_*)},
+\qquad
+B_s(v)=\frac{\sinh(v/(2s'))}{\sinh(v/(2s))},\quad B_s(0)=s-1.
+$$
+
+这包括 $p<q<2$ 与 $2<p<q$ 两个同侧区间，也包括跨过指数二、$p=q$ 和 $B_*=0$ 的情形。逆温上界 $B$ 可用于第一项不等式，精确时间取实际达到的最大逆温 $B_*$。[Wu v1，式 (2.11)](https://arxiv.org/html/2610.33686v1#S2.E11) · [猜想 3.14 与式 (3.53)–(3.55)](https://arxiv.org/html/2610.33686v1#S3.Thmtheorem14)
+
+**证明。** 记 $M_s=D^{1/(2s)}XD^{1/(2s)}$。对非零 $X\ge0$，置 $\tau=\operatorname{Tr}M_s^s$、$\rho=M_s^s/\tau$。在上述普通迹约定下，
+
+$$
+\begin{aligned}
+\operatorname{Ent}_{s,D}(X)&=\tau D_{\rm rel}(\rho\Vert D),
+& D_{\rm rel}(\rho\Vert D)&=\operatorname{Tr}(\rho\log\rho-\rho\log D),\\
+\mathcal E_{s,D}(X)&=\tfrac{ss'}4
+   \operatorname{Tr}\!\left(M_s^{s-1}D^{1/(2s)}\mathcal L(X)D^{1/(2s)}\right),
+& \Delta_s^B(X)&=\mathcal E_{s,D}(X)-\alpha_s^*(B)\operatorname{Ent}_{s,D}(X).
+\end{aligned}
+$$
+
+取 $0\log0=0$，零输入的能量与熵均为零。两项对正数缩放均为 $s$ 次齐次。单模亏量记为 $\Delta_{s,j}^B$，使用同一系数及参考态 $d_j$。[Wu v1，§2.1，式 (2.2)–(2.6)](https://arxiv.org/html/2610.33686v1#S2.SS1)
+
+（一）指数二的实际分块压缩。任选第 $j$ 模排到末位，按其占据数将 $X\ge0$ 写成块矩阵 $(X_{ab})_{a,b=0,1}$。重排对应占据基的置换和对角符号变换，并保持 Gibbs 权重。记旁观模的参考态为 $D_{\hat j}$，置 $Q_j(X)=(\|X_{ab}\|_{2,D_{\hat j}})_{a,b=0,1}$。这是式 (3.32) 的压缩。正块矩阵的非对角块可写成两个对角块的正平方根夹一个压缩算子，对 Gibbs 夹乘后的块作同一分解，再用 Schatten Hölder，得到 $Q_j(X)\ge0$。式 (3.29) 给出 $\|Q_j(X)\|_{2,d_j}=\|X\|_{2,D}$。[Wu v1，§3.3，式 (3.28)–(3.32)](https://arxiv.org/html/2610.33686v1#S3.E28)
+
+令 $r\ge2$、$t(r)=\frac12\log B_r(B)$，令 $\Theta_t$ 为末模的单模半群。命题 3.3 的归纳在最后一步单模收缩之前给出
+
+$$
+\|\Phi_{t(r)}(X)\|_{r,D}
+\le \|\Theta_{t(r)}(Q_j(X))\|_{r,d_j}.
+\tag{32.6a}
+$$
+
+具体地，旁观模在同一逆温上界 $B$ 下满足 $2\to r$ 收缩。输出的两个对角块是旁观半群输出的非负线性组合，用三角不等式估计。非对角块形如 $e^{-t}\Phi_t^{(\hat j)}(X_{01}u_j)u_j$，其中 $u_j$ 是与 $D_{\hat j}$ 对易的对角符号幺正。引理 2.3 使旁观模估计适用于复矩阵 $X_{01}u_j$，右乘 $u_j$ 保持加权范数。因而输出的 $r$ 范数压缩矩阵逐项受 $\Theta_t(Q_j(X))$ 控制。两个二阶矩阵均为正半定且逐项非负。其 Gibbs 夹乘保留逐项次序，而二阶正半定逐项非负矩阵的正幂仍逐项非负，故沿连接两矩阵的线段微分幂的迹可得 Schatten $r$ 范数比较。结合 King 分块范数不等式 (3.28) 即得 (32.6a)。$n=1$ 时旁观代数为标量，压缩只取非对角元的模。[Wu v1，引理 2.3](https://arxiv.org/html/2610.33686v1#S2.Thmtheorem3) · [命题 3.3 与式 (3.28)–(3.35)](https://arxiv.org/html/2610.33686v1#S3.Thmtheorem3)
+
+在 $r=2$ 时有 $t(2)=0$，故 (32.6a) 取等号。先取 $X>0$。对充分小的 $\eta>0$，$Q_j(X-\eta I)\ge0$，从 $X-\eta I$ 回到 $X$ 时两个对角块的加权二范数严格增加，非对角块范数相同，故 $Q_j(X)>0$。由原文的范数微分式和 $t'(2)=1/(4\alpha_2^*(B))$，左侧对数在 $2$ 的右导数为
+
+$$
+\frac{\operatorname{Ent}_{2,D}(X)/4-t'(2)\mathcal E_{2,D}(X)}{\|X\|_{2,D}^2}
+=-\frac{t'(2)\Delta_2^B(X)}{\|X\|_{2,D}^2}.
+$$
+
+右侧有同样的单模式，分母相等。比较右导数，再用 $X+\eta I\to X$ 及能量和熵的连续性，得到整个正半定锥上的比较
+
+$$
+\Delta_2^B(X)\ge\Delta_{2,j}^B(Q_j(X)).
+\tag{32.6b}
+$$
+
+[Wu v1，式 (2.3)–(2.6)](https://arxiv.org/html/2610.33686v1#S2.E3) · [式 (3.18)](https://arxiv.org/html/2610.33686v1#S3.E18)
+
+（二）单模亲和余项与全局等号。对非零 $Q\ge0$，记 $M=d_j^{1/4}Qd_j^{1/4}$、$Z=\operatorname{Tr}M^2$、$\sigma=M^2/Z$。已合并的 #35196 在 $h=\beta_j/2$ 下给出指数二的精确单模平方根亲和余项。将两个占据基矢互换即可采用其 Gibbs 排序。乘回归一化因子 $Z$，再用 $\alpha_2^*(B)\le\alpha_2^*(\beta_j)$ 及熵非负性，得某个 $c_j>0$ 使
+
+$$
+\Delta_{2,j}^B(Q)\ge c_j Z\bigl(1-\operatorname{Tr}\sqrt{\sigma}\sqrt{d_j}\bigr)^2
+\ge c_j\,\frac{a_jb_j}{Z}|Q_{01}|^4 .
+\tag{32.6c}
+$$
+
+第二步用 $1-\operatorname{Tr}\sqrt{\sigma}\sqrt{d_j}=\frac12\|M/\sqrt Z-\sqrt{d_j}\|_{S_2}^2$，只保留两个非对角元。该亲和亏量为零恰在 $Q$ 是非负标量矩阵时成立，且余项覆盖奇异 $Q$。在 $Q$ 接近 $I$ 时，最后一项给出 $|Q_{01}|^4$ 的正倍数下界。[trureturing #35196，单模亲和引理](https://github.com/the-omega-institute/trureturing/pull/35196)
+
+若非零 $X\ge0$ 的 $\Delta_2^B(X)=0$，由 (32.6b)–(32.6c)，每个 $Q_j(X)$ 都是标量矩阵，故 $X$ 在每个占据切分上的非对角块皆为零，因而在占据基下对角。将其嵌入密度归一化为占据串的概率律 $P$。记 $P_{\hat j}$ 为删去第 $j$ 位的边缘律。在每条固定旁观占据的条件纤维上，归一化的第 $j$ 项能量为该纤维质量乘单模能量。这由对角块上的生成元及两个平方根因子直接得到。条件相对熵与全局相对熵之差为
+
+$$
+\sum_j\mathbb E_{P_{\hat j}}D_{\rm rel}\bigl(P(\cdot\mid X_{\hat j})\Vert d_j\bigr)
+-D_{\rm rel}(P\Vert D)
+=\sum_j H(P_{\hat j})-(n-1)H(P)\ge0 .
+$$
+
+最后一步由熵链式法则和增加条件只会降低条件熵得到。全局亏量是各纤维单模亏量的加权和，再加上此熵差乘 $\alpha_2^*(B)>0$。各项均非负。等号迫使正质量纤维上的条件律均为 $d_j$。因 $d_j$ 忠实，从一个正质量占据串逐位翻转即可得到全支撑，而且每条边的概率比都是 Gibbs 比。故 $P=D$，还原得 $X=cI$。这给出指数二时整个正半定锥上的严格性。
+
+（三）Gibbs 点的二次型。取中心化观测量切片 $X=I+H$、$\operatorname{Tr}(DH)=0$。在迹一密度坐标中写切向量 $T=D^{1/2}AD^{1/2}$、$\operatorname{Tr}(DA)=0$。令 $U_u(\rho)=D^{-u/2}\rho^uD^{-u/2}$。若矩阵元对应的两个 Gibbs 本征值为 $x,y$，设 $v=|\log(y/x)|$。用 $x^u$ 的差商计算，$D U_u|_D[T]$ 的该矩阵元为 $m_u(v)A_{xy}$，其中
+
+$$
+m_u(v)=\frac{\sinh(uv/2)}{\sinh(v/2)},\qquad m_u(0)=u .
+$$
+
+取配对 $\langle A,C\rangle_D=\operatorname{Tr}(D^{1/2}A^\dagger D^{1/2}C)$。带符号 Wick 基由局部字母 $I,e_{01},e_{10},\operatorname{diag}(b_j,-a_j)$ 的有序乘积给出，非对角字母带占据符号串，四类次数为 $0,1,1,2$。翻转位置或方向不同的字在矩阵元上支撑不交。在同一翻转支撑和方向上，符号相消，其余对角字母由 Gibbs 中心化给出正交性。次数 $d$ 的字有 $\mathcal L$ 本征值 $d$，其模对数差是翻转位置上带方向的 $\beta_j$ 之和，故绝对值 $v\le dB$。一次字的 $v$ 恰为所属模的 $\beta_j$。取伴随对的实、虚厄米组合即可在实切空间使用这些子空间。[Wu v1，§3.3](https://arxiv.org/html/2610.33686v1#S3.SS3)
+
+设 $u=1/s$、$w=1-u$。在迹一密度坐标中，能量为 $\operatorname{Tr}[D^{1/2}U_w(\rho)D^{1/2}\mathcal L(U_u(\rho))]/(4uw)$。因 $\mathcal L(I)=0$ 且 Gibbs 态平稳，线性项和只对一因子作二次微分的项均消失。在次数 $d$、模差 $v$ 的子空间上，以 $\|A\|_D^2=\langle A,A\rangle_D$ 为单位，能量与相对熵的二次 Taylor 系数分别为
+
+$$
+\frac{d\,m_u(v)m_w(v)}{4uw},
+\qquad
+\frac{v}{4\sinh(v/2)}.
+$$
+
+熵系数由 $\frac12\operatorname{Tr}\bigl(T\,D\log|_D[T]\bigr)$ 得到，$v=0$ 时取 $1/2$。两系数之比为 $d\alpha_s^*(v)$。回到观测量切片的映射是 $U_u(\rho)/\operatorname{Tr}[DU_u(\rho)]$，其在中心化切向量上的微分是可逆的正乘子 $m_u(v)$。亏量及其一阶微分在 Gibbs 点均为零，齐次归一化因子在该点为一，故二次型的符号、分解和核随此映射保留。[Wu v1，式 (2.4)](https://arxiv.org/html/2610.33686v1#S2.E4) · [式 (3.46)](https://arxiv.org/html/2610.33686v1#S3.E46)
+
+对 $v>0$ 有 $1/\alpha_s^*(v)=uwv[\coth(uv/2)+\coth(wv/2)]$。由 $x\coth x$ 严格递增及 $\coth x$ 严格递减，$\alpha_s^*(v)$ 严格递减而 $v\alpha_s^*(v)$ 严格递增。故 $B>0$、$d\ge2$ 时 $d\alpha_s^*(v)\ge d\alpha_s^*(dB)>\alpha_s^*(B)$，$B=0$ 时同一严格比较为 $d/2>1/2$。一次方向的二次系数非负，且恰在 $\beta_j=B$ 的模上为零。因此整个二次型非负，其核正是达到上界的模所对应的一次厄米方向。
+
+（四）对补空间极小化后的四次项。固定一个允许的参数点 $(\boldsymbol\beta,B)$。在随逆温光滑变化的带标签 Wick 基中，令 $K$ 取该点核的标签，令 $V$ 取其余中心化方向。在邻近参数仍沿用这两组标签。令 $f(s,K,V)=\Delta_s^B(I+K+V)$，省略其逆温参数。正定点附近的函数演算使 $f$ 在全部变量上光滑，$\alpha_s^*(B)$ 在 $B=0$ 处有光滑偶延拓。补空间 Hessian 在所取点严格为正，并在充分小邻域内保持正定。隐函数定理给出唯一的邻近临界点 $V_s(K)$，满足
+
+$$
+\partial_V f(s,K,V_s(K))=0,\qquad V_s(0)=0,\qquad D_KV_s(0)=0 .
+$$
+
+末项来自所有邻近参数下 Wick 分解中的混合二次项为零。因此 $V_s(K)=O(\|K\|^2)$。总占据宇称的共轭保持 $D$、$\mathcal L$ 和补空间，并在 $K$ 空间上作用为负号。由临界点的唯一性，$F_s(K)=f(s,K,V_s(K))$ 为偶函数。其常数项与线性项为零，二次项在允许参数上非负，在所取参数点上恒为零，三次项由偶性消失。
+
+在所取参数点及 $s=2$，选择 $K$ 中系数模最大的一个一次模 $j$。该模的占据非对角块是这个系数乘旁观符号幺正，其加权二范数为系数的模。其余一次模在这条切分上为对角块。最大系数的模至少是 $\|K\|$ 的一个正倍数，而 $V_2(K)=O(\|K\|^2)$。故在实际极小化点 $I+K+V_2(K)$ 上，所选非对角块的范数仍至少为 $\|K\|$ 的一个正倍数。由 (32.6b)–(32.6c)，小 $K$ 满足 $F_2(K)\ge c\|K\|^4$，其中 $c>0$。
+
+沿每条射线除以四次幂并趋于原点，得该点的齐次四次 Taylor 项在单位球面上有正下界。由光滑性和单位球面的紧性，这个下界缩小后在邻近指数和参数上继续成立。即使所取标签中有模失去饱和，其二次项仍非负。取一致的 Taylor 余项界，并沿 $V_s(K)$ 到 $V$ 的线段积分正定的补空间 Hessian，得到在一个较小邻域内
+
+$$
+f(s,K,V)\ge c_1\|K\|^4+c_2\|V-V_s(K)\|^2,\qquad c_1,c_2>0 .
+$$
+
+若所取点的核为空，直接用正定 Hessian。这样在每个参数点附近，$I$ 都是归一化观测量切片上唯一的局部零点。
+
+（五）紧性与精确时间。在切片 $X\ge0$、$\operatorname{Tr}(DX)=1$ 上，线性夹乘 $X\mapsto D^{1/2}XD^{1/2}$ 将定义域化为固定的紧迹一正半定切片。正幂指数在 $s=2$ 附近离零有正距离，且 $x\log x$ 在零处连续，故亏量在指数、逆温和输入中联合连续，包括输入降秩处。对每个所取参数点，取较小的 Gibbs 邻域，使其在邻近参数下仍落入上一步的严格性范围。在其补集上，指数二的全局严格性给出正的紧集最小值，由连续性在邻近参数和指数下保留正下界。允许参数集 $0\le\beta_j\le B\le B_0$ 紧，固定 $n$ 的符号选择有限。取有限子覆盖及指数半径的最小值，得到共同的 $\epsilon(n,B_0)>0$。齐次性将结论和等号条件延伸到整个正半定锥。
+
+最后，取 $p<q$、$B=B_*$ 和 $t(s)=\frac12\log[B_s(B_*)/B_p(B_*)]$，$s\in[p,q]$。恒等式 $t'(s)=1/[4(s-1)\alpha_s^*(B_*)]$ 在 $B_*=0$ 时也成立。对 $X>0$，半群保单位且为正映射保证 $Y_s=\Phi_{t(s)}(X)>0$。将原文的指数微分和时间微分相加，得
+
+$$
+\frac{d}{ds}\log\|Y_s\|_{s,D}
+=-\frac{\Delta_s^{B_*}(Y_s)}
+{s^2\alpha_s^*(B_*)\|Y_s\|_{s,D}^{s}}\le0 .
+$$
+
+积分得临界时间的收缩。正定逼近将其延伸到正半定输入，引理 2.3 再延伸到全复矩阵。固定指数 $q$ 的时间微分及已证不等式给出其后的收缩，也给出 $p=q$ 时所有 $t\ge0$ 的收缩。[Wu v1，式 (2.3)–(2.6)](https://arxiv.org/html/2610.33686v1#S2.E3) · [式 (3.18)](https://arxiv.org/html/2610.33686v1#S3.E18) · [引理 2.3](https://arxiv.org/html/2610.33686v1#S2.Thmtheorem3)
+
+为证必要性，在一个 $\beta_j=B_*$ 的模上取非零一次厄米方向 $A$。它满足 $\operatorname{Tr}(DA)=0$、$\Phi_t(A)=e^{-t}A$，其模谱支撑在 $\{-B_*,B_*\}$。将 $I+\xi A$ 代入收缩不等式，用引理 3.7 展开两侧范数的平方。消去常数项并除以 $\xi^2\|A\|_D^2$ 后令 $\xi\to0$，由 $B_s$ 的偶性得到 $e^{-2t}B_q(B_*)\le B_p(B_*)$。当 $B_*=0$ 时用 $B_s(0)=s-1$ 即得同一结论。取对数给出所述精确时间。证毕。[Wu v1，§3.4，引理 3.7](https://arxiv.org/html/2610.33686v1#S3.Thmtheorem7)
+
+定理 32.6 的上述纸面证明已通过独立 SSHX 数学复核（审查 `6b0a96fe48f96a43e50a012b`，第 1 次尝试）。指数邻域的一致性针对固定有限模数 $n$ 和有限 $B_0$。已合并的 Lean 形式化覆盖指数二、$h\ge0$、普通迹下复二阶正半定迹一密度的单模平方根亲和余项、严格性及余项系数的最优性，包含秩亏情形。定理 32.6 的有限多模压缩、参数四次估计及精确时间结论的完整 Lean 形式化待完成。[trureturing #35196](https://github.com/the-omega-institute/trureturing/pull/35196)
+
+## 追加锚（本行以下为增补区）
