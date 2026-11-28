@@ -4782,3 +4782,154 @@ $$
 定理 32.6 的上述纸面证明已通过独立 SSHX 数学复核（审查 `6b0a96fe48f96a43e50a012b`，第 1 次尝试）。指数邻域的一致性针对固定有限模数 $n$ 和有限 $B_0$。已合并的 Lean 形式化覆盖指数二、$h\ge0$、普通迹下复二阶正半定迹一密度的单模平方根亲和余项、严格性及余项系数的最优性，包含秩亏情形。定理 32.6 的有限多模压缩、参数四次估计及精确时间结论的完整 Lean 形式化待完成。[trureturing #35196](https://github.com/the-omega-institute/trureturing/pull/35196)
 
 ## 追加锚（本行以下为增补区）
+
+## 32D. 指数三下迹态旁观模与二重中间根的精确最小亏量
+
+本节处理 §32B 留下的双模三能级谱中二重值居中的情形。取反交换符号 $\varepsilon_{12}=-1$，并将旁观模置于第一因子。令 $e=|0\rangle\langle1|$、$Z=\operatorname{diag}(1,-1)$，取物理降算子 $J_c=Z\otimes e$、$J_{\mathrm s}=e\otimes I$，下标 $c,\mathrm s$ 分别表示冷模与旁观模。对 $1<R<\infty$，设
+
+$$
+a_t=(1+t^3)^{-1},\quad b_t=t^3a_t,\quad d_t=\operatorname{diag}(a_t,b_t),\quad
+D=d_1\otimes d_R,\quad \beta=3\log R,\quad
+\alpha=\alpha_3^*(\beta)=\frac{3(R^2-1)}{4(R^2+R+1)\log R}.
+$$
+
+沿用普通迹，置 $M=D^{1/6}XD^{1/6}$、$\tau=\operatorname{Tr}M^3$，非零时 $\rho=M^3/\tau$。齐次熵为 $H_D(M)=\operatorname{Tr}(M^3\log M^3)-\tau\log\tau-\operatorname{Tr}(M^3\log D)$。记 $\Delta(M)=\mathcal E_{3,D}(X)-\alpha H_D(M)$，即式 (3.54) 的原亏量。以下取 $0\log0=0$。记
+
+$$
+C_t(x,y)=\gamma_t(tx-y)^2(tx+y),\qquad \gamma_t=\frac{9}{4(1+t^3)},\qquad
+H_{\rm tr}(x,y)=x^3\log\frac{2x^3}{x^3+y^3}+y^3\log\frac{2y^3}{x^3+y^3},
+$$
+
+其中 $H_{\rm tr}(0,0)=0$，单个零根的对数项以连续值解释。[Wu v1，式 (3.54)–(3.55)](https://arxiv.org/html/2610.33686v1#S3.E54)
+
+**定理 32.7（迹态旁观模下二重中间根的全复标架极小值）。** 对任意有限 $R>1$ 与 $0\le l\le m\le h$，在 $M$ 的特征值固定为 $(l,m,m,h)$ 的所有复正半定输入上，$\Delta$ 的最小值为
+
+$$
+\begin{aligned}
+\Delta_{\min}
+ &=C_R(l,m)+C_R(m,h)+\tfrac12[C_1(l,m)+C_1(m,h)]-\alpha H_*,\\
+H_*&=\sum_{\lambda\in(l,m,m,h)}\lambda^3\log\lambda^3-\tau\log\tau
+ -(l^3+m^3)\log(a_R/2)-(m^3+h^3)\log(b_R/2).
+\end{aligned}
+\tag{32.7a}
+$$
+
+上式按重数求和。取任意赤道单位向量 $v=(|0\rangle+e^{\mathrm i\theta}|1\rangle)/\sqrt2$。依次将根 $l,m,m,h$ 指派给 $v\otimes|0\rangle$、$Zv\otimes|0\rangle$、$Zv\otimes|1\rangle$、$v\otimes|1\rangle$，即达到该最小值。当 $l<m<h$ 时，这给出全部极小矩阵，两个端点谱线的相位和二重谱空间内的正交基可任取。并且
+
+$$
+\Delta_{\min}\ge(\tfrac12-\alpha)[H_{\rm tr}(l,m)+H_{\rm tr}(m,h)]\ge0.
+\tag{32.7b}
+$$
+
+因此式 (3.54) 成立，且 $l<h$ 时对每个复标架均严格成立。结论包含零根及相邻根重合情形。
+
+**证明。** （一）固定谱的展开。给定任意复正交归一特征标架 $(v_i)$ 与根 $(\lambda_i)$，令 $N_j=J_j^\dagger J_j$、$n_i^j=\langle v_i,N_jv_i\rangle$、$w_{ik}^j=|\langle v_i,J_jv_k\rangle|^2$。权重的行和为 $1-n_i^j$，列和为 $n_k^j$，总和为 $2$。取 $t_c=R$、$t_{\mathrm s}=1$。将 §32B 的归一化能量乘回 $\tau$，用 $p=1/3$、$q=2/3$，得第 $j$ 模的齐次能量
+
+$$
+E_j=\sum_{i,k} C_{t_j}(\lambda_i,\lambda_k)w_{ik}^j,\qquad
+C_t(x,y)=\gamma_t(t^3x^3+y^3-t^2x^2y-txy^2).
+$$
+
+其中两项损失分别按行和、列和分配，增益系数来自 $a_t^pb_t^q=t^2a_t$ 与 $a_t^qb_t^p=ta_t$。故 $\mathcal E_{3,D}(X)=E_c+E_{\mathrm s}$。$D$ 忠实，夹乘是正半定锥的双射，各式在奇异输入处连续。
+
+以 $m$ 为基准，置 $d_i=\lambda_i-m$、$u_i=\lambda_i^2-m^2$，并记
+
+$$
+K_{ik}^j=\gamma_{t_j}(t_j^2u_i d_k+t_jd_i u_k),\qquad
+A_i^j=K_{ii}^j=\frac{9t_j}{4(t_j^2-t_j+1)}(\lambda_i-m)^2(\lambda_i+m).
+$$
+
+在 $t=t_j$ 时，从 $C_t(\lambda_i,\lambda_k)$ 减去 $C_t(\lambda_i,m)+C_t(m,\lambda_k)-C_t(m,m)$，余项为 $-K_{ik}^j$。用权重行列和以及 $\log D=\log(a_R/2)I+\beta N_c$，并注意 $C_1$ 对称，可将亏量写成
+
+$$
+\begin{aligned}
+\Delta &= F+\sum_i B_i n_i^c-\sum_{j,i,k}K_{ik}^j w_{ik}^j,\\
+B_i &= C_R(m,\lambda_i)-C_R(\lambda_i,m)+\alpha\beta(\lambda_i^3-m^3)\\
+&=-\frac{\gamma_R R(R-1)d_i}{R^2+R+1}
+   [(R^2+3R+1)(\lambda_i^2+m^2)+2R\lambda_i m],
+\end{aligned}
+\tag{32.7c}
+$$
+
+其中 $F$ 只依赖谱及逆温。$B_i$ 在 $m$ 下方为正、上方为负。因 $R^2-R+1-R=(R-1)^2>0$，有 $A_i^c\le A_i^{\mathrm s}$，在 $\lambda_i\ne m$ 时严格。凡含基准根谱线的 $K_{ik}^j$ 均为零，且 $K_{ik}^j$ 随 $d_i d_k$ 同号。
+
+（二）全复标架上的达到与等号。在占据顺序 $00,01,10,11$ 下写任意单位向量为 $(a,b,c,d)$。两对角振幅 $\bar a b-\bar c d$ 与 $\bar a c+\bar b d$ 的模平方之和中，交叉项相消。若 $p_0=|b|^2+|c|^2$，则
+
+$$
+w_{ii}^c+w_{ii}^{\mathrm s}=p_0(1-p_0)\le\tfrac14.
+\tag{32.7d}
+$$
+
+对根 $(l,m,m,h)$，以 $l,h$ 为下标分别指端点谱线。式 (32.7c) 减去 $F+B_h-(A_l^{\mathrm s}+A_h^{\mathrm s})/4$ 后，精确余项为
+
+$$
+|B_l|n_l^c+|B_h|(1-n_h^c)
++\sum_{i=l,h}\left[(A_i^{\mathrm s}-A_i^c)w_{ii}^c+
+ A_i^{\mathrm s}(\tfrac14-w_{ii}^c-w_{ii}^{\mathrm s})\right]
+-\sum_j\ \sum_{\substack{i,k\in\{l,h\}\\i\ne k}}K_{ik}^j w_{ik}^j .
+$$
+
+各项均非负。所给标架使 $n_l^c=0$、$n_h^c=1$、$w_{ii}^c=0$ 及 $w_{ii}^{\mathrm s}=1/4$（$i=l,h$）。$J_{\mathrm s}$ 保持冷模占据，且 $J_c(v\otimes|1\rangle)=Zv\otimes|0\rangle$ 与低根谱线正交，$J_c(v\otimes|0\rangle)=0$，故两端间的跳跃权重都为零。两条非零冷模跳跃分别从根 $m$ 到 $l$、从 $h$ 到 $m$，权重为一。每个冷模占据块内，两条旁观模交叉跳跃权重均为 $1/4$。代入能量及熵即得 (32.7a)，根重合时相应系数为零，计算照样成立。
+
+若 $l<m<h$，余项为零迫使冷模占据分别为 $0,1$，并迫使两个旁观向量都在赤道上。写端点向量为 $v_0\otimes|0\rangle$ 与 $v_1\otimes|1\rangle$，冷模交叉项为零等价于 $\langle v_0,Zv_1\rangle=0$。赤道条件使 $Zv_0$ 张成 $v_0$ 的正交补，故 $v_1$ 只能是 $v_0$ 的相位倍数。这确定了两条单重谱线，也确定了其正交补上的二重谱投影。
+
+（三）原亏量的符号。将冷模占据排在第一因子，所给极小矩阵成为 $A_0\oplus A_1$，块谱为 $(l,m)$ 与 $(m,h)$，且 $J_c=e\otimes Z$、$J_{\mathrm s}=I\otimes e$。对任意这类冷模占据分块，令 $T_i=\operatorname{Tr}A_i^3$、$h_i=T_i^{1/3}$。冷模能量为
+
+$$
+E_c=\gamma_R[R^3T_0+T_1-R^2\operatorname{Tr}(A_0^2ZA_1Z)
+                                -R\operatorname{Tr}(A_0ZA_1^2 Z)]
+\ge C_R(h_0,h_1).
+$$
+
+两混合迹的 Schatten Hölder 上界分别为 $h_0^2h_1$ 与 $h_0h_1^2$。右侧是冷模对角嵌入 $\operatorname{diag}(h_0,h_1)$ 的单模能量。旁观模能量按两块相加，各为迹态参考下的单模能量。在 $H_D$ 中分别插入并减去 $T_i\log T_i$，得到两个块的迹态熵加冷模熵，后者为 $\sum_i T_i\log(T_i/(d_R)_{ii})-(T_0+T_1)\log(T_0+T_1)$。Wu 定理 3.1 分别给出迹态块的系数 $1/2$ 与冷模的实际系数 $\alpha$，零质量块按连续性取零。因此剩下的下界就是 (32.7b)。由
+
+$$
+\frac1\alpha=\frac{2\beta}{9}\bigl[\coth(\beta/3)+\coth(\beta/6)\bigr]>2
+$$
+
+（$z\coth z>1$ 对 $z>0$），得 $1/2-\alpha>0$。$H_{\rm tr}(x,y)$ 是总质量乘相对于公平二点分布的相对熵，恰在 $x=y$ 时为零，故 $l<h$ 时 (32.7b) 严格为正。两模可由固定 $|00\rangle$、交换 $|01\rangle$ 与 $|10\rangle$ 并使 $|11\rangle$ 变号的幺正同时交换，结论因而适用于任一物理模为冷模的情形。证毕。[Wu v1，定理 3.1](https://arxiv.org/html/2610.33686v1#S3.Thmtheorem1)
+
+**推论 32.8（分裂中间根与独立变化的模逆温）。** 取 $0\le l\le m\le n\le h$。沿用定理 32.7 证明中的 $K_{ik}^j$，以 $m$ 为基准并取 $(t_c,t_{\mathrm s})=(R,1)$，置 $P=\max(K_{nh}^c,K_{hn}^c,K_{nh}^{\mathrm s})$。令实际模逆温为 $3\log r$ 与 $3\log R$，其中 $1\le r\le\min(2,R)$、$1<R<\infty$，参考态为 $d_r\otimes d_R$，系数取 $\alpha=\alpha_3^*(3\log R)$。对每个具有该谱的复标架，原亏量至少为
+
+$$
+(\tfrac12-\alpha)[H_{\rm tr}(l,m)+H_{\rm tr}(n,h)]
+ -|K_{ln}^c|-P+\tfrac12 K_{nh}^{\mathrm s}-160h^3(r-1).
+\tag{32.8a}
+$$
+
+特别地，$R=2$、$(l,m,n,h)=(1/2,1,1+\delta,2)$ 时，$0<\delta\le1/1000$ 与 $1\le r\le1+1/1000000$ 给出四个不同正根的严格正性。同一结论在 $R=2$ 的某个开邻域内对上述 $\delta,r$ 一致成立，取 $r>1$ 即得到两模实际逆温各自变化的正温范围。
+
+**证明。** 先取 $r=1$。对复单位向量 $u,v$，四个 Majorana $J_j+J_j^\dagger$、$\mathrm i(J_j-J_j^\dagger)$ 是两两反交换的厄米对合。它们作用于 $v$ 的像在实内积 $\operatorname{Re}\langle\cdot,\cdot\rangle$ 下正交归一。分别对 $u$ 与 $\mathrm i u$ 用 Bessel 不等式并相加，得
+
+$$
+\sum_j\bigl(|\langle u,J_jv\rangle|^2+|\langle v,J_ju\rangle|^2\bigr)\le1.
+$$
+
+这里两次 Bessel 求和得到四个复振幅的模平方和，每模的两个 Majorana 振幅的模平方和恰为两个有向跳跃权重之和的两倍。在定理的达到标架中，把 $Zv\otimes|1\rangle$ 的根由 $m$ 换成 $n$，得到比较矩阵 $M_*$。它仍同时达到占据项及对角跳跃项的下界。含基准根的系数为零，其余非零交叉贡献只有冷模 $l,n$ 格（权重 $1$），以及旁观模 $n,h$ 与 $h,n$ 两格（各 $1/4$）。任意标架中的 $l,n$ 与 $l,h$ 交叉贡献均非负，而 $n,h$ 的总奖励由上式界于 $P$，其中 $K_{nh}^{\mathrm s}=K_{hn}^{\mathrm s}$。因此亏量至少为 $\Delta(M_*)-|K_{ln}^c|-P+K_{nh}^{\mathrm s}/2$。对 $M_*$ 用冷模分块估计，块谱现为 $(l,m)$ 与 $(n,h)$，便得到 (32.8a) 在 $r=1$ 的界。
+
+保持 $M$ 及其物理标架固定，改变暖模比例 $t$ 从 $1$ 到 $r$。实际逆温上界始终为 $3\log R$。在 $1\le t\le2$ 时，$\gamma_t\le9/8$ 且 $|\gamma_t'|=27t^2/[4(1+t^3)^2]\le27/16$。因 $tx+y\le3h$，对 $C_t$ 求导得 $|\partial_t C_t(x,y)|\le(27/16)(3h)^3+3(9/8)h(3h)^2=(1215/16)h^3$。权重总和为二。$\log d_t$ 的两个对角元的导数绝对值至多 $3/t$，而 $\tau\le4h^3$、$\alpha<1/2$，故熵项乘系数后的变化至多 $6h^3(r-1)$。两项合计至多 $160h^3(r-1)$。
+
+在给定例子中，$\log2>2/3$ 给出 $1/2-\alpha>1/56$。公平二点相对熵的二阶导数至少为 $4$，故 $H_{\rm tr}(x,y)\ge (x^3-y^3)^2/[2(x^3+y^3)]$（正总质量），特别是 $H_{\rm tr}(l,m)\ge49/144$。代入 $K$ 得
+
+$$
+|K_{ln}^c|=\tfrac54\delta+\tfrac14\delta^2,\qquad
+K_{nh}^{\mathrm s}=P=\tfrac{45}8\delta+\tfrac98\delta^2,\qquad
+K_{nh}^c=\tfrac72\delta+\delta^2,\qquad K_{hn}^c=4\delta+\tfrac12\delta^2 .
+$$
+
+于是 $r=1$ 的下界至少为 $49/(56\cdot144)-65\delta/16-13\delta^2/16$，在 $0\le\delta\le1/1000$ 上最小为 $289883/144000000>1/500$。温度改变量至多 $160\cdot 2^3/1000000<1/500$。式 (32.8a) 对 $R,r,\delta$ 连续，且这个正余量对所给闭区间一致，故可取同一个 $R=2$ 的开邻域，并取其充分小使 $r\le R$。证毕。
+
+**注记 32.9（冷模占据限制的反例）。** 取 $R=2$、$r=1$ 与重复低根的谱 $(0,0,1,1+\delta)$。先令 $\delta=0$，写 $M=P_0$ 为秩二投影，$K=2P_0-I$、$z=\operatorname{Tr}(K(I\otimes Z))/4$。用 §32B 的 $2+2$ 公式并乘回 $\tau=2$，亏量等于与标架无关的常数加
+
+$$
+Bz+\tfrac18\operatorname{Tr}\bigl(K[A\mathcal L_c^0+\tfrac94\mathcal L_{\mathrm s}^0](K)\bigr),
+\qquad A=\tfrac32,\quad B=\tfrac{11}{14}.
+$$
+
+§32B 的同时对角化给出无迹空间中的权重下界 $A$，而 $I\otimes Z$ 的权重为 $2A$。因 $\operatorname{Tr}K^2=4$，上式至少为 $Bz+A(1+z^2)/2$。取 $P_0=I\otimes|q\rangle\langle q|$、$\langle q,Zq\rangle=z$ 可达到该值，因为 $I\otimes\sigma_x,I\otimes\sigma_y$ 的权重均为 $A$。所取二次式于 $z=-11/21$ 最小。与 $N_c$ 对易的投影在两个占据块中的秩为整数，故只有 $z=-1,0,1$，其亏量至少高出 $25/147$。
+
+分裂一个正根时，固定标架中与方向有关的部分为 $E_c+E_{\mathrm s}+\alpha\beta\operatorname{Tr}(M^3N_c)$。对 $0\le\delta\le1$，单格代价的导数绝对值至多 $3\gamma_t(t+1)(tx+y)^2$（$x,y\le2$），在 $t=2,1$ 时分别至多 $81,108$。每模总权重为二，占据项的导数至多 $12$，故该部分的改变量至多 $390\delta$。对易矩阵合并正根后仍给出对易投影。取比较矩阵 $\operatorname{diag}(1,1+\delta)\otimes|q\rangle\langle q|$，其中 $\langle q,Zq\rangle=-11/21$。在 $\delta=1/10000$ 时，两类输入的谱常数相同，比较矩阵的亏量比任何同谱且与 $N_c$ 对易的矩阵至少低 $25/147-780/10000>0$。在这个固定的模型与谱上，冷模占据分块约束严格抬高极小值。
+
+定理 32.7、推论 32.8 与注记 32.9 为研究稿 wu-cubic-unequal-near-diagonal/tracial-spectator-repeated-middle.txt 的纸面推导。Wu v1 的单模定理用于原能量与熵的比较。[Wu v1，定理 3.1 与式 (3.54)–(3.55)](https://arxiv.org/html/2610.33686v1#S3.E54)
+
+## 追加锚（本行以下为增补区）
