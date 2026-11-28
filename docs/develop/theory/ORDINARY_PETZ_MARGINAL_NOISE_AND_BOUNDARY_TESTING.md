@@ -742,3 +742,102 @@ The ordinary recovery convention is the partial-trace instance of Petz's channel
 Review `fac4dd900e4154acf8534d22`, attempt 1, verified the flagged determinant argument and derived the coherent complete-erasure extension and improved coefficient. Review `663d80464792b8a942002dae`, attempt 1, independently checked the half-density and POVM comparisons, the improved erasure bound, the sector normalizations and power bound, and the physical witness through the exact tensor trace-distance limit underlying (11.8). The attaining label-and-qubit measurement, entropy expansion with $\Delta_T=\Delta$, and faithful variant are additional derivations on that witness. Review `36f213dd15a16d9e26e2cf9f`, attempt 1, independently checked the general square-root bound, the coherent three-label witness, its exact entropy equality and risk, and its faithful approximation. The two-label version follows by grouping two labels while the retained occupations still distinguish the transported mass. Each power is optimal within its stated class. The displayed prefactors are upper bounds. The risk limit compares the two encoded benchmarks.
 
 ## 追加锚（本行以下为增补区）
+
+## 12. Testing against the same encoded source
+
+**Theorem 12.1 (Exact entropy preservation and strict risk separation).** There is a five-flag dephasing family with $Q\succeq I/4$ and $\Delta_T=\Delta$ exactly. As $\varepsilon\downarrow0$, it satisfies $\Gamma/\varepsilon^2\to2$ and $\Delta/\varepsilon\to1+3\log(3/2)$. Let $r_{i,N}$ be the minimum equal-prior error for testing the encoded source $R$ against $Y_i$ on $N$ copies. For integers $N$ with $N\varepsilon\to c>0$, put $A_c=\operatorname{Pois}(3c/2)^{\otimes2}$ and $B_c=\operatorname{Pois}(c)\otimes\operatorname{Pois}(2c)$. Then
+
+$$
+r_{0,N}\longrightarrow r_0(c)=\tfrac12 e^{-c},\qquad
+r_{1,N}\longrightarrow r_1(c)=\tfrac12\sum_{k,\ell\ge0}
+\min\{A_c(k,\ell),e^{-c}B_c(k,\ell)\}<r_0(c).
+$$
+
+Both the source and reference can be chosen faithful with the same exact entropy equality and limits.
+
+Proof. Use the tensor order $E\otimes B$ of Proposition 11.6. Take orthonormal flags $(1,+),(2,+),(1,-),(2,-),3$. For $0<\varepsilon<1/3$ set $w=1/2$, $a=1/4$, $t=3\varepsilon$, and
+
+$$
+v_\pm=\sqrt{\varepsilon}|0\rangle\pm\sqrt{1-\varepsilon}|1\rangle,\qquad
+\chi_\pm=\frac{|1,\pm\rangle\otimes|1\rangle+|2,\pm\rangle\otimes v_\pm}{\sqrt2},
+$$
+
+$$
+\sigma=\frac w2\sum_\pm|\chi_\pm\rangle\langle\chi_\pm|+a|3\rangle\langle3|\otimes I,\qquad
+\rho=\frac t2\sum_\pm|\chi_\pm\rangle\langle\chi_\pm|+(1-t)|3\rangle\langle3|\otimes|0\rangle\langle0|.
+$$
+
+Let $T$ be pinching by the five flag projections and $\Phi=T\otimes\mathrm{id}_B$. The source is supported on the reference. On each four-dimensional flag-pair sector the conditional states agree before and after pinching. The two sectors have source mass $t/2$ and reference mass $w/2$ each. The flag-3 block is fixed, and the source there lies on the reference eigenvalue $a$. Hence
+
+$$
+D(\rho\Vert\sigma)=D(\Phi\rho\Vert\Phi\sigma)
+=t\log(t/w)+(1-t)\log((1-t)/a).
+$$
+
+Pinching preserves the partial trace over $E$, so subtracting the actual marginal relative entropy gives $\Delta_T=\Delta$. Each $\chi_\pm$ has retained marginal $(|1\rangle\langle1|+|v_\pm\rangle\langle v_\pm|)/2$. The off-diagonal entries cancel between the signs, giving
+
+$$
+P=\operatorname{diag}(1-u,u),\quad u=t(1-\varepsilon/2),\qquad
+Q=\operatorname{diag}(q_0,q_1),\quad q_0=(1+\varepsilon)/4,\quad q_1=(3-\varepsilon)/4.
+$$
+
+For the marginal term write $f(x)=(1-x)\log((1-x)/q_0)+x\log(x/q_1)$. On $[u,t]$ its derivative $\log(xq_0/((1-x)q_1))$ is $O(\log(1/\varepsilon))$. Since $t-u=3\varepsilon^2/2$, replacing $f(u)$ by $f(t)$ gives
+
+$$
+\Delta=(1-t)\log(q_0/a)+t\log(q_1/w)+O(\varepsilon^2\log(1/\varepsilon))
+=(1+3\log(3/2))\varepsilon+O(\varepsilon^2\log(1/\varepsilon)).
+$$
+
+Put $L=Q^{-1/2}PQ^{-1/2}=\operatorname{diag}(L_0,L_1)$, with $L_0=(1-u)/q_0$ and $L_1=u/q_1$. Set $\mu_1=L_1$ and $\mu_2=\varepsilon L_0+(1-\varepsilon)L_1$. For a joint reference $C$ with marginal $Q$, its ordinary Petz benchmark is $\sqrt C(I_E\otimes L)\sqrt C$. On either coherent pair the reference root is $\sqrt{w/2}|\chi_\pm\rangle\langle\chi_\pm|$, and the likelihood expectation is $(\mu_1+\mu_2)/2$. Pinching splits the resulting mass equally between the two flags. For the recomputed benchmark each dephased reference block has coefficient $w/4$ on its retained rank-one projector and is weighted by $\mu_1$ or $\mu_2$. Both benchmark blocks on flag 3 are $aL$.
+
+Read the flag and, on flag 3, the retained occupation. The conditional pure state on each of the first four flags is common to all hypotheses, and the sign is fair within each flag class under all three. In the order of classes 1 and 2 followed by occupations 1 and 0 on flag 3, the exact probabilities are
+
+$$
+\begin{aligned}
+R=\Phi\rho &\quad (t/2,t/2,0,1-t),\\
+Y_0 &\quad (w(\mu_1+\mu_2)/4,w(\mu_1+\mu_2)/4,aL_1,aL_0),\\
+Y_1 &\quad (w\mu_1/2,w\mu_2/2,aL_1,aL_0).
+\end{aligned}
+$$
+
+Pairing the first two mass differences with $\mu_1,\mu_2$ gives
+
+$$
+\Gamma=\operatorname{Tr}[(I_E\otimes L)(Y_1-Y_0)]
+=\frac w4(\mu_2-\mu_1)^2=\frac w4\varepsilon^2(L_0-L_1)^2.
+$$
+
+Since $L_0\to4$ and $L_1/\varepsilon\to4$, this gives $\Gamma/\varepsilon^2\to2$. Also $\mu_1/\varepsilon\to4$ and $\mu_2/\varepsilon\to8$, so the first three probabilities divided by $\varepsilon$ tend respectively to $(3/2,3/2,0)$, $(3/2,3/2,1)$, and $(1,2,1)$.
+
+The orthogonal flag and occupation blocks have common conditional states, so the cell measurement preserves the trace distance on every tensor power. Given the first three counts, the fourth is determined and the ordered cell string is uniform under each hypothesis. The count likelihood ratio test therefore attains the quantum optimum at each $N$, with error equal to half the sum of the pointwise minima of the count masses. For rare probabilities $p_1,p_2,p_3$, the mass at fixed counts $n_1,n_2,n_3$ with $s=\sum_j n_j$ is
+
+$$
+(N)_s\prod_{j=1}^3\frac{p_j^{n_j}}{n_j!}\left(1-\sum_{j=1}^3p_j\right)^{N-s}
+\longrightarrow
+e^{-\sum_j\lambda_j}\prod_{j=1}^3\frac{\lambda_j^{n_j}}{n_j!},
+\qquad \lambda_j=\lim Np_j.
+$$
+
+Here $(N)_s=N!/(N-s)!$, and a zero rate gives a count identically zero in the limit. The expected total count stays bounded, so Markov's inequality bounds the tails uniformly. The limiting law also has finite mean. Summing over finite count sets and bounding both tails gives total variation convergence under each hypothesis, hence convergence of the minimum errors.
+
+The source has third count zero, and each limiting benchmark has an independent $\operatorname{Pois}(c)$ third count. Only third count zero contributes to either overlap. The first two counts have law $A_c$ for both $R$ and $Y_0$, and law $B_c$ for $Y_1$. This yields the two stated limits. For every $c>0$, choose an integer $\ell>c/\log(4/3)$. At $(0,\ell)$ the ratio $A_c(0,\ell)/B_c(0,\ell)=(3/4)^\ell$ is strictly below $e^{-c}$ and $B_c(0,\ell)>0$. The overlap with $e^{-c}B_c$ is strictly less than its total mass $e^{-c}$. Every window $N\Delta\to d>0$ gives this comparison at $c=d/(1+3\log(3/2))$.
+
+For the faithful version let $\delta=\varepsilon^8$ and $\sigma_\delta=(1-\delta)\sigma+\delta I_{10}/10$. On each flag-pair sector take the source block to be $t/2$ times the normalized restriction of $\sigma_\delta$. On flag 3 take $(1-t)((1-\delta)|0\rangle\langle0|+\delta I/2)$. Both states are positive definite. The pair contributions depend only on the sector masses before and after pinching, and the common block is fixed, so the joint entropy equality and $\Delta_T=\Delta$ hold exactly.
+
+The new total reference mass of the two pairs is $w_\delta=(1-\delta)w+4\delta/5$, and its flag-3 eigenvalue is $a_\delta=(1-\delta)a+\delta/10$. The new joint relative entropy is
+
+$$
+t\log(t/w_\delta)+(1-t)\bigl[\log((1-t)/a_\delta)-h(\delta/2)\bigr],
+$$
+
+where $h(x)=-x\log x-(1-x)\log(1-x)$. Its change is $O(\delta\log(1/\delta))$. Both joint states and their marginals change by $O(\delta)$ in trace norm. The uniform marginal reference floor and finite-dimensional entropy continuity give the same $O(\delta\log(1/\delta))$ bound for the change in $D(P\Vert Q)$.
+
+Recomputing the likelihood from these marginals changes it by $O(\delta)$ in operator norm by the uniform floor. The positive square-root inequality bounds each reference-root change by $O(\sqrt\delta)$ in operator norm. Expanding the Petz sandwiches in fixed dimension and using trace-norm contractivity of $\Phi$ bounds each benchmark change by $O(\sqrt\delta)$ in trace norm. The trace pairing then changes $\Gamma$ by $O(\sqrt\delta)=o(\varepsilon^2)$. By tensor telescoping and the Helstrom formula, each optimal error changes by at most
+
+$$
+\frac N4\bigl(\|R_\delta-R\|_1+\|Y_{i,\delta}-Y_i\|_1\bigr)=O(N\varepsilon^4)\longrightarrow0.
+$$
+
+Independent review `727b4068155cab3df32dd99b`, attempt 1, approved the construction and checked the entropy identities, benchmark probabilities, defect, finite-copy optimum, Poisson limits, strict comparison, and faithful perturbation with no equation corrections. Lean formalization of Theorem 12.1 is ongoing.
+
+## 追加锚（本行以下为增补区）
