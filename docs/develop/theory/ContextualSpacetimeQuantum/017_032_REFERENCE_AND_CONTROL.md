@@ -4536,3 +4536,105 @@ $$
 定理 32.3 的两项判别极限及严格差距已经独立数学审查（SSHX 审查 wu-cold-sequential-helstrom-audit-01a1da1d-20261128），Lean 形式化待完成。已合并的 Lean 结果给出指数二下单模平方根亲和亏量平方前的最优系数。[Lean #35196](https://github.com/the-omega-institute/trureturing/pull/35196)
 
 ## 追加锚（本行以下为增补区）
+
+## 32B. Wu 带符号自旋不等式的两能级谱
+
+**定理 32.4（双模、任意交换符号的两能级谱）。** 设 $1<s<\infty$，$0\le\beta_1,\beta_2\le\beta<\infty$，双模交换符号为 $\varepsilon_{12}\in\{+1,-1\}$。令 $D$ 为乘积 Gibbs 密度。对非零正半定输入 $X$，记
+$$
+p=1/s,\qquad q=1-p,\qquad G=D^{p/2},\qquad
+\tau=\operatorname{Tr}(GXG)^s,\qquad \rho=(GXG)^s/\tau.
+$$
+若 $\rho$ 至多有两个不同特征值，则 $X$ 满足 Wu 式 (3.54)，系数为式 (3.55) 的 $\alpha_s^*(\beta)$。结论允许任意复谱子空间及零特征值。零输入两侧均为零。
+
+**证明。** 先写出任意有限模数下的归一化公式。令 $N_j=J_j^*J_j$，其中 $J_j$ 是物理降算子，$J_jJ_j^*=I-N_j$。令 $a_j=(1+e^{\beta_j})^{-1}$、$b_j=1-a_j$、$d_j=\operatorname{diag}(a_j,b_j)$，并将 $\log d_j$ 提升到全系统。再令 $k=1/(2pq)$、$w_j=a_j^pb_j^q$、$w'_j=a_j^qb_j^p$。Wu 式 (2.4) 中的第 $j$ 项除以 $\tau$ 后为
+$$
+E_j(\rho)=k\bigl[b_j(1-n_j)+a_jn_j-w_jF_j-w'_jF'_j\bigr],\qquad n_j=\operatorname{Tr}(\rho N_j),
+$$
+其中 $F_j=\operatorname{Tr}(\rho^qJ_j\rho^pJ_j^*)$、$F'_j=\operatorname{Tr}(\rho^qJ_j^*\rho^pJ_j)$。确实，正生成元为 $a_j\{N_j,X\}+b_j\{I-N_j,X\}-2a_jJ_j^*XJ_j-2b_jJ_jXJ_j^*$。代入 $X=\tau^pG^{-1}\rho^pG^{-1}$，循环取迹给出两项占据损失。由 $GJ_jG^{-1}=(a_j/b_j)^{p/2}J_j$，两项增益的系数在乘上式 (2.4) 的因子 $1/(4pq)$ 前分别为 $2b_j(a_j/b_j)^p$ 和 $2a_j(b_j/a_j)^p$，给出上式。归一化熵为 $D_{\rm rel}(\rho\Vert D)=-S(\rho)-\sum_j\operatorname{Tr}(\rho\log d_j)$，其中 $S(\rho)=-\operatorname{Tr}(\rho\log\rho)$，取 $0\log0=0$。[Wu，arXiv:2610.33686v1，式 (2.4)](https://arxiv.org/html/2610.33686v1#S2.E4)
+
+记 $\alpha=\alpha_s^*(\beta)$。对 $h=\beta/2>0$，式 (3.55) 等于 $[2pq(h\coth(ph)+h\coth(qh))]^{-1}$，在 $h=0$ 连续取 $1/2$。由 $(x\coth x)'=(\sinh x\cosh x-x)/\sinh^2x>0$，有 $\alpha\le\alpha_s^*(\beta_j)$。Wu 定理 3.1 及相对熵非负性因此给出每个单模态 $\sigma$ 的 $E_j^{\rm qubit}(\sigma)\ge\alpha D_{\rm rel}(\sigma\Vert d_j)$。忠实 Gibbs 参考下，正幂及 $x\log x$ 的连续性覆盖奇异态。[Wu，arXiv:2610.33686v1，定理 3.1](https://arxiv.org/html/2610.33686v1#S3.Thmtheorem1) · [式 (3.54)–(3.55)](https://arxiv.org/html/2610.33686v1#S3.E54)
+
+标量谱和重数 $1+3$ 的谱由下文定理 32.5 给出。对重数 $2+2$，写 $\rho=HP+L(I-P)$，其中 $H\ge L\ge0$、$2(H+L)=1$，$P$ 为秩二正交投影。令 $K=2P-I$、$Z_j=I-2N_j$、$z_j=\operatorname{Tr}(KZ_j)/4$、$S_j=\operatorname{Tr}(PJ_jPJ_j^*)$。从列谱块到行谱块的四个跳跃权重为
+$$
+\begin{array}{c|cc}
+ & P&I-P\\ \hline
+ P&S_j&1-S_j+z_j\\
+ I-P&1-S_j-z_j&S_j
+\end{array}
+$$
+因为 $P$ 行和、列和分别为 $\operatorname{Tr}(PJ_jJ_j^*)=1+z_j$、$\operatorname{Tr}(PJ_j^*J_j)=1-z_j$，总和为 $2$。故 $F_j=S_j(H+L)+(1-S_j+z_j)H^qL^p+(1-S_j-z_j)L^qH^p$，而 $F'_j$ 交换两个交叉权重。用 $n_j=1/2-(H-L)z_j$ 及 $\log d_j=\frac12(\log a_j+\log b_j)I-\frac12\beta_jZ_j$，归一化亏量化为
+$$
+\begin{aligned}
+\Delta(\rho)&=\sum_j E_j(\rho)-\alpha D_{\rm rel}(\rho\Vert D)
+=C+\sum_j B_jz_j+\tfrac12 W,\qquad W=2\sum_j A_j(1-S_j),\\
+A_j&=k(w_j+w'_j)(H^p-L^p)(H^q-L^q)\ge0,\\
+B_j&=[k(b_j-a_j)-\alpha\beta_j](H-L)-k(w_j-w'_j)(H^qL^p-L^qH^p),\\
+C&=\sum_j\left[\tfrac k2(1-w_j-w'_j)+\tfrac\alpha2(\log a_j+\log b_j)\right]
+-2\alpha(H\log H+L\log L).
+\end{aligned}
+$$
+令 $\mathcal L_j^0(U)=U-J_jUJ_j^*-J_j^*UJ_j$ 为迹态局部生成元。由 $\operatorname{Tr}(KJ_jKJ_j^*)=4S_j-2$ 及伴随方向的同一迹值，得 $\operatorname{Tr}(K\mathcal L_j^0(K))=8(1-S_j)$。
+
+**反交换情形。** 令 $m_{2j-1}=J_j+J_j^*$、$m_{2j}=\mathrm i(J_j-J_j^*)$。四个 CAR Majorana 两两反交换，平方为 $I$。置 $\Gamma=m_1m_2m_3m_4$、$g_i=\mathrm i\Gamma m_i$（$i\le4$）、$g_5=\Gamma$。这五个厄米矩阵两两反交换，平方为 $I$，且 $g_1\cdots g_5=I$。对不同的 $i,\ell\le4$，$g_ig_\ell=m_im_\ell$，故 $\mathrm i g_{2j-1}g_{2j}=Z_j$。写
+$$
+M_{i\ell}=\mathrm i g_i g_\ell\quad (1\le i<\ell\le5),\qquad
+M_{i6}=g_i\quad (1\le i\le5),\qquad K=\sum_{i<\ell}c_{i\ell}M_{i\ell}.
+$$
+这些矩阵构成无迹厄米矩阵的实迹正交基，每个平方的迹为 $4$。确实，长度一至四的互异 $g_i$ 乘积都可由某个 $g_i$ 共轭变号，故无迹，两个不同基元的乘积归入此类。展开 $K^2$，共享指标的交叉项相消，标量部分为 $\sum c_{i\ell}^2I$。对每组 $i<j<\ell<m$，不相交的三种配对给出同一乘积的 $2(c_{ij}c_{\ell m}-c_{i\ell}c_{jm}+c_{im}c_{j\ell})$ 倍。由 $g_1\cdots g_5=I$，该乘积为指标补对的基元乘以符号，十五组补对互异。因此 $K^2=I$ 当且仅当 $\sum c_{i\ell}^2=1$ 且这些 Plücker 二次式全为零。将 $c$ 反对称延拓，取 $c_{ij}\ne0$，令 $u_\ell=c_{i\ell}$、$v_\ell=c_{j\ell}/c_{ij}$，二次式即给出 $c=u\wedge v$。因楔积范数为一，可在同一定向平面中换成正交单位对而保持楔积。反过来，每个这样的单位对给出无迹厄米对合及秩二投影。此时 $z_1=c_{12}$、$z_2=c_{34}$。
+
+由 $\mathcal L_j^0(U)=U-\frac12(m_{2j-1}Um_{2j-1}+m_{2j}Um_{2j})$，局部权重等于该模的两个 $m_a$ 共轭中使基元变号的次数。对 $i\le4$，$m_a$ 只在 $a=i$ 时使 $g_i$ 变号，对 $g_5$ 则总使其变号。令 $r_i=A_1$（$i=1,2$）、$r_i=A_2$（$i=3,4$），$W$ 在 $c_{i\ell}^2$ 上的权重遂为
+$$
+r_i+r_\ell\ (i<\ell\le4),\qquad r_i\ (i6),\qquad
+2(A_1+A_2)-r_i\ (i5),\qquad 2(A_1+A_2)\ (56).
+$$
+它们逐项至少为 $h_i+h_\ell$，其中 $h_i=r_i$（$i\le4$）、$h_5=2\min(A_1,A_2)$、$h_6=0$，在避开指标 $5$ 的平面上取等。由 $\sum_{\ell\ne i}c_{i\ell}^2=u_i^2+v_i^2$，可在平面中选 $u_6=0$，令 $x_j,y_j$ 为 $u,v$ 在第 $j$ 个指标对上的平方范数，得到
+$$
+W\ge\sum_j A_j(x_j+y_j)+h_5(u_5^2+v_5^2),\qquad z_j^2\le x_jy_j.
+$$
+将 $u_5^2$ 加到 $A_j$ 较小的 $x_j$ 得 $X_j$，再令 $Y_j=z_j^2/X_j$，取 $0/0=0$。于是 $\sum_jX_j=1$、$0\le Y_j\le y_j$、$\sum_jY_j\le1$，且 $\sum_j A_j(X_j+Y_j)\le W$。反过来，对任意满足这些单纯形约束的非负 $X,Y$，取
+$$
+u=(\sqrt{X_1},0,\sqrt{X_2},0,0,0),\qquad
+v=(0,\eta_1\sqrt{Y_1},0,\eta_2\sqrt{Y_2},0,\sqrt{1-Y_1-Y_2}),
+$$
+其中 $\eta_j\in\{\pm1\}$。此平面实现 $W=\sum_j A_j(X_j+Y_j)$ 和 $z_j=\eta_j\sqrt{X_jY_j}$。选 $\eta_j$ 使 $B_jz_j=-|B_j|\sqrt{X_jY_j}$，故反交换情形的谱轨道最小亏量恰为
+$$
+\min_{\substack{X,Y\ge0\\ \sum X_j=1,\ \sum Y_j\le1}}
+\left[C+\sum_j\left(\tfrac{A_j}{2}(X_j+Y_j)-|B_j|\sqrt{X_jY_j}\right)\right].
+$$
+
+**交换情形。** 此时 $J_j$ 为普通张量降算子。将 $K$ 展开在 Pauli 基中，记两个单体向量长度为 $r,t$，双体系数矩阵为 $T$，则 $r^2+t^2+\|T\|_F^2=1$，且 $r\ge|z_1|$、$t\ge|z_2|$。沿两个单体向量各取单位 Pauli 轴，零向量处任取。两局部轴之和的特征值为 $2,0,0,-2$，与 $K$ 的迹配对为 $4(r+t)$。由 $\|K\|_{\rm op}=1$ 得 $r+t\le1$。$\mathcal L_j^0$ 在局部 $I,\sigma_x,\sigma_y,Z$ 上的权重为 $0,1,1,2$，因此
+$$
+W\ge A_1(r^2+z_1^2)+A_2(t^2+z_2^2)+(A_1+A_2)\|T\|_F^2
+=A_1+A_2-A_2r^2-A_1t^2+A_1z_1^2+A_2z_2^2.
+$$
+固定 $z_1,z_2$ 时，$A_2r^2+A_1t^2$ 由单调性和凸性在 $r+t=1$ 的可行线段某端点达到最大值。若该端点为 $(1-u,u)$，$u=|z_2|<1$，上式给出 $W\ge A_1(1-u^2+z_1^2)+2A_2u$。取 $X=(1-u,u)$、$Y=(z_1^2/(1-u),u)$，由 $|z_1|\le1-u$ 得 $\sum Y_j\le1$ 且 $z_j^2=X_jY_j$。此下界减去 $\sum_j A_j(X_j+Y_j)$ 为 $A_1u[(1-u)^2-z_1^2]/(1-u)\ge0$。若 $u=1$，直接取 $X=Y=(0,1)$。另一端点交换指标 $1,2$ 即得同一结论。因此上面的标量最小值也是交换情形的下界。
+
+**标量最小值及其符号。** 令
+$$
+m=\min_{j,\ 0\le u\le1}\bigl[C+\tfrac{A_j}{2}(1+u^2)-|B_j|u\bigr],\qquad c=C-m.
+$$
+取 $X_j=1$、$Y_j=u^2$ 且其余分量为零，标量目标可取到 $m$。为证下界，将常数 $C$ 换成 $c$，此时所有单模值非负。代入 $u=1$ 得 $|B_j|\le A_j+c$。若 $c\ge0$，目标至少为
+$$
+c\left(1-\sum_j\sqrt{X_jY_j}\right)+\sum_j\tfrac{A_j}{2}(\sqrt{X_j}-\sqrt{Y_j})^2\ge0,
+$$
+其中使用 Cauchy–Schwarz。若 $c<0$，则 $0\le |B_j|<A_j$。代入 $u=|B_j|/A_j$ 得 $A_j/2-|B_j|^2/(2A_j)\ge-c$。配方后第 $j$ 项至少为 $X_j[A_j/2-|B_j|^2/(2A_j)]\ge-cX_j$，求和便得非负。故标量最小值精确等于 $m$，包括 $A_j=0$ 的端点。
+
+每个单模值也由物理态实现。交换时取 $K=zZ_j+\sqrt{1-z^2}\sigma_{x,j}$，反交换时将 $\sigma_{x,j}$ 换为同模的 $g_{2j-1}$，其中 $|z|=u$，符号使 $B_jz=-|B_j|u$。反交换时，$g_{2j-1}=\mathrm i\Gamma m_{2j-1}$ 的额外因子为另一模的占据宇称（同模的两个 Majorana 象限可互换并变号）。把第 $j$ 模移到第一因子后，$K$ 的非对角块因而带一个对角宇称 $V$，可由 $\operatorname{diag}(I,V)$ 消去。该变换固定 $D$，并使第 $j$ 模跳算子的非对角块为恒等或另一模的对角宇称。于是 $\rho$ 成为单模态 $\sigma$ 与迹态 $I/2$ 的乘积，$\sigma$ 的特征值为 $2H,2L$。代入 $F_j,F'_j$，旁观因子的宇称与 $I/2$ 的正幂对易且平方为恒等，故活跃模能量恰为 $E_j^{\rm qubit}(\sigma)$。在原物理表示中，另一模的 $\mathcal L^0$ 消去 $K$，且该模 $z=0$，故其能量为 $k(1-w-w')/2$，正是其迹态能量。相对熵按两个因子相加。因此每个单模值都是两个在共同系数 $\alpha$ 下的单模亏量之和，由 Wu 定理 3.1 非负。两种符号的谱轨道最小值均为 $m\ge0$。证毕。
+
+**定理 32.5（任意有限模数的单重能级）。** 设 $n\ge1$，各模具有 Wu 模型允许的任意交换符号，$0\le\beta_j\le\beta<\infty$，$1<s<\infty$。若归一化嵌入密度为 $\rho=\lambda P+\mu(I-P)$，其中 $P$ 为复秩一正交投影，$\lambda,\mu\ge0$ 且 $\lambda+(2^n-1)\mu=1$，则 Wu 式 (3.54) 成立。单重能级可为最大或最小特征值。
+
+**证明。** 逐模比较。将第 $j$ 模移到第一因子后，$J_j=|0\rangle\langle1|\otimes V_j$，其中 $V_j$ 为由交换符号给出的旁观模占据宇称之积。对角幺正 $\operatorname{diag}(I,V_j)$ 固定 $D,N_j$ 并将 $J_j$ 变成普通张量降算子。以下比较在此共轭后的表示进行。置 $M=2^{n-1}$、$z=\operatorname{Tr}(PN_j)$、$d=\operatorname{Tr}(PJ_j)$、$\delta_r=\lambda^r-\mu^r$，则 $n_j=M\mu+(\lambda-\mu)z$。展开两项正幂得
+$$
+F_j=M\mu+\delta_q\mu^p(1-z)+\mu^q\delta_p z+\delta_p\delta_q|d|^2,
+$$
+而 $F'_j$ 交换两个线性项中的 $z$ 与 $1-z$。若 $P=|\psi\rangle\langle\psi|$，对 $(I-N_j)\psi$ 与 $J_jN_j\psi$ 用 Cauchy–Schwarz 得 $|d|^2\le z(1-z)$。因 $\delta_p\delta_q\ge0$，将 $P$ 换成 $(\sqrt{1-z}|0\rangle+\sqrt z|1\rangle)\otimes|0^{n-1}\rangle$ 的投影可保持 $n_j$ 并使相干项达到上界。辅助态 $\rho'_j$ 的局部能量精确降低 $k(w_j+w'_j)\delta_p\delta_q[z(1-z)-|d|^2]\ge0$。
+
+辅助态按旁观标签分块。质量分布 $\pi_j$ 由一个 $\lambda+\mu$ 及 $M-1$ 个 $2\mu$ 组成。对正质量 $t_\ell$ 的块记归一化单模态为 $\sigma_\ell$。因 $p+q=1$，$E_j(\rho'_j)=\sum_\ell t_\ell E_j^{\rm qubit}(\sigma_\ell)$，零质量块贡献零。分块熵公式给出 $S(\rho)=S(\rho'_j)=H(\pi_j)+\sum_\ell t_\ell S(\sigma_\ell)$。局部 Gibbs 对数期望由保持的占据数决定。于是单模不等式给出
+$$
+E_j(\rho)\ge\alpha\bigl[-\operatorname{Tr}(\rho\log d_j)-S(\rho)+H(\pi_j)\bigr].
+$$
+令经典比特串 $T=(T_1,\dots,T_n)$ 在 $0^n$ 上取质量 $\lambda$，其余串各取质量 $\mu$。则 $H(T)=S(\rho)$，且删去坐标 $j$ 的边缘律为 $\pi_j$。对每个删坐标边缘按原顺序展开熵链式法则。每个保留的第 $i$ 项只对保留的前序坐标取条件，故至少为 $H(T_i\mid T_1,\dots,T_{i-1})$。每个 $i$ 恰保留 $n-1$ 次，得到 Shearer 不等式 $\sum_j H(\pi_j)\ge(n-1)S(\rho)$。$n=1$ 时空边缘的熵为零。将逐模界求和即得 $\sum_j E_j(\rho)\ge\alpha D_{\rm rel}(\rho\Vert D)$，乘回 $\tau$ 得原式。证毕。
+
+在双模四维空间中，以上两定理覆盖全部至多两个不同特征值的嵌入谱。余下谱型恰为三个不同特征值（重数 $2,1,1$，二重值可处于任一谱位）和四个不同特征值（重数 $1,1,1,1$），均按包含零特征值计数。定理 32.4 与 32.5 已经独立数学复核，完整 Lean 形式化待完成。
+
+## 追加锚（本行以下为增补区）
